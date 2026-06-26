@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的旅行規劃總覽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-black text-slate-900 mb-8">我的旅行行程表</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- 這些連結指向同一個規劃助手頁面，並透過 URL 參數區分 -->
+            <a href="main.html?trip=20261026-1104.json" class="p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-teal-500 transition">
+                <h2 class="font-bold text-lg">🍁 秋季紅葉大縱走</h2>
+                <p class="text-sm text-slate-500 mt-1">10/26 - 11/04</p>
+            </a>
+            
+            <a href="main.html?trip=20260722-0729.json" class="p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-teal-500 transition">
+                <h2 class="font-bold text-lg">🌲 夏季避暑之旅</h2>
+                <p class="text-sm text-slate-500 mt-1">7/22 - 7/30</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
