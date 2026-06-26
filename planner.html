@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本旅行・行程規劃助手</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        /* 自訂滾動條 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* 🖨️ 專屬列印樣式：隱藏網頁 UI，只顯示列印容器 */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #print-container, #print-container * {
+                visibility: visible;
+            }
+            #print-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            /* 強制背景顏色與背景圖列印出來 */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            /* 每一天強制換頁 */
+            .print-page-break {
+                page-break-before: always;
+            }
+            /* 隱藏網頁上的超連結底線與外部小圖示 */
+            .no-print-link { text-decoration: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased transition-colors duration-300">
+
+    <!-- 隱藏的列印專用容器 -->
+    <div id="print-container" class="hidden font-sans bg-white"></div>
+
+    <!-- 頂部漸層導航欄 -->
+    <header id="main-header" class="bg-gradient-to-r from-teal-700 via-emerald-600 to-cyan-600 text-white shadow-md transition-all duration-500">
+        <div class="max-w-[1400px] mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3.5">
+                <div class="p-2 bg-white/15 rounded-xl backdrop-blur-sm shadow-inner">
+                    <i data-lucide="map" class="w-7 h-7 text-teal-200" id="header-icon"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-black tracking-wider flex items-center gap-2" id="header-title">
+                        載入中...
+                    </h1>
+                    <p class="text-xs text-teal-100/90 font-medium tracking-wide mt-0.5" id="header-subtitle">
+                        載入中...
+                    </p>
+                </div>
+            </div>
+            
+            <!-- 即時主題色切換器 -->
+            <div class="flex items-center space-x-2 bg-black/15 p-1 rounded-xl backdrop-blur-sm border border-white/5">
+                <button onclick="printItinerary()" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/20 hover:bg-white/30 text-white mr-2 flex items-center gap-1">
+                    <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                </button>
+                <span class="text-[10px] font-black uppercase text-white/70 px-2 border-l border-white/20">切換氛圍：</span>
+                <button onclick="setTheme('summer')" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/20 hover:bg-white/30 text-white" id="btn-theme-summer">🌲 涼夏翠綠</button>
+                <button onclick="setTheme('midnight')" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 text-white/80 hover:text-white" id="btn-theme-midnight">🎆 花火星夜</button>
+                <button onclick="setTheme('autumn')" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 text-white/80 hover:text-white" id="btn-theme-autumn">🍁 經典秋楓</button>
+                <button onclick="setTheme('grayscale')" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 text-white/80 hover:text-white" id="btn-theme-grayscale">🌑 灰階</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主內容區 (三欄佈局) -->
+    <main class="flex-grow max-w-[1400px] w-full mx-auto px-6 py-6 flex flex-col lg:flex-row gap-2">
+        
+        <!-- 左側欄：天數選單 + 裝備指南 -->
+        <aside class="w-full lg:w-64 shrink-0 flex flex-col gap-4">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4">
+                <h2 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-3 flex items-center justify-between">
+                    <span>每日行程軌跡</span>
+                    <i data-lucide="navigation" class="w-4 h-4"></i>
+                </h2>
+                <nav id="day-nav" class="flex lg:flex-col overflow-x-auto lg:overflow-x-visible space-x-2 lg:space-x-0 lg:space-y-1.5 pb-2 lg:pb-0 scroll-smooth snap-x">
+                    <!-- JS 動態渲染按鈕 -->
+                </nav>
+            </div>
+
+            <!-- 裝備小卡 -->
+            <div class="bg-amber-50/70 border border-amber-200/60 rounded-2xl p-4 shadow-sm">
+                <h3 class="font-bold text-amber-900 text-sm mb-2.5 flex items-center gap-1.5">
+                    <i data-lucide="shield-alert" class="w-4 h-4 text-amber-700"></i>
+                    裝備指南
+                </h3>
+                <ul id="gear-list" class="space-y-2 text-xs text-amber-800/90 leading-relaxed list-disc list-inside">
+                    <!-- 由 JS 自動填入 -->
+                </ul>
+            </div>
+        </aside>
+
+        <!-- 中間欄：本日亮點 (時間軸) -->
+        <section id="main-content-section" class="flex-grow bg-white rounded-2xl shadow-sm border border-slate-100 p-5 sm:p-6 flex flex-col gap-4 min-w-0">
+            <!-- 本日亮點頭部 -->
+            <div class="border-b border-slate-100 pb-4">
+                <div class="flex items-center justify-between gap-3 mb-2">
+                    <span id="detail-date" class="text-xs font-black tracking-widest text-slate-400 uppercase">DAY X - 10/XX</span>
+                    <span id="detail-badge" class="inline-flex items-center text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-md transition-colors duration-300">
+                        <span id="detail-region-txt">主要區域</span>
+                    </span>
+                </div>
+                <h2 id="detail-title" class="text-2xl font-black text-slate-900 leading-tight">載入中...</h2>
+            </div>
+
+            <!-- 數據缺失備用警示框 -->
+            <div id="fallback-warning" class="hidden bg-red-50 border border-red-200 rounded-2xl p-4 text-red-800">
+                <div class="flex items-start space-x-3">
+                    <i data-lucide="alert-octagon" class="w-5 h-5 text-red-600 shrink-0 mt-0.5"></i>
+                    <div>
+                        <h3 class="font-bold text-sm">數據檔載入失敗！</h3>
+                        <p class="text-xs text-red-700/90 mt-1" id="fallback-reason-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 每日高亮警示框 (Alert) -->
+            <div id="detail-alert-box" class="hidden rounded-2xl p-4 border transition-all duration-300">
+                <div class="flex space-x-3">
+                    <div id="alert-icon-container" class="shrink-0 mt-0.5"></div>
+                    <div>
+                        <h4 id="detail-alert-title" class="font-bold text-sm"></h4>
+                        <p id="detail-alert-desc" class="text-xs mt-1 leading-relaxed opacity-90"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 時間軸 -->
+            <div>
+                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center space-x-2">
+                    <i data-lucide="clock" class="w-4 h-4"></i>
+                    <span>時程表</span>
+                </h3>
+                <div id="detail-timeline" class="relative ml-3 border-l border-slate-200 space-y-6">
+                    <!-- 由 JS 渲染生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 右側欄：祕笈提示與備忘筆記 -->
+        <aside class="w-full lg:w-64 shrink-0 flex flex-col gap-4">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 flex flex-col gap-4">
+                <h2 class="text-xs font-black text-slate-400 uppercase mb-4">本日關鍵提示</h2>
+                <div id="tips-container" class="flex flex-col gap-4"></div>
+                <div class="border-t pt-3 mt-4">
+                    <textarea id="notepad" class="w-full h-32 p-3 text-xs bg-slate-50 border border-slate-200 rounded-xl" placeholder="隨手筆記..."></textarea>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- 底部：預算速覽與買票攻略 -->
+    <section id="budget-section" class="hidden max-w-[1400px] w-full mx-auto px-6 mb-8">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 sm:p-6 flex flex-col gap-4">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
+                    <i data-lucide="wallet" class="w-5 h-5 text-emerald-600" id="wallet-icon"></i>
+                    日本國內全行程交通預算速覽
+                </h3>
+            </div>
+
+            <!-- 預算拆解卡片 -->
+            <div id="budget-cards-container" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- 由 JS 渲染生成 -->
+            </div>
+            <h4 class="font-bold text-sm mb-2 mt-6">每日 JR 交通預估</h4>
+            <div id="jr-expense-list" class="space-y-1 text-sm bg-slate-50 p-4 rounded-lg"></div>
+
+            <!-- 買票攻略小卡 -->
+            <div class="bg-sky-50/50 border border-sky-100 rounded-xl p-4 flex gap-3">
+                <i data-lucide="info" class="w-5 h-5 text-sky-600 shrink-0 mt-0.5"></i>
+                <div id="budget-guide-text" class="text-xs text-sky-900 leading-relaxed">
+                    <!-- 由 JS 渲染生成 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部版權 -->
+    <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-xs">
+        <div class="max-w-[1400px] mx-auto px-6 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 行程規劃助手 | 本地直接點擊執行</p>
+            <p class="flex items-center space-x-2 justify-center">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span id="data-status-txt">資料加載成功</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 引入外部 JS 引擎 -->
+    <script src="planner.js"></script>
+</body>
+</html>
