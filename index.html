@@ -1,27 +1,107 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的旅行規劃總覽</title>
+    <title>行程管理中心</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50 min-h-screen p-8">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl font-black text-slate-900 mb-8">我的旅行行程表</h1>
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- 這些連結指向同一個規劃助手頁面，並透過 URL 參數區分 -->
-            <a href="main.html?trip=20261026-1104.json" class="p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-teal-500 transition">
-                <h2 class="font-bold text-lg">🍁 秋季紅葉大縱走</h2>
-                <p class="text-sm text-slate-500 mt-1">10/26 - 11/04</p>
-            </a>
-            
-            <a href="main.html?trip=20260722-0729.json" class="p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-teal-500 transition">
-                <h2 class="font-bold text-lg">🌲 夏季避暑之旅</h2>
-                <p class="text-sm text-slate-500 mt-1">7/22 - 7/30</p>
-            </a>
-        </div>
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <h2 class="text-lg font-bold text-slate-800 mb-4">🚀 匯入新行程</h2>
+            <input type="file" id="file-upload" class="hidden" accept=".json" onchange="handleFileImport(event)">
+            <button onclick="document.getElementById('file-upload').click()" 
+                    class="w-full bg-teal-600 text-white py-4 rounded-xl font-bold hover:bg-teal-700 transition">
+                選擇 .json 檔案
+            </button>
+        </section>
+
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-slate-800">📜 我的行程庫</h2>
+                <button id="edit-toggle" onclick="toggleEditMode()" 
+                        class="text-xs font-bold text-teal-600 border border-teal-600 px-3 py-1 rounded-full hover:bg-teal-50 transition">
+                    進入編輯模式
+                </button>
+            </div>
+            <div id="trip-list" class="space-y-3">
+            </div>
+        </section>
+
     </div>
+
+    <script>
+        let isEditMode = false;
+
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            const btn = document.getElementById('edit-toggle');
+            btn.textContent = isEditMode ? "完成編輯" : "進入編輯模式";
+            btn.classList.toggle('bg-teal-600');
+            btn.classList.toggle('text-white');
+            
+            // 重新渲染清單以更新刪除按鈕狀態
+            renderTripList();
+        }
+        // 頁面載入時渲染列表
+        window.onload = renderTripList;
+
+        function renderTripList() {
+            const listDiv = document.getElementById('trip-list');
+            const tripLibrary = JSON.parse(localStorage.getItem('trip_library') || '{}');
+            
+            listDiv.innerHTML = '';
+
+            Object.keys(tripLibrary).forEach(filename => {
+                const tripData = tripLibrary[filename];
+                const displayTitle = tripData.metadata?.title || filename;
+                const displaySubTitle = tripData.metadata?.subtitle;
+                // 判斷 SubTitle 是否存在且不為空字串
+                const subTitleHtml = (displaySubTitle && displaySubTitle.trim() !== "") 
+                    ? `<p class="text-xs text-slate-500">${displaySubTitle}</p>` 
+                    : '';
+                const item = document.createElement('div');
+                // 當編輯模式開啟時，增加一些視覺提示 (例如微小的抖動或背景色變化)
+                item.className = `flex items-center justify-between p-4 bg-slate-50 rounded-xl transition ${isEditMode ? 'border-l-4 border-red-400' : ''}`;
+                
+                item.innerHTML = `
+                    <div class="cursor-pointer" onclick="openTrip('${filename}')">
+                        <p class="font-bold text-slate-800">${displayTitle}</p>
+                        ${subTitleHtml}
+                    </div>
+                    ${isEditMode ? `<button onclick="deleteTrip('${filename}')" class="text-red-500 hover:bg-red-100 p-2 rounded-full font-bold">✕</button>` : ''}
+                `;
+                listDiv.appendChild(item);
+            });
+        }
+
+        function openTrip(name) {
+            localStorage.setItem('current_trip', name);
+            window.location.href = 'planner.html';
+        }
+
+        function deleteTrip(name) {
+            if (!confirm(`確定刪除「${name}」？`)) return;
+            let library = JSON.parse(localStorage.getItem('trip_library') || '{}');
+            delete library[name];
+            localStorage.setItem('trip_library', JSON.stringify(library));
+            renderTripList();
+        }
+
+        function handleFileImport(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const tripData = JSON.parse(e.target.result);
+                const name = file.name.replace('.json', '');
+                let library = JSON.parse(localStorage.getItem('trip_library') || '{}');
+                library[name] = tripData;
+                localStorage.setItem('trip_library', JSON.stringify(library));
+                renderTripList(); // 更新列表
+            };
+            reader.readAsText(file);
+        }
+    </script>
 </body>
 </html>
