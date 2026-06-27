@@ -1,0 +1,362 @@
+{
+    "metadata": {
+        "title": "關西岡山夏日動漫行",
+        "subtitle": "Aug 17 ~ 22 USJ 芙莉蓮、梅田動漫巡禮與晴天之國",
+        "guides": [
+            {
+
+            },
+            {
+                "title": "交通票券建議",
+                "items": [
+                    
+                ]
+            }
+        ]
+    },
+    "detail": {
+        "day1": {
+            "dayNum": 1,
+            "date": "Aug 17 (Mon)",
+            "title": "抵達關西，前進大阪",
+            "hotel": "東橫INN 大阪梅田中津",
+            "region": "",
+            "tips": [
+                {
+                    "type": "transit",
+                    "title": "機場前往市區",
+                    "desc": "乘車位置：關西機場第1航廈 2F 聯絡橋 JR 車站\n搭乘 JR 關空快速直達『大阪站』，車程約 65 分鐘"
+                },
+                {
+                    "type": "hotel",
+                    "icon": "hotel",
+                    "title": "東橫INN 大阪梅田中津1號店",
+                    "desc": "[官網](https://www.toyoko-inn.com/china/search/detail/00034/)"
+                }
+            ],
+            "timeline": [
+                {
+                    "time": "15:15",
+                    "type": "flight",
+                    "event": "搭乘 IT212 航班出發",
+                    "desc": "桃園國際機場 (TPE) 第1航廈起飛，19:00 抵達關西國際機場 (KIX) 第1航廈",
+                    "icon": "plane",
+                    "amount": 0
+                },
+                {
+                    "time": "19:00",
+                    "type": "transit",
+                    "event": "抵達關西機場與前往市區",
+                    "desc": "通關領取行李後，搭乘 20:00 左右發車的 JR 關空快速前往大阪站",
+                    "icon": "map-pin",
+                    "amount": 1210
+                },
+                {
+                    "time": "21:30",
+                    "type": "hotel",
+                    "event": "飯店 Check-in",
+                    "desc": "[Google Map](https://maps.google.com/?q=東橫INN大阪梅田中津)\n地下鐵御堂筋線『中津站』4號出口步行1分鐘\nCheck-in 櫃檯24小時開放",
+                    "icon": "hotel",
+                    "amount": 0
+                }
+            ]
+        },
+        "day2": {
+            "dayNum": 2,
+            "date": "Aug 18 (Tue)",
+            "title": "日本環球影城",
+            "hotel": "東橫INN 大阪梅田中津",
+            "region": "葬送的芙莉蓮．咒術迴戰",
+            "tips": [
+                {
+                    "type": "info",
+                    "title": "開園時間",
+                    "desc": "表定 09:00 開園，實際常於 08:00-08:15 提早開放入場\n務必於 07:30 前抵達安檢口排隊"
+                },
+                {
+                    "type": "food",
+                    "title": "芙莉蓮主題餐廳",
+                    "desc": "位置：侏儸紀公園區『失落的世界餐廳』\n營業時間通常為 10:00-18:00，建議 11:00 前抵達避開人潮"
+                },
+                {
+                    "type": "info",
+                    "title": "單人通道 (Single Rider)",
+                    "desc": "- 瑪利歐賽車～庫巴的挑戰書～\n- 哈利波特禁忌之旅\n- 飛天翼龍\n- 好萊塢美夢‧乘車遊\n- 太空幻想列車\n- 小小兵瘋狂乘車遊\n- 侏儸紀公園‧乘船遊\n- 大白鯊"
+                    
+                }
+            ],
+            "timeline": [
+                {
+                    "time": "07:00",
+                    "type": "jr",
+                    "event": "前往 USJ",
+                    "desc": "[Ggoogle Map](https://maps.app.goo.gl/Q2c6MbJsY6inKrgB6)\n乘車路線：JR 大阪站搭乘『大阪環狀線(西九條方面)』至『西九條站』，同月台轉乘『JR 夢咲線』至『環球城站 (Universal City)』\n車程約 15 分鐘\n",
+                    "icon": "train",
+                    "amount": 190
+                },
+                {
+                    "time": "08:30",
+                    "type": "scenery",
+                    "event": "芙莉蓮合作活動",
+                    "desc": "地點：好萊塢區\n『葬送的芙莉蓮～追憶之旅～』徒步體驗，以及搭乘『好萊塢美夢乘車遊』(需選擇專屬 BGM)",
+                    "icon": "wand",
+                    "amount": 0
+                },
+                {
+                    "time": "11:30",
+                    "type": "food",
+                    "event": "失落的世界餐廳",
+                    "desc": "餐點參考：芙莉蓮牛肉拼盤、欣梅爾歐姆蛋拼盤\n位置在侏儸紀公園園區內",
+                    "icon": "utensils",
+                    "amount": 2500
+                },
+                {
+                    "time": "13:00",
+                    "type": "scenery",
+                    "event": "咒術迴戰合作活動",
+                    "desc": "地點：好萊塢區\n設施包含『咒術迴戰 The Real 4-D』劇場與『咒術迴戰 x Story Ride』好萊塢美夢乘車遊",
+                    "icon": "swords",
+                    "amount": 0
+                },
+                {
+                    "time": "20:00",
+                    "type": "jr",
+                    "event": "返回梅田",
+                    "desc": "路線：環球城站 -> 西九條站 -> JR 大阪站",
+                    "icon": "train",
+                    "amount": 190
+                }
+            ]
+        },
+        "day3": {
+            "dayNum": 3,
+            "date": "Aug 19 (Wed)",
+            "title": "梅田爆買指南",
+            "hotel": "東橫INN 大阪梅田中津",
+            "region": "梅田商圈",
+            "tips": [
+                {
+                    "type": "food",
+                    "title": "梅田備用餐廳資訊",
+                    "desc": "#. はなだこ(章魚燒)：新梅田食道街1F (10:00-22:00)\n#. きじ(大阪燒)：新梅田食道街2F (11:30-21:30)\n#. 彌七拉麵：中津站步行3分 (10:45-16:00，週六日公休). 路上遇人少可隨時入座"
+                },
+                {
+                    "type": "food",
+                    "title": "北極星",
+                    "desc": "- LUCUA 大阪店: B2 [Google Map](https://maps.app.goo.gl/43dYgMaC2GE5zmx29)\n- エキマルシェ大阪店: B2 | 8:00-23:00 [Google Map](https://maps.app.goo.gl/tk8ZHCPzfM8iosUX8)\n- 阪急三番街店 [Google Map](https://maps.app.goo.gl/cKwtKxDtAwMrCjyp8)"
+                }
+            ],
+            "timeline": [
+                {
+                    "type": "shopping",
+                    "event": "mt lab. OSAKA",
+                    "desc": "營業時間 10:00-12:00 | 13:0-18:30 [Google Map](https://maps.app.goo.gl/gECkrRYdm7Y6h82B9)"
+                },
+                {
+                    "type": "shopping",
+                    "event": "梅田 LOFT",
+                    "desc": "營業時間 10:00-20:00 [Google Map](https://maps.app.goo.gl/vKmdUY73VtdkjGs69)",
+                    "amount": 0
+                },
+                {
+                    "type": "shopping",
+                    "event": "HEP FIVE",
+                    "desc": "營業時間 11:00-21:00 [Google Map](https://maps.app.goo.gl/JLpxyBNKHqSwXVDdA)\n6F: JUMP SHOP | 萬代扭蛋區 | 3 COINS"
+                },
+                {
+                    "type": "shopping",
+                    "event": "Animate 梅田店",
+                    "desc": "營業時間 11:00-21:00 [Google Map](hhttps://maps.app.goo.gl/4TcnSr1EssU1eUVK7)",
+                    "amount": 0
+                },
+                {
+                    "type": "shopping",
+                    "event": "LINKS UMEDA（リンクス梅田）",
+                    "desc": "位於梅田的一棟超大型複合式商業設施 [Floor Map](https://links-umeda.jp/floormap)\n營業時間 10:00-21:00 [Google Map](https://maps.app.goo.gl/pRGqTpqkYMXuSmGo9)\n**Yodobashi**: B1F-5F\n**Nitori**: 7F\n**UNIQLO**: 1~2F\nDAISO:5F\n戶外用品: 6F | The North Face | Columbia | MAMMUT\nHarves: B1 生鮮超市",
+                    "icon": "shopping-bag",
+                    "amount": 0
+                }
+            ]
+        },
+        "day4": {
+            "dayNum": 4,
+            "date": "Aug 20 (Thu)",
+            "title": "枚方公園",
+            "hotel": "東橫INN 大阪梅田中津",
+            "region": "伏見稻荷吉伊卡哇採購",
+            "tips": [
+            ],
+            "timeline": [
+                {
+                    "time": "09:00",
+                    "type": "transit",
+                    "event": "搭乘地鐵與京阪電車",
+                    "desc": "路線：地鐵御堂筋線『梅田』至『淀屋橋』，轉乘『京阪本線』至『枚方公園站』\n車程約 40 分鐘",
+                    "icon": "train",
+                    "amount": 420
+                },
+                {
+                    "time": "10:00",
+                    "type": "scenery",
+                    "event": "枚方公園",
+                    "desc": "營業時間: 10:00-18:00[官網](https://www.hirakatapark.co.jp/)\n從枚方公園站步行 3 分鐘抵達入口\n入園券: 大人 2,000 日圓\n入園＋自由通行券: 大人 5,400 日圓",
+                    "icon": "map-pin",
+                    "amount": 5400
+                },
+                {
+                    "type": "shopping",
+                    "event": "伏見稻荷",
+                    "desc": "乘車:從『枚方公園』搭乘京阪本線至『伏見稻荷』\n**ちいかわもぐもぐ本舗** (吉伊卡哇專賣店) [在 Google 地圖開啟](https://maps.google.com/?q=ちいかわもぐもぐ本舗)\n營業時間：09:30 - 17:30 **⚠️ 警告**：人潮眾多時需視現場情況領取整理券。\n**伏見稻荷郵便局**",
+                    "amount": 0
+                },
+                {
+                    "type": "shopping",
+                    "event": "枚方T-SITE",
+                    "desc": "乘車：從『伏見稻荷』搭乘京阪本線至『枚方市』",
+                    "amount": 0
+                },
+                {
+                    "time": "16:00",
+                    "type": "scenery",
+                    "event": "會合",
+                    "desc": "乘車：搭乘京阪電車返回『枚方公園』出口會合",
+                    "icon": "users",
+                    "amount": 0
+                },
+                {
+                    "type": "transit",
+                    "event": "返回梅田",
+                    "desc": "京阪本線『枚方公園站』至『淀屋橋』，轉地鐵御堂筋線回『梅田』",
+                    "icon": "train",
+                    "amount": 420
+                },
+                {
+                    "type": "food",
+                    "event": "晚餐",
+                    "desc": "返回梅田商圈用餐",
+                    "icon": "utensils"
+                }
+            ]
+        },
+        "day5": {
+            "dayNum": 5,
+            "date": "Aug 21 (Fri)",
+            "title": "移動至岡山與倉敷",
+            "hotel": "東橫INN 岡山站東口",
+            "region": "大阪 ➔ 岡山",
+            "tips": [
+                {
+                    "type": "transit",
+                    "title": "JR 普通車轉乘時刻參考",
+                    "desc": "10:00 大阪發車 (JR 神戶線新快速) -> 11:04 抵達姬路 (同月台轉乘 11:06 發車山陽本線) -> 11:26 抵達相生 (轉乘 11:29 發車山陽本線) -> 12:37 抵達岡山"
+                }
+            ],
+            "timeline": [
+                {
+                    "time": "09:00",
+                    "type": "hotel",
+                    "event": "飯店退房",
+                    "desc": "最晚退房時間 10:00",
+                    "icon": "luggage",
+                    "amount": 0
+                },
+                {
+                    "time": "10:00",
+                    "type": "jr",
+                    "event": "搭乘 JR 前往岡山",
+                    "desc": "乘車路線：JR 大阪站搭乘『新快速』\n依 Tips 資訊於姬路、相生站換車\n總車程約 2.5 小時",
+                    "icon": "train",
+                    "amount": 3080
+                },
+                {
+                    "time": "12:50",
+                    "type": "transit",
+                    "event": "寄放行李",
+                    "desc": "地點：東橫INN 岡山站東口\nGoogle Map: https://maps.google.com/?q=東橫INN岡山站東口\nJR 岡山站東口步行 3 分鐘",
+                    "icon": "map-pin",
+                    "amount": 0
+                },
+                {
+                    "time": "13:30",
+                    "type": "transit",
+                    "event": "前往倉敷",
+                    "desc": "路線：JR 岡山站搭乘『山陽本線』至『倉敷站』\n車程 17 分鐘",
+                    "icon": "train",
+                    "amount": 330
+                },
+                {
+                    "time": "14:00",
+                    "type": "scenery",
+                    "event": "倉敷美觀地區",
+                    "desc": "從倉敷站南口步行約 10 分鐘抵達入口",
+                    "icon": "camera",
+                    "amount": 0
+                },
+                {
+                    "time": "15:00",
+                    "type": "food",
+                    "event": "くらしき桃子 (Kurashiki Momoko)",
+                    "desc": "Google Map: https://maps.google.com/?q=くらしき桃子總本店\n營業時間 10:00-18:00 (L.O. 17:30)\n主打白桃刨冰與麝香葡萄聖代",
+                    "icon": "ice-cream",
+                    "amount": 2500
+                },
+                {
+                    "time": "16:30",
+                    "type": "shopping",
+                    "event": "三井 Outlet",
+                    "desc": "Google Map: https://maps.google.com/?q=三井Outlet倉敷\n從倉敷站北口步行 3 分鐘\n營業時間 10:00-20:00",
+                    "icon": "shopping-bag",
+                    "amount": 0
+                },
+                {
+                    "time": "19:00",
+                    "type": "jr",
+                    "event": "返回岡山與 Check-in",
+                    "desc": "路線：JR 倉敷站搭乘『山陽本線』回『岡山站』",
+                    "icon": "hotel",
+                    "amount": 330
+                }
+            ]
+        },
+        "day6": {
+            "dayNum": 6,
+            "date": "Aug 22 (Sat)",
+            "title": "岡山機場返台",
+            "hotel": "溫暖的家",
+            "region": "岡山",
+            "tips": [
+                {
+                    "type": "transit",
+                    "title": "前往岡山機場",
+                    "desc": "乘車位置：JR 岡山站西口巴士站 21 號乘車處\n搭乘『岡山桃太郎機場利木津巴士』，車程 30 分鐘，可使用 IC 卡或先於售票機買票"
+                }
+            ],
+            "timeline": [
+                {
+                    "time": "10:00",
+                    "type": "shopping",
+                    "event": "岡山站 さんすて (Sunste)",
+                    "desc": "位置：JR 岡山站共構\n超市區營業時間 09:00-20:00\n可購買白桃、葡萄與伴手禮",
+                    "icon": "shopping-bag",
+                    "amount": 0
+                },
+                {
+                    "time": "12:30",
+                    "type": "bus",
+                    "event": "搭乘機場巴士",
+                    "desc": "請於 12:30 或 13:00 前往西口 21 號站牌排隊搭乘利木津巴士",
+                    "icon": "bus",
+                    "amount": 780
+                },
+                {
+                    "time": "15:25",
+                    "type": "flight",
+                    "event": "搭乘 IT215 航班",
+                    "desc": "岡山機場 (OKJ) 起飛，預計 17:30 抵達桃園國際機場 (TPE)",
+                    "icon": "plane",
+                    "amount": 0
+                }
+            ]
+        }
+    }
+}
