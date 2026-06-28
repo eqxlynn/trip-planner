@@ -126,18 +126,30 @@
         <!-- 中間欄：本日亮點 (時間軸) -->
         <section id="main-content-section" class="flex-grow bg-white rounded-2xl shadow-sm border border-slate-100 p-5 sm:p-6 flex flex-col gap-4 min-w-0">
             <!-- 本日亮點頭部 -->
-            <div class="border-b border-slate-100 pb-4">
-                <div class="flex items-center justify-between gap-3 mb-2">
-                    <span id="detail-date" class="text-xs font-black tracking-widest text-slate-400 uppercase">DAY X - MM DD</span>
-                    <span id="detail-badge" class="inline-flex items-center text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-md transition-colors duration-300">
-                        <span id="detail-region-txt">MAIN</span>
-                    </span>
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-4 break-inside-avoid">
+                
+                <!-- 左側：打孔日曆 Icon 容器 -->
+                <div id="detail-calendar-icon-container" class="shrink-0">
+                    <!-- 由 JS 動態呼叫 generateCalendarIconHtml 渲染 -->
                 </div>
-                <h2 id="detail-title" class="text-2xl font-black text-slate-900 leading-tight">載入中...</h2>
+                
+                <!-- 右側：主標題與地區膠囊 -->
+                <div class="flex flex-col items-start gap-2">
+                    <!-- 主標題 -->
+                    <h2 id="detail-title" class="text-3xl font-black text-slate-900 leading-tight">載入中...</h2>
+                    
+                    <!-- 地區膠囊 (在標題下方) -->
+                    <div id="detail-badge-container" class="hidden">
+                        <span id="detail-badge" class="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-md transition-colors duration-300">
+                            <span id="detail-region-txt">MAIN</span>
+                        </span>
+                    </div>
+                </div>
+                
             </div>
 
             <!-- 數據缺失備用警示框 -->
-            <div id="fallback-warning" class="hidden bg-red-50 border border-red-200 rounded-2xl p-4 text-red-800">
+            <div id="fallback-warning" class="hidden bg-red-50 border border-red-200 rounded-2xl p-2 text-red-800">
                 <div class="flex items-start space-x-3">
                     <i data-lucide="alert-octagon" class="w-5 h-5 text-red-600 shrink-0 mt-0.5"></i>
                     <div>
@@ -169,26 +181,26 @@
     </main>
 
     <!-- 底部：預算速覽與買票攻略 -->
-    <section id="budget-section" class="hidden max-w-[1400px] w-full mx-auto px-6 mb-8 mt-4">
+    <section id="budget-section" class="hidden max-w-[1400px] w-full mx-auto px-6 mb-4 mt-2">
         <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 sm:p-6">
             
             <!-- 區塊大標題 -->
             <div class="flex items-center gap-2 mb-6 border-b border-slate-100 pb-3">
                 <i data-lucide="wallet" class="w-5 h-5 text-emerald-600" id="wallet-icon"></i>
-                <h3 class="text-lg font-black text-slate-900">日本國內全行程交通結算</h3>
+                <h3 class="text-lg font-black text-slate-900">預算表</h3>
             </div>
 
             <!-- 雙欄佈局 (左 7 : 右 5) -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
-                <!-- 🔴 左欄：詳細車資清單 -->
+                <!-- 🔴 左欄：詳細費用 -->
                 <div class="lg:col-span-7 flex flex-col h-full">
                     <h4 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
                         <i data-lucide="list" class="w-4 h-4 text-slate-500"></i>
-                        詳細車資清單
+                        詳細費用
                     </h4>
                     <!-- 高度加長至 500px 以配合右側高度 -->
-                    <div id="jr-expense-list" class="space-y-1 text-sm bg-slate-50 p-4 rounded-xl border border-slate-100 flex-grow max-h-[500px] overflow-y-auto">
+                    <div id="expense-list" class="space-y-1 text-sm bg-slate-50 p-4 rounded-xl border border-slate-100 flex-grow max-h-[500px] overflow-y-auto">
                         <!-- 由 JS 渲染 -->
                     </div>
                 </div>
@@ -200,21 +212,10 @@
                     <div>
                         <h4 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
                             <i data-lucide="pie-chart" class="w-4 h-4 text-slate-500"></i>
-                            各類交通總計
+                            各類統計
                         </h4>
                         <div id="budget-cards-container" class="grid grid-cols-2 gap-3">
                             <!-- 由 JS 渲染生成 -->
-                        </div>
-                    </div>
-
-                    <!-- 2. JR Pass 購買評估 -->
-                    <div class="flex flex-col flex-grow">
-                        <h4 class="font-bold text-sky-900 text-sm mb-3 flex items-center gap-2" id="jr-pass-title">
-                            <i data-lucide="train" class="w-4 h-4 text-sky-600" id="jr-pass-icon"></i>
-                            JR Pass 購買評估
-                        </h4>
-                        <div id="bottom-jr-pass-eval" class="flex flex-col bg-sky-50/50 border border-sky-100 p-4 rounded-xl flex-grow">
-                            <!-- 由 JS 自動填寫預算與評估建議 -->
                         </div>
                     </div>
                 </div>
