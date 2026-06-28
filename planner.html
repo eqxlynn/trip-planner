@@ -19,6 +19,14 @@
             width: 6px;
             height: 6px;
         }
+        /* 👇 專門用來隱藏特定區塊的滾動條，但保留滾動功能 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
         ::-webkit-scrollbar-track {
             background: #f1f5f9;
         }
@@ -98,14 +106,18 @@
     <main class="flex-grow max-w-[1400px] w-full mx-auto px-6 py-6 flex flex-col lg:flex-row gap-2">
         
         <!-- 左側欄：天數選單 + 裝備指南 -->
-        <aside class="w-full lg:w-64 shrink-0 flex flex-col gap-4 sticky top-0 z-50 lg:top-6 lg:self-start lg:max-h-[calc(100vh-3rem)]">
-            <!-- 加上 max-h 與 overflow-y-auto 確保選單過長時內部可以捲動 -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 max-h-[40vh] lg:max-h-full overflow-y-auto">
+        <aside class="w-full lg:w-64 shrink-0 flex flex-col gap-4 sticky top-0 z-50 lg:top-6 lg:self-start">
+            
+            <!-- 移除原本的 max-h 與 overflow-y-auto，讓它完全根據內容長高 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4">
                 <h2 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-3 flex items-center justify-between">
                     <span>每日行程軌跡</span>
                     <i data-lucide="navigation" class="w-4 h-4"></i>
                 </h2>
-                <nav id="day-nav" class="flex lg:flex-col overflow-x-auto lg:overflow-x-visible space-x-2 lg:space-x-0 lg:space-y-1.5 pb-2 lg:pb-0 scroll-smooth snap-x">
+                
+                <!-- 手機版: overflow-x-auto (允許橫向滑動天數) + no-scrollbar (隱藏滑動條) -->
+                <!-- 電腦版: lg:overflow-visible (關閉滑動，完全顯示內容) -->
+                <nav id="day-nav" class="flex lg:flex-col overflow-x-auto lg:overflow-visible space-x-2 lg:space-x-0 lg:space-y-1.5 pb-2 lg:pb-0 scroll-smooth snap-x no-scrollbar">
                     <!-- JS 動態渲染按鈕 -->
                 </nav>
             </div>
