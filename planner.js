@@ -270,18 +270,45 @@ function parseMarkdownList(text, isPrint = false) {
     return `<p class="text-xs text-slate-500 leading-relaxed mt-1.5">${html.replace(/\n/g, '<br>')}</p>`;
 }
 
+/**
+ * 解析日期字串，拆解出月份、數字與星期 (共用邏輯)
+ * @param {string} dateString - 原始日期字串，例如 "July 22 (Wed)"
+ * @returns {Object} { month, day, dow }
+ */
+function parseDateInfo(dateString) {
+    let month = "";
+    let day = dateString || "";
+    let dow = "";
+
+    if (dateString) {
+        const parts = dateString.trim().split(/\s+/);
+        if (parts.length >= 3) {
+            month = parts[0];
+            day = parts[1];
+            dow = parts.slice(2).join(' ').replace(/[()（）]/g, '');
+        } else if (parts.length === 2) {
+            day = parts[0];
+            dow = parts[1].replace(/[()（）]/g, '');
+        } else {
+            day = dateString.replace(/[()（）]/g, '');
+        }
+    }
+    
+    return { month, day, dow };
+}
+
 function calculateTotalBudget() {
     if (!window.tripData.detail) return;
     const dayKeys = Object.keys(window.tripData.detail);
     
     let grandTotal = 0;
     const categoryTotals = {};
-    const jrExpensesByDay = {};
+    const expensesByDay = {};
 
     // 遍歷所有天數計算總額
     dayKeys.forEach(key => {
         const day = window.tripData.detail[key];
-        const dailyJrExpenses = [];
+        const dailyExpenses = [];
 
         day.timeline.forEach(item => {
             const amt = parseFloat(item.amount) || 0;
@@ -289,23 +316,23 @@ function calculateTotalBudget() {
                 grandTotal += amt;
                 categoryTotals[item.type] = (categoryTotals[item.type] || 0) + amt;
                 
-                // 收集交通相關的花費作為明細
-                if (['jr', 'train', 'transit', 'bus', 'flight'].includes(item.type)) {
-                    dailyJrExpenses.push({ desc: item.event, amount: amt, type: item.type });
-                }
+                // 收集花費明細
+                dailyExpenses.push({ desc: item.event, amount: amt, type: item.type });
             }
         });
 
-        if (dailyJrExpenses.length > 0) {
-            jrExpensesByDay[day.dayNum] = dailyJrExpenses;
+        if (dailyExpenses.length > 0) {
+            expensesByDay[day.dayNum] = dailyExpenses;
         }
     });
 
-    // 格式化總預算資料
-    const items = Object.entries(categoryTotals).map(([type, sum]) => ({
-        title: `${type} 費用`,
-        amount: `¥${sum.toLocaleString()}`
-    }));
+    // 格式化總預算資料 (並強制過濾掉金額 <= 0 的項目)
+    const items = Object.entries(categoryTotals)
+        .filter(([type, sum]) => sum > 0)
+        .map(([type, sum]) => ({
+            title: `${type}`,
+            amount: `¥${sum.toLocaleString()}`
+        }));
 
     window.budgetData = {
         items: items,
@@ -313,11 +340,11 @@ function calculateTotalBudget() {
             title: '總預算合計',
             amount: `¥${grandTotal.toLocaleString()}`
         },
-        jrExpensesByDay: jrExpensesByDay,
+        expensesByDay: expensesByDay,
     };
 }
 
-// 交通預算速覽渲染邏輯
+// 預算速覽渲染邏輯
 function renderBudget() {
     if (window.budgetData && window.budgetData.items.length > 0) {
         document.getElementById('budget-section').classList.remove('hidden');
@@ -330,57 +357,70 @@ function renderBudget() {
         if (!container) return;
         container.innerHTML = '';
         
-        // 渲染前三個細分預算項目
+        // 🌟 關鍵修改 1：強制將容器改為「單欄 (grid-cols-1)」與「更緊湊的間距 (gap-2)」
+        container.className = 'grid grid-cols-1 gap-2';
+        container.innerHTML = '';
+        // 渲染細分預算項目 (改為左右對齊的清單列)
         window.budgetData.items.forEach(item => {
             const card = document.createElement('div');
-            card.className = "bg-slate-50 rounded-xl p-4 border border-slate-100";
+            // 🌟 關鍵修改 2：加入 flex, items-center, justify-between 讓文字與金額分置左右
+            card.className = "bg-slate-50 rounded-xl py-2.5 px-4 border border-slate-100 flex items-center justify-between";
             card.innerHTML = `
-                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">${item.title}</span>
-                <div class="text-lg font-black text-slate-800 mt-1">${item.amount}</div>
+                <span class="text-base text-slate-500 font-bold uppercase tracking-wider">${item.title}</span>
+                <div class="text-base font-black text-slate-800">${item.amount}</div>
             `;
             container.appendChild(card);
         });
 
         // 渲染總計卡片 (同步套用主題樣式)
         const totalCard = document.createElement('div');
-        totalCard.className = `${theme.totalCard} rounded-xl p-4 transition-all duration-300`;
+        // 🌟 關鍵修改 3：總計卡片同樣維持左右對齊，移除不必要的 col-span-2
+        totalCard.className = `${theme.totalCard} rounded-xl py-3 px-4 flex items-center justify-between transition-all duration-300 mt-1`;
         totalCard.innerHTML = `
-            <span class="text-[10px] ${theme.totalCardTitle} font-black uppercase tracking-wider">${window.budgetData.total.title}</span>
-            <div class="text-xl font-black mt-1">${window.budgetData.total.amount}</div>
+            <span class="text-base ${theme.totalCardTitle} font-black uppercase tracking-wider">${window.budgetData.total.title}</span>
+            <div class="text-xl font-black">${window.budgetData.total.amount}</div>
         `;
         container.appendChild(totalCard);
 
-        const expenses = window.budgetData.jrExpensesByDay;
+        const expenses = window.budgetData.expensesByDay;
         if (!expenses) return;
 
-        document.getElementById('jr-expense-list').innerHTML = Object.keys(expenses).map(day => {
-            // 1. 計算該天各 type 的總和
+        document.getElementById('expense-list').innerHTML = Object.keys(expenses).map(day => {
+            // 1. 計算該天各 type 的總和與每日小計
             const dayTotals = {};
+            let dailySubtotal = 0; 
+            
             expenses[day].forEach(item => {
                 if (item.type) {
                     dayTotals[item.type] = (dayTotals[item.type] || 0) + item.amount;
+                    dailySubtotal += item.amount; // 累加當日總金額
                 }
             });
             
-            // 2. 設定排序權重：JR 優先，再來是 BUS，然後是 Train/Transit
-            const sortOrder = { 'jr': 1, 'bus': 2, 'train': 3, 'transit': 4, 'flight': 5 };
-            
-            // 3. 排序並產生分類加總的小標籤 HTML
+            // 2. 過濾 0 元項目、依照名稱 (type) 字母順序排序，並產生分類加總的小標籤 HTML
             const typeBadgesHtml = Object.entries(dayTotals)
-                .sort((a, b) => (sortOrder[a[0]] || 99) - (sortOrder[b[0]] || 99))
+                .filter(([type, sum]) => sum > 0)
+                .sort((a, b) => a[0].localeCompare(b[0])) // 改為依名稱 (a-z) 排序
                 .map(([type, sum]) => {
                     return `<span class="px-1.5 py-0.5 bg-black/5 rounded text-[10px] font-bold tracking-wider opacity-80">${type}: ¥${sum.toLocaleString()}</span>`;
                 }).join('');
 
-            // 4. 回傳完整的 HTML
+            // 🌟 4. 建立獨立的小計 HTML，並加上 ml-auto 讓它自動靠最右邊
+            const subtotalHtml = dailySubtotal > 0 
+                ? `<span class="ml-auto text-[11px] font-black tracking-wider opacity-90">= ¥${dailySubtotal.toLocaleString()}</span>` 
+                : '';
+
+            // 5. 回傳完整的 HTML
             return `
                 <div class="mb-4 last:mb-0">
                     <div class="flex items-center font-black text-xs border-b mb-2 pb-1.5 px-2 py-1.5 rounded transition-colors duration-300 ${theme.listHeader}">
                         <span>Day ${day}</span>
-                        <!-- 將標籤放在 Day X 的右側 -->
-                        <div class="flex flex-wrap gap-1.5 ml-3">
+                        <!-- 將分類標籤放在 Day X 的右側 -->
+                        <div class="flex items-center flex-wrap gap-1.5 ml-3">
                             ${typeBadgesHtml}
                         </div>
+                        <!-- 放置每日小計 (因為有 ml-auto 會推到最右邊) -->
+                        ${subtotalHtml}
                     </div>
                     <div class="space-y-1">
                         ${expenses[day].map(item => `
@@ -393,83 +433,11 @@ function renderBudget() {
                 </div>
             `;
         }).join('');
-        // 渲染右側的 JR Pass 評估
-        renderJrPassEval();
     } else {
         const budgetContainer = document.getElementById('budget-container');
         if (budgetContainer) {
             budgetContainer.classList.add('hidden');
         }
-    }
-}
-
-function renderJrPassEval() {
-    const evalContainer = document.getElementById('bottom-jr-pass-eval');
-    const passTitle = document.getElementById('jr-pass-title');
-    const passIcon = document.getElementById('jr-pass-icon');
-
-    if (!evalContainer || !window.tripData || !window.tripData.metadata.jrPass) return;
-
-    // 取得目前主題設定
-    const themeName = window.currentTheme || localStorage.getItem('selected-theme') || 'grayscale';
-    const theme = THEMES[themeName];
-
-    // 1. 動態更新外框與標題顏色
-    if (passTitle) passTitle.className = `font-bold text-sm mb-3 flex items-center gap-2 transition-colors duration-300 ${theme.passTitle}`;
-    if (passIcon) passIcon.className = `w-4 h-4 ${theme.passIcon}`;
-    evalContainer.className = `flex flex-col p-4 rounded-xl border flex-grow transition-colors duration-300 ${theme.passBox}`;
-
-    let jrTotal = 0;
-    const jrExpenses = window.budgetData?.jrExpensesByDay || {};
-    Object.values(jrExpenses).forEach(dayList => {
-        dayList.forEach(item => {
-            if (item.type === 'jr') {
-                jrTotal += item.amount;
-            }
-        });
-    });
-
-    // 2. 產生比價卡片 HTML
-    const passComparisonHtml = window.tripData.metadata.jrPass.map(pass => {
-        const diff = jrTotal - pass.price;
-        const isWorth = diff > 0;
-        
-        // 虧錢統一用低調的 Slate，省錢則套用華麗的主題色
-        const statusColor = isWorth 
-            ? theme.passSaveTag 
-            : 'text-slate-500 bg-slate-100 border-slate-200';
-        const statusText = isWorth 
-            ? `省 ¥${diff.toLocaleString()}` 
-            : `虧 ¥${Math.abs(diff).toLocaleString()}`;
-        
-        return `
-            <div class="flex items-center justify-between text-sm p-3 rounded-xl border border-slate-100 mt-2 bg-white shadow-sm transition-all duration-300 ${theme.passHover} hover:shadow-md">
-                <div>
-                    <div class="font-bold text-slate-700 leading-tight">${pass.name}</div>
-                    <div class="text-xs text-slate-400 mt-1">售價: ¥${pass.price.toLocaleString()}</div>
-                </div>
-                <div class="font-black ${statusColor} px-3 py-1.5 rounded-lg whitespace-nowrap ml-2 border transition-colors duration-300">
-                    ${statusText}
-                </div>
-            </div>
-        `;
-    }).join('');
-
-    // 3. 填入內容
-    evalContainer.innerHTML = `
-        <div class="flex items-center justify-between bg-white px-4 py-3 rounded-xl border shadow-sm mb-3 transition-colors duration-300 ${theme.passTotalBox}">
-            <span class="text-sm font-bold transition-colors duration-300 ${theme.passTotalLabel}">JR 車資</span>
-            <span class="text-xl font-black transition-colors duration-300 ${theme.passTotalValue}">¥${jrTotal.toLocaleString()}</span>
-        </div>
-        <div class="text-xs font-bold mb-1 border-b pb-2 transition-colors duration-300 ${theme.passDivider}">票券比價</div>
-        <div class="flex flex-col">
-            ${passComparisonHtml}
-        </div>
-    `;
-    
-    // 重新初始化 Lucide Icons
-    if (window.lucide) {
-        window.lucide.createIcons({ root: document.getElementById('jr-pass-wrapper') });
     }
 }
 
@@ -522,6 +490,73 @@ function renderDayBudget(dayData) {
 
     totalDiv.textContent = `本日合計: ${dailyTotal.toLocaleString()} JPY`;
 }
+/**
+ * 產生打孔日曆 Icon 的 HTML (共用 UI 元件)
+ * @param {Object} day - 單日行程資料物件
+ * @returns {string} HTML 字串
+ */
+function generateCalendarIconHtml(day) {
+    if (!day) return '';
+
+    let monthStr = "";
+    let dayStr = day.date || "未定";
+    let dowStr = "";
+    
+    // 預設顏色主題
+    let textClass = "text-slate-800";
+    let borderClass = "border-slate-800";
+
+    if (day.date) {
+        const parts = day.date.trim().split(/\s+/);
+        if (parts.length >= 3) {
+            monthStr = parts[0];
+            dayStr = parts[1];
+            dowStr = parts.slice(2).join(' ').replace(/[()（）]/g, '');
+        } else if (parts.length === 2) {
+            dayStr = parts[0];
+            dowStr = parts[1].replace(/[()（）]/g, '');
+        } else {
+            dayStr = day.date.replace(/[()（）]/g, '');
+        }
+        
+        // 週末自動換色
+        if (day.date.toLowerCase().match(/(sat|六)/)) {
+            textClass = "text-emerald-700";
+            borderClass = "border-emerald-700";
+        }
+        if (day.date.toLowerCase().match(/(sun|日)/)) {
+            textClass = "text-rose-600";
+            borderClass = "border-rose-600";
+        }
+    }
+
+    let topText = monthStr || `DAY`; 
+    let bottomText = dowStr || day.dayNum; 
+
+    return `
+    <div class="relative w-[72px] h-[72px] shrink-0 mt-2">
+        <!-- 頂部鐵環 -->
+        <div class="absolute -top-2 left-0 w-full flex justify-evenly z-10 px-2">
+            <div class="w-2 h-4 border-2 ${borderClass} rounded-full bg-white" style="-webkit-print-color-adjust: exact; print-color-adjust: exact;"></div>
+            <div class="w-2 h-4 border-2 ${borderClass} rounded-full bg-white" style="-webkit-print-color-adjust: exact; print-color-adjust: exact;"></div>
+            <div class="w-2 h-4 border-2 ${borderClass} rounded-full bg-white" style="-webkit-print-color-adjust: exact; print-color-adjust: exact;"></div>
+        </div>
+        
+        <!-- 日曆主體外框 -->
+        <div class="absolute top-0 left-0 w-full h-full border-[2.5px] ${borderClass} rounded-xl bg-white flex flex-col justify-between py-1.5 px-1.5 shadow-sm" style="-webkit-print-color-adjust: exact; print-color-adjust: exact;">
+            <div class="text-[10px] font-black text-center ${textClass} uppercase tracking-widest leading-none whitespace-nowrap overflow-hidden mt-0.5">
+                ${topText}
+            </div>
+            <div class="flex-grow flex items-center justify-center">
+                <span class="text-[28px] font-black ${textClass} leading-none">${dayStr}</span>
+            </div>
+            <div class="text-[8px] font-bold text-center ${textClass} uppercase tracking-widest leading-none whitespace-nowrap overflow-hidden mb-0.5">
+                ${bottomText}
+            </div>
+        </div>
+    </div>
+    `;
+}
 
 // 切換天數控制引擎
 function switchDay(dayId) {
@@ -554,18 +589,29 @@ function switchDay(dayId) {
     });
 
     // 2. 渲染中間主內容區 header
-    const detailDate = document.getElementById('detail-date');
-    if (detailDate) detailDate.textContent = `DAY ${data.dayNum} - ${data.date.split(' ')[0]}`;
     
+    // 寫入左側：打孔日曆 Icon (直接呼叫共用函式)
+    const calendarContainer = document.getElementById('detail-calendar-icon-container');
+    if (calendarContainer) {
+        calendarContainer.innerHTML = generateCalendarIconHtml(data);
+    }
+    
+    // 寫入右側：主標題
     const detailTitle = document.getElementById('detail-title');
-    if (detailTitle) detailTitle.textContent = data.title;
+    if (detailTitle) detailTitle.textContent = data.title || '未命名行程';
     
-    // 渲染badge
+    // 控制標題下方的地區標籤顯示狀態
+    const badgeContainer = document.getElementById('detail-badge-container');
     const badge = document.getElementById('detail-badge');
-    if (badge) badge.className = `inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-md transition-colors duration-300 ${theme.detailBadge}`;
-    
     const regionTxt = document.getElementById('detail-region-txt');
-    if (regionTxt) regionTxt.textContent = data.region;
+
+    if (data.region) {
+        if (badgeContainer) badgeContainer.classList.remove('hidden'); // 顯示區域
+        if (badge) badge.className = `inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-md transition-colors duration-300 ${theme.detailBadge}`;
+        if (regionTxt) regionTxt.textContent = data.region;
+    } else {
+        if (badgeContainer) badgeContainer.classList.add('hidden'); // 沒有地區資料時隱藏
+    }
 
     // 4. 動態生成提示卡 (Tips)
     const tipsContainer = document.getElementById('tips-container');
@@ -640,109 +686,57 @@ function switchDay(dayId) {
 // 🖨️ 旅遊手冊列印引擎 (Print Mode)
 // ==========================================
 /**
- * 生成「行程總覽」表格
- * @param {Array} dayKeys - 包含天數 key 的陣列
+ * 產生「行程總覽」列表（使用共用日曆 Icon）
  */
 function generateOverviewTable(dayKeys) {
     if (!dayKeys || dayKeys.length === 0 || !window.tripData || !window.tripData.detail) return '';
 
-    // 取得 metadata 資料，若無則給予預設值
     const meta = window.tripData.metadata || {};
-    const mainTitle = meta.title || '行程總覽 Overview';
-    const subTitle = meta.subtitle || '';
-
     let html = `
-    <div class="print-page-break break-after-page p-6">
-        <!-- 表頭區塊 -->
-        <div class="mb-4">
-            <h1 class="text-2xl font-bold text-slate-800">${mainTitle}</h1>
-            ${subTitle ? `<div class="text-sm text-slate-500 mt-1">${subTitle}</div>` : ''}
+    <div class="print-page-break break-after-page p-4">
+        <div class="mb-2">
+            <h1 class="text-2xl font-black text-slate-900">${meta.title || '行程總覽'}</h1>
+            ${meta.subtitle ? `<div class="text-sm font-bold text-slate-500 mt-1">${meta.subtitle}</div>` : ''}
         </div>
-        <table class="w-full border-collapse">
-            <tbody>
+        <div class="flex flex-col">
     `;
 
     dayKeys.forEach(key => {
         const day = window.tripData.detail[key];
         if (!day) return;
         
-        // 1. 拆解與解析日期
-        let monthStr = "";
-        let dayStr = day.date || "未定";
-        let dowStr = "";
-        let colorClass = "text-slate-700";
-
-        if (day.date) {
-            // 根據空白字元拆分字串
-            const parts = day.date.trim().split(/\s+/);
-            if (parts.length >= 3) {
-                monthStr = parts[0];                // 月份 (Oct)
-                dayStr = parts[1];                  // 日期 (26)
-                // 組合星期並使用 Regex 移除半形與全形括號
-                dowStr = parts.slice(2).join(' ').replace(/[()（）]/g, ''); 
-            } else if (parts.length === 2) {
-                // 處理可能沒有月份的狀況，如 "26 (Mon)"
-                dayStr = parts[0];
-                dowStr = parts[1].replace(/[()（）]/g, '');
-            } else {
-                dayStr = day.date.replace(/[()（）]/g, '');
-            }
-            
-            // 判斷週末給予顏色
-            if (day.date.toLowerCase().match(/(sat|六)/)) colorClass = "text-green-600";
-            if (day.date.toLowerCase().match(/(sun|日)/)) colorClass = "text-red-500";
-        }
-
-        // 2. 處理字串 (住宿與地區)
         let hotelText = day.hotel ? day.hotel.replace(/^宿[\s:：]*/, '') : '';
         let regionText = day.region || '';
 
-        // 3. 組合中欄位 (Title + Hotel)
-        let centerColumnHTML = `
-            <div class="text-lg font-bold text-slate-800 leading-snug">${day.title || ''}</div>
-            ${hotelText ? `
-            <div class="text-sm text-slate-500 flex items-start gap-1.5 mt-1.5">
-                <i data-lucide="bed" class="w-4 h-4 text-slate-400 shrink-0 mt-0.5" style="-webkit-print-color-adjust: exact; print-color-adjust: exact;"></i>
-                <span>${hotelText}</span>
-            </div>
-            ` : ''}
-        `;
-
-        // 4. 組合右側欄位 (Region)
-        let rightColumnHTML = regionText ? `
-            <div class="text-sm font-medium text-slate-500 pt-0.5 leading-snug">
-                ${regionText}
-            </div>
-        ` : '';
-
-        // 5. 組合單列表格
         html += `
-            <tr class="border-b border-slate-200 last:border-b-0">
-                <!-- 左欄：日期 (將原本的 my-1.5 改為 mb-1.5，移除上方外距以貼齊頂部) -->
-                <td class="w-24 py-4 px-2 text-center align-top">
-                    <div class="text-3xl font-black leading-none mb-1.5 ${colorClass}">${dayStr}</div>
-                    ${dowStr ? `<div class="text-sm font-medium ${colorClass}">${dowStr}</div>` : ''}
-                </td>
+            <div class="flex items-center py-2 break-inside-avoid">
                 
-                <!-- 中欄：標題與住宿 -->
-                <td class="py-4 px-4 align-top">
-                    ${centerColumnHTML}
-                </td>
+                <!-- 左側：呼叫共用的日曆 Icon -->
+                <div class="w-24 shrink-0 flex justify-center">
+                    ${generateCalendarIconHtml(day)}
+                </div>
                 
-                <!-- 右欄：地區 -->
-                <td class="w-1/2 py-4 px-2 align-top">
-                    ${rightColumnHTML}
-                </td>
-            </tr>
+                <!-- 右側：標題、住宿與地區 -->
+                <div class="flex-grow pl-1 pr-1">
+                    <div class="flex justify-between items-center gap-6">
+                        <div class="flex-grow">
+                            <div class="text-[17px] font-bold text-slate-800 leading-snug">${day.title || ''}</div>
+                            ${hotelText ? `
+                            <div class="text-[13px] font-medium text-slate-500 flex items-center gap-1.5 mt-1.5">
+                                <i data-lucide="bed" class="w-3.5 h-3.5 text-slate-400 shrink-0"></i>
+                                <span>${hotelText}</span>
+                            </div>
+                            ` : ''}
+                        </div>
+                        ${regionText ? `<div class="text-[13px] text-slate-500 text-right shrink-0 w-1/2 leading-relaxed">${regionText}</div>` : ''}
+                    </div>
+                </div>
+                
+            </div>
         `;
     });
 
-    html += `
-            </tbody>
-        </table>
-    </div>
-    `;
-
+    html += `</div></div>`;
     return html;
 }
 
@@ -816,10 +810,10 @@ function generatePrintDay(day) {
         
     // 4. 回傳完整單日版面
     return `
-        <div class="break-before-page print-page-break p-6">
+        <div class="break-before-page print-page-break p-2">
             <div class="border-b-2 border-slate-800 pb-2 mb-4">
                 <span class="text-sm font-black text-slate-400">DAY ${day.dayNum || ''} - ${day.date || ''}</span>
-                <div class="flex justify-between items-center mt-1 mb-3">
+                <div class="flex justify-between items-end mt-1 mb-3">
                     <h2 class="text-3xl font-black text-slate-900">${day.title || ''}</h2>
                     ${regionBadge}
                 </div>
@@ -916,9 +910,9 @@ window.printItinerary = function() {
     window.print();
 };
 
+
 // 核心啟動函式
-function initApp(tripSuccess, fileLoadedName) {
-    const dayNav = document.getElementById('day-nav');
+function loadFail(fileLoadedName) {
     const dataStatusTxt = document.getElementById('data-status-txt');
     const fallbackWarning = document.getElementById('fallback-warning');
     const fallbackReasonText = document.getElementById('fallback-reason-text');
@@ -931,8 +925,11 @@ function initApp(tripSuccess, fileLoadedName) {
         if(detailTitle) detailTitle.textContent = "數據檔載入失敗";
         if(dataStatusTxt) dataStatusTxt.textContent = "狀態：載入失敗";
         initIcons();
-        return;
     }
+}
+
+function render() {
+    const dayNav = document.getElementById('day-nav');
 
     // 2. 渲染主導航欄文字 (從 metadata 動態載入)
     if (window.tripData && window.tripData.metadata) {
@@ -971,13 +968,18 @@ function initApp(tripSuccess, fileLoadedName) {
     const savedTheme = localStorage.getItem('selected-theme') || 'summer';
     window.setTheme(savedTheme);
 
-    // 7. 初始自動渲染第一個天數 D1，徹底消除一進頁面的空白載入狀態
+    // 7. 初始自動渲染天數，徹底消除一進頁面的載入狀態
     if (dayKeys.length > 0) {
-        // localStorage 恢復上次選取的日期，若無則預設第一天
-        const lastDay = localStorage.getItem('active-day') || dayKeys[0];
-        if (dayKeys.includes(lastDay)) {
-            switchDay(lastDay);
+        // 嘗試從 localStorage 恢復上次選取的日期
+        let lastDay = localStorage.getItem('active-day');
+        
+        // 🛡️ 防呆：如果 localStorage 紀錄的天數不存在於「當前行程」中，或者沒有紀錄
+        // 則強制將它重置為當前行程的第一天
+        if (!lastDay || !dayKeys.includes(lastDay)) {
+            lastDay = dayKeys[0];
         }
+        
+        switchDay(lastDay);
     }
 
     calculateTotalBudget();
@@ -1004,43 +1006,134 @@ async function loadTripData(url) {
     }
 }
 
-const urlParams = new URLSearchParams(window.location.search);
-const rawTripFile = urlParams.get('trip');
+async function fetchCloudTripData(tokenId) {
+    console.log("正在檢查雲端檔案是否需要更新...");
+    const accessToken = sessionStorage.getItem('gapi_token');
+    
+    if (!accessToken) {
+        alert("找不到登入憑證或已過期，請回到首頁重新登入！");
+        window.location.href = 'index.html';
+        return null;
+    }
 
-// 安全驗證：確保只能載入 .json 結尾且非外部 http 網址的本地檔案
-const tripFile = (rawTripFile && rawTripFile.endsWith('.json') && !rawTripFile.startsWith('http')) 
-                 ? rawTripFile 
-                 : null;
-
-if (tripFile) {
-    // 狀況 A：網址有帶 json 檔案參數，從外部檔案讀取
-    const tripLoadPromise = loadTripData(tripFile);
-    const domReadyPromise = new Promise(resolve => {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', resolve);
-        } else {
-            resolve(); // 若 DOM 已經載入完畢，直接 resolve
-        }
-    });
-
-    // 🔴 你漏掉了下面這段！沒有這段就不會啟動 initApp
-    Promise.all([tripLoadPromise, domReadyPromise])
-        .then(([tripSuccess]) => {
-            initApp(tripSuccess, tripFile);
+    try {
+        // 1. 🎯 新架構：直接透過 tokenId 取得本地快取的實體與修改時間
+        const localCacheString = localStorage.getItem(tokenId); 
+        const localModifiedTime = localStorage.getItem(`${tokenId}.modifiedTime`);
+        
+        // 2. 向 Google Drive 僅請求最新檔案的「修改時間」
+        const metaRes = await fetch(`https://www.googleapis.com/drive/v3/files/${tokenId}?fields=modifiedTime`, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${accessToken}` }
         });
 
-} else {
-    // 狀況 B：網址沒有參數，從 LocalStorage 讀取已儲存的行程
-    document.addEventListener('DOMContentLoaded', () => {
-        const currentTripName = localStorage.getItem('current_trip');
-        const library = JSON.parse(localStorage.getItem('trip_library') || '{}');
-        
-        if (currentTripName && library[currentTripName]) {
-            window.tripData = library[currentTripName];
-            initApp(true, currentTripName); // 只負責渲染畫面
+        if (!metaRes.ok) throw new Error("無法取得檔案狀態");
+        const metaData = await metaRes.json();
+        const cloudModifiedTime = metaData.modifiedTime;
+
+        // 3. 判斷是否需要重新下載 (無快取、無時間紀錄，或時間不吻合)
+        if (!localModifiedTime || localModifiedTime !== cloudModifiedTime || !localCacheString) {
+            console.log("☁️ 發現雲端有新版本 (或本地無快取)，開始下載最新資料...");
+            
+            const res = await fetch(`https://www.googleapis.com/drive/v3/files/${tokenId}?alt=media`, {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${accessToken}` }
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                console.log("✅ 成功從雲端下載最新行程資料！");
+                
+                // 🌟 更新獨立的 Token 快取與修改時間
+                localStorage.setItem(tokenId, JSON.stringify(data));
+                localStorage.setItem(`${tokenId}.modifiedTime`, cloudModifiedTime);
+                
+                return data; 
+            } else {
+                throw new Error("無法下載檔案內容");
+            }
         } else {
-            alert("找不到行程，請回到清單頁");
-            window.location.href = 'index.html';
+            // 4. 檔案未改動且有快取，直接從本地讀取！
+            console.log("⚡ 雲端檔案未修改，直接秒速使用本地快取資料！");
+            return JSON.parse(localCacheString);
         }
-    });
+
+    } catch (error) {
+        console.error("雲端連線失敗：", error);
+        
+        // Fallback (備用機制)：斷網或 API 異常時，只要本地有存，就直接拿來用
+        const localCacheString = localStorage.getItem(tokenId);
+        if (localCacheString) {
+            console.log("連線異常，已切換至本地快取模式");
+            return JSON.parse(localCacheString);
+        }
+        
+        alert("網路異常且無本地快取，無法載入行程！");
+        return null;
+    }
 }
+
+// 取得網址列參數
+const urlParams = new URLSearchParams(window.location.search);
+const tripToken = urlParams.get('trip_token');
+const tripLocal = urlParams.get('trip_local');
+const rawTripFile = urlParams.get('trip'); // 保留給 Server 測試
+
+// 主程式啟動函式
+async function startApp() {
+    if (tripToken) { 
+        // 雲端模式
+        window.tripData = await fetchCloudTripData(tripToken);
+        if (window.tripData) {
+            render();
+        } else {
+            loadFail(tripToken);
+        }        
+    } else if (tripLocal) {
+        // 本地模式
+        console.log("從本地快取載入模式");
+        // 使用 URL 傳來的 key (fileId/檔名) 讀取
+        const localCacheString = localStorage.getItem(tripLocal);
+        
+        if (localCacheString) {
+            window.tripData = JSON.parse(localCacheString);
+            render();
+        } else {
+            // 如果抓不到，觸發失敗邏輯與錯誤提示
+            alert("無法解析或找不到行程資料！");
+            loadFail(tripLocal);
+        }
+
+    } else if (rawTripFile) {
+        // 開發/伺服器測試模式
+        console.log(`rawTripFile=${rawTripFile}`);
+        const tripFile = (rawTripFile && rawTripFile.endsWith('.json') && !rawTripFile.startsWith('http')) 
+                        ? rawTripFile 
+                        : null;
+
+        if (tripFile) {
+            const tripLoadPromise = loadTripData(tripFile);
+            const domReadyPromise = new Promise(resolve => {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', resolve);
+                } else {
+                    resolve();
+                }
+            });
+            Promise.all([tripLoadPromise, domReadyPromise])
+                .then(([tripSuccess]) => {
+                    if (tripSuccess && window.tripData) {
+                        render();
+                    } else {
+                        loadFail(tripFile);
+                    }
+                });
+        }
+    } else {
+        alert("無效的行程參數！");
+        window.location.href = 'index.html';
+    }
+}
+
+// 執行主程式
+startApp();
