@@ -128,3 +128,134 @@ JSON 的最外層結構必須包含 `metadata` 與 `detail` 兩個物件。
     }
 }
 ```
+
+# 🗺️ Planner JSON Data Structure & Writing Guide
+
+This guide explains the structure and supported fields of the JSON file required by the Planner system, providing a direct reference for personnel writing itinerary data.
+
+The Planner JSON file is mainly divided into two blocks: `metadata` (global itinerary information) and `detail` (daily itinerary details). The system automatically generates beautiful web interfaces, timelines, budget tables, and printable manuals based on this data.
+
+---
+
+## 1. Root Structure
+
+The outermost structure of the JSON must contain two objects: `metadata` and `detail`.
+
+```json
+{
+    "metadata": { ... },
+    "detail": { ... }
+}
+```
+
+---
+
+## 2. Global Information (Metadata)
+
+`metadata` is used to define the itinerary's title, subtitle, pocket guides, and transportation pass comparison information.
+
+*   **`title`** (String): The main title of the itinerary, displayed in the top navigation bar of the web page and on the printed cover.
+*   **`subtitle`** (String): The subtitle or date range of the itinerary.
+*   **`guides`** (Array/Optional): Used to generate additional info cards or equipment lists.
+    *   **`title`** (String): The title of the list (e.g., "Sewer Cards", "Scenic Stamps").
+    *   **`items`** (Array of Strings): The items in the list.
+*   **`jrPass`** (Array/Optional): Used for the "JR Pass Purchase Evaluation" feature at the bottom of the system.
+    *   **`name`** (String): The name of the pass (e.g., "JR East Pass (5 Days)").
+    *   **`price`** (Number): The price of the pass in JPY.
+
+---
+
+## 3. Daily Itinerary Details (Detail)
+
+The `detail` object contains the itinerary data for each day. Its Key can be a custom string (e.g., `"1"`, `"day1"`, etc.). Each day object contains the following fields:
+
+*   **`dayNum`** (Number): The day number (e.g., `1`), used for sidebar labels like `D1`.
+*   **`date`** (String): The date string (e.g., `"July 22 (Wed)"`).
+*   **`title`** (String): The theme/title of the day.
+*   **`hotel`** (String): The accommodation location for the day. If not provided, it defaults to "Sweet Home" (溫暖的家).
+*   **`region`** (String/Optional): The main activity area of the day (e.g., `"Shinjuku ➔ Tokyo Station"`), displayed in the Badge next to the title.
+*   **`tips`** (Array/Optional): Special tips, guides, or memos for the day, displayed in the "Daily Tips" card in the right sidebar.
+*   **`timeline`** (Array): The specific timeline itinerary list for the day.
+
+### 3.1 Daily Tips Cards (Tips)
+Each object in the `tips` array can be used to display notes or restaurant information.
+*   **`type`** (String): Determines the color and default icon of the card. Supported types are:
+    *   Status: `success` (Green), `info` (Blue), `warning` (Red/Warning), `danger` (Red/Danger).
+    *   Theme: `transit` (Orange/Transport), `scenery` (Emerald/Attractions), `food` (Rose/Food), `shopping` (Purple/Shopping), `culture` (Indigo/Culture).
+*   **`icon`** (String/Optional): Custom Lucide Icon name (e.g., `"train"`, `"camera"`). If left blank, a default icon is assigned based on `type`.
+*   **`title`** (String): The title of the tip card.
+*   **`desc`** (String): The tip content, **fully supports Markdown syntax**.
+
+### 3.2 Timeline Events (Timeline)
+The `timeline` array builds the precise itinerary track in the main center view.
+*   **`time`** (String/Optional): Time label (e.g., `"14:25 - 18:35"` or `"07:00"`).
+*   **`event`** (String): Event name or itinerary node.
+*   **`type`** (String): Determines the icon and circular background color on the timeline. Supported types include: `flight`, `transit`, `bus`, `jr`, `train`, `hiking`, `hotel`, `food`, `shopping`, `stamp`, `culture`.
+*   **`icon`** (String/Optional): Can forcibly override the default Lucide icon name.
+*   **`desc`** (String): Detailed description, **supports Markdown syntax**.
+*   **`amount`** (Number/Optional): The cost of the itinerary item (in JPY). If filled, the system will automatically sum it up in the "Budget Overview & Ticket Guide" module at the bottom.
+
+---
+
+## 4. Advanced Features & Syntax Support
+
+### 4.1 Markdown Syntax Support
+In the `desc` fields of `tips` and `timeline`, the system's built-in parser supports the following Markdown formats:
+*   **Bold**: Using `**text**` will be converted to bold text.
+*   **Hyperlinks**: Using `[Display Text](URL)` will automatically convert to a button with an external link icon.
+*   **Ordered Lists**: Using `1. ` or `#. ` at the start of a line will be converted to a numbered list (`<ol>`).
+*   **Unordered Lists**: Using `- ` or `* ` at the start of a line will be converted to a bulleted list (`<ul>`).
+*   **Line Breaks**: Normal line breaks (`\n`) will be preserved and converted to HTML `<br>`.
+
+### 4.2 Budget & JR Pass Evaluation System
+If the itinerary contains transportation expenses, you can use the system's automatic settlement feature:
+1.  In `timeline`, add `"amount": Number` to items with expenses (e.g., `"amount": 3325`).
+2.  The system will automatically sum all amounts and categorize them by `type` (e.g., `jr`, `bus`, `food`, etc.).
+3.  **JR Pass Price Comparison**: If the expense `type` in `timeline` is set to `"jr"`, and the `jrPass` array is configured in `metadata`, the system will automatically sum all `"jr"` expenses, subtract the `price` of each Pass, and calculate how much money is "saved" or "lost".
+
+---
+
+## 5. Minimal Example
+
+```json
+{
+    "metadata": {
+        "title": "Tokyo 3-Day Flash Trip",
+        "subtitle": "2026 Nov",
+        "jrPass": [
+            { "name": "Tokyo Wide Pass", "price": 15000 }
+        ]
+    },
+    "detail": {
+        "1": {
+            "dayNum": 1,
+            "date": "Nov 10 (Tue)",
+            "title": "Arrival and City Sightseeing",
+            "hotel": "Shinjuku Toyoko INN",
+            "region": "Shinjuku",
+            "tips": [
+                {
+                    "type": "info",
+                    "title": "Entry Reminder",
+                    "desc": "Please prepare the Visit Japan Web QR Code in advance."
+                }
+            ],
+            "timeline": [
+                {
+                    "time": "14:00",
+                    "event": "Narita Airport ➔ Shinjuku",
+                    "type": "jr",
+                    "desc": "Take the **N'EX Narita Express** directly to Shinjuku.\n- [N'EX Official Website](https://www.jreast.co.jp/)",
+                    "amount": 3500
+                },
+                {
+                    "time": "18:00",
+                    "event": "Dinner in Shinjuku",
+                    "type": "food",
+                    "desc": "1. Ramen\n2. Yakiniku"
+                }
+            ]
+        }
+    }
+}
+```
