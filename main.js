@@ -135,7 +135,7 @@ async function initCouldTripList() {
         }
 
         // --- 步驟 2：對總表 Token call validateAndFetch ---
-        const masterData = await validateAndFetch(masterListId);
+        const masterData = await validateAndFetch(masterListId, accessToken);
         tripMasterData = masterData || { trips: [] };
 
         // --- 步驟 3：平行檢查每一個 file token，並記錄失效的檔案 ---
@@ -145,7 +145,7 @@ async function initCouldTripList() {
             // 使用 async wrapper 包裝 Promise，將 trip.id 帶入回傳結果中
             const validationPromises = tripMasterData.trips.map(async (trip) => {
                 try {
-                    const result = await validateAndFetch(trip.id);
+                    const result = await validateAndFetch(trip.id, accessToken);
                     // 假設 validateAndFetch 發現檔案不存在時會回傳 null
                     return { tripId: trip.id, exists: result !== null }; 
                 } catch (error) {
@@ -189,64 +189,6 @@ async function initCouldTripList() {
     } catch (error) {
         console.error("初始化中央索引檔失敗：", error);
         document.getElementById('status-text').innerHTML = '<span class="text-red-500 flex items-center justify-center gap-1"><i data-lucide="alert-circle" class="w-3.5 h-3.5"></i> 索引同步失敗</span>';
-    }
-}
-
-/**
- * 針對單一 fileToken 檢查雲端修改時間，並自動更新本地快取
- * @param {string} fileToken - Google Drive 的檔案 ID
- * @returns {Object|null} - 成功載入或更新後回傳 JSON 物件，失敗回傳 null
- */
-async function validateAndFetch(fileToken) {
-    if (!accessToken || !fileToken) return null;
-
-    try {
-        // 1. 僅向雲端請求該檔案的 metadata (包含 modifiedTime 與 trashed)
-        const metaRes = await gapi.client.drive.files.get({
-            fileId: fileToken,
-            fields: 'id, name, trashed, modifiedTime'
-        });
-
-        // 如果檔案在雲端已被刪除，同步清理本地快取
-        if (metaRes.result.trashed) {
-            console.warn(`檔案 [${metaRes.result.name}] 已在雲端刪除，清理本地快取...`);
-            localStorage.removeItem(fileToken);
-            localStorage.removeItem(`${fileToken}.modifiedTime`);
-            return null;
-        }
-
-        const cloudModifiedTime = metaRes.result.modifiedTime;
-        const localModifiedTime = localStorage.getItem(`${fileToken}.modifiedTime`);
-        const localContent = localStorage.getItem(fileToken);
-
-        // 2. 判斷是否需要下載：雲端時間較新，或者本地根本沒有內容快取
-        if (cloudModifiedTime !== localModifiedTime || !localContent) {
-            console.log(`[${metaRes.result.name}] 發現更新或無快取，開始下載...`);
-            
-            const res = await fetch(`https://www.googleapis.com/drive/v3/files/${fileToken}?alt=media`, {
-                headers: { 'Authorization': `Bearer ${accessToken}` }
-            });
-
-            if (res.ok) {
-                const tripData = await res.json();
-                
-                // 3. 🎯 核心修改：分別儲存 JSON 內容與 modifiedTime
-                localStorage.setItem(fileToken, JSON.stringify(tripData));
-                localStorage.setItem(`${fileToken}.modifiedTime`, cloudModifiedTime);
-                
-                return tripData;
-            } else {
-                throw new Error("檔案實體下載失敗");
-            }
-        } else {
-            // 4. 已經是最新版本，直接忽略下載
-            console.log(`[${metaRes.result.name}] 本地快取已是最新版本 ⚡`);
-            return JSON.parse(localContent);
-        }
-
-    } catch (error) {
-        console.error(`處理 Token [${fileToken}] 時發生錯誤:`, error);
-        return null;
     }
 }
 
