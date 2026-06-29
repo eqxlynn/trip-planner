@@ -750,7 +750,9 @@ function generatePrintDay(day) {
 
     // 1. 產生精密齒輪時間軸
     const timeline = day.timeline || [];
-    const timelineHtml = timeline.map((item, i) => {
+    const timelineHtml = timeline
+        .filter(item => item.visible !== "false") 
+        .map((item, i) => {
         const iconBg = getEventBg(item.type); 
         const iconSvg = getEventIcon(item.type, item.icon);
         const timeBadge = item.time 
@@ -892,19 +894,6 @@ function generatePrintContent() {
     }
 }
 
-// 2. 監聽瀏覽器原生的列印事件 (當按下 Command+P 時自動觸發)
-window.addEventListener('beforeprint', () => {
-    generatePrintContent();
-    document.getElementById('print-container').classList.remove('hidden');
-});
-
-// 3. 列印結束後自動清理與隱藏
-window.addEventListener('afterprint', () => {
-    const printContainer = document.getElementById('print-container');
-    printContainer.classList.add('hidden');
-    printContainer.innerHTML = ''; 
-});
-
 // 4. 點擊網頁按鈕時，直接呼叫瀏覽器原生列印即可
 window.printItinerary = function() {
     window.print();
@@ -965,7 +954,7 @@ function render() {
     }
 
     // 6. 優先讀取 localStorage 記憶的主題，若無則預設為 summer (涼夏)
-    const savedTheme = localStorage.getItem('selected-theme') || 'summer';
+    const savedTheme = localStorage.getItem('selected-theme') || 'grayscale';
     window.setTheme(savedTheme);
 
     // 7. 初始自動渲染天數，徹底消除一進頁面的載入狀態
@@ -987,6 +976,8 @@ function render() {
     if (window.budgetData) {
         renderBudget();
     }
+    // 這樣不管使用者什麼時候按 Command+P，DOM 都已經準備好了！
+    generatePrintContent();
 }
 
 
@@ -1006,69 +997,23 @@ async function loadTripData(url) {
     }
 }
 
+
 async function fetchCloudTripData(tokenId) {
-    console.log("正在檢查雲端檔案是否需要更新...");
     const accessToken = sessionStorage.getItem('gapi_token');
-    
     if (!accessToken) {
-        alert("找不到登入憑證或已過期，請回到首頁重新登入！");
+        alert("找不到登入憑證，請回到首頁重新登入！");
         window.location.href = 'index.html';
         return null;
     }
 
     try {
-        // 1. 🎯 新架構：直接透過 tokenId 取得本地快取的實體與修改時間
-        const localCacheString = localStorage.getItem(tokenId); 
-        const localModifiedTime = localStorage.getItem(`${tokenId}.modifiedTime`);
-        
-        // 2. 向 Google Drive 僅請求最新檔案的「修改時間」
-        const metaRes = await fetch(`https://www.googleapis.com/drive/v3/files/${tokenId}?fields=modifiedTime`, {
-            method: 'GET',
-            headers: { 'Authorization': `Bearer ${accessToken}` }
-        });
-
-        if (!metaRes.ok) throw new Error("無法取得檔案狀態");
-        const metaData = await metaRes.json();
-        const cloudModifiedTime = metaData.modifiedTime;
-
-        // 3. 判斷是否需要重新下載 (無快取、無時間紀錄，或時間不吻合)
-        if (!localModifiedTime || localModifiedTime !== cloudModifiedTime || !localCacheString) {
-            console.log("☁️ 發現雲端有新版本 (或本地無快取)，開始下載最新資料...");
-            
-            const res = await fetch(`https://www.googleapis.com/drive/v3/files/${tokenId}?alt=media`, {
-                method: 'GET',
-                headers: { 'Authorization': `Bearer ${accessToken}` }
-            });
-
-            if (res.ok) {
-                const data = await res.json();
-                console.log("✅ 成功從雲端下載最新行程資料！");
-                
-                // 🌟 更新獨立的 Token 快取與修改時間
-                localStorage.setItem(tokenId, JSON.stringify(data));
-                localStorage.setItem(`${tokenId}.modifiedTime`, cloudModifiedTime);
-                
-                return data; 
-            } else {
-                throw new Error("無法下載檔案內容");
-            }
-        } else {
-            // 4. 檔案未改動且有快取，直接從本地讀取！
-            console.log("⚡ 雲端檔案未修改，直接秒速使用本地快取資料！");
-            return JSON.parse(localCacheString);
-        }
-
+        // ✨ 直接呼叫 shared.js 的共用函式
+        return await validateAndFetch(tokenId, accessToken);
     } catch (error) {
-        console.error("雲端連線失敗：", error);
-        
-        // Fallback (備用機制)：斷網或 API 異常時，只要本地有存，就直接拿來用
-        const localCacheString = localStorage.getItem(tokenId);
-        if (localCacheString) {
-            console.log("連線異常，已切換至本地快取模式");
-            return JSON.parse(localCacheString);
+        if (error.message === "TOKEN_EXPIRED") {
+            alert("您的工作階段已過期，請重新登入！");
+            window.location.href = 'index.html';
         }
-        
-        alert("網路異常且無本地快取，無法載入行程！");
         return null;
     }
 }
