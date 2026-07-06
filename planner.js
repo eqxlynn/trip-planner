@@ -492,7 +492,7 @@ function render() {
     }
 
     // 6. 優先讀取 localStorage 記憶的主題，若無則預設為 summer (涼夏)
-    const savedTheme = localStorage.getItem('selected-theme') || 'grayscale';
+    const savedTheme = 'grayscale';
     window.setTheme(savedTheme);
 
     // 7. 初始自動渲染天數，徹底消除一進頁面的載入狀態
