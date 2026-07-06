@@ -64,6 +64,50 @@
             }
             .no-print-link { text-decoration: none !important; }
         }
+        /* ✏️ 編輯模式專屬樣式 */
+        body.edit-mode [contenteditable="true"] {
+            outline-offset: 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease-in-out;
+            cursor: text;
+            min-width: 2em; 
+            display: inline-block; 
+            vertical-align: middle; /* 確保與旁邊的 Icon 或外框保持置中對齊 */
+        }
+        /* 👇 新增：只有在編輯模式下才顯示的專屬控制項 */
+        body:not(.edit-mode) .edit-only-ui {
+            display: none !important;
+        }
+
+        body.edit-mode [contenteditable="true"]:hover {
+            outline-color: #94a3b8;
+            background-color: #f8fafc;
+        }
+
+        body.edit-mode [contenteditable="true"]:focus {
+            outline: 2px solid #10b981; /* 點擊編輯時變成綠色實線 */
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        /* 只有在編輯模式下，且元素為空時，才顯示 placeholder */
+        .edit-mode .editable-element:empty::before {
+            content: attr(data-placeholder);
+            color: #94a3b8; /* Tailwind 的 slate-400 */
+            font-style: italic;
+            opacity: 0.8;
+            pointer-events: none; /* 避免干擾點擊與輸入 */
+        }
+
+        /* 確保空的 div 也有基本高度可以點擊觸發編輯 */
+        .edit-mode .editable-element:empty {
+            min-height: 1.5em;
+            display: inline-block; /* 避免 span 坍塌 */
+            min-width: 40px; 
+        }
+        /* 檢視模式下，隱藏空的編輯區塊，徹底消除多餘間距 */
+        body:not(.edit-mode) .editable-element:empty {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased transition-colors duration-300">
@@ -88,20 +132,34 @@
                 </div>
             </div>
             
-            <!-- 即時主題色切換器 -->
-            <div class="flex items-center space-x-2 bg-black/15 p-1 rounded-xl backdrop-blur-sm border border-white/5">
-                <button onclick="printItinerary()" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/20 hover:bg-white/30 text-white mr-2 flex items-center gap-1">
-                    <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <!-- 操作按鈕區塊 -->
+            <div class="flex items-center space-x-1 bg-black/15 p-1 rounded-xl backdrop-blur-sm border border-white/5">
+                <!-- ✏️ 新增：編輯模式切換按鈕 -->
+                <button id="btn-toggle-edit" onclick="toggleEditMode()" class="px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/10 hover:bg-white/20 text-white flex items-center gap-1">
+                    <i data-lucide="edit-3" class="w-4 h-4"></i>
+                    <span class="text-sm font-medium">編輯模式</span>
                 </button>
-                <span class="text-[10px] font-black uppercase text-white/70 px-2 border-l border-white/20">切換氛圍：</span>
-                <button onclick="setTheme('summer')" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/20 hover:bg-white/30 text-white" id="btn-theme-summer">🌲 涼夏翠綠</button>
-                <button onclick="setTheme('midnight')" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 text-white/80 hover:text-white" id="btn-theme-midnight">🎆 花火星夜</button>
-                <button onclick="setTheme('autumn')" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 text-white/80 hover:text-white" id="btn-theme-autumn">🍁 經典秋楓</button>
-                <button onclick="setTheme('grayscale')" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 text-white/80 hover:text-white" id="btn-theme-grayscale">🍵 侘寂禪灰</button>
+                
+                <span class="w-[1px] h-4 bg-white/20 mx-1"></span> <!-- 分隔線 -->
+                
+                <!-- 列印按鈕 -->
+                <button onclick="printItinerary()" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/20 hover:bg-white/30 text-white flex items-center gap-1">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                </button>
             </div>
         </div>
     </header>
-
+    <!-- 封面 Guides 顯示與編輯區塊 -->
+    <div id="guide-container" class="max-w-[1400px] w-full mx-auto px-6 pt-6 flex flex-col gap-4 hidden">
+        <div id="metadata-guides-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 這裡會由 JS 動態生成 -->
+        </div>
+        <!-- 僅在編輯模式顯示的新增按鈕 -->
+        <button id="btn-add-guide" onclick="addGuideItem()" class="edit-only-ui flex w-full py-3 mt-2 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl hover:border-emerald-400 hover:text-emerald-600 transition-colors items-center justify-center gap-2 text-sm font-bold bg-slate-50 hover:bg-emerald-50">
+            <i data-lucide="plus-circle" class="w-5 h-5 shrink-0"></i>
+            <span>新增封面指南</span>
+        </button>
+    </div>
     <!-- 主內容區 (三欄佈局) -->
     <main class="flex-grow max-w-[1400px] w-full mx-auto px-6 py-6 flex flex-col lg:flex-row gap-2">
         
@@ -120,6 +178,10 @@
                 <nav id="day-nav" class="flex lg:flex-col overflow-x-auto lg:overflow-visible space-x-2 lg:space-x-0 lg:space-y-1.5 pb-2 lg:pb-0 scroll-smooth snap-x no-scrollbar">
                     <!-- JS 動態渲染按鈕 -->
                 </nav>
+                <button id="btn-add-day" onclick="addDayItem()" class="hidden w-full py-2.5 mt-3 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl hover:border-emerald-400 hover:text-emerald-600 transition-colors items-center justify-center gap-2 text-sm font-bold bg-slate-50 hover:bg-emerald-50">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    <span>新增天數</span>
+                </button>
             </div>
         </aside>
 
@@ -138,6 +200,11 @@
                     <!-- 主標題 -->
                     <h2 id="detail-title" class="text-3xl font-black text-slate-900 leading-tight">載入中...</h2>
                     
+                    <!-- 👇 1. 新增：單日日期顯示容器 -->
+                    <div id="day-date-display" class="text-sm font-bold text-slate-500 tracking-wide flex items-center gap-1.5">
+                        <!-- 這裡會由 JS 動態填入日期或編輯框 -->
+                    </div>
+
                     <!-- 地區膠囊 (在標題下方) -->
                     <div id="detail-badge-container" class="hidden">
                         <span id="detail-badge" class="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-md transition-colors duration-300">
@@ -145,7 +212,6 @@
                         </span>
                     </div>
                 </div>
-                
             </div>
 
             <!-- 數據缺失備用警示框 -->
@@ -169,6 +235,10 @@
                     <!-- 由 JS 渲染生成 -->
                 </div>
             </div>
+            <button id="btn-add-timeline" onclick="addTimelineItem()" class="hidden w-full py-3 mt-4 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl hover:border-emerald-400 hover:text-emerald-600 transition-colors items-center justify-center gap-2 text-sm font-bold bg-slate-50 hover:bg-emerald-50">
+                <i data-lucide="plus-circle" class="w-5 h-5"></i>
+                <span>新增行程</span>
+            </button>
         </section>
 
         <!-- 右側欄：祕笈提示與備忘筆記 -->
@@ -176,6 +246,10 @@
             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 flex flex-col">
                 <h2 class="text-xs font-black text-slate-400 uppercase mb-4">Daily Tips</h2>
                 <div id="tips-container" class="flex flex-col gap-4"></div>
+                <button id="btn-add-tip" onclick="addTipItem()" class="hidden w-full py-2.5 mt-3 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl hover:border-emerald-400 hover:text-emerald-600 transition-colors items-center justify-center gap-2 text-sm font-bold bg-slate-50 hover:bg-emerald-50">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    <span>新增 Tip</span>
+                </button>
             </div>
         </aside>
     </main>
@@ -232,9 +306,20 @@
             </p>
         </div>
     </footer>
-
+    <button id="btn-save" class="fixed bottom-8 right-8 bg-slate-800 text-white px-5 py-3 rounded-full shadow-xl hover:bg-slate-700 hover:shadow-2xl transition-all duration-200 flex items-center gap-2 z-50 print:hidden">
+        <i data-lucide="save" class="w-5 h-5"></i>
+        <span class="font-medium tracking-wide">Save</span>
+    </button>
+    <button id="btn-export-json" class="fixed bottom-8 right-8 bg-slate-800 text-white px-5 py-3 rounded-full shadow-xl hover:bg-slate-700 hover:shadow-2xl transition-all duration-200 flex items-center gap-2 z-50 print:hidden">
+        <i data-lucide="download" class="w-5 h-5"></i>
+        <span class="font-medium tracking-wide">匯出</span>
+    </button>
     <!-- 引入外部 JS 引擎 -->
+    <script src="theme.js"></script>
     <script src="common.js"></script>
+    <script src="saveHandler.js"></script>
+    <script src="budget.js"></script>
+    <script src="print.js"></script>
     <script src="planner.js"></script>
 </body>
 </html>
