@@ -104,11 +104,10 @@ window.gisLoaded = function() {
 
 function updateUIAfterLogin() {
     document.getElementById('status-text').innerHTML = '<span class="text-emerald-600 flex items-center justify-center gap-1"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 已連結雲端</span>';
-    const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) logoutBtn.classList.remove('hidden');
-    document.getElementById('auth-btn-text').textContent = "🔄 重新整理雲端清單";
+    document.getElementById('logout-btn').classList.remove('hidden');
+    document.getElementById('auth-btn-text').textContent = "重新整理雲端清單";
     document.getElementById('library-title').textContent = "雲端行程庫"; 
-    document.getElementById('import-login-prompt').classList.add('hidden');
+    //document.getElementById('import-login-prompt').classList.add('hidden');
     document.getElementById('picker-btn').classList.remove('hidden');
     lucide.createIcons();
 }
