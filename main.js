@@ -19,6 +19,11 @@ let tripMasterData = JSON.parse(localStorage.getItem('local_trip_list') || '{"tr
 window.onload = () => {
     renderTripList(); 
     lucide.createIcons();
+    // 綁定右下角的「＋ 新增」按鈕事件
+    const btnCreateJson = document.getElementById('btn-create-json');
+    if (btnCreateJson) {
+        btnCreateJson.addEventListener('click', handleCreateNewTrip);
+    }
 };
 
 function checkLoginState() {
@@ -303,7 +308,7 @@ function renderTripList() {
     // 2. 直接遍歷總表陣列，取代舊的 Object.keys(library)
     trips.forEach(trip => {
         const fileId = trip.id;
-        const baseName = trip.name ? trip.name.replace('.json', '') : '未命名行程';
+        const baseName = trip.name ? trip.name : '未命名行程';
         
         // 3. 🎯 核心修改：利用 Token (fileId) 從快取獨立抓取資料
         const localContent = localStorage.getItem(fileId);
@@ -391,7 +396,7 @@ async function handleFileImport(event) {
     reader.onload = async function(e) {
         const fileContentStr = e.target.result;
         // 🎯 這裡直接把去掉副檔名的檔名當作 fileId (Token)
-        const fileId = file.name.replace('.json', ''); 
+        const fileId = file.name; 
         
         try {
             const tripData = JSON.parse(fileContentStr); 
@@ -536,7 +541,7 @@ async function pickerCallback(data) {
         const doc = data.docs[0];
         const fileId = doc.id;
         const fileName = doc.name;
-        const baseName = fileName.replace('.json', '');
+        const baseName = fileName;
         
         const exists = tripMasterData.trips.some(t => t.id === fileId);
         if (exists) {
@@ -597,4 +602,104 @@ function handleLogout() {
 
     renderTripList();
     lucide.createIcons();
+}
+
+// ==========================================
+// 🚀 5. 新增空白行程 (按檔名建立)
+// ==========================================
+async function handleCreateNewTrip() {
+    // 1. 彈出對話框讓使用者輸入檔名
+    let fileName = prompt("請輸入新行程的檔案名稱:", "未命名新行程.json");
+    
+    // 若使用者按取消或未輸入，則直接中斷
+    if (!fileName || fileName.trim() === "") return;
+    
+    fileName = fileName.trim();
+    const fileId = fileName; 
+    
+    // 防呆：檢查是否已經有同名的 fileId 存在，避免直接覆蓋舊檔案
+    const exists = tripMasterData.trips.some(t => t.id === fileId);
+    if (exists) {
+        alert(`已經存在名為「${fileName}」的行程，請使用其他名稱！`);
+        return;
+    }
+
+    // 🌟 核心修改：動態抓取「今天」的日期作為第一天的 Key
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const todayKey = `${year}-${month}-${day}`; // 格式：YYYY-MM-DD
+    
+    // 月份英文對照 (用於標題下方的 subtitle)
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const currentMonthStr = `${year} ${monthNames[today.getMonth()]}`;
+
+    // 2. 定義空白的新行程模板 (套用今日日期)
+    const newTripTemplate =  {
+        "metadata": {
+            "title": "新建立的行程",
+            "subtitle": currentMonthStr
+        },
+        "detail": {
+            [todayKey]: {  // 👈 使用動態計算的今日日期
+                "title": "抵達與市區觀光",
+                "hotel": "未定",
+                "region": "未定",
+                "tips": [
+                    {
+                        "type": "info",
+                        "title": "行程提醒",
+                        "desc": "這是您的第一天行程，點擊右上角「編輯模式」開始規劃！"
+                    }
+                ],
+                "timeline": [
+                    {
+                        "time": "12:00",
+                        "event": "開始旅程",
+                        "type": "flight",
+                        "desc": "點擊修改航班與詳細資訊...",
+                        "amount": 0
+                    }
+                ]
+            }
+        }
+    };
+
+    // 3. 直接存入 LocalStorage (以 fileId 當作 Key)
+    localStorage.setItem(fileId, JSON.stringify(newTripTemplate));
+
+    // 更新畫面狀態
+    document.getElementById('status-text').innerHTML = '<span class="text-blue-500 flex items-center justify-center gap-1"><i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin"></i> 正在建立新行程...</span>';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    try {
+        // 4. 判斷當前是否登入雲端，決定更新索引與跳轉的方式
+        if (accessToken) {
+            // [雲端模式]：將這份新行程直接上傳並更新雲端索引
+            const driveFileId = await createOrUpdateTripFile(JSON.stringify(newTripTemplate), fileName);
+            if (driveFileId) {
+                await updateTripListInCloud('add', driveFileId, fileName);
+                document.getElementById('status-text').innerHTML = '<span class="text-emerald-600 flex items-center justify-center gap-1"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 新增並同步完成</span>';
+                
+                // 自動開啟剛建好的雲端行程 (傳入新的 Drive ID)
+                window.open(`planner.html?trip_token=${encodeURIComponent(driveFileId)}`, '_blank');
+            }
+        } else {
+            // [本地模式]：只更新本地的 local_trip_list 索引
+            tripMasterData.trips.push({ id: fileId, name: fileName });
+            localStorage.setItem('local_trip_list', JSON.stringify(tripMasterData));
+            document.getElementById('status-text').innerHTML = `<span class="text-slate-600 flex items-center justify-center gap-1"><i data-lucide="save" class="w-3.5 h-3.5"></i> 已建立至本地</span>`;
+            
+            // 自動開啟剛建好的本地行程 (傳入檔名做為 ID)
+            window.open(`planner.html?trip_local=${encodeURIComponent(fileId)}`, '_blank');
+        }
+        
+        // 重新渲染列表
+        renderTripList();
+        
+    } catch (error) {
+        console.error("建立行程失敗:", error);
+        alert("建立失敗，請檢查網路連線或儲存空間。");
+    }
 }
