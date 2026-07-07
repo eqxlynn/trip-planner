@@ -17,6 +17,7 @@ let masterListId = localStorage.getItem('trip_list_id') || 'local_trip_list';
 let tripMasterData = JSON.parse(localStorage.getItem(masterListId)) || '{"trips":[]}';
 
 window.onload = () => {
+    //renderTripList(); 
     checkLoginState();
     loadTripList();
     lucide.createIcons();
@@ -108,8 +109,12 @@ function updateUIAfterLogin() {
     document.getElementById('logout-btn').classList.remove('hidden');
     document.getElementById('auth-btn-text').textContent = "重新整理雲端清單";
     document.getElementById('library-title').textContent = "雲端行程庫"; 
-    //document.getElementById('import-login-prompt').classList.add('hidden');
     document.getElementById('picker-btn').classList.remove('hidden');
+    
+    // 🌟 修改：登入後隱藏整個「匯入新行程」卡片
+    const importCard = document.getElementById('import-card');
+    if (importCard) importCard.classList.add('hidden');
+
     lucide.createIcons();
 }
 
@@ -589,7 +594,6 @@ async function pickerCallback(data) {
 }
 
 function handleLogout() {
-    // 改為只在有 accessToken 時才撤銷授權，但無論如何都要繼續往下執行 UI 重置
     if (accessToken) {
         google.accounts.oauth2.revoke(accessToken, () => {
             console.log('Google 授權已撤銷');
@@ -600,14 +604,17 @@ function handleLogout() {
     sessionStorage.removeItem('gapi_token');
     sessionStorage.removeItem('gapi_token_expire');
 
-    // 下方的 UI 重置現在一定會執行到了
     document.getElementById('status-text').innerHTML = '<span class="text-slate-400 flex items-center justify-center gap-1"><i data-lucide="cloud-off" class="w-3.5 h-3.5"></i> 尚未連結雲端</span>';
     
     const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) logoutBtn.classList.add('hidden'); // 確實隱藏登出按鈕
+    if (logoutBtn) logoutBtn.classList.add('hidden'); 
     
     document.getElementById('auth-btn-text').textContent = "連結 Google 雲端硬碟";
     document.getElementById('picker-btn').classList.add('hidden');
+
+    // 🌟 修改：登出後重新顯示整個「匯入新行程」卡片
+    const importCard = document.getElementById('import-card');
+    if (importCard) importCard.classList.remove('hidden');
 
     masterListId = 'local_trip_list';
     tripMasterData = JSON.parse(localStorage.getItem(masterListId)) || '{"trips":[]}';
