@@ -11,15 +11,14 @@ const SCOPES = 'https://www.googleapis.com/auth/drive.file';
 let tokenClient;
 let accessToken = null;
 let isEditMode = false;
-let masterListId = localStorage.getItem('trip_list_id') || null; 
+let masterListId = localStorage.getItem('trip_list_id') || 'local_trip_list'; 
 
 // 優先嘗試讀取雲端總表的快取，若無才降級讀取本地清單 (解決 F5 畫面清空的問題)
-let tripMasterData = (masterListId && localStorage.getItem(masterListId)) 
-    ? JSON.parse(localStorage.getItem(masterListId)) 
-    : JSON.parse(localStorage.getItem('local_trip_list') || '{"trips":[]}');
+let tripMasterData = JSON.parse(localStorage.getItem(masterListId)) || '{"trips":[]}';
 
 window.onload = () => {
-    renderTripList(); 
+    //renderTripList(); 
+    loadTripList();
     lucide.createIcons();
     // 綁定右下角的「＋ 新增」按鈕事件
     const btnCreateJson = document.getElementById('btn-create-json');
@@ -125,19 +124,17 @@ async function initCouldTripList() {
         document.getElementById('status-text').innerHTML = '<span class="text-blue-500 flex items-center justify-center gap-1"><i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin"></i> 檢查雲端索引中...</span>';
         
         // --- 步驟 1：用 trip_list.json 找到 token id ---
-        if (!masterListId) {
-            const searchRes = await gapi.client.drive.files.list({
-                q: "name='trip_list.json' and trashed=false",
-                fields: 'files(id)'
-            });
-            
-            if (searchRes.result.files && searchRes.result.files.length > 0) {
-                masterListId = searchRes.result.files[0].id;
-                localStorage.setItem('trip_list_id', masterListId);
-            } else {
-                await saveMasterListToCloud(true);
-                return;
-            }
+        const searchRes = await gapi.client.drive.files.list({
+            q: "name='trip_list.json' and trashed=false",
+            fields: 'files(id)'
+        });
+        
+        if (searchRes.result.files && searchRes.result.files.length > 0) {
+            masterListId = searchRes.result.files[0].id;
+            localStorage.setItem('trip_list_id', masterListId);
+        } else {
+            await saveMasterListToCloud(true);
+            return;
         }
 
         // --- 步驟 2：對總表 Token call validateAndFetch ---
@@ -185,9 +182,7 @@ async function initCouldTripList() {
         // --- 完成狀態與畫面渲染 ---
         document.getElementById('status-text').innerHTML = '<span class="text-emerald-600 flex items-center justify-center gap-1"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 同步完成</span>';
         
-        if (typeof renderTripList === 'function') {
-            renderTripList();
-        }
+        renderTripList(tripMasterData, true);
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
@@ -243,9 +238,8 @@ async function updateTripListInCloud(action, fileId, fileName = "") {
 
         await saveMasterListToCloud();
         
-        if (typeof renderTripList === 'function') {
-            renderTripList();
-        }
+        renderTripList(tripMasterData, true);
+
     } catch (error) {
         console.error("更新 trip_list.json 失敗", error);
     }
@@ -288,8 +282,22 @@ async function saveMasterListToCloud(isNew = false) {
     localStorage.setItem(`${masterListId}.modifiedTime`, uploadRes.result.modifiedTime);
 }
 
+function loadTripList() {
+    // 🌟 新增：重新檢查暫存中的 Token 狀態
+    // 因為 window.onload 觸發時，全域 accessToken 可能還沒被 Google API 非同步賦值
+    const currentToken = sessionStorage.getItem('gapi_token') || accessToken;
+
+    const listId = currentToken
+        ? localStorage.getItem('trip_list_id')
+        : 'local_trip_list'; 
+
+    // 優先嘗試讀取雲端總表的快取，若無才降級讀取本地清單 (解決 F5 畫面清空的問題)
+    tripMasterData = JSON.parse(localStorage.getItem(listId));
+    renderTripList(tripMasterData, !!currentToken);
+}
+
 // 🌟 統一從本地 localStorage (Token架構) 讀取內容來渲染 UI
-function renderTripList() {
+function renderTripList(tripMasterData, isCloud) {
     const listDiv = document.getElementById('trip-list'); 
     listDiv.innerHTML = ''; 
 
@@ -299,8 +307,8 @@ function renderTripList() {
     if (trips.length === 0) {
         listDiv.innerHTML = `
             <div class="h-32 flex flex-col items-center justify-center text-slate-400 bg-slate-50 border border-dashed border-slate-200 rounded-xl">
-                <i data-lucide="${accessToken ? 'cloud' : 'inbox'}" class="w-8 h-8 mb-2 opacity-50"></i>
-                <p class="text-sm">${accessToken ? '雲端與本地皆無行程' : '尚未匯入任何行程'}</p>
+                <i data-lucide="${isCloud ? 'cloud' : 'inbox'}" class="w-8 h-8 mb-2 opacity-50"></i>
+                <p class="text-sm">${isCloud ? '雲端無行程' : '尚未匯入任何行程'}</p>
             </div>`;
         if (typeof lucide !== 'undefined') lucide.createIcons();
         return;
@@ -326,9 +334,6 @@ function renderTripList() {
                 console.warn(`解析行程 [${fileId}] 快取失敗`, e);
             }
         }
-
-        // 因為資料來源是 tripMasterData，所以一定是雲端同步的行程
-        const isCloud = true; 
 
         const item = document.createElement('div');
         item.className = `group flex items-center justify-between p-4 bg-white rounded-xl border transition-all duration-200 ${isEditMode ? 'border-red-200 shadow-sm' : 'border-slate-100 hover:border-indigo-200 hover:shadow-md cursor-pointer'}`;
@@ -426,7 +431,7 @@ async function handleFileImport(event) {
             }
             
             // 由於總表結構統一了，這裡直接呼叫 render 即可
-            renderTripList();
+            loadTripList();
 
         } catch (error) {
             console.error(error);
@@ -473,7 +478,7 @@ function toggleEditMode() {
         txt.textContent = "管理模式";
         btn.innerHTML = `<i data-lucide="settings-2" class="w-3.5 h-3.5"></i><span id="edit-toggle-txt">管理模式</span>`;
     }
-    renderTripList(); 
+    loadTripList(); 
 }
 
 async function deleteTrip(fileId, title) {
@@ -505,7 +510,7 @@ async function deleteTrip(fileId, title) {
     localStorage.removeItem(`${fileId}.modifiedTime`);
     
     document.getElementById('status-text').innerHTML = '<span class="text-emerald-600 flex items-center justify-center gap-1"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 刪除成功</span>';
-    renderTripList();
+    loadTripList();
 }
 
 // ==========================================
@@ -601,7 +606,9 @@ function handleLogout() {
     document.getElementById('auth-btn-text').textContent = "連結 Google 雲端硬碟";
     document.getElementById('picker-btn').classList.add('hidden');
 
-    renderTripList();
+    masterListId = 'local_trip_list';
+    tripMasterData = JSON.parse(localStorage.getItem(masterListId)) || '{"trips":[]}';
+    renderTripList(tripMasterData, false);
     lucide.createIcons();
 }
 
@@ -697,7 +704,7 @@ async function handleCreateNewTrip() {
         }
         
         // 重新渲染列表
-        renderTripList();
+        loadTripList();
         
     } catch (error) {
         console.error("建立行程失敗:", error);
