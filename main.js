@@ -11,10 +11,12 @@ const SCOPES = 'https://www.googleapis.com/auth/drive.file';
 let tokenClient;
 let accessToken = null;
 let isEditMode = false;
-
 let masterListId = localStorage.getItem('trip_list_id') || null; 
-// 預設先從本地列表讀取（未登入狀態的基礎）
-let tripMasterData = JSON.parse(localStorage.getItem('local_trip_list') || '{"trips":[]}');
+
+// 優先嘗試讀取雲端總表的快取，若無才降級讀取本地清單 (解決 F5 畫面清空的問題)
+let tripMasterData = (masterListId && localStorage.getItem(masterListId)) 
+    ? JSON.parse(localStorage.getItem(masterListId)) 
+    : JSON.parse(localStorage.getItem('local_trip_list') || '{"trips":[]}');
 
 window.onload = () => {
     renderTripList(); 
@@ -227,7 +229,7 @@ async function updateTripListInCloud(action, fileId, fileName = "") {
 
     try {
         // ✨ 直接使用統一的 validateAndFetch 來處理檢查與更新快取
-        const latestMasterData = await validateAndFetch(masterListId);
+        const latestMasterData = await validateAndFetch(masterListId, accessToken);
         tripMasterData = latestMasterData || { trips: [] };
 
         if (action === 'add') {
