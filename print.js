@@ -153,6 +153,163 @@ function generatePrintDay(day, dateKey, dayNum) {
     `;
 }
 
+function generateCover(metadata) {
+    return `
+        <div class="p-10 text-center flex flex-col items-center print-page-break break-after-page" style="min-height: 270mm; padding-top: 50mm;">
+            <h1 class="text-5xl font-black mb-4 text-slate-900 tracking-wide">${metadata.title || '無標題行程'}</h1>
+            <h2 class="text-xl font-bold text-slate-500 tracking-widest mb-16">${metadata.subtitle || ''}</h2>
+            
+            ${metadata.guides && metadata.guides.length > 0 ? `
+            <div class="border-t border-slate-300 pt-12 mt-4 w-11/12 flex flex-wrap justify-center items-start gap-x-12 gap-y-10">
+                ${metadata.guides.map(guide => {
+                    // 💡 讀取全域樣式設定 (與網頁版同步)
+                    const style = getTypeConfig(guide.type);
+                    const iconName = guide.icon || style.defaultIcon;
+                    return `
+                    <div class="flex flex-col items-center">
+                        <div class="w-fit max-w-[320px]"> 
+                            <!-- 帶有 Icon 與專屬顏色的 Guide 標題 -->
+                            <h3 class="text-[17px] font-black mb-3 ${style.title} text-center tracking-widest flex items-center justify-center gap-2">
+                                <i data-lucide="${iconName}" class="w-5 h-5 ${style.icon} shrink-0"></i>
+                                <span>${guide.title || ''}</span>
+                            </h3>
+                            <!-- 解析 Markdown 的內容區 -->
+                            <div class="text-left text-[13.5px] text-slate-600 font-medium">
+                                ${parseMarkdownList(guide.desc, true)}
+                            </div>
+                        </div>
+                    </div>
+                `}).join('')}
+            </div>
+            ` : ''}
+        </div>
+    `;
+}
+
+function generateEmpty() {
+    return `
+        <div class="break-before-page print-page-break p-2 flex flex-col items-center justify-center" style="min-height: 270mm;">
+            <div class="flex flex-col items-center justify-center text-slate-300">
+                <i data-lucide="book-open" class="w-8 h-8 mb-2 opacity-50"></i>
+                <div class="text-[10px] tracking-widest uppercase font-bold">TRIP PLANNER</div>
+            </div>
+        </div>
+    `;
+}
+
+function generatePrintCover() {
+    try {
+        // 🛡️ 防呆：確保資料存在
+        if (!window.tripData) {
+            console.warn("列印失敗：找不到 tripData 或 detail 結構");
+            return;
+        }
+        
+        const printContainer = document.getElementById('print-container');
+        const metadata = window.tripData.metadata || {}; 
+        let finalSpreadHtml = generateEmpty();
+        // ==========================================
+        // 第一頁：產生封面 (Cover)
+        // ==========================================
+        finalSpreadHtml += generateCover(metadata);
+        finalSpreadHtml += `<div class="break-before-page print-page-break p-2"></div>`;
+        finalSpreadHtml += `<div class="break-before-page print-page-break p-2"></div>`;
+
+        // 寫入 DOM 並啟動 Icon 渲染
+        return finalSpreadHtml;
+} catch (error) {
+        console.error("列印模組發生錯誤:", error);
+        document.getElementById('print-container').innerHTML = `
+            <div class="p-10 text-center text-red-600 font-bold">
+                <h2 class="text-2xl mb-2">列印畫面生成失敗 😢</h2>
+                <p class="text-sm text-red-500">${error.message}</p>
+            </div>
+        `;
+    }
+}
+
+
+function printContent() {
+    try {
+        // 🛡️ 防呆：確保資料存在
+        if (!window.tripData) {
+            console.warn("列印失敗：找不到 tripData 或 detail 結構");
+            return;
+        }
+        
+        const printContainer = document.getElementById('print-container');
+        const metadata = window.tripData.metadata || {}; 
+        // 建立一個陣列來收集「所有的獨立單頁 HTML」
+        const pagesArray = [];
+
+        if (window.tripData.detail) {
+            const dayKeys = Object.keys(window.tripData.detail);
+            // ==========================================
+            // 第二頁：產生目錄與行程總覽 (TOC)
+            // ==========================================
+            pagesArray.push(generateOverviewTable(dayKeys));
+
+            // ==========================================
+            // 第三頁起：產生每一天的行程內頁
+            // ==========================================
+            dayKeys.forEach((key, index) => {
+                const day = window.tripData.detail[key];
+                if (!day) return;
+                
+                const dayNum = index + 1;
+                // ✨ 正確傳遞 day 資料、日期字串 (key) 以及第幾天 (dayNum)
+                pagesArray.push(generatePrintDay(day, key, dayNum));
+            });
+        }
+
+        // ==========================================
+        // 🎯 核心拼版邏輯 (Imposition)：處理雙面列印對摺
+        // ==========================================
+        
+        // 1. 小冊子的總頁數必須是 4 的倍數，不足的話自動補上「空白筆記頁」
+        while (pagesArray.length % 4 !== 0) {
+            pagesArray.push(generateEmpty());
+        }
+
+        const totalPages = pagesArray.length;
+        const totalSheets = totalPages / 4; // 算出需要幾張 A4 紙
+        let finalSpreadHtml = generatePrintCover();
+
+        for (let i = 0; i < totalSheets; i++) {
+            // 第一面 (紙張正面) -> 左：封底方向，右：封面方向
+            const frontLeft = pagesArray[totalPages - 1 - 2 * i];
+            const frontRight = pagesArray[0 + 2 * i];
+
+            finalSpreadHtml += `
+                ${frontLeft}
+                ${frontRight}
+            `;
+
+            // 第二面 (紙張背面) -> 左：封面後面的內頁，右：封底前面的內頁
+            const backLeft = pagesArray[1 + 2 * i];
+            const backRight = pagesArray[totalPages - 2 - 2 * i];
+
+            finalSpreadHtml += `
+                ${backLeft}
+                ${backRight}
+            `;
+        }
+
+        // 寫入 DOM 並啟動 Icon 渲染
+        printContainer.innerHTML = finalSpreadHtml;
+        initIcons(printContainer);
+        
+    } catch (error) {
+        console.error("列印模組發生錯誤:", error);
+        document.getElementById('print-container').innerHTML = `
+            <div class="p-10 text-center text-red-600 font-bold">
+                <h2 class="text-2xl mb-2">列印畫面生成失敗 😢</h2>
+                <p class="text-sm text-red-500">${error.message}</p>
+            </div>
+        `;
+    }
+}
+
 // 1. 將「產生列印畫面」的邏輯獨立出來
 function generatePrintContent() {
     try {
@@ -233,6 +390,18 @@ function generatePrintContent() {
 }
 
 // 4. 點擊網頁按鈕時，直接呼叫瀏覽器原生列印即可
-window.printItinerary = function() {
-    window.print();
+window.printBooklet = function() {
+    // 1. 將列印區塊瞬間替換成「小冊子對摺拼版」格式
+    printContent(); 
+    
+    // 2. 給瀏覽器一點時間 (100毫秒) 渲染新的 DOM，然後呼叫列印
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            window.print(); // 開啟列印視窗 (此時會暫停執行)
+            
+            // 3. 當使用者關閉或完成列印視窗後，瞬間切換回「標準排版」
+            // 確保下一次按下 Ctrl+P 還是正常的 A4 格式
+            generatePrintContent(); 
+        }, 100);
+    });
 };
