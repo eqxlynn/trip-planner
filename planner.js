@@ -492,6 +492,7 @@ function render() {
     }
 
     // 6. 優先讀取 localStorage 記憶的主題，若無則預設為 summer (涼夏)
+    //const savedTheme = localStorage.getItem('selected-theme') || 'grayscale';
     const savedTheme = 'grayscale';
     window.setTheme(savedTheme);
 
@@ -516,6 +517,7 @@ function render() {
     }
     // 這樣不管使用者什麼時候按 Command+P，DOM 都已經準備好了！
     generatePrintContent();
+    
     initIcons();
 }
 
