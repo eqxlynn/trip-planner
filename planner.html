@@ -110,14 +110,16 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased transition-colors duration-300">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased transition-colors duration-300 print:bg-white">
 
     <!-- 隱藏的列印專用容器 -->
     <div id="print-container" class="hidden font-sans bg-white"></div>
+    <div id="print-booklet-container" class="hidden font-sans bg-white"></div>
 
     <!-- 頂部漸層導航欄 -->
     <header id="main-header" class="bg-gradient-to-r from-slate-800 via-slate-750 to-gray-700 text-white shadow-md transition-all duration-500">
         <div class="max-w-[1400px] mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            
             <div class="flex items-center space-x-3.5">
                 <div class="p-2 bg-white/15 rounded-xl backdrop-blur-sm shadow-inner">
                     <i data-lucide="map" class="w-7 h-7 text-teal-200" id="header-icon"></i>
@@ -132,22 +134,27 @@
                 </div>
             </div>
             
-            <!-- 操作按鈕區塊 -->
-            <div class="flex items-center space-x-1 bg-black/15 p-1 rounded-xl backdrop-blur-sm border border-white/5">
-                <!-- ✏️ 新增：編輯模式切換按鈕 -->
+            <!-- 🌟 操作按鈕區塊：在這裡加入 shrink-0，保護整個深色區塊不被標題擠壓 -->
+            <div class="shrink-0 flex items-center space-x-1 bg-black/15 p-1 rounded-xl backdrop-blur-sm border border-white/5">
+                
+                <!-- ✏️ 編輯模式切換按鈕 -->
                 <button id="btn-toggle-edit" onclick="toggleEditMode()" class="px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/10 hover:bg-white/20 text-white flex items-center gap-1">
-                    <i data-lucide="edit-3" class="w-4 h-4"></i>
-                    <span class="text-sm font-medium">編輯模式</span>
+                    <i data-lucide="edit-3" class="w-4 h-4 shrink-0"></i>
+                    <!-- 將強制不換行加在文字本身 -->
+                    <span class="text-sm font-medium whitespace-nowrap">編輯模式</span>
                 </button>
                 
                 <span class="w-[1px] h-4 bg-white/20 mx-1"></span> <!-- 分隔線 -->
                 
-                <!-- 列印按鈕 -->
-                <button onclick="printItinerary()" class="theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/20 hover:bg-white/30 text-white flex items-center gap-1">
-                    <i data-lucide="printer" class="w-4 h-4"></i>
+                <!-- 🖨️ 列印按鈕 -->
+                <button onclick="printBooklet()" class="px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/20 hover:bg-white/30 text-white flex items-center gap-1">
+                    <i data-lucide="printer" class="w-4 h-4 shrink-0"></i>
+                    <!-- 將強制不換行加在文字本身 -->
+                    <span class="text-sm font-medium whitespace-nowrap">小冊子</span>
                 </button>
             </div>
-        </div>
+            
+        </div> <!-- 🌟 補回遺失的 div 閉合標籤 -->
     </header>
     <!-- 封面 Guides 顯示與編輯區塊 -->
     <div id="guide-container" class="max-w-[1400px] w-full mx-auto px-6 pt-6 flex flex-col gap-4 hidden">
