@@ -17,7 +17,7 @@ let masterListId = localStorage.getItem('trip_list_id') || 'local_trip_list';
 let tripMasterData = JSON.parse(localStorage.getItem(masterListId)) || '{"trips":[]}';
 
 window.onload = () => {
-    //renderTripList(); 
+    checkLoginState();
     loadTripList();
     lucide.createIcons();
     // 綁定右下角的「＋ 新增」按鈕事件
