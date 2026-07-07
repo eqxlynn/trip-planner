@@ -38,8 +38,8 @@ function checkLoginState() {
             return true;
         } else {
             console.warn("⚠️ Token 已過期，請重新登入");
-            sessionStorage.removeItem('gapi_token');
-            sessionStorage.removeItem('gapi_token_expire');
+            // 🌟 修正 2：遇到 Timeout 時，直接呼叫 handleLogout() 來清理資料並隱藏按鈕
+            handleLogout(); 
         }
     }
     return false;
@@ -589,20 +589,23 @@ async function pickerCallback(data) {
 }
 
 function handleLogout() {
-    if (!accessToken) return;
-
-    google.accounts.oauth2.revoke(accessToken, () => {
-        console.log('Google 授權已撤銷');
-    });
+    // 改為只在有 accessToken 時才撤銷授權，但無論如何都要繼續往下執行 UI 重置
+    if (accessToken) {
+        google.accounts.oauth2.revoke(accessToken, () => {
+            console.log('Google 授權已撤銷');
+        });
+    }
 
     accessToken = null;
     sessionStorage.removeItem('gapi_token');
     sessionStorage.removeItem('gapi_token_expire');
 
+    // 下方的 UI 重置現在一定會執行到了
     document.getElementById('status-text').innerHTML = '<span class="text-slate-400 flex items-center justify-center gap-1"><i data-lucide="cloud-off" class="w-3.5 h-3.5"></i> 尚未連結雲端</span>';
     
     const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) logoutBtn.classList.add('hidden');
+    if (logoutBtn) logoutBtn.classList.add('hidden'); // 確實隱藏登出按鈕
+    
     document.getElementById('auth-btn-text').textContent = "連結 Google 雲端硬碟";
     document.getElementById('picker-btn').classList.add('hidden');
 
