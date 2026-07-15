@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,61 +9,76 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
         body {
             font-family: 'Noto Sans TC', sans-serif;
         }
+
         /* 自訂滾動條 */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
         }
+
         /* 👇 專門用來隱藏特定區塊的滾動條，但保留滾動功能 */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
+
         .no-scrollbar {
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
         }
+
         ::-webkit-scrollbar-track {
             background: #f1f5f9;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 3px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+
         /* 🖨️ 專屬列印樣式：隱藏網頁 UI，只顯示列印容器 */
         @media print {
             @page {
-                margin: 5mm; 
+                margin: 2mm;
                 size: auto;
             }
+
             /* 徹底隱藏網頁所有預設內容 (導航、側邊欄、時間軸、預算表等) */
             body > *:not(#print-container) {
                 display: none !important;
             }
+
             /* 只顯示我們用 JS 產生的「精美手冊」容器 */
             #print-container {
                 display: block !important;
                 position: relative;
                 width: 100%;
             }
+
             /* 強制背景顏色與背景圖列印出來 */
             * {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
+
             /* 每一天強制換頁 */
             .print-page-break {
                 page-break-before: always;
             }
-            .no-print-link { text-decoration: none !important; }
+
+            .no-print-link {
+                text-decoration: none !important;
+            }
         }
         /* ✏️ 編輯模式專屬樣式 */
         body.edit-mode [contenteditable="true"] {
@@ -108,6 +124,22 @@
         body:not(.edit-mode) .editable-element:empty {
             display: none;
         }
+        </style>
+        <style type="text/tailwindcss">
+        @layer components {
+            /* 統一標題風格 (一般網頁為 sm/base，列印時自動放大為 xl) */
+            .ui-title {
+                @apply font-bold text-xl leading-snug tracking-wide print:text-slate-900;
+            }
+            /* 統一內文與列表風格 (一般網頁為 sm，列印時自動放大為 lg) */
+            .ui-desc {
+                @apply text-lg text-slate-600 leading-relaxed print:text-slate-700 
+            }
+            /* 統一虛線按鈕風格 */
+            .ui-btn-dashed {
+                @apply w-full py-3 border-2 mt-2 border-slate-300 text-slate-500 rounded-xl hover:border-emerald-400 hover:text-emerald-600 transition-colors items-center justify-center gap-2 text-sm font-bold bg-slate-50 hover:bg-emerald-50;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased transition-colors duration-300 print:bg-white">
@@ -147,7 +179,7 @@
                 <span class="w-[1px] h-4 bg-white/20 mx-1"></span> <!-- 分隔線 -->
                 
                 <!-- 🖨️ 列印按鈕 -->
-                <button onclick="printBooklet()" class="px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/20 hover:bg-white/30 text-white flex items-center gap-1">
+                <button class="px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/10 hover:bg-white/20 text-white flex items-center gap-1">
                     <i data-lucide="printer" class="w-4 h-4 shrink-0"></i>
                     <!-- 將強制不換行加在文字本身 -->
                     <span class="text-sm font-medium whitespace-nowrap">小冊子</span>
@@ -162,7 +194,7 @@
             <!-- 這裡會由 JS 動態生成 -->
         </div>
         <!-- 僅在編輯模式顯示的新增按鈕 -->
-        <button id="btn-add-guide" onclick="addGuideItem()" class="edit-only-ui flex w-full py-3 mt-2 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl hover:border-emerald-400 hover:text-emerald-600 transition-colors items-center justify-center gap-2 text-sm font-bold bg-slate-50 hover:bg-emerald-50">
+        <button id="btn-add-guide" onclick="addGuideItem()" class="edit-only-ui flex ui-btn-dashed">
             <i data-lucide="plus-circle" class="w-5 h-5 shrink-0"></i>
             <span>新增封面指南</span>
         </button>
@@ -185,7 +217,7 @@
                 <nav id="day-nav" class="flex lg:flex-col overflow-x-auto lg:overflow-visible space-x-2 lg:space-x-0 lg:space-y-1.5 pb-2 lg:pb-0 scroll-smooth snap-x no-scrollbar">
                     <!-- JS 動態渲染按鈕 -->
                 </nav>
-                <button id="btn-add-day" onclick="addDayItem()" class="hidden w-full py-2.5 mt-3 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl hover:border-emerald-400 hover:text-emerald-600 transition-colors items-center justify-center gap-2 text-sm font-bold bg-slate-50 hover:bg-emerald-50">
+                <button id="btn-add-day" onclick="addDayItem()" class="hidden ui-btn-dashed">
                     <i data-lucide="plus-circle" class="w-4 h-4"></i>
                     <span>新增天數</span>
                 </button>
@@ -242,7 +274,7 @@
                     <!-- 由 JS 渲染生成 -->
                 </div>
             </div>
-            <button id="btn-add-timeline" onclick="addTimelineItem()" class="hidden w-full py-3 mt-4 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl hover:border-emerald-400 hover:text-emerald-600 transition-colors items-center justify-center gap-2 text-sm font-bold bg-slate-50 hover:bg-emerald-50">
+            <button id="btn-add-timeline" onclick="addTimelineItem()" class="hidden ui-btn-dashed">
                 <i data-lucide="plus-circle" class="w-5 h-5"></i>
                 <span>新增行程</span>
             </button>
@@ -253,7 +285,7 @@
             <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 flex flex-col">
                 <h2 class="text-xs font-black text-slate-400 uppercase mb-4">Daily Tips</h2>
                 <div id="tips-container" class="flex flex-col gap-4"></div>
-                <button id="btn-add-tip" onclick="addTipItem()" class="hidden w-full py-2.5 mt-3 border-2 border-dashed border-slate-300 text-slate-500 rounded-xl hover:border-emerald-400 hover:text-emerald-600 transition-colors items-center justify-center gap-2 text-sm font-bold bg-slate-50 hover:bg-emerald-50">
+                <button id="btn-add-tip" onclick="addTipItem()" class="hidden ui-btn-dashed">
                     <i data-lucide="plus-circle" class="w-4 h-4"></i>
                     <span>新增 Tip</span>
                 </button>
@@ -324,6 +356,7 @@
     <!-- 引入外部 JS 引擎 -->
     <script src="theme.js"></script>
     <script src="common.js"></script>
+    <script src="render.js"></script>
     <script src="saveHandler.js"></script>
     <script src="budget.js"></script>
     <script src="print.js"></script>
