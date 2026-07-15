@@ -27,73 +27,6 @@ function getEventIcon(type, customIcon) {
 // ==========================================
 // 📊 介面渲染邏輯
 // ==========================================
-/**
- * 將 Markdown 語法轉換為 HTML
- * @param {string} text - 原始 Markdown 文字
- * @param {boolean} isPrint - 是否為列印模式 (預設為 false)
- */
-function parseMarkdownList(text, isPrint = false) {
-    if (!text || typeof text !== 'string') return '';
-    
-    let html = text;
-
-    // 1. 處理粗體
-    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-
-    // 2. 處理連結 [文字](網址)
-    if (isPrint) {
-        // 🖨️ 列印模式：移除網址連結
-        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '');
-    } else {
-        // 💻 網頁模式修正：將 <a> 標籤內的所有內容寫在「同一行」，避免被後續的 split('\n') 切斷！
-        html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
-            return `<a href="${url}" target="_blank" class="inline-flex items-center gap-1 bg-slate-50 text-slate-700 border border-slate-200 hover:bg-slate-100 px-2 py-0.5 rounded text-[10px] font-bold tracking-wide transition-colors duration-200 shadow-sm align-middle mx-1 -translate-y-[1px]"><span>${text}</span><i data-lucide="external-link" class="w-3 h-3"></i></a>`;
-        });
-    }
-
-    // 3. 處理數字列表 (Ordered List) - 支援 "1. " 或 "#. "
-    if (/^(?:\d+|#)\.\s/m.test(html)) {
-        const lines = html.split('\n');
-        let listItems = '';
-        
-        lines.forEach(line => {
-            // 匹配行首為 "數字. " 或 "#. " 的內容
-            const match = line.trim().match(/^(?:\d+|#)\.\s+(.*)/);
-            if (match) {
-                const content = match[1].trim(); 
-                if (content !== '') {
-                    listItems += `<li>${content}</li>`;
-                }
-            } else if (line.trim() !== "") {
-                // 無項目符號的文字換行處理
-                listItems += `<li class="list-none pt-2">${line.trim()}</li>`;
-            }
-        });
-        // 💡 數字列表使用 <ol> 與 list-decimal，並將左側縮排稍微加大至 pl-5 以容納數字寬度
-        return `<ol class="list-decimal pl-5 space-y-1.5 text-xs text-slate-600 mt-2">${listItems}</ol>`;
-    }
-
-    // 4. 處理無序列表 (Unordered List)
-    if (/^[-*]\s/m.test(html)) {
-        const lines = html.split('\n');
-        let listItems = '';
-        
-        lines.forEach(line => {
-            if (/^[-*]\s/.test(line.trim())) {
-                const content = line.trim().substring(2); 
-                if (content.trim() !== '') {
-                    listItems += `<li>${content}</li>`;
-                }
-            } else if (line.trim() !== "") {
-                listItems += `<li class="list-none pt-2">${line.trim()}</li>`;
-            }
-        });
-        return `<ul class="list-disc pl-4 space-y-1.5 text-xs text-slate-600 mt-2">${listItems}</ul>`;
-    }
-    
-    // 5. 普通文字處理
-    return `<p class="text-xs text-slate-500 leading-relaxed mt-1.5">${html.replace(/\n/g, '<br>')}</p>`;
-}
 
 /**
  * 透過 yyyy-mm-dd 計算並格式化日期與星期
@@ -125,10 +58,8 @@ function getTypeConfig(type) {
  * @param {string} dateKey - 日期字串 YYYY-MM-DD
  * @param {number} dayNum - 動態計算出的天數 (1, 2, 3...)
  */
-function generateCalendarIconHtml(dateKey, dayNum) {
-    if (!dateKey) return '';
-
-    const dateInfo = getDateDisplayInfo(dateKey);
+function generateCalendarIconHtml(dateInfo) {
+    if (!dateInfo) return '';
     
     // 預設顏色主題
     let textClass = "text-slate-800";
@@ -169,10 +100,10 @@ function generateCalendarIconHtml(dateKey, dayNum) {
         </div>
 
         <!-- 🌟 修正：移除 hidden，並加入 onclick="this.showPicker()" 強制喚醒日曆 -->
-        <input type="date" value="${dateKey}" 
+        <input type="date" value="${dateInfo.full}" 
                class="edit-only-ui absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
                onclick="this.showPicker()"
-               onchange="window.changeDayDate('${dateKey}', this.value)"
+               onchange="window.changeDayDate('${dateInfo.full}', this.value)"
                title="點擊修改日期">
                
         <!-- 🌟 修正：改用 opacity 漸變來做 Hover 遮罩，確保不與 display 屬性打架 -->
@@ -198,7 +129,7 @@ function renderSharedCards(containerId, itemsArray, generateDataAttributes) {
         const descVal = item.desc || "";
 
         // 取得樣式
-        const style = getTypeConfig(type);
+        const style = (isPlannerEditMode && type === 'transparent') ? getTypeConfig('none') : getTypeConfig(type);
         const iconName = item.icon || style.defaultIcon || 'info';
 
         // 🎯 關鍵修改：直接呼叫外面傳進來的函式，並把 index 傳給它
@@ -210,13 +141,12 @@ function renderSharedCards(containerId, itemsArray, generateDataAttributes) {
         const typeOptionsHtml = cardTypes.map(t => 
             `<option value="${t}" ${t === type ? 'selected' : ''}>${t.charAt(0).toUpperCase() + t.slice(1)}</option>`
         ).join('');
-
         return `
-            <div class="rounded-xl p-5 border relative group print:bg-transparent ${style.box}">
+            <div class="rounded-xl p-2 border relative group print:bg-transparent ${style.box}">
                 <!-- 標題與 Icon -->
                 <div class="flex items-start gap-2 mb-2">
                     <i data-lucide="${iconName}" class="w-5 h-5 ${style.icon} shrink-0 mt-0.5"></i>
-                    <h3 class="font-bold text-[17px] ${style.title} tracking-widest editable-element w-full" 
+                    <h3 class="ui-title ${style.title ? style.title: ''} editable-element w-full" 
                         ${dataAttributes} 
                         data-edit-field="title" 
                         data-placeholder="新增標題">${titleVal}</h3>
@@ -234,7 +164,7 @@ function renderSharedCards(containerId, itemsArray, generateDataAttributes) {
                 </div>
 
                 <!-- 描述欄位 -->
-                <div class="editable-element text-sm text-slate-600 mt-1" 
+                <div class="editable-element text-sm text-slate-600 mt-0" 
                      ${dataAttributes} 
                      data-edit-field="desc" 
                      data-placeholder="新增詳細內容...">${parseMarkdownList(descVal)}</div>
@@ -297,13 +227,13 @@ function switchDay(dayId) {
     // 寫入左側：打孔日曆 Icon (傳入 YYYY-MM-DD 與動態天數)
     const calendarContainer = document.getElementById('detail-calendar-icon-container');
     if (calendarContainer) {
-        calendarContainer.innerHTML = generateCalendarIconHtml(dayId, dynamicDayNum);
+        calendarContainer.innerHTML = generateCalendarIconHtml(getDateDisplayInfo(dayId));
     }
     
     // 寫入右側：主標題
     const detailTitle = document.getElementById('detail-title');
     if (detailTitle) {
-        detailTitle.textContent = data.title || '未命名行程';
+        detailTitle.textContent = data.title || '';
         // ✏️ 新增：標記主標題為可編輯
         detailTitle.classList.add('editable-element');
         detailTitle.dataset.editDay = dayId;
@@ -364,49 +294,47 @@ function switchDay(dayId) {
         const timeVal = item.time || "";
         const eventVal = item.event || "";
         const descVal = item.desc || "";
-        const typeVal = item.type || "info";
+        const typeVal = item.type || "none";
         const amountVal = item.amount || 0;
 
         // 👇 新增：建立 Type 下拉選單的選項
-        const typeOptionsList = ["flight", "transit", "bus", "jr", "train", "hiking", "hotel", "food", "shopping", "stamp", "culture"];
+        const typeOptionsList = Object.keys(TYPE_CONFIG);
         const typeOptions = typeOptionsList.map(t => 
             `<option value="${t}" ${t === typeVal ? 'selected' : ''}>${t}</option>`
         ).join('');
 
         // 強制產生 time 標籤
-        const timeHtml = `<span class="whitespace-nowrap text-xs font-black tracking-widest px-2 py-0.5 rounded-md w-max ${theme.timelineTime} editable-element" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="time">${timeVal}</span>`;
+        const timeHtml = `<span class="whitespace-nowrap text-xs font-black tracking-widest px-2 py-0.5 rounded-md w-max ${theme.timelineTime} editable-element" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="time" data-placeholder="新增時間">${timeVal}</span>`;
 
         el.innerHTML = `
             <div id="timeline-icon-${dayId}-${index}" class="absolute -left-3 top-1 w-6 h-6 rounded-full border-2 flex items-center justify-center shadow-sm z-10 transition-transform duration-300 hover:scale-110 ${getEventBg(item.type)}">
                 ${getEventIcon(item.type, item.icon)}
             </div>
             <div>
-                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-1">
                     ${timeHtml}
-                    <h4 class="font-bold text-sm sm:text-base text-slate-800 leading-snug editable-element" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="event">${eventVal}</h4>
+                    <h3 class="ui-title text-slate-800 editable-element" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="event" data-placeholder="新增標題">${eventVal}</h3>
                 </div>
     
-                <!-- 🌟 編輯模式專屬 UI 區塊：Type 下拉與金額 (使用 flex-wrap 避免手機版擠壓) -->
-                <div class="flex flex-wrap gap-2 mt-2">
+                <!-- 🌟 編輯模式專屬 UI 區塊：Type 下拉與金額 (改用 Tips 簡約風格) -->
+                <div class="flex flex-wrap gap-4 mt-2">
                     
-                    <!-- 1. Type 精緻下拉選單 -->
-                    <div class="edit-only-ui hidden relative flex items-center gap-1.5 text-slate-500 text-sm bg-slate-50 hover:bg-slate-100 px-2.5 py-1.5 rounded-md transition-colors w-fit border border-slate-200">
-                        <i data-lucide="tag" class="w-3.5 h-3.5 shrink-0"></i>
-                        <!-- 隱藏原生箭頭 appearance-none，並加上 pr-5 留白給右側 Icon -->
-                        <select class="appearance-none bg-transparent cursor-pointer outline-none pr-5 font-medium text-slate-700 focus:ring-0" 
+                    <!-- 1. Type 下拉選單 (Tips style) -->
+                    <div class="edit-only-ui hidden flex items-center gap-2 text-xs text-slate-500">
+                        <i data-lucide="tag" class="w-3 h-3 shrink-0"></i>
+                        <select class="bg-transparent border-b border-slate-300 focus:outline-none focus:border-emerald-500 pb-0.5 cursor-pointer font-medium text-slate-700" 
                                 data-edit-day="${dayId}" 
                                 data-edit-index="${index}" 
                                 data-edit-field="type" 
                                 onchange="handleTypeChange(this)">
                             ${typeOptions}
                         </select>
-                        <i data-lucide="chevron-down" class="w-3.5 h-3.5 absolute right-2 pointer-events-none text-slate-400"></i>
                     </div>
 
-                    <!-- 2. Amount 金額輸入框 -->
-                    <div class="edit-only-ui hidden relative flex items-center gap-1.5 text-slate-500 text-sm bg-slate-50 hover:bg-slate-100 px-2.5 py-1.5 rounded-md transition-colors w-fit border border-slate-200">
-                        <i data-lucide="dollar-sign" class="w-3.5 h-3.5 shrink-0"></i>
-                        <span class="editable-element bg-transparent outline-none min-w-[2em] font-medium text-slate-700 placeholder:text-slate-400" 
+                    <!-- 2. Amount 金額輸入框 (同步套用 Tips 簡約底線風格) -->
+                    <div class="edit-only-ui hidden flex items-center gap-2 text-xs text-slate-500">
+                        <i data-lucide="dollar-sign" class="w-3 h-3 shrink-0"></i>
+                        <span class="editable-element border-b border-slate-300 focus:outline-none focus:border-emerald-500 pb-0.5 min-w-[2em] font-medium text-slate-700 placeholder:text-slate-400" 
                             data-edit-day="${dayId}" 
                             data-edit-index="${index}" 
                             data-edit-field="amount">${amountVal}</span>
@@ -415,7 +343,7 @@ function switchDay(dayId) {
                 </div>
 
                 <!-- 描述欄位 -->
-                <div class="editable-element mt-1" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="desc" data-placeholder="點擊新增描述...">${parseMarkdownList(descVal)}</div>
+                <div class="editable-element mt-0" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="desc" data-placeholder="點擊新增描述...">${parseMarkdownList(descVal)}</div>
             </div>
         `;
         timelineContainer.appendChild(el);
@@ -448,6 +376,10 @@ function loadFail(fileLoadedName) {
 }
 
 function render() {
+    // const savedTheme = localStorage.getItem('selected-theme') || 'grayscale';
+    const savedTheme = 'grayscale';
+    window.setTheme(savedTheme);
+
     const dayNav = document.getElementById('day-nav');
 
     // 2. 渲染主導航欄文字 (從 metadata 動態載入)
@@ -491,10 +423,10 @@ function render() {
         });
     }
 
-    // 6. 優先讀取 localStorage 記憶的主題，若無則預設為 summer (涼夏)
-    //const savedTheme = localStorage.getItem('selected-theme') || 'grayscale';
-    const savedTheme = 'grayscale';
-    window.setTheme(savedTheme);
+    if (dayNav && dayNav.children.length > 0) {
+        const lastDay = localStorage.getItem('active-day') || dayKeys[0];
+        switchDay(lastDay);
+    }
 
     // 7. 初始自動渲染天數，徹底消除一進頁面的載入狀態
     if (dayKeys.length > 0) {
@@ -506,6 +438,7 @@ function render() {
         if (!lastDay || !dayKeys.includes(lastDay)) {
             lastDay = dayKeys[0];
         }
+        console.log(`lastDay:${lastDay}`);
         
         switchDay(lastDay);
     }
@@ -520,7 +453,6 @@ function render() {
     
     initIcons();
 }
-
 
 // ==========================================
 // 🚀 程式啟動點：抓取參數與載入外部行程數據
@@ -786,10 +718,10 @@ function addTimelineItem() {
 
     // 建立一筆預設的行程資料
     const newItem = {
-        time: "12:00",
-        event: "新行程名稱",
-        desc: "點擊此處編輯行程細節...",
-        type: "none",  // 預設樣式
+        time: "",
+        event: "",
+        desc: "",
+        type: "",  // 預設樣式
         amount: 0
     };
 
