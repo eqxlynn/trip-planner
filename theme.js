@@ -2,6 +2,7 @@
 // 🎨 主題樣式設定 (THEMES)
 // ==========================================
 const THEMES = {
+/*
     summer: {
         header: 'bg-gradient-to-r from-teal-700 via-emerald-600 to-cyan-600',
         headerText: 'text-teal-200',
@@ -77,8 +78,9 @@ const THEMES = {
         tipsIcon: 'text-orange-600',
         tipsText: 'text-orange-900'
     },
+*/
     grayscale: {
-        header: 'bg-slate-800 text-white',
+        header: 'bg-gradient-to-r from-slate-800 via-slate-750 to-gray-700 text-white',
         headerText: 'text-slate-300',
         selectedDay: 'bg-slate-900 text-white border border-slate-700',
         selectedBadge: 'bg-white text-slate-900',
@@ -116,12 +118,16 @@ const COLOR_PALETTE = {
     red:     { box: 'bg-red-50 border-red-400',         icon: 'text-red-600',     title: 'text-red-900' },
     slate:   { box: 'bg-slate-50 border-slate-200',     icon: 'text-slate-600',   title: 'text-slate-900' },
     // 👇 新增這組：透明底色 + 灰色邊框
-    outline: { box: 'bg-white border-slate-300',  icon: 'text-slate-500',   title: 'text-slate-800' }
+    outline: { box: 'bg-white border-slate-300',  icon: 'text-slate-500',   title: 'text-slate-800' },
+    // 👇 新增這組：完全透明 + 無邊框
+    transparent: { box: 'bg-transparent border-transparent', icon: 'text-transparent', title: 'text-transparent' }
 };
 
 // ⚙️ 2. 統一管理所有類別 (Cards & Events 共用)
 const TYPE_CONFIG = {
     none:     { ...COLOR_PALETTE.outline, defaultIcon: 'tag' },
+    // 👇 新增這行：完全透明的類別
+    invisiable: { ...COLOR_PALETTE.transparent, defaultIcon: 'message-square' },
     // --- 系統卡片類 (Guide / Tips) ---
     success:  { ...COLOR_PALETTE.emerald, defaultIcon: 'check-circle' },
     info:     { ...COLOR_PALETTE.sky,     defaultIcon: 'info' },
@@ -141,6 +147,22 @@ const TYPE_CONFIG = {
     shopping: { ...COLOR_PALETTE.purple,  defaultIcon: 'shopping-bag' },
     culture:  { ...COLOR_PALETTE.indigo,  defaultIcon: 'landmark' },
     stamp:    { ...COLOR_PALETTE.indigo,  defaultIcon: 'stamp' }
+};
+
+const THEME_STYLE = {
+    // 定義各層級標題
+    headingMain: "text-2xl font-black text-slate-900 tracking-wider",
+    headingSub: "text-lg font-bold text-slate-800",
+    
+    // 定義內文與描述
+    textNormal: "text-sm text-slate-600 leading-relaxed",
+    textSmall: "text-xs text-slate-500",
+    
+    // 定義卡片外觀與間距
+    cardBase: "bg-white rounded-2xl shadow-sm border border-slate-100 p-4 lg:p-5",
+    
+    // 定義編輯下拉選單
+    editInput: "bg-transparent border-b border-slate-300 focus:outline-none focus:border-emerald-500 pb-0.5 text-slate-700",
 };
 
 // 主題設置函式
@@ -175,11 +197,5 @@ function setTheme(themeName) {
     const activeBtn = document.getElementById(`btn-theme-${themeName}`);
     if (activeBtn) activeBtn.className = "theme-btn px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all duration-200 bg-white/20 text-white shadow-inner";
 
-    // 6. 重新渲染畫面（帶入最新樣式）
-    const dayNav = document.getElementById('day-nav');
-    if (dayNav && dayNav.children.length > 0) {
-        const lastDay = localStorage.getItem('active-day') || dayKeys[0];
-        switchDay(lastDay);
-    }
     renderBudget();
 }
