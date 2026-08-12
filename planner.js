@@ -39,13 +39,13 @@ function getDateDisplayInfo(dateString) {
     
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    
     return {
-        monthStr: months[d.getMonth()],
-        dayStr: d.getDate().toString(),
-        dowStr: days[d.getDay()],
+        startStr: months[d.getMonth()],
+        mainStr: d.getDate().toString(),
+        endStr: days[d.getDay()],
         // 組合出供左側選單使用的完整字串，例如 "Nov 10 (Tue)"
-        full: `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}` 
+        full: dateString,
+        display: `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`
     };
 }
 
@@ -53,66 +53,6 @@ function getTypeConfig(type) {
     return TYPE_CONFIG[type] || TYPE_CONFIG['none'];
 }
 
-/**
- * 產生打孔日曆 Icon 的 HTML
- * @param {string} dateKey - 日期字串 YYYY-MM-DD
- * @param {number} dayNum - 動態計算出的天數 (1, 2, 3...)
- */
-function generateCalendarIconHtml(dateInfo) {
-    if (!dateInfo) return '';
-    
-    // 預設顏色主題
-    let textClass = "text-slate-800";
-    let borderClass = "border-slate-800";
-
-    // 週末自動換色
-    if (dateInfo.dowStr === "Sat") {
-        textClass = "text-emerald-700";
-        borderClass = "border-emerald-700";
-    }
-    if (dateInfo.dowStr === "Sun") {
-        textClass = "text-rose-600";
-        borderClass = "border-rose-600";
-    }
-
-    // 最外層加入 group 與 hover 特效
-    return `
-    <div class="relative w-[72px] h-[72px] shrink-0 mt-2 group transition-transform duration-200 hover:scale-105">
-        
-        <!-- 頂部鐵環 (加入 pointer-events-none 避免干擾點擊) -->
-        <div class="absolute -top-2 left-0 w-full flex justify-evenly z-10 px-2 pointer-events-none">
-            <div class="w-2 h-4 border-2 ${borderClass} rounded-full bg-white" style="-webkit-print-color-adjust: exact; print-color-adjust: exact;"></div>
-            <div class="w-2 h-4 border-2 ${borderClass} rounded-full bg-white" style="-webkit-print-color-adjust: exact; print-color-adjust: exact;"></div>
-            <div class="w-2 h-4 border-2 ${borderClass} rounded-full bg-white" style="-webkit-print-color-adjust: exact; print-color-adjust: exact;"></div>
-        </div>
-        
-        <!-- 日曆主體外框 -->
-        <div class="absolute top-0 left-0 w-full h-full border-[2.5px] ${borderClass} rounded-xl bg-white flex flex-col justify-between py-1.5 px-1.5 shadow-sm" style="-webkit-print-color-adjust: exact; print-color-adjust: exact;">
-            <div class="text-[10px] font-black text-center ${textClass} uppercase tracking-widest leading-none whitespace-nowrap overflow-hidden mt-0.5">
-                ${dateInfo.monthStr}
-            </div>
-            <div class="flex-grow flex items-center justify-center">
-                <span class="text-[28px] font-black ${textClass} leading-none">${dateInfo.dayStr}</span>
-            </div>
-            <div class="text-[8px] font-bold text-center ${textClass} uppercase tracking-widest leading-none whitespace-nowrap overflow-hidden mb-0.5">
-                ${dateInfo.dowStr}
-            </div>
-        </div>
-
-        <!-- 🌟 修正：移除 hidden，並加入 onclick="this.showPicker()" 強制喚醒日曆 -->
-        <input type="date" value="${dateInfo.full}" 
-               class="edit-only-ui absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
-               onclick="this.showPicker()"
-               onchange="window.changeDayDate('${dateInfo.full}', this.value)"
-               title="點擊修改日期">
-               
-        <!-- 🌟 修正：改用 opacity 漸變來做 Hover 遮罩，確保不與 display 屬性打架 -->
-        <div class="edit-only-ui absolute inset-0 bg-slate-900/5 rounded-xl z-10 pointer-events-none flex items-center justify-center transition-opacity duration-200 opacity-0 group-hover:opacity-100">
-            <i data-lucide="edit-2" class="w-5 h-5 text-slate-700 opacity-60"></i>
-        </div>
-    </div>
-    `;
-}
 
 function renderSharedCards(containerId, itemsArray, generateDataAttributes) {
     const container = document.getElementById(containerId);
@@ -164,7 +104,7 @@ function renderSharedCards(containerId, itemsArray, generateDataAttributes) {
                 </div>
 
                 <!-- 描述欄位 -->
-                <div class="editable-element text-sm text-slate-600 mt-0" 
+                <div class="ui-desc editable-element text-sm text-slate-600 mt-0" 
                      ${dataAttributes} 
                      data-edit-field="desc" 
                      data-placeholder="新增詳細內容...">${parseMarkdownList(descVal)}</div>
@@ -292,7 +232,7 @@ function switchDay(dayId) {
 
         // 💡 確保所有欄位都有預設值，讓編輯模式下能點擊修改
         const timeVal = item.time || "";
-        const eventVal = item.event || "";
+        const titleVal = item.title || item.event || "";
         const descVal = item.desc || "";
         const typeVal = item.type || "none";
         const amountVal = item.amount || 0;
@@ -304,7 +244,7 @@ function switchDay(dayId) {
         ).join('');
 
         // 強制產生 time 標籤
-        const timeHtml = `<span class="whitespace-nowrap text-xs font-black tracking-widest px-2 py-0.5 rounded-md w-max ${theme.timelineTime} editable-element" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="time" data-placeholder="新增時間">${timeVal}</span>`;
+        const timeHtml = `<span class="whitespace-nowrap ui-title font-black tracking-widest px-2 py-0.5 rounded-md w-max ${theme.timelineTime} editable-element" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="time" data-placeholder="新增時間">${timeVal}</span>`;
 
         el.innerHTML = `
             <div id="timeline-icon-${dayId}-${index}" class="absolute -left-3 top-1 w-6 h-6 rounded-full border-2 flex items-center justify-center shadow-sm z-10 transition-transform duration-300 hover:scale-110 ${getEventBg(item.type)}">
@@ -313,7 +253,7 @@ function switchDay(dayId) {
             <div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-1">
                     ${timeHtml}
-                    <h3 class="ui-title text-slate-800 editable-element" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="event" data-placeholder="新增標題">${eventVal}</h3>
+                    <h3 class="ui-title text-slate-800 editable-element" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="event" data-placeholder="新增標題">${titleVal}</h3>
                 </div>
     
                 <!-- 🌟 編輯模式專屬 UI 區塊：Type 下拉與金額 (改用 Tips 簡約風格) -->
@@ -343,7 +283,7 @@ function switchDay(dayId) {
                 </div>
 
                 <!-- 描述欄位 -->
-                <div class="editable-element mt-0" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="desc" data-placeholder="點擊新增描述...">${parseMarkdownList(descVal)}</div>
+                <div class="ui-desc editable-element mt-0" data-edit-day="${dayId}" data-edit-index="${index}" data-edit-field="desc" data-placeholder="點擊新增描述...">${parseMarkdownList(descVal)}</div>
             </div>
         `;
         timelineContainer.appendChild(el);
@@ -379,6 +319,7 @@ function render() {
     // const savedTheme = localStorage.getItem('selected-theme') || 'grayscale';
     const savedTheme = 'grayscale';
     window.setTheme(savedTheme);
+    renderBudget();
 
     const dayNav = document.getElementById('day-nav');
 
@@ -411,10 +352,10 @@ function render() {
             btn.innerHTML = `
                 <span class="day-badge w-7 h-7 rounded-lg flex items-center justify-center font-black text-xs transition-colors duration-300">D${dynamicDayNum}</span>
                 <div class="hidden sm:block text-left min-w-0 flex-grow">
-                    <div class="day-date-txt font-bold text-xs truncate">${dateInfo.full}</div>
+                    <div class="day-date-txt font-bold text-xs truncate">${dateInfo.display}</div>
                     <div class="day-title-txt text-[10px] opacity-75 truncate mt-0.5 font-medium flex items-center gap-1">
                         <i data-lucide="hotel" class="w-3 h-3 shrink-0"></i>
-                        <span class="truncate">${day.hotel || "溫暖的家"}</span>
+                        <span class="truncate">${day.subtitle || "溫暖的家"}</span>
                     </div>
                 </div>
             `;
@@ -719,7 +660,7 @@ function addTimelineItem() {
     // 建立一筆預設的行程資料
     const newItem = {
         time: "",
-        event: "",
+        title: "",
         desc: "",
         type: "",  // 預設樣式
         amount: 0
@@ -918,7 +859,7 @@ function addDayItem() {
     window.tripData.detail[newDateKey] = {
         title: "新的一天",
         region: "新地區",
-        hotel: "未定",
+        subtitle: "未定",
         tips: [],
         timeline: []
     };
