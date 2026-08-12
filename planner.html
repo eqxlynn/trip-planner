@@ -49,7 +49,7 @@
         /* 🖨️ 專屬列印樣式：隱藏網頁 UI，只顯示列印容器 */
         @media print {
             @page {
-                margin: 2mm;
+                margin: 0 4mm;
                 size: auto;
             }
 
@@ -129,11 +129,11 @@
         @layer components {
             /* 統一標題風格 (一般網頁為 sm/base，列印時自動放大為 xl) */
             .ui-title {
-                @apply font-bold text-xl leading-snug tracking-wide print:text-slate-900;
+                @apply font-bold text-lg leading-snug tracking-wide print:text-slate-900 print:text-xl
             }
             /* 統一內文與列表風格 (一般網頁為 sm，列印時自動放大為 lg) */
             .ui-desc {
-                @apply text-lg text-slate-600 leading-relaxed print:text-slate-700 
+                @apply text-sm text-slate-600 leading-relaxed print:text-slate-700 print:text-lg;
             }
             /* 統一虛線按鈕風格 */
             .ui-btn-dashed {
