@@ -6,12 +6,9 @@
 /**
  * 🎨 產生單筆時間軸項目的 HTML 結構 (支援遞迴、網頁與列印共用)
  */
-/**
- * 🎨 產生單筆時間軸項目的 HTML 結構 (支援遞迴、網頁與列印共用)
- */
 function generateTimelineNodeHtml(item, isPrint = false) {
     const timeVal = item.time || "";
-    const eventVal = item.event || "";
+    const titleVal = item.title || item.event || "";
     const descVal = item.desc || "";
     const theme = THEMES[window.currentTheme] || THEMES['grayscale'];
 
@@ -30,7 +27,7 @@ function generateTimelineNodeHtml(item, isPrint = false) {
             <div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                     ${timeHtml}
-                    <h3 class="ui-title text-slate-800">${eventVal}</h3>
+                    <h3 class="ui-title text-slate-800">${titleVal}</h3>
                 </div>
                 <div class="text-sm text-slate-600 leading-relaxed">${parseMarkdownList(descVal, isPrint)}</div>
             </div>
@@ -154,38 +151,38 @@ function generateCalendarIconHtml(dateInfo) {
 
 // 產生單日標題區塊 (可複用)
 function generateDayHeader(item, dateInfo) {
-    let hotelText = item.hotel ? item.hotel.replace(/^宿[\s:：]*/, '') : '';
+    let subtitleText = item.subtitle ? item.subtitle.replace(/^宿[\s:：]*/, '') : '';
 
     return `
         <div class="flex items-center py-0 break-inside-avoid">
-    <div class="w-24 shrink-0 flex justify-center">
-        ${generateCalendarIconHtml(dateInfo)}
-    </div>
-    
-    <div class="flex-grow pl-1 pr-1 flex flex-col justify-center">
-        
-        <!-- 第一行：標題獨立一行，可以無限延伸不被壓縮 -->
-        <div class="text-3xl font-bold text-slate-800 leading-tight py-2">
-            ${item.title || ''}
-        </div>
-        
-        <!-- 第二行：飯店與地區在同一行，左右排開平分空間 -->
-        <div class="flex justify-between items-start gap-6">
-            
-            <!-- 左側：飯店 (給予 flex-grow 與 min-w-0 讓它有彈性且太長會截斷) -->
-            <div class="flex-grow min-w-0">
-                ${hotelText ? `
-                <div class="text-sm font-medium text-slate-500 flex items-center">
-                    <i data-lucide="bed" class="w-5 h-5 text-slate-400 shrink-0"></i>
-                    <span class="truncate">${hotelText}</span>
-                </div>
-                ` : ''}
+            <div class="w-24 shrink-0 flex justify-center">
+                ${generateCalendarIconHtml(dateInfo)}
             </div>
             
-            <!-- 右側：地區 (設定 max-w-[50%] 確保它最多只跟飯店平分一半空間) -->
-            ${item.region ? `<div class="text-sm text-slate-500 text-right shrink-0 max-w-[50%]">${item.region}</div>` : ''}
-            
-        </div>
-    </div>
-</div>`;
+            <div class="flex-grow pl-1 pr-1 flex flex-col justify-center">
+                
+                <!-- 第一行：標題獨立一行，可以無限延伸不被壓縮 -->
+                <div class="text-3xl font-bold text-slate-800 leading-tight py-2">
+                    ${item.title || ''}
+                </div>
+                
+                <!-- 第二行：飯店與地區在同一行，左右排開平分空間 -->
+                <div class="flex justify-between items-start gap-6">
+                    
+                    <!-- 左側：飯店 (給予 flex-grow 與 min-w-0 讓它有彈性且太長會截斷) -->
+                    <div class="flex-grow min-w-0">
+                        ${subtitleText ? `
+                        <div class="text-sm font-medium text-slate-500 flex items-center gap-1">
+                            <i data-lucide="bed" class="w-5 h-5 text-slate-400 shrink-0" ></i>
+                            <span class="truncate">${subtitleText}</span>
+                        </div>
+                        ` : ''}
+                    </div>
+                    
+                    <!-- 右側：地區 (設定 max-w-[50%] 確保它最多只跟飯店平分一半空間) -->
+                    ${item.region ? `<div class="text-sm text-slate-500 text-right shrink-0 max-w-[50%]">${item.region}</div>` : ''}
+                    
+                </div>
+            </div>
+        </div>`;
 }
