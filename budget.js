@@ -23,12 +23,12 @@ function calculateTotalBudget() {
                 categoryTotals[item.type] = (categoryTotals[item.type] || 0) + amt;
                 
                 // 收集花費明細
-                dailyExpenses.push({ desc: item.event, amount: amt, type: item.type });
+                dailyExpenses.push({ desc: item.title, amount: amt, type: item.type });
             }
         });
 
         if (dailyExpenses.length > 0) {
-            expensesByDay[day.dayNum] = dailyExpenses;
+            expensesByDay[key] = dailyExpenses;
         }
     });
 
@@ -53,7 +53,7 @@ function calculateTotalBudget() {
 // 預算速覽渲染邏輯
 function renderBudget() {
     if (window.budgetData && window.budgetData.items.length > 0) {
-        document.getElementById('budget-section').classList.remove('hidden');
+        document.getElementById('budget-section').classList;
         
         // 從目前主題狀態中抓取最新樣式
         const themeName = window.currentTheme || localStorage.getItem('selected-theme') || 'grayscale';
@@ -120,7 +120,7 @@ function renderBudget() {
             // 5. 回傳完整的 HTML
             return `
                 <div class="mb-4 last:mb-0">
-                    <div class="flex items-center font-black text-xs border-b mb-2 pb-1.5 px-2 py-1.5 rounded transition-colors duration-300 ${theme.listHeader}">
+                    <div class="lg:flex items-center font-black text-xs border-b mb-2 pb-1.5 px-2 py-1.5 rounded transition-colors duration-300 ${theme.listHeader}">
                         <span>Day ${day}</span>
                         <!-- 將分類標籤放在 Day X 的右側 -->
                         <div class="flex items-center flex-wrap gap-1.5 ml-3">
@@ -158,7 +158,7 @@ function renderDayBudget(dayData) {
         if(card) card.classList.add('hidden');
         return;
     }
-    if(card) card.classList.remove('hidden');
+    if(card) card.classList;
 
     // 2. 計算總額與類別
     let dailyTotal = 0;
