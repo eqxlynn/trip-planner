@@ -35,9 +35,9 @@ async function validateAndFetch(fileToken, accessToken) {
         const cloudModifiedTime = metaData.modifiedTime;
         const localModifiedTime = localStorage.getItem(`${fileToken}.modifiedTime`);
         const localContent = localStorage.getItem(fileToken);
-
+        const cache = JSON.parse(localContent);
         // 3. 判斷是否需要下載最新版本
-        if (cloudModifiedTime !== localModifiedTime || !localContent) {
+        if (!cache?.metadata || cloudModifiedTime !== localModifiedTime || !localContent) {
             console.log(`[${metaData.name || fileToken}] 發現更新或無快取，開始下載...`);
             
             const res = await fetch(`https://www.googleapis.com/drive/v3/files/${fileToken}?alt=media`, {
@@ -58,7 +58,7 @@ async function validateAndFetch(fileToken, accessToken) {
         } else {
             // 4. 秒速回傳本地快取
             console.log(`[${metaData.name || fileToken}] 本地快取已是最新版本 ⚡`);
-            return JSON.parse(localContent);
+            return cache;
         }
 
     } catch (error) {
