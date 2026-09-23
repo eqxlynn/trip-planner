@@ -413,10 +413,11 @@ async function loadTripData(url) {
 
 async function fetchCloudTripData(tokenId) {
     const accessToken = sessionStorage.getItem('gapi_token');
+    const tripData = JSON.parse(localStorage.getItem(tokenId));
     if (!accessToken) {
         alert("找不到登入憑證，請回到首頁重新登入！");
         const cache = localStorage.getItem(tokenId);
-        return JSON.parse(cache);
+        return tripData;
     }
 
     try {
@@ -427,8 +428,7 @@ async function fetchCloudTripData(tokenId) {
             alert("您的工作階段已過期，請重新登入！");
             window.location.href = 'index.html';
         }
-        const cache = localStorage.getItem(tokenId);
-        return JSON.parse(cache);
+        return tripData;
     }
 }
 
