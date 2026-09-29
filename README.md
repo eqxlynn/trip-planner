@@ -1,261 +1,54 @@
-# 🗺️ Planner JSON 資料結構與撰寫指南
+# Triplanner
 
-這份指南說明了 Planner 系統所需 JSON 檔案的結構與支援的欄位，可供撰寫行程資料的人員直接參考。
+純前端的旅遊行程規劃工具 (HTML + Tailwind CDN + Vanilla JS)，可直接以 `file://` 開啟。
 
-Planner 的 JSON 檔案主要分為兩大區塊：`metadata`（全域行程資訊）與 `detail`（每日行程細節）。系統會根據這些資料自動生成精美的網頁介面、時間軸、預算表以及列印手冊。
+## 頁面
 
----
+| 頁面 | 說明 |
+|---|---|
+| `index.html` | 行程庫：本地匯入 / Google Drive 同步 / 新增 / 刪除 |
+| `planner.html` | 行程檢視與編輯、預算表、列印小冊子 |
 
-## 1. 根目錄結構 (Root Structure)
+`planner.html` 網址參數：
 
-JSON 的最外層結構必須包含 `metadata` 與 `detail` 兩個物件。
+- `?trip_token=<Drive file ID>`：雲端行程
+- `?trip_local=<檔名>`：本地 (localStorage) 行程
+- `?trip=<檔名>.json`：開發測試用，讀取同目錄 JSON (需以 HTTP server 開啟)
 
-```json
-{
-    "metadata": { ... },
-    "detail": { ... }
-}
+## 目錄結構
+
+```
+assets/                圖片素材 (svg / png)
+docs/
+  prompt.md            產生行程 JSON 用的 LLM prompt
+css/
+  index.css            行程庫頁樣式
+  planner.css          行程頁樣式 (Tailwind @apply 元件仍在 planner.html 內)
+js/
+  core/                兩頁共用
+    config.js          API 憑證、storage key
+    dom.js             escapeHtml、refreshIcons、toggleDisplay、setStatus
+    date.js            YYYY-MM-DD 日期工具
+    storage.js         TripStorage (localStorage)、AuthSession (sessionStorage)
+    markdown.js        Markdown → HTML
+    drive.js           Drive 同步 / 下載 / 上傳
+  theme.js             主題與事件類別 (TYPE_CONFIG)
+  library/             index.html 專用
+    trip-list.js       總表讀寫、雲端同步、列表渲染
+    auth.js            Google 登入 / 登出 / Picker
+    main.js            進入點、匯入、新增行程
+  planner/             planner.html 專用
+    components.js      共用 HTML 片段 (時間軸、卡片、日曆 Icon)
+    view.js            頁面渲染、切換天數
+    editor.js          編輯模式、欄位寫回
+    budget.js          預算統計
+    print.js           列印小冊子
+    export.js          匯出 JSON
+    app.js             進入點、資料來源判斷
 ```
 
----
+所有檔案以一般 `<script>` 依序載入 (非 ES Modules)，載入順序見各 HTML。
 
-## 2. 全域資訊 (Metadata)
+## 行程 JSON 格式
 
-`metadata` 用於定義行程的標題、副標題、隨身指南與交通票券比價資訊。
-
-*   **`title`** (字串)：行程的主標題，會顯示在網頁頂部導航列與列印封面上。
-*   **`subtitle`** (字串)：行程的副標題或日期範圍。
-*   **`guides`** (陣列/可選)：用於生成額外的資訊小卡或裝備清單。
-    *   **`title`** (字串)：清單的標題（例如「下水道小卡」、「風景印」）。
-    *   **`items`** (字串陣列)：清單內的各個項目。
-*   **`jrPass`** (陣列/可選)：用於系統底部的「JR Pass 購買評估」功能。
-    *   **`name`** (字串)：票券名稱（例如「JR 東日本鐵路周遊券 (5日)」）。
-    *   **`price`** (數字)：票券的日圓售價。
-
----
-
-## 3. 每日行程細節 (Detail)
-
-`detail` 物件內包含了每一天的行程資料。它的 Key 可以是自訂的字串（如 `"1"`, `"day1"` 等）。每個天數物件包含以下欄位：
-
-*   **`dayNum`** (數字)：天數編號（如 `1`），用於側邊欄標籤 `D1` 等顯示。
-*   **`date`** (字串)：日期字串（例如 `"July 22 (Wed)"`）。
-*   **`title`** (字串)：該日的主題標題。
-*   **`hotel`** (字串)：該日的住宿地點，若無提供預設會顯示「溫暖的家」。
-*   **`region`** (字串/可選)：該日的主要活動區域（例如 `"新宿 ➔ 東京車站"`），會顯示在標題旁的 Badge 中。
-*   **`tips`** (陣列/可選)：該日的特別提示、攻略或備忘錄，會顯示在右側欄的「Daily Tips」卡片中。
-*   **`timeline`** (陣列)：該日的具體時間軸行程列表。
-
-### 3.1 每日提示卡片 (Tips)
-`tips` 陣列中的每個物件可用於顯示注意事項或餐廳資訊。
-*   **`type`** (字串)：決定卡片的顏色與預設圖示。支援的類型有：
-    *   狀態類：`success` (綠色)、`info` (藍色)、`warning` (紅色/警告)、`danger` (紅色/危險)。
-    *   主題類：`transit` (橘黃/交通)、`scenery` (翠綠/景點)、`food` (玫瑰紅/食物)、`shopping` (紫色/購物)、`culture` (靛藍/文化)。
-*   **`icon`** (字串/可選)：自訂 Lucide Icon 名稱（例如 `"train"`, `"camera"`），若不填會依據 `type` 給予預設圖示。
-*   **`title`** (字串)：提示卡片的標題。
-*   **`desc`** (字串)：提示內容，**完全支援 Markdown 語法**。
-
-### 3.2 時間軸事件 (Timeline)
-`timeline` 陣列負責建構中間主畫面的精密行程軌跡。
-*   **`time`** (字串/可選)：時間標籤（例如 `"14:25 - 18:35"` 或 `"07:00"`）。
-*   **`event`** (字串)：事件名稱或行程節點。
-*   **`type`** (字串)：決定時間軸上的圖示與圓圈背景顏色。支援的類型包含：`flight` (飛機), `transit` (交通), `bus` (巴士), `jr` (JR火車), `train` (火車), `hiking` (步行/健行), `hotel` (住宿), `food` (餐飲), `shopping` (購物), `stamp` (印章/收集), `culture` (文化/地標)。
-*   **`icon`** (字串/可選)：可強制覆蓋預設的 Lucide 圖示名稱。
-*   **`desc`** (字串)：詳細說明，**支援 Markdown 語法**。
-*   **`amount`** (數字/可選)：該行程的花費金額（日圓）。若填寫此欄位，系統會自動將其加總至底部的「預算速覽與買票攻略」模組中。
-
----
-
-## 4. 進階功能與語法支援
-
-### 4.1 Markdown 語法支援
-在 `tips` 的 `desc` 以及 `timeline` 的 `desc` 欄位中，系統內建了解析器支援以下 Markdown 格式：
-*   **粗體**：使用 `**文字**` 會被轉換為加粗文字。
-*   **超連結**：使用 `[顯示文字](網址)` 會自動轉換為帶有外部連結圖示的按鈕。
-*   **有序列表**：行首使用 `1. ` 或 `#. ` 會被轉換為帶有數字的清單 (`<ol>`)。
-*   **無序列表**：行首使用 `- ` 或 `* ` 會被轉換為圓點清單 (`<ul>`)。
-*   **換行**：普通的換行 (`\n`) 會被保留並轉換為 HTML 的 `<br>`。
-
-### 4.2 預算與 JR Pass 評估系統
-如果行程中含有交通花費，可以利用系統的自動結算功能：
-1.  在 `timeline` 中，為有花費的項目加上 `"amount": 數字`（例如 `"amount": 3325`）。
-2.  系統會自動把所有金額加總，並按 `type` 分類（如 `jr`, `bus`, `food` 等）。
-3.  **JR Pass 票券比價**：若 `timeline` 中的花費類型 (`type`) 設為 `"jr"`，且 `metadata` 中有設定 `jrPass` 陣列，系統會自動加總所有的 `"jr"` 花費，並與各個 Pass 的 `price` 進行相減，算出「省下」或「虧損」多少錢。
-
----
-
-## 5. 最小工作範例 (Minimal Example)
-
-```json
-{
-    "metadata": {
-        "title": "東京 3 日快閃行",
-        "subtitle": "2026 Nov",
-        "jrPass": [
-            { "name": "東京廣域周遊券", "price": 15000 }
-        ]
-    },
-    "detail": {
-        "1": {
-            "dayNum": 1,
-            "date": "Nov 10 (Tue)",
-            "title": "抵達與市區觀光",
-            "hotel": "新宿東橫INN",
-            "region": "新宿",
-            "tips": [
-                {
-                    "type": "info",
-                    "title": "入境提醒",
-                    "desc": "請先準備好 Visit Japan Web 的 QR Code。"
-                }
-            ],
-            "timeline": [
-                {
-                    "time": "14:00",
-                    "event": "成田機場 ➔ 新宿",
-                    "type": "jr",
-                    "desc": "搭乘 **N'EX 成田特快** 直達新宿。\n- [N'EX 官網](https://www.jreast.co.jp/)",
-                    "amount": 3500
-                },
-                {
-                    "time": "18:00",
-                    "event": "新宿晚餐",
-                    "type": "food",
-                    "desc": "1. 拉麵\n2. 燒肉"
-                }
-            ]
-        }
-    }
-}
-```
-
-# 🗺️ Planner JSON Data Structure & Writing Guide
-
-This guide explains the structure and supported fields of the JSON file required by the Planner system, providing a direct reference for personnel writing itinerary data.
-
-The Planner JSON file is mainly divided into two blocks: `metadata` (global itinerary information) and `detail` (daily itinerary details). The system automatically generates beautiful web interfaces, timelines, budget tables, and printable manuals based on this data.
-
----
-
-## 1. Root Structure
-
-The outermost structure of the JSON must contain two objects: `metadata` and `detail`.
-
-```json
-{
-    "metadata": { ... },
-    "detail": { ... }
-}
-```
-
----
-
-## 2. Global Information (Metadata)
-
-`metadata` is used to define the itinerary's title, subtitle, pocket guides, and transportation pass comparison information.
-
-*   **`title`** (String): The main title of the itinerary, displayed in the top navigation bar of the web page and on the printed cover.
-*   **`subtitle`** (String): The subtitle or date range of the itinerary.
-*   **`guides`** (Array/Optional): Used to generate additional info cards or equipment lists.
-    *   **`title`** (String): The title of the list (e.g., "Sewer Cards", "Scenic Stamps").
-    *   **`items`** (Array of Strings): The items in the list.
-*   **`jrPass`** (Array/Optional): Used for the "JR Pass Purchase Evaluation" feature at the bottom of the system.
-    *   **`name`** (String): The name of the pass (e.g., "JR East Pass (5 Days)").
-    *   **`price`** (Number): The price of the pass in JPY.
-
----
-
-## 3. Daily Itinerary Details (Detail)
-
-The `detail` object contains the itinerary data for each day. Its Key can be a custom string (e.g., `"1"`, `"day1"`, etc.). Each day object contains the following fields:
-
-*   **`dayNum`** (Number): The day number (e.g., `1`), used for sidebar labels like `D1`.
-*   **`date`** (String): The date string (e.g., `"July 22 (Wed)"`).
-*   **`title`** (String): The theme/title of the day.
-*   **`hotel`** (String): The accommodation location for the day. If not provided, it defaults to "Sweet Home" (溫暖的家).
-*   **`region`** (String/Optional): The main activity area of the day (e.g., `"Shinjuku ➔ Tokyo Station"`), displayed in the Badge next to the title.
-*   **`tips`** (Array/Optional): Special tips, guides, or memos for the day, displayed in the "Daily Tips" card in the right sidebar.
-*   **`timeline`** (Array): The specific timeline itinerary list for the day.
-
-### 3.1 Daily Tips Cards (Tips)
-Each object in the `tips` array can be used to display notes or restaurant information.
-*   **`type`** (String): Determines the color and default icon of the card. Supported types are:
-    *   Status: `success` (Green), `info` (Blue), `warning` (Red/Warning), `danger` (Red/Danger).
-    *   Theme: `transit` (Orange/Transport), `scenery` (Emerald/Attractions), `food` (Rose/Food), `shopping` (Purple/Shopping), `culture` (Indigo/Culture).
-*   **`icon`** (String/Optional): Custom Lucide Icon name (e.g., `"train"`, `"camera"`). If left blank, a default icon is assigned based on `type`.
-*   **`title`** (String): The title of the tip card.
-*   **`desc`** (String): The tip content, **fully supports Markdown syntax**.
-
-### 3.2 Timeline Events (Timeline)
-The `timeline` array builds the precise itinerary track in the main center view.
-*   **`time`** (String/Optional): Time label (e.g., `"14:25 - 18:35"` or `"07:00"`).
-*   **`event`** (String): Event name or itinerary node.
-*   **`type`** (String): Determines the icon and circular background color on the timeline. Supported types include: `flight`, `transit`, `bus`, `jr`, `train`, `hiking`, `hotel`, `food`, `shopping`, `stamp`, `culture`.
-*   **`icon`** (String/Optional): Can forcibly override the default Lucide icon name.
-*   **`desc`** (String): Detailed description, **supports Markdown syntax**.
-*   **`amount`** (Number/Optional): The cost of the itinerary item (in JPY). If filled, the system will automatically sum it up in the "Budget Overview & Ticket Guide" module at the bottom.
-
----
-
-## 4. Advanced Features & Syntax Support
-
-### 4.1 Markdown Syntax Support
-In the `desc` fields of `tips` and `timeline`, the system's built-in parser supports the following Markdown formats:
-*   **Bold**: Using `**text**` will be converted to bold text.
-*   **Hyperlinks**: Using `[Display Text](URL)` will automatically convert to a button with an external link icon.
-*   **Ordered Lists**: Using `1. ` or `#. ` at the start of a line will be converted to a numbered list (`<ol>`).
-*   **Unordered Lists**: Using `- ` or `* ` at the start of a line will be converted to a bulleted list (`<ul>`).
-*   **Line Breaks**: Normal line breaks (`\n`) will be preserved and converted to HTML `<br>`.
-
-### 4.2 Budget & JR Pass Evaluation System
-If the itinerary contains transportation expenses, you can use the system's automatic settlement feature:
-1.  In `timeline`, add `"amount": Number` to items with expenses (e.g., `"amount": 3325`).
-2.  The system will automatically sum all amounts and categorize them by `type` (e.g., `jr`, `bus`, `food`, etc.).
-3.  **JR Pass Price Comparison**: If the expense `type` in `timeline` is set to `"jr"`, and the `jrPass` array is configured in `metadata`, the system will automatically sum all `"jr"` expenses, subtract the `price` of each Pass, and calculate how much money is "saved" or "lost".
-
----
-
-## 5. Minimal Example
-
-```json
-{
-    "metadata": {
-        "title": "Tokyo 3-Day Flash Trip",
-        "subtitle": "2026 Nov",
-        "jrPass": [
-            { "name": "Tokyo Wide Pass", "price": 15000 }
-        ]
-    },
-    "detail": {
-        "1": {
-            "dayNum": 1,
-            "date": "Nov 10 (Tue)",
-            "title": "Arrival and City Sightseeing",
-            "hotel": "Shinjuku Toyoko INN",
-            "region": "Shinjuku",
-            "tips": [
-                {
-                    "type": "info",
-                    "title": "Entry Reminder",
-                    "desc": "Please prepare the Visit Japan Web QR Code in advance."
-                }
-            ],
-            "timeline": [
-                {
-                    "time": "14:00",
-                    "event": "Narita Airport ➔ Shinjuku",
-                    "type": "jr",
-                    "desc": "Take the **N'EX Narita Express** directly to Shinjuku.\n- [N'EX Official Website](https://www.jreast.co.jp/)",
-                    "amount": 3500
-                },
-                {
-                    "time": "18:00",
-                    "event": "Dinner in Shinjuku",
-                    "type": "food",
-                    "desc": "1. Ramen\n2. Yakiniku"
-                }
-            ]
-        }
-    }
-}
-```
+見 [`docs/prompt.md`](docs/prompt.md)（產生行程 JSON 用的 LLM prompt）。
