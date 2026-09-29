@@ -1,0 +1,1002 @@
+{
+  "metadata": {
+    "title": "北阿爾卑斯深秋紀行",
+    "subtitle": "長野．神奈川．東京｜2026/10/26 ~ 11/04",
+    "coverMargin": "15mm 0mm 0mm 0mm",
+    "guides": [
+      {
+        "type": "info",
+        "icon": "map",
+        "title": "行程總覽",
+        "desc": "![](./data/20261026-1104-route.svg)"
+      },
+      {
+        "type": "info",
+        "icon": "languages",
+        "title": "地名對照",
+        "desc": "中文 | 日文讀音 | English\n---|---|---\n成田空港 | なりたくうこう | Narita Airport\n新宿 | しんじゅく | Shinjuku\n松本 | まつもと | Matsumoto\n上高地 | かみこうち | Kamikochi\n白馬 | はくば | Hakuba\n長野 | ながの | Nagano\n善光寺 | ぜんこうじ | Zenko-ji\n戸隠 | とがくし | Togakushi\n軽井沢 | かるいざわ | Karuizawa\n大宮 | おおみや | Omiya\n横浜 | よこはま | Yokohama\n横須賀中央 | よこすかちゅうおう | Yokosuka-Chuo\n鎌倉 | かまくら | Kamakura\n猿島 | さるしま | Sarushima"
+      },
+      {
+        "visible": false,
+        "type": "nature",
+        "icon": "leaf",
+        "title": "紅葉即時資訊 / Live Camera",
+        "desc": "出發前幾天和前一晚看一下, 決定要不要調整順序。\n- **綜合:** [tenki.jp 紅葉情報](https://tenki.jp/kouyou/) [ウェザーニュース 紅葉](https://weathernews.jp/koyo/)\n- **10/27 上高地:** [上高地公式](https://www.kamikochi.or.jp/) [五千尺ホテル 河童橋 Live](https://www.youtube.com/results?search_query=%E4%BA%94%E5%8D%83%E5%B0%BA%E3%83%9B%E3%83%86%E3%83%AB+%E4%B8%8A%E9%AB%98%E5%9C%B0+%E3%83%A9%E3%82%A4%E3%83%96%E3%82%AB%E3%83%A1%E3%83%A9) [白樺荘 穂高 (每小時照片)](https://camera2-shirakabaso.com/hotaka/image_hourly.jpg)\n- **10/28 白馬岩岳:** [岩岳山頂 360° Live (Panomax)](https://iwatake.panomax.com/) [岩岳公式](https://iwatake-mountain-resort.com/)\n- **10/29 戶隱 鏡池:** [戸隠観光協会 ライブカメラ](https://togakushi-21.jp/livecam/) (鏡池約 10 分鐘更新一次)\n- **10/30 軽井沢 雲場池:** [軽井沢町 雲場池 Live](https://www.youtube.com/results?search_query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E7%94%BA+%E3%83%A9%E3%82%A4%E3%83%96%E3%82%AB%E3%83%A1%E3%83%A9+%E9%9B%B2%E5%A0%B4%E6%B1%A0) [軽井沢観光協会](https://karuizawa-kankokyokai.jp/)"
+      }
+    ]
+  },
+  "detail": {
+    "2026-10-26": {
+      "region": "桃園 ➔ 成田 ➔ 新宿 ➔ 松本",
+      "title": "抵達日本與長途大移動",
+      "subtitle": "東橫INN 松本東口",
+      "tips": [
+        {
+          "type": "jr",
+          "title": "交通攻略",
+          "desc": "- 購買 NEX 來回車票 5200\n"
+        },
+        {
+          "type": "hotel",
+          "title": "東横INN松本駅東口",
+          "desc": "TEL：0263-44-1045\n1-1-4 Fukashi, Matsumoto city, Nagano 390-0815 Japan\n〒390-0815 長野県松本市深志1-1-4"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "06:35 - 10:35",
+          "title": "TPE ➔ NRT",
+          "type": "flight",
+          "desc": "班機起飛與抵達。降落後快速下樓前往「鐵道」搭車處。",
+          "amount": 0
+        },
+        {
+          "title": "成田第２ビル ➔ 新宿 (Shinjuku)",
+          "type": "jr",
+          "desc": "",
+          "amount": 3325,
+          "subEvents": [
+            {
+              "time": "11:16 - 12:41",
+              "title": "成田エクスプレス16号(新宿行)",
+              "type": "jr",
+              "desc": ""
+            },
+            {
+              "time": "11:48 - 13:11",
+              "title": "成田エクスプレス18号(新宿行)",
+              "type": "jr",
+              "desc": ""
+            },
+            {
+              "time": "12:21 - 13:41",
+              "title": "成田エクスプレス20号(新宿行)",
+              "type": "jr",
+              "desc": ""
+            },
+            {
+              "time": "12:45 - 14:11",
+              "title": "成田エクスプレス22号(新宿行)",
+              "type": "jr",
+              "desc": ""
+            }
+          ]
+        },
+        {
+          "title": "新宿(Shinjuku) ➔ 松本 (Matsumoto)",
+          "type": "jr",
+          "amount": 6730,
+          "subEvents": [
+            {
+              "time": "14:00 - 16:39",
+              "title": "あずさ29号(松本行)",
+              "type": "jr"
+            },
+            {
+              "time": "15:00 - 17:37",
+              "title": "あずさ33号(松本行)",
+              "type": "jr"
+            }
+          ]
+        },
+        {
+          "time": "",
+          "title": "東橫INN 松本",
+          "type": "hotel",
+          "desc": "明天 06:31 搭電車前往上高地, 今天早點休息！",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "晚餐",
+          "type": "food",
+          "desc": "信州元祖あみやばーぐ: 炭火/鐵網炙烤純牛肉漢堡排定食\n民芸レストラン 盛よし: 日式傳統洋食定食",
+          "amount": 0
+        },
+        {
+          "type": "shopping",
+          "icon": "apple",
+          "title": "松本站周邊超市",
+          "desc": "- **信州アルプス市場**: 車站大樓 MIDORI 松本 1F, 10:00 - 20:00, 長野縣產當季水果最方便。\n- **デリシア 松本駅前店**: 巴士總站大樓 B1, 9:00 - 21:00, 價格平實。\n10 月底當季: 信州蘋果 (シナノスイート、秋映)、洋梨、葡萄。"
+        }
+      ]
+    },
+    "2026-10-27": {
+      "title": "上高地全日深秋大巡禮",
+      "region": "松本 ⇄ 上高地",
+      "subtitle": "東橫INN 松本東口",
+      "guides": [
+        {
+          "type": "nature",
+          "title": "上高地",
+          "desc": "擁有「神降地」美譽的阿爾卑斯山脈秘境, 清澈的梓川與穗高連峰交織出絕美的自然畫卷。\n![](https://www.kamikochi.org/tw/wp-content/uploads/sites/2/2025/06/walking_map_tw.svg)"
+        }
+      ],
+      "tips": [
+        {
+          "type": "transit",
+          "icon": "bus",
+          "title": "交通攻略",
+          "desc": "松本站搭上高地線電車到新島島, 轉巴士前往上高地, 預約開放時間為搭乘日的前一個月。回程的巴士與電車票可於線上一次預約。[上高地交通全攻略](https://visit-nagano.alpico.co.jp/zh-hant/travelog/post/getting-to-kamikochi-from-matsumoto-by-bus)"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "06:31 - 07:01 - 08:04",
+          "title": "松本 ➔ 新島島 ➔ 大正池",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "松本站搭上高地線電車 06:31 到新島島 (07:01), 轉 07:10 巴士到大正池 (08:04)。\n備案: 07:15 電車 ➔ 08:00 巴士, 08:54 到大正池。[時刻表](https://visit-nagano.alpico.co.jp/zh-hant/timetable/matsumoto-kamikochi)",
+          "amount": 5000
+        },
+        {
+          "time": "08:10 - 15:30",
+          "title": "上高地健行",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "擁有「神降地」美譽的阿爾卑斯山脈秘境, 清澈的梓川與穗高連峰交織出絕美的自然畫卷。\n10 月下旬是落葉松 (カラマツ) 轉金黃的季節。早晚接近 0°C, 請穿羽絨外套、戴手套。",
+          "subEvents": [
+            {
+              "type": "nature",
+              "icon": "camera",
+              "title": "大正池: 枯木與雪山的鏡面絕景",
+              "desc": "1915 年焼岳火山噴發, 泥石流堵住梓川形成的堰塞湖。最有名的是立在湖水中的「枯立木」, 不過經過百年風雨, 現在剩下的已經不多。清晨湖面常有一層晨霧; 無風的晴天, 湖面會倒映後方的穗高連峰和焼岳。"
+            },
+            {
+              "type": "nature",
+              "icon": "map-pin",
+              "title": "田代池",
+              "desc": "大正池往河童橋方向走約 20 分鐘。霞沢岳流下的伏流水形成的淺池和濕原, 水清澈見底, 冬天也不會全部結冰。早上常有霜和霧, 很適合拍照。"
+            },
+            {
+              "type": "nature",
+              "icon": "map-pin",
+              "title": "河童橋",
+              "desc": "橫跨梓川的木造吊橋, 上高地最具代表性的風景。站在橋上往上游看是穗高連峰, 往下游看是焼岳。周邊有飯店、餐廳、商店和廁所, 走到巴士總站約 5 分鐘。"
+            },
+            {
+              "type": "nature",
+              "icon": "map-pin",
+              "title": "明神橋",
+              "desc": "從河童橋沿梓川左岸 (小梨平那一側) 走約 1 小時, 路寬又平。明神橋也是木造吊橋, 正前方是明神岳, 過橋就到穗高神社奧宮。"
+            },
+            {
+              "type": "nature",
+              "icon": "camera",
+              "title": "明神池: 靜謐的神域",
+              "desc": "穗高神社奧宮的神池, 被原始森林環繞, 分成「一之池」和「二之池」, 水清澈見底, 池中散落巨石和倒木, 氣氛神秘莊嚴。拜觀料 ¥500 (6:00 - 17:00)。\n旁邊的**嘉門次小屋**有用圍爐裏柴火現烤的鹽燒岩魚 (單點 ¥1,500), 食堂 10:00 - 14:00, 不能訂位, 賣完就沒了。\n回程走梓川右岸, 經過岳沢濕原的木棧道回河童橋。"
+            },
+            {
+              "time": "09:00 - 17:00",
+              "title": "上高地郵便局",
+              "type": "stamp",
+              "icon": "jp-post",
+              "desc": "風景印: 從大正池遠眺穗高岳。位於上高地巴士總站旁。",
+              "amount": 0
+            }
+          ]
+        },
+        {
+          "time": "16:00 - 17:05 - 17:51",
+          "title": "上高地 ➔ 新島島 ➔ 松本",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "[時刻表](https://visit-nagano.alpico.co.jp/zh-hant/timetable/kamikochi-matsumoto)",
+          "amount": 3810
+        }
+      ]
+    },
+    "2026-10-28": {
+      "region": "松本 ➔ 白馬 ➔ 長野",
+      "title": "國寶松本城與白馬三段紅葉",
+      "subtitle": "東橫INN 長野駅善光寺口",
+      "timeline": [
+        {
+          "time": "08:00 - 10:00",
+          "title": "松本散策",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "Check-out 行李寄放在東橫INN櫃台, 走到松本城約 20 分鐘。",
+          "amount": 0,
+          "subEvents": [
+            {
+              "title": "松本城",
+              "type": "culture",
+              "icon": "jp-castle",
+              "desc": "8:30 開門。先到埋橋拍天守, 只看外觀和本丸庭園 (天守排隊久、樓梯最陡約 61°)。\n日本現存最古老的五重六層木造天守, 「國寶五城」之一 (另外四座是姬路城、彥根城、犬山城、松江城)。黑色雨覆板配白漆喰, 又叫「烏城」。",
+              "amount": 0
+            },
+            {
+              "time": "09:00 - 17:45",
+              "title": "松本市観光情報センター",
+              "type": "stamp",
+              "desc": "マンホールカード: 國寶松本城 + 傳統民藝「松本手鞠 (てまり)」。\n位於松本市役所大手事務所 1F, 在松本城附近。",
+              "amount": 0
+            },
+            {
+              "time": "09:00 - 17:00",
+              "title": "松本城東郵便局",
+              "type": "stamp",
+              "icon": "jp-post",
+              "desc": "國寶松本城天守、縣花龍膽、美之原遠景",
+              "amount": 0
+            }
+          ]
+        },
+        {
+          "time": "10:41 - 11:40",
+          "title": "松本 ➔ 白馬",
+          "type": "jr",
+          "desc": "JR 特急あずさ 5 號 (白馬行), 直達不用換車, 4 號月台。乘車券 ¥1,221 + 指定席 ¥1,020。",
+          "amount": 2241
+        },
+        {
+          "time": "",
+          "title": "白馬站",
+          "type": "stamp",
+          "desc": "蓋**駅スタンプ** (改札外的蓋章台), 上個廁所, 等接駁車",
+          "amount": 0
+        },
+        {
+          "time": "11:55 - 12:02",
+          "title": "白馬站 ➔ 岩岳ゴンドラ",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "免費接駁巴士[時刻表 PDF](https://iwatake-mountain-resort.com/wp-content/uploads/2026/06/7ebb394d9c096ce6866e0db0da581550.pdf), 帶行李上車。上車時跟司機說: 我們要搭纜車\n- **ゴンドラに乗ります** / We are going to ride the gondola.\nゴンドラ山麓駅內有投幣置物櫃 (有大型櫃), 萬一滿了, 問售票處工作人員能不能寄放。",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "白馬岩岳 HAKUBA MOUNTAIN HARBOR",
+          "type": "nature",
+          "icon": "cable-car",
+          "desc": "搭岩岳纜車上山頂 (約 1,289m), 觀景露台正對白馬三山 (白馬岳、杓子岳、白馬鑓ヶ岳, 約 2,900m), 幾乎不用走路。山頂有餐廳和紐約名店 THE CITY BAKERY, 可以邊吃邊看山。",
+          "amount": 0
+        },
+        {
+          "time": "14:30 - 16:14 / 15:35 - 17:10",
+          "title": "白馬岩岳 ➔ 長野",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "特急巴士「長野−白馬線」。**不用預約**, 依排隊順序上車, 上車付現金¥2,900[官網時刻表](https://visit-nagano.alpico.co.jp/zh-hant/timetable/hakuba-nagano-green)",
+          "amount": 2900
+        },
+        {
+          "time": "09:00 - 18:00",
+          "type": "stamp",
+          "title": "長野市観光情報センター",
+          "desc": "マンホールカード: 市花「蘋果花」被特產「蘋果」環繞的圖案 \nJR 長野站 2 樓 東西自由通路構內 (剪票口外大廳)"
+        },
+        {
+          "time": "24 HR",
+          "title": "Super Market",
+          "type": "shopping",
+          "desc": "Seiyu MinamiIshido [Google Map](https://maps.app.goo.gl/ByRRzoGkZT7AxGim6)",
+          "visible": false
+        }
+      ]
+    },
+    "2026-10-29": {
+      "title": "戶隱杉並木參道與善光寺",
+      "subtitle": "東橫INN 長野駅善光寺口",
+      "region": "長野 ⇄ 戶隱",
+      "timeline": [
+        {
+          "time": "08:20 - 09:20",
+          "title": "長野駅 ➔ 戶隱奧社入口",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "長野站前 7 號乘車處。**觀光特急要先上網預約** (對號入座, 保證有座位, 直達奧社入口)。[長野 ➔ 戶隱特急巴士](https://visit-nagano.alpico.co.jp/zh-hant/timetable/nagano-togakushi-green)",
+          "amount": 2500
+        },
+        {
+          "time": "09:30 - 14:00",
+          "title": "戶隱神社散策",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "[健行路線](https://www.google.com/maps/dir/%E3%80%92381-4101+Nagano,+Togakushi,+3517+%E4%B8%AD%E7%A4%BE,+%E6%97%A5%E6%9C%AC/%E9%8F%A1%E6%B1%A0+%E6%97%A5%E6%9C%AC%E3%80%92381-4101+Nagano,+Togakushi/Okushairiguchi+Parking+Lot,+Togakushi,+Nagano,+381-4101%E6%97%A5%E6%9C%AC/%E6%88%B8%E9%9A%A0%E7%A5%9E%E7%A4%BE+%E5%A5%A5%E7%A4%BE+%E6%97%A5%E6%9C%AC%E3%80%92381-4101+Nagano,+Togakushi,+3506/%E6%88%B8%E9%9A%A0%E7%A5%9E%E7%A4%BE+%E5%A5%A5%E7%A4%BE%E5%8F%82%E9%81%93%E4%B8%A6%E6%9C%A8+%E6%97%A5%E6%9C%AC%E3%80%92381-4101+Nagano,+Togakushi/@36.7504729,138.0684449,15z/data=!4m32!4m31!1m5!1m1!1s0x5ff62ebe80affe13:0xfa0790ff3f28d53a!2m2!1d138.0845406!2d36.7412743!1m5!1m1!1s0x5ff62e88cfb074b9:0xbe4c434ba663ebf0!2m2!1d138.0622462!2d36.7504948!1m5!1m1!1s0x5ff62ef6dc880033:0x9fb994bc92085269!2m2!1d138.0790281!2d36.7554932!1m5!1m1!1s0x5ff62e467a22cdcb:0xc069fecdae392599!2m2!1d138.0620982!2d36.7656242!1m5!1m1!1s0x5ff62e5b237da215:0xdfa82ccd7100b9ba!2m2!1d138.0668425!2d36.7619721!3e2?entry=ttu&g_ep=EgoyMDI2MDkwOC4wIKXMDSoASAFQAw%3D%3D) [戶隱散策地圖](https://visit-nagano.alpico.co.jp/hubfs/PDF/Togakushi%20Area%20Map_WEB%E7%94%A8compressed.pdf?hsLang=zh-hant)",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "",
+              "title": "奥社参道",
+              "type": "nature",
+              "icon": "camera",
+              "desc": "隨神門建於 1710 年, 是戶隱神社現存最古老的建築。穿過門後就是約 500 公尺的**杉並木**, 200 ~ 300 多棵樹齡約 400 年的巨杉夾道, 列為長野縣天然記念物。",
+              "amount": 0
+            },
+            {
+              "time": "",
+              "title": "鏡池",
+              "type": "nature",
+              "icon": "camera",
+              "desc": "池邊的「どんぐりハウス」可以休息, 有法式薄餅等輕食, 9:00 ~ 16:30, 週三休。",
+              "amount": 0
+            },
+            {
+              "time": "09:00 - 17:00",
+              "title": "戶隱神社前郵便局",
+              "type": "stamp",
+              "icon": "jp-post",
+              "desc": "風景印: 戶隱山、戶隱高原的白樺林、牛與小木屋, 旁邊配翁面。靠近中社",
+              "amount": 0
+            },
+            {
+              "title": "戶隱蕎麥麵",
+              "type": "food",
+              "desc": "中社周邊是戶隱蕎麥店的聚集地 (例: 人氣名店うずら家, 常要排隊)。戶隱蕎麥的特色是用「ぼっち盛り」盛成一小撮一小撮的。",
+              "amount": 0
+            }
+          ]
+        },
+        {
+          "time": "14:07 - 15:05",
+          "title": "戶隱中社 ➔ 長野",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "回程也是觀光特急, 要一起先上網預約。[長野 ➔ 戶隱特急巴士](https://visit-nagano.alpico.co.jp/zh-hant/timetable/nagano-togakushi-green)",
+          "amount": 2500
+        },
+        {
+          "time": "",
+          "title": "長野善光寺",
+          "type": "culture",
+          "desc": "約 1400 年歷史, 不分宗派、性別都能參拜, 自古有「一生必參拜一次」的說法。"
+        },
+        {
+          "time": "09:00 - 17:00",
+          "title": "善光寺郵便局",
+          "type": "stamp",
+          "icon": "jp-post",
+          "desc": "風景印: 國寶善光寺本堂、長野站前的如是姬像噴水塔。位於善光寺表參道 (大門町), 建築是老旅館「五明館」改建的。",
+          "amount": 0
+        }
+      ]
+    },
+    "2026-10-30": {
+      "region": "長野 ➔ 軽井沢 ➔ 横浜",
+      "title": "軽井沢紅葉單車散策",
+      "subtitle": "東橫INN 横浜西口",
+      "guides": [
+        {
+          "type": "jr",
+          "title": "車票攻略",
+          "desc": "買一張 **長野 ➔ 横浜** 的乘車券 (超過 100 km, 可以中途下車)。\n新幹線特急券要分兩段買: **長野 ➔ 軽井沢**、**軽井沢 ➔ 大宮**。"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "08:25 - 08:55",
+          "title": "長野 ➔ 軽井沢",
+          "type": "jr",
+          "desc": "[時刻表](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E9%95%B7%E9%87%8E&eki2=%E8%BB%BD%E4%BA%95%E6%B2%A2&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=10&Ddd=30&Dhh=8&Dmn1=0&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)把行李放在車站的投幣置物櫃 (紅葉季大型櫃很快就滿)。",
+          "amount": 0
+        },
+        {
+          "time": "09:00 - 12:00",
+          "title": "軽井沢 紅葉單車",
+          "type": "nature",
+          "icon": "bike",
+          "desc": "路線：軽井沢站北口 ➔ 雲場池 ➔ 六本辻 ➔ 旧軽ロータリー ➔ 三笠通り ➔ 旧三笠ホテル折返 ➔ 回車站, 全程約 8 km。高原早晚接近 0°C, 記得帶手套和保暖外套。\n![](./data/20261026-1104-karuizawa.svg =60%)",
+          "amount": 0,
+          "subEvents": [
+            {
+              "type": "info",
+              "title": "白貓自行車",
+              "desc": "車站北口, 租**電動輔助車**。"
+            },
+            {
+              "time": "",
+              "title": "雲場池",
+              "type": "nature",
+              "icon": "camera",
+              "desc": "又稱「天鵝湖」, 從車站騎約 10 分鐘。10 月下旬到 11 月上旬紅葉最美, 早上人少、無風時池面會倒映滿滿的楓紅。一圈步道約 20 分鐘。",
+              "amount": 0
+            },
+            {
+              "time": "",
+              "title": "三笠通り 單車散策",
+              "type": "nature",
+              "icon": "bike",
+              "desc": "兩旁落葉松的林蔭大道, 日本の道100選。往北是緩上坡, 騎到旧三笠ホテル折返。[Google Map](https://www.google.com/maps/search/?api=1&query=%E4%B8%89%E7%AC%A0%E9%80%9A%E3%82%8A+%E8%BB%BD%E4%BA%95%E6%B2%A2)",
+              "amount": 0
+            }
+          ]
+        },
+        {
+          "time": "10:00 - 16:00",
+          "title": "さわやかハット事務所",
+          "type": "stamp",
+          "desc": "マンホールカード「(舊) 軽井沢駅舎」。位於軽井沢站北口西側, 走樓梯上 2 樓 (電梯不停)",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "午餐: 車上吃便當",
+          "type": "food",
+          "desc": "取出置物櫃的行李, 在車站買便當上車吃 (例: 荻野屋「峠の釜めし」)。",
+          "amount": 0
+        },
+        {
+          "time": "13:00 - 13:47 - 15:03",
+          "title": "軽井沢 ➔ 大宮 ➔ 横浜",
+          "type": "jr",
+          "desc": "北陸新幹線到大宮 (約 1 小時), 轉湘南新宿線或京濱東北線到横浜。[時刻表](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E8%BB%BD%E4%BA%95%E6%B2%A2&eki2=%E6%A8%AA%E6%B5%9C&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=10&Ddd=30&Dhh=13&Dmn1=0&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 0
+        },
+        {
+          "time": "10:00 - 17:00",
+          "title": "横浜駅観光案内所",
+          "type": "stamp",
+          "desc": "マンホールカード: 横浜灣大橋, 外圈是船的舵輪。位於 JR 横浜塔 2F 中庭。",
+          "amount": 0
+        },
+        {
+          "type": "hotel",
+          "title": "東橫INN 横浜西口",
+          "desc": "",
+          "amount": 0
+        },
+        {
+          "type": "transit",
+          "icon": "jp-metro",
+          "time": "",
+          "title": "横浜 ➔ 元町・中華街",
+          "desc": "港未來線到終點元町・中華街站 (直通約 8 分鐘), 往海邊方向步行約 15 分鐘。",
+          "amount": 0
+        },
+        {
+          "time": "10:00 - 20:00",
+          "title": "mont-bell 横浜しんやました店",
+          "type": "shopping",
+          "desc": "[Google Map](https://www.google.com/maps/search/?api=1&query=%E3%83%A2%E3%83%B3%E3%83%99%E3%83%AB+%E6%A8%AA%E6%B5%9C%E3%81%97%E3%82%93%E3%82%84%E3%81%BE%E3%81%97%E3%81%9F%E5%BA%97)",
+          "amount": 0
+        },
+        {
+          "type": "food",
+          "time": "",
+          "title": "晚餐: 横浜中華街",
+          "desc": "- 17:00 - 20:20 | 謝甜記 廣東粥 [Google Map](https://maps.app.goo.gl/87VopBoNjMjQyQD7A)\n- 10:00 - 21:30 | 鵬天閣 焼き小籠包 [Google Map](https://maps.app.goo.gl/URMRkX7QjeNC4GQ59)",
+          "amount": 0
+        },
+        {
+          "time": "09:30 - 22:00",
+          "title": "UNIQLO ヨドバシ横浜店",
+          "type": "shopping",
+          "desc": "横浜站西口 Yodobashi 横浜 8F。[Google Map](https://maps.app.goo.gl/kcUwAMjy9QWLn8c69)",
+          "amount": 0
+        },
+        {
+          "time": "24 HR",
+          "type": "shopping",
+          "title": "MEGAドン・キホーテ 横浜西口店",
+          "desc": "大正感冒藥 | 合力他命EX",
+          "amount": 0
+        }
+      ]
+    },
+    "2026-10-31": {
+      "region": "横浜",
+      "title": "横浜購物",
+      "subtitle": "東橫INN 横浜西口",
+      "tips": [
+        {
+          "type": "warning",
+          "title": "舊制免稅最後一天",
+          "desc": "10/31 23:59 前結帳都是舊制 (店內直接免稅)。11/1 起改為新制: 先付含稅價, 出境時在機場確認後才退稅。",
+          "visible": false
+        }
+      ],
+      "timeline": [
+        {
+          "type": "transit",
+          "icon": "jp-metro",
+          "time": "08:00",
+          "title": "横浜 ➔ 日本大通り",
+          "desc": "港未來線到日本大通り站 (約 7 分鐘), 步行約 3 分鐘到象の鼻パーク。",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "横浜港邊散步",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "日本大通り站 ➔ 象の鼻パーク ➔ 赤レンガ倉庫 ➔ ハンマーヘッド ➔ 馬車道站, 步行約 2 km, 沿海邊都是平路。![](./data/20261026-1104-yokohama.svg =90%)",
+          "amount": 0,
+          "subEvents": [
+            {
+              "type": "nature",
+              "icon": "footprints",
+              "title": "象の鼻パーク",
+              "desc": "横浜港發祥地, 突出海面的「象鼻」防波堤, 可以看港景和對岸的港未來天際線。",
+              "amount": 0
+            },
+            {
+              "time": "10:00 - 17:00",
+              "type": "nature",
+              "icon": "camera",
+              "title": "赤レンガ倉庫",
+              "desc": "",
+              "amount": 0
+            },
+            {
+              "type": "shopping",
+              "icon": "cake-slice",
+              "time": "10:00 - 20:00",
+              "title": "鎌倉紅谷 Kurumicco Factory",
+              "desc": "横浜ハンマーヘッド 2F, 請 09:45 前到門口排隊。"
+            }
+          ]
+        },
+        {
+          "type": "transit",
+          "icon": "jp-metro",
+          "title": "馬車道 ➔ 横浜",
+          "desc": "",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "横浜站周邊購物",
+          "type": "shopping",
+          "icon": "store",
+          "desc": "從東口的横浜ベイクォーター逛回車站, 再到飯店所在的西口, 逛累了可以直接回飯店。",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "11:00 - 22:00",
+              "title": "横浜BayQuarter",
+              "type": "shopping",
+              "desc": "- Yuzawaya: 5F, 手藝材料、布料、毛線。\n- Seria: 4F, 百元商店",
+              "amount": 0
+            },
+            {
+              "time": "10:00 - 21:00",
+              "title": "3COINS+plus 横浜ポルタ店",
+              "type": "shopping",
+              "desc": "横浜站東口地下街ポルタ, 從横浜ベイクォーター走回車站時順路。",
+              "amount": 0
+            },
+            {
+              "time": "10:00 - 20:00",
+              "title": "無印良品 NEWoMan YOKOHAMA",
+              "type": "shopping",
+              "desc": "横浜站直結 NEWoMan 6F ~ 7F。",
+              "amount": 0
+            },
+            {
+              "time": "10:00 - 20:00",
+              "title": "横浜高島屋",
+              "type": "shopping",
+              "desc": "B1 洋菓子賣場, 西口直結。AUDREY 花束造型草莓奶油捲餅。",
+              "amount": 0
+            },
+            {
+              "time": "10:00 - 23:00",
+              "title": "#C-pla 横浜西口店 (扭蛋)",
+              "type": "shopping",
+              "desc": "相鉄南幸16ビル 1F ~ 3F, 約 2,600 種扭蛋, 離飯店很近, 有高額紙幣兌換機。",
+              "amount": 0
+            },
+            {
+              "time": "09:30 - 22:00",
+              "title": "Yodobashi 横浜",
+              "type": "shopping",
+              "desc": "西口的大型家電量販店, 電鍋、刮鬍刀、按摩用品等。",
+              "amount": 0
+            },
+            {
+              "time": "10:00 - 21:00",
+              "title": "Hands 横浜店",
+              "type": "shopping",
+              "desc": "横浜モアーズ 5F ~ 7F, 廚房用品在 **6F** (鍋具、刀具、便當盒、保鮮用品)。",
+              "amount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "2026-11-01": {
+      "region": "横浜 ⇄ 橫須賀 猿島 ➔ 東京 ➔ 浅草",
+      "title": "猿島探險",
+      "subtitle": "東橫INN 大手町",
+      "timeline": [
+        {
+          "time": "08:00",
+          "title": "東橫INN横浜西口 Check-out 寄放行李",
+          "type": "hotel",
+          "icon": "luggage",
+          "desc": "",
+          "amount": 0
+        },
+        {
+          "type": "transit",
+          "time": "08:19 - 08:47",
+          "title": "横浜 ➔ 横須賀中央",
+          "desc": "発:京急本線特急 三崎口行(1 番線)。東口出站步行約 15 分鐘到三笠棧橋。",
+          "amount": 403
+        },
+        {
+          "type": "transit",
+          "icon": "ship",
+          "time": "09:30 - 09:40",
+          "title": "三笠棧橋 ➔ 猿島",
+          "desc": "搭**第一班船** 09:30。9~15時每小時 30 分一班。船票 ¥2,000; 猿島公園入園費 ¥500"
+        },
+        {
+          "type": "nature",
+          "icon": "footprints",
+          "time": "",
+          "title": "猿島",
+          "desc": "是東京灣內唯一自然形成的無人島。島上充滿大自然風光與被綠意覆蓋的歷史要塞遺跡, 因神似吉卜力電影《天空之城》而聞名。曾是幕府與舊日本軍的海上要塞砲台基地。島上保留了完整的紅磚隧道、彈藥庫與軍事遺跡, 由於長期無人居住, 建築上布滿了青苔與藤蔓, 充滿了神祕的奇幻氛圍。"
+        },
+        {
+          "type": "transit",
+          "icon": "ship",
+          "time": "11:45 - 11:55",
+          "title": "猿島 ➔ 三笠棧橋",
+          "desc": "回程每時 45 分有一班船。"
+        },
+        {
+          "type": "food",
+          "time": "11:00 - 20:00",
+          "title": "横須賀海軍カレー本舗",
+          "desc": "招牌: 特別牛肉海軍咖哩。[Google Map](https://maps.app.goo.gl/WVtZsPcNUCKPNjgeA)"
+        },
+        {
+          "type": "stamp",
+          "time": "09:30 - 17:00",
+          "title": "橫須賀市觀光案內所",
+          "desc": "マンホールカード: 來航浦賀的黑船、培里提督與燈塔。京急線橫須賀中央站東口改札前。"
+        },
+        {
+          "type": "transit",
+          "time": "13:02 - 13:30",
+          "title": "横須賀中央 ➔ 橫浜",
+          "desc": "[時刻表](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%A8%AA%E9%A0%88%E8%B3%80%E4%B8%AD%E5%A4%AE&eki2=%E6%A8%AA%E6%B5%9C&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=11&Ddd=1&Dhh=13&Dmn1=0&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)"
+        },
+        {
+          "title": "横浜 ➔ 東京",
+          "type": "jr",
+          "desc": "JR 東海道線 / 上野東京ライン約 30 分鐘。",
+          "amount": 0,
+          "time": ""
+        },
+        {
+          "title": "東橫INN 大手町 Check-in",
+          "type": "hotel",
+          "desc": "",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "神田 ➔ 田原町",
+          "icon": "jp-metro",
+          "type": "transit",
+          "desc": "飯店步行約 5 分鐘到神田站, 東京メトロ銀座線 (浅草行) 直達, 約 10 分鐘。",
+          "amount": 0
+        },
+        {
+          "time": "10:30 - 21:00",
+          "title": "JINS 浅草ROX店 取眼鏡",
+          "type": "shopping",
+          "icon": "glasses",
+          "desc": "",
+          "amount": 0
+        }
+      ],
+      "guides": [
+        {
+          "type": "hotel",
+          "title": "東横INN東京大手町",
+          "desc": "- **從東京站**: 約 20 分鐘 從 JR 走「丸の内地下北口」或「丸の内地下中央口」，出剪票口到地下通道。往北走，跟著「大手町駅」的指標往北走，跟著「大手町駅」的指標。\n- **大手町站**: **A1 出口**步行約 5 分鐘 (丸ノ内線、半蔵門線、三田線);\n- **神田站**:  **西口**出剪票口(銀座線)。"
+        }
+      ]
+    },
+    "2026-11-02": {
+      "region": "東京都",
+      "title": "築地．明治神宮",
+      "subtitle": "東橫INN 大手町",
+      "timeline": [
+        {
+          "time": "",
+          "title": "大手町 ➔ 築地",
+          "icon": "jp-metro",
+          "type": "transit",
+          "desc": "大手町 (丸ノ内)➔ 銀座(日比谷) ➔ 築地, 約 20 分鐘。",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "築地場外市場",
+          "type": "food",
+          "desc": "",
+          "amount": 0
+        },
+        {
+          "title": "回東橫INN 大手町 休息",
+          "type": "hotel",
+          "desc": "放下早上買的東西, 休息到中午。",
+          "amount": 0
+        },
+        {
+          "time": "10:00 - 12:00",
+          "title": "グランスタ東京",
+          "type": "solo",
+          "icon": "store",
+          "desc": "[グランスタ東京](https://www.gransta.jp/)\n- 09:30 - 20:30 | 岡田謹製茶織屋[官網](https://www.chaoriya.jp/)\n- 09:00 - 21:00 | Glico ALMOND DAYS | 固力果杏仁點心 | B1 \n- 退稅: 一番街 1F 東端 Tax-free Counter (日本橋口旁、成城石井隔壁)",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "大手町 ➔ 渋谷",
+          "icon": "jp-metro",
+          "type": "transit",
+          "desc": "12:00 出發。東京メトロ半蔵門線 (中央林間行) 直達, 約 16 分鐘。",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "渋谷 Google 午餐",
+          "type": "food",
+          "desc": "渋谷ストリーム 35F。訪客需事先請 host 登記, 記得帶證件。",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "明治神宮",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "沿明治通り往北步行約 2 km, 慢慢走約 30 ~ 40 分鐘, 可順路逛 MIYASHITA PARK。累的話改搭 JR 山手線 1 站到原宿。從原宿口 (第一鳥居) 進, 走到本殿來回約 2 km 碎石路。",
+          "amount": 0
+        },
+        {
+          "time": "10:00 - 20:00",
+          "title": "Google Store 表參道",
+          "type": "shopping",
+          "desc": "東急プラザ表参道「オモカド」1F / 2F / B1, 2F 有 AI 體驗。",
+          "amount": 0
+        },
+        {
+          "time": "10:00 - 20:00",
+          "title": "I'm donut? 原宿店",
+          "type": "food",
+          "icon": "coffee",
+          "desc": "JR 原宿站表參道口步行約 1 分鐘。招牌是剛炸好的生甜甜圈, 2F 可以內用。賣完就收、不定休, 出發前看 [Instagram](https://www.instagram.com/i.m.donut/)。",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "表参道 ➔ 大手町",
+          "icon": "jp-metro",
+          "type": "transit",
+          "desc": "東京メトロ半蔵門線 (押上方面) 直達, 約 15 分鐘。",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "大丸東京店",
+          "type": "solo",
+          "icon": "shopping-bag",
+          "desc": "",
+          "amount": 0
+        },
+        {
+          "time": "11:00 - 23:00",
+          "title": "KITTE 丸之內6樓空中花園",
+          "icon": "camera",
+          "type": "nature",
+          "desc": "11/2 日落約 16:43, 黃昏到夜景都看得到, 俯瞰紅磚東京車站與丸之內大樓群。從飯店步行約 20 分鐘, 或神田搭 JR 1 站到東京站, 丸之內南口出站就在對面。"
+        }
+      ]
+    },
+    "2026-11-03": {
+      "region": "東京 ➔ 成田機場",
+      "title": "皇居散策與東京鐵塔外階梯",
+      "subtitle": "東橫INN 成田新館",
+      "timeline": [
+        {
+          "time": "09:00",
+          "title": "Check-out 寄放行李",
+          "type": "hotel",
+          "icon": "luggage",
+          "desc": "東橫INN 大手町 Check-out, 行李寄放在櫃台, 下午回來拿。",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "皇居散策",
+          "type": "nature",
+          "icon": "trees",
+          "desc": "",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "",
+              "title": "和田倉噴水公園 ➔ 皇居外苑",
+              "type": "nature",
+              "icon": "trees",
+              "desc": "飯店步行約 15 ~ 20 分鐘。早上人少, 沿護城河散步到二重橋前拍照, 再走到大手門。",
+              "amount": 0
+            },
+            {
+              "type": "nature",
+              "icon": "trees",
+              "title": "皇居東御苑",
+              "time": "",
+              "desc": "從**大手門**進, 逛完從**北桔橋門**出去, 接北の丸公園往九段下。"
+            },
+            {
+              "time": "",
+              "title": "北桔橋門 ➔ 北の丸公園 ➔ 九段下",
+              "type": "nature",
+              "icon": "footprints",
+              "desc": "步行約 1.5 km, 穿過北の丸公園, 經田安門到九段下。",
+              "amount": 0
+            },
+            {
+              "type": "stamp",
+              "time": "10:00 - 18:00",
+              "title": "千代田区観光案内所",
+              "desc": "マンホールカード: 懶懶熊、小白熊、小雞與茶色小熊, 搭配區花「櫻花」。"
+            }
+          ]
+        },
+        {
+          "time": "",
+          "title": "神保町 ➔ 御成門",
+          "icon": "jp-metro",
+          "type": "transit",
+          "desc": "九段下步行約 8 分鐘到神保町, 搭都營三田線到御成門, A6 出口。",
+          "amount": 180
+        },
+        {
+          "type": "nature",
+          "icon": "footprints",
+          "title": "芝公園 ➔ 增上寺 ➔ 東京鐵塔",
+          "desc": "[散策路線](https://www.google.com/maps/dir/35.6605823,139.7513398/%E5%A2%9E%E4%B8%8A%E5%AF%BA+%E6%97%A5%E6%9C%AC%E3%80%92105-0011+Tokyo,+Minato+City,+Shibakoen,+4+Chome%E2%88%927%E2%88%9235/%E6%9D%B1%E4%BA%AC%E9%90%B5%E5%A1%94+%E6%97%A5%E6%9C%AC%E3%80%92105-0011+Tokyo,+Minato+City,+Shibakoen,+4+Chome%E2%88%922%E2%88%928/%E6%9D%B1%E4%BA%AC+%E8%8A%9D+%E8%B1%86%E8%85%90%E5%B1%8BUKAI+%E6%97%A5%E6%9C%AC%E3%80%92105-0011+Tokyo,+Minato+City,+Shibakoen,+4+Chome%E2%88%924%E2%88%9213/%E8%8A%9D%E5%85%AC%E5%9C%92+%E6%97%A5%E6%9C%AC+Tokyo,+Minato+City,+Shibakoen,+4+Chome%E2%88%928%E2%88%9214/@35.6572618,139.7458042,17z/data=!3m2!4b1!5s0x60188bbda5ed2679:0xeb9a8b7b22de5f8f!4m27!4m26!1m0!1m5!1m1!1s0x60188bbe91676c0b:0x88a4a86ddb1dbd24!2m2!1d139.7482928!2d35.657479!1m5!1m1!1s0x60188bbd9009ec09:0x481a93f0d2a409dd!2m2!1d139.7454329!2d35.6585805!1m5!1m1!1s0x601d86f1a0765113:0x7bdc203608f579ff!2m2!1d139.7453639!2d35.6572889!1m5!1m1!1s0x60188bb962bec049:0x541d29c25dd15f2c!2m2!1d139.7498313!2d35.6539326!3e2?entry=ttu&g_ep=EgoyMDI2MDkwOC4wIKXMDSoASAFQAw%3D%3D)",
+          "time": ""
+        },
+        {
+          "time": "",
+          "title": "午餐: 芝公園 / 東京鐵塔周邊",
+          "type": "food",
+          "desc": "例: 東京芝 とうふ屋うかい (要預約, 價位較高); 或 東京鐵塔 footown 的餐廳。",
+          "amount": 0
+        },
+        {
+          "type": "culture",
+          "time": "9:00 - 16:00",
+          "title": "東京鐵塔",
+          "desc": "外階段で行きたいです / We want to walk up the outdoor stairs.\n東京芝 豆腐屋鵜飼旁的地下停車場樓梯\n郵便局風景印: 東京鐵塔＋增上寺三解脫門的圖案 。11/3 是國定假日郵便局窗口不開, 可以把貼好郵票的明信片投進 Main Deck 2F 的郵筒。"
+        },
+        {
+          "time": "",
+          "title": "芝公園 ➔ 大手町",
+          "icon": "jp-metro",
+          "type": "transit",
+          "desc": "都營三田線 芝公園 ➔ 大手町 (約 10 分鐘), 回飯店拿行李。",
+          "amount": 180
+        },
+        {
+          "type": "food",
+          "title": "東京車站 (逛街、買便當)",
+          "time": "",
+          "desc": "東京車站一番街、GRANSTA 最後採買, 可以買便當到成田的飯店當晚餐。"
+        },
+        {
+          "time": "16:03 - 16:57 | 16:33 - 17:29",
+          "title": "東京 ➔ NRT T2",
+          "type": "jr",
+          "desc": "NEX (成田特快)[時刻表](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%9D%B1%E4%BA%AC&eki2=%E6%88%90%E7%94%B0%E7%A9%BA%E6%B8%AF%EF%BC%88%E7%A9%BA%E6%B8%AF%EF%BC%89&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=11&Ddd=3&Dhh=16&Dmn1=3&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)"
+        },
+        {
+          "time": "",
+          "title": "東橫INN 成田新館",
+          "type": "hotel",
+          "desc": "",
+          "amount": 0
+        }
+      ]
+    },
+    "2026-11-04": {
+      "region": "成田機場 ➔ 桃園",
+      "title": "平安返台",
+      "tips": [
+        {
+          "type": "info",
+          "icon": "bus",
+          "title": "成田機場 ➔ 飯店 接駁車",
+          "desc": "T2 在 1F 中央口出來, 過馬路左側計程車乘車處前的 **31-B** 搭車。\n時 | T2 發車 (分)\n---|---\n16 | 05 / 25 / 45\n17 | 05 / 25 / 45\n18 | 05 / 25 / 45\n19 | 05 / 25 / 45\n20 | 05 / 25 / 45\n[東橫INN 官網](https://www.toyoko-inn.com/china/campaign/pickup/narita/)"
+        },
+        {
+          "type": "info",
+          "icon": "bus",
+          "title": "飯店 ➔ 成田機場 接駁車",
+          "desc": "先停 T2 再到 T1, 飯店 ➔ T2 ➔ T1 全程約 25 分鐘。7:30 ~ 8:30 容易塞車。\n時 | 飯店發車 (分)\n---|---\n8 | 00 / 20 / 40\n9 | 00 / 15 / 45\n[東橫INN 官網](https://www.toyoko-inn.com/china/campaign/pickup/narita/)"
+        },
+        {
+          "type": "shopping",
+          "visible": false,
+          "desc": "[東京ギフトパレット](https://www.tokyoeki-1bangai.co.jp/tokyogiftpalette/) [東京おかしランド](https://www.tokyoeki-1bangai.co.jp/tokyo_okashiland/) [大丸東京店](https://www.daimaru.co.jp/tokyo/) [日本橋三越本店](https://www.mistore.jp/store/nihombashi.html) [Fa-So-La 免稅品預約](https://duty-free-japan.jp/narita/jp/)"
+        }
+      ],
+      "guides": [
+        {
+          "type": "stamp",
+          "icon": "jp-genki-badge",
+          "title": "東橫INN ご当地GENKIバッジ",
+          "desc": "縣 | 購買地點\n---|---\n長野縣 | 10/26 松本東口 (備案: 10/28 ~ 10/29 長野駅善光寺口)\n神奈川縣 | 10/30 ~ 10/31 横浜西口\n東京都 | 11/1 ~ 11/2 大手町\n千葉縣＋外國版 | 11/3 成田 (外國版只有部分機場店有賣)"
+        },
+        {
+          "pageBreak": "before",
+          "type": "stamp",
+          "title": "マンホールカード",
+          "desc": "日期 | 發放地點 | 時間 | 位置\n---|---|---|---\n10/28 | 松本市観光情報センター | 09:00 - 17:45 | 松本城附近 [Google Map](https://maps.app.goo.gl/SmXvfbu1upNWuHoV9)\n10/28 | 長野市観光情報センター | 09:00 - 18:00 | JR 長野站 2 樓 東西自由通路 (剪票口外大廳)\n10/30 | さわやかハット事務所 | 10:00 - 16:00 | 軽井沢站北口西側 2F\n10/30 | 横浜駅観光案内所 | 10:00 - 17:00 | JR横浜タワー 2F\n11/1 | 橫須賀市觀光案內所 | 09:30 - 17:00 | 京急橫須賀中央站東口改札前\n11/3 | 千代田區觀光資訊中心 | 10:00 - 18:00 | 11/3 假日, 可能需預約 [Google Map](https://maps.app.goo.gl/2GPuDY28R46VNwTi7)"
+        },
+        {
+          "type": "stamp",
+          "icon": "jp-post",
+          "title": "郵便局風景印",
+          "desc": "\n日期 | 郵局 | 時間 | 圖案\n---|---|---|---\n10/27 | 上高地郵便局 | 09:00 - 17:00 | 大正池與穗高岳\n10/28 | 松本城東 / 松本城西郵便局 | 09:00 - 17:00 | 松本城天守\n10/29 | 戶隱神社前郵便局 | 09:00 - 17:00 | 戶隱山與翁面\n10/29 | 善光寺郵便局 | 09:00 - 17:00 | 善光寺本堂\n11/3 | 東京鐵塔 Main Deck 郵筒 | - | 芝郵便局風景印 (投函)\n11/4 | 成田郵便局 空港第2旅客ビル内分室 | 08:30 - 20:00 | T2 航廈與飛機"
+        },
+        {
+          "pageBreak": "after",
+          "type": "shopping",
+          "title": "購物清單",
+          "desc": "- [ ] 無印良品 灰白整理盒\n- [ ] 無印良品 水瓶乾燥棒 x2\n- [ ] 無印良品 PET補充瓶/透明.600ml\n- [ ] 岡田謹製 茶織屋\n- [ ] 大正感冒藥\n- [ ] 合力他命EX\n- [ ] UNIQLO UT 我的英雄學院聯名 T-shirt\n- [ ] 鎌倉紅谷 Kurumicco\n- [ ] AUDREY 假日限定商品"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "08:40",
+          "title": "東橫INN ➔ NRT T2",
+          "icon": "bus",
+          "type": "transit",
+          "desc": "",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "退稅確認 ➔ 報到託運",
+          "type": "flight",
+          "desc": "- 11/1 以後買的退稅商品, **託運前**先到海關出示商品和護照確認, 之後才會退稅。\n- 台灣虎航在 T2 報到。",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "出境．免稅店最後採購",
+          "type": "shopping",
+          "desc": "過安檢、出境審查後逛免稅店, 12:30 前到登機門。"
+        },
+        {
+          "time": "13:00 ➔ 16:25",
+          "title": "NRT ➔ TPE",
+          "type": "flight",
+          "desc": "IT201",
+          "amount": 0
+        }
+      ]
+    }
+  }
+}
