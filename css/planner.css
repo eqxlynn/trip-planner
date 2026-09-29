@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+/* 自訂滾動條 */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* 隱藏特定區塊的滾動條，但保留滾動功能 */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* 列印樣式：隱藏網頁 UI，只顯示列印容器 */
+@media print {
+    @page {
+        margin: 0 4mm;
+        size: auto;
+    }
+
+    /* 隱藏網頁所有預設內容 (導航、側邊欄、時間軸、預算表等) */
+    body > *:not(#print-container) {
+        display: none !important;
+    }
+
+    /* 只顯示由 JS 產生的手冊容器 */
+    #print-container {
+        display: block !important;
+        position: relative;
+        width: 100%;
+    }
+
+    /* 強制列印背景顏色與背景圖 */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* 每一天強制換頁 */
+    .print-page-break {
+        page-break-before: always;
+    }
+
+    .no-print-link {
+        text-decoration: none !important;
+    }
+
+    figure {
+        break-inside: avoid;
+    }
+
+    /* JSON 設定 "pageBreak" 的項目：強制換頁 */
+    .print-force-break {
+        display: block;
+        height: 0;
+        break-before: page;
+        page-break-before: always;
+    }
+}
+
+/* 編輯模式樣式 */
+/* 右上角有刪除按鈕，預留空間避免蓋到文字 */
+body.edit-mode .edit-pad-right {
+    padding-right: 2rem;
+}
+body.edit-mode [contenteditable="true"] {
+    outline-offset: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+    cursor: text;
+    min-width: 2em;
+    display: inline-block;
+    vertical-align: middle; /* 與旁邊的 Icon 或外框保持置中對齊 */
+}
+
+/* 只有在編輯模式下才顯示的控制項 */
+body:not(.edit-mode) .edit-only-ui {
+    display: none !important;
+}
+
+/* 沒有資料時隱藏、但編輯模式仍要顯示以便新增的欄位 (例如住宿、地區) */
+body.edit-mode .edit-reveal.hidden {
+    display: flex !important;
+}
+
+/* 左側選單選到「封面」時 (body.cover-active)：隱藏天數專屬元素、顯示封面專屬元素。
+   選擇器多疊一層 .edit-reveal.hidden 以蓋過上面的 edit-reveal 規則 */
+body.cover-active .day-only,
+body.cover-active .day-only.edit-reveal.hidden,
+body:not(.cover-active) .cover-only {
+    display: none !important;
+}
+
+body.cover-active #detail-calendar-icon-container {
+    cursor: default;
+}
+
+body.edit-mode [contenteditable="true"]:hover {
+    outline-color: #94a3b8;
+    background-color: #f8fafc;
+}
+
+body.edit-mode [contenteditable="true"]:focus {
+    outline: 2px solid #10b981;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* 編輯模式下元素為空時顯示 placeholder */
+.edit-mode .editable-element:empty::before {
+    content: attr(data-placeholder);
+    color: #94a3b8;
+    font-style: italic;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* 空的元素保留基本尺寸以便點擊編輯 */
+.edit-mode .editable-element:empty {
+    min-height: 1.5em;
+    display: inline-block;
+    min-width: 40px;
+}
+
+/* 檢視模式下隱藏空的編輯區塊，消除多餘間距 */
+body:not(.edit-mode) .editable-element:empty {
+    display: none;
+}
+
+/* 編輯模式下日曆可點擊更改日期 */
+.edit-mode #detail-calendar-icon-container {
+    cursor: pointer;
+}
