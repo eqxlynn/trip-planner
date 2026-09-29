@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" font-family="'Noto Sans TC','Noto Sans JP',sans-serif">
+  <!-- 10/31 横浜 早上散步路線簡圖 (示意, 非比例尺) -->
+  <rect width="640" height="360" rx="16" fill="#f8fafc"/>
+
+  <!-- 海 -->
+  <path d="M640 0 L640 360 L470 360 Q430 300 470 250 Q520 190 440 140 Q380 100 420 0 Z" fill="#dbeafe"/>
+  <text x="560" y="120" font-size="14" font-weight="700" fill="#60a5fa" letter-spacing="4">横浜港</text>
+
+  <!-- 港未來線 -->
+  <path d="M110 60 L250 110 L350 250" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="3 5"/>
+  <text x="150" y="72" font-size="11" fill="#94a3b8" font-weight="700">港未來線</text>
+
+  <!-- 步行路線 -->
+  <path d="M350 250 L400 220 L395 160 L370 90 L250 110"
+        fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 地點 -->
+  <g fill="#fff" stroke="#0f172a" stroke-width="3">
+    <circle cx="110" cy="60" r="8"/>
+  </g>
+  <g fill="#0f172a">
+    <circle cx="250" cy="110" r="5"/>
+    <circle cx="350" cy="250" r="5"/>
+    <circle cx="400" cy="220" r="6"/>
+    <circle cx="395" cy="160" r="6"/>
+    <circle cx="370" cy="90" r="6"/>
+  </g>
+
+  <g font-size="13" font-weight="700" fill="#0f172a">
+    <text x="124" y="52">横浜 (飯店)</text>
+    <text x="238" y="130" text-anchor="end">馬車道</text>
+    <text x="338" y="270" text-anchor="end">日本大通り</text>
+    <text x="388" y="224" text-anchor="end">① 象の鼻パーク</text>
+    <text x="383" y="164" text-anchor="end">② 赤レンガ倉庫</text>
+    <text x="370" y="76" text-anchor="middle">③ ハンマーヘッド</text>
+  </g>
+  <g font-size="11" font-weight="700" fill="#64748b">
+    <text x="338" y="284" text-anchor="end">08:00 從横浜出發</text>
+    <text x="370" y="60" text-anchor="middle">鎌倉紅谷．店內吃點心</text>
+    <text x="238" y="144" text-anchor="end">搭車回横浜</text>
+  </g>
+
+  <!-- 圖例 -->
+  <g font-size="11" font-weight="700" fill="#334155">
+    <line x1="24" y1="316" x2="52" y2="316" stroke="#2563eb" stroke-width="5" stroke-linecap="round"/>
+    <text x="60" y="320">步行 (約 2 km)</text>
+    <line x1="24" y1="338" x2="52" y2="338" stroke="#94a3b8" stroke-width="3" stroke-dasharray="3 5"/>
+    <text x="60" y="342">電車</text>
+  </g>
+</svg>
