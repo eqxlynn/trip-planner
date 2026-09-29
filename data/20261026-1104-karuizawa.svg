@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="215 0 345 450" font-family="'Noto Sans TC','Noto Sans JP',sans-serif">
+  <!-- 10/30 軽井沢 紅葉單車路線 (依 OpenStreetMap 座標繪製, 上北下南) -->
+  <rect x="215" width="345" height="450" rx="16" fill="#f8fafc"/>
+  <g fill="none" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round">
+    <path d="M366 410 L366 397"/>
+    <path d="M370 413 L373 434 L375 487"/>
+    <path d="M368 405 L364 378"/>
+    <path d="M165 382 L179 379 L205 377 L266 357 L314 333 L343 325 L356 316"/>
+    <path d="M410 366 L379 366"/>
+    <path d="M340 385 L342 388 L353 387"/>
+    <path d="M366 397 L407 400 L484 399"/>
+    <path d="M452 172 L449 178 L424 202 L401 232"/>
+    <path d="M288 384 L288 391 L288 400 L287 439"/>
+    <path d="M403 348 L403 377"/>
+    <path d="M396 240 L400 241"/>
+    <path d="M314 333 L317 350 L318 360"/>
+    <path d="M371 409 L369 397"/>
+    <path d="M280 385 L280 381 L283 379 L286 380 L288 384"/>
+    <path d="M445 393 L445 405 L442 407 L439 407 L437 403 L437 399"/>
+    <path d="M403 348 L403 340 L405 339"/>
+    <path d="M353 387 L406 388"/>
+    <path d="M364 371 L364 378"/>
+    <path d="M380 186 L394 210 L401 232"/>
+    <path d="M442 324 L445 378 L445 393"/>
+    <path d="M379 366 L364 371"/>
+    <path d="M413 387 L410 389"/>
+    <path d="M410 387 L411 385 L411 377"/>
+    <path d="M419 389 L444 389 L479 390 L484 387"/>
+    <path d="M358 314 L364 308 L378 281 L391 263 L398 235 L401 232"/>
+    <path d="M356 316 L358 314"/>
+    <path d="M400 236 L402 329"/>
+    <path d="M503 136 L485 149 L471 156 L452 172"/>
+    <path d="M419 367 L410 366"/>
+    <path d="M372 433 L369 414 L369 409 L368 405"/>
+    <path d="M411 377 L411 368 L402 329"/>
+    <path d="M402 329 L412 370 L412 377 L413 385"/>
+  </g>
+  <path d="M-45 375 L327 387 L454 394 L544 381" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8 5"/>
+  <path d="M334 284 L334 287 L332 290 L333 293 L333 296 L334 300 L334 301 L332 302 L332 303 L333 305 L336 305 L336 299 L335 298 L336 295 L335 292 L337 289 L336 285 L336 279 L335 277 L334 275 L332 274 L332 277 L334 279 L335 281 Z" fill="#bfdbfe" stroke="#60a5fa" stroke-width="2"/>
+  <g fill="none" stroke="#ea580c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M419 389 L414 388 L412 384 L412 370 L402 329 L358 315 L363 309"/>
+    <path d="M363 309 L356 315 L336 309"/>
+    <path d="M336 309 L356 315 L364 308 L378 281 L391 263 L396 240 L401 232"/>
+    <path d="M401 232 L394 210 L368 168 L340 81 L337 75 L329 67 L326 56"/>
+    <path d="M401 232 L400 253 L402 329 L412 370 L412 384 L414 388 L419 389"/>
+  </g>
+  <circle cx="420" cy="390" r="9" fill="#fff" stroke="#0f172a" stroke-width="3"/>
+  <circle cx="362" cy="310" r="6" fill="#0f172a"/>
+  <circle cx="401" cy="232" r="6" fill="#0f172a"/>
+  <circle cx="329" cy="52" r="7" fill="#0f172a"/>
+  <text x="434" y="395" font-size="13" font-weight="700" fill="#0f172a">軽井沢站 (北口)</text>
+  <text x="406" y="414" font-size="11" font-weight="700" fill="#64748b" text-anchor="end">③ さわやかハット: 北口西側 2F</text>
+  <text x="319" y="289" font-size="13" font-weight="700" fill="#0f172a" text-anchor="end">① 雲場池</text>
+  <text x="319" y="305" font-size="11" font-weight="700" fill="#64748b" text-anchor="end">停車步行一圈 20 分</text>
+  <text x="372" y="326" font-size="13" font-weight="700" fill="#0f172a">六本辻</text>
+  <text x="413" y="237" font-size="13" font-weight="700" fill="#0f172a">旧軽ロータリー</text>
+  <text x="341" y="57" font-size="13" font-weight="700" fill="#0f172a">② 旧三笠ホテル</text>
+  <text x="341" y="73" font-size="11" font-weight="700" fill="#64748b">折返點</text>
+  <text x="379" y="138" font-size="13" font-weight="700" fill="#0f172a">三笠通り</text>
+  <text x="379" y="154" font-size="11" font-weight="700" fill="#64748b">落葉松林蔭．緩上坡</text>
+  <text x="420" y="347" font-size="13" font-weight="700" fill="#0f172a">軽井沢本通り</text>
+  <text x="229" y="372" font-size="11" font-weight="700" fill="#94a3b8">北陸新幹線 / しなの鉄道</text>
+  <g transform="translate(530 36)"><path d="M0 -14 L7 6 L0 2 L-7 6 Z" fill="#0f172a"/><text x="0" y="22" font-size="11" font-weight="900" text-anchor="middle" fill="#0f172a">N</text></g>
+  <g font-size="11" font-weight="700" fill="#334155"><line x1="231" y1="428" x2="281.6" y2="428" stroke="#334155" stroke-width="3"/><text x="287.6" y="432">500 m</text>
+  <line x1="337" y1="428" x2="361" y2="428" stroke="#ea580c" stroke-width="4" stroke-linecap="round"/><text x="367" y="432">騎車 (去回同路線)</text></g>
+</svg>
