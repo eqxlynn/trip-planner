@@ -1,0 +1,283 @@
+{
+    "metadata": {
+        "title": "功能展示與測試行程",
+        "subtitle": "所有 type、圖示、Markdown 語法與邊界情況一覽",
+        "coverMargin": "30mm 15mm 15mm",
+        "guides": [
+            {
+                "type": "info",
+                "title": "如何使用這份 Demo",
+                "desc": "每一天展示一組功能，點左側天數切換：\n- **Day 1**：提示卡片、交通\n- **Day 2**：自然、住宿\n- **Day 3**：文化、集章、祭典\n- **Day 4**：美食\n- **Day 5**：購物、其他、自訂 icon\n- **Day 6**：Markdown 語法 (週六綠字)\n- **Day 7**：欄位與邊界情況 (週日紅字)\n- **Day 8**：空白天數 (12/07 缺日，測試不連續日期)\n\n進入「編輯模式」可在下拉選單看到所有 type，按「小冊子」可預覽列印版。"
+            },
+            {
+                "type": "none",
+                "title": "封面 Guides",
+                "desc": "這些卡片是 `metadata.guides`，網頁上只在編輯模式顯示，列印時出現在封面。"
+            },
+            {
+                "type": "warning",
+                "visible": false,
+                "title": "visible: false 的封面卡片",
+                "desc": "網頁編輯模式看得到，列印封面不會出現。"
+            }
+        ]
+    },
+    "detail": {
+        "2026-12-08": {
+            "title": "空白天數",
+            "tips": [],
+            "timeline": []
+        },
+        "2026-11-30": {
+            "title": "提示卡片與交通",
+            "region": "info / success / warning / flight / jr / transit",
+            "subtitle": "新宿 京王プラザホテル",
+            "tips": [
+                { "type": "info", "title": "info", "desc": "一般資訊提示。" },
+                { "type": "success", "title": "success", "desc": "完成事項或推薦做法。" },
+                { "type": "warning", "title": "warning", "desc": "需要注意的事情。" },
+                { "type": "warning", "icon": "alert-octagon", "title": "warning + alert-octagon", "desc": "更嚴重的警告，用 `icon` 區分。" }
+            ],
+            "timeline": [
+                { "time": "08:00 - 12:00", "title": "flight：TPE ➔ NRT", "type": "flight", "desc": "飛機航班。", "amount": 15000 },
+                { "time": "13:00 - 14:30", "title": "jr：成田 ➔ 新宿 (N'EX)", "type": "jr", "desc": "JR 獨立一類，預算表單獨統計。", "amount": 3250 },
+                { "time": "15:00 - 15:30", "title": "transit：私鐵 (小田急)", "type": "transit", "desc": "私鐵、地鐵、巴士、汽車、船、腳踏車、纜車都是 transit，用 `icon` 區分。", "amount": 700 },
+                { "time": "16:00 - 16:20", "title": "transit + jp-metro：地鐵", "type": "transit", "icon": "jp-metro", "desc": "東京メトロ、都營地下鐵。", "amount": 210 },
+                { "time": "17:00 - 17:30", "title": "transit + bus：路線巴士", "type": "transit", "icon": "bus", "desc": "巴士、高速巴士。", "amount": 500 },
+                { "time": "18:00 - 18:30", "title": "transit + car：計程車", "type": "transit", "icon": "car", "desc": "計程車、租車、開車。", "amount": 2500 },
+                { "time": "19:00 - 19:40", "title": "transit + ship：東京灣渡輪", "type": "transit", "icon": "ship", "desc": "渡輪、遊覽船。", "amount": 1000 },
+                { "time": "20:00 - 20:30", "title": "transit + bike：共享單車", "type": "transit", "icon": "bike", "desc": "腳踏車、共享單車。", "amount": 500 },
+                { "time": "21:00 - 21:15", "title": "transit + cable-car：箱根空中纜車", "type": "transit", "icon": "cable-car", "desc": "纜車、空中纜車 (ropeway)。", "amount": 1500 }
+            ]
+        },
+        "2026-12-01": {
+            "title": "自然與住宿",
+            "region": "nature / hotel",
+            "subtitle": "安曇野 穂高温泉郷",
+            "tips": [
+                { "type": "nature", "title": "nature", "desc": "風景、健行、拍照、玩雪、單車、公園、溫泉，用 `icon` 區分。" },
+                { "type": "hotel", "title": "hotel", "desc": "住宿資訊，例如地址、電話、Check-in 時間。" }
+            ],
+            "timeline": [
+                { "time": "08:00", "title": "lake (= nature + waves-horizontal)：上高地 大正池", "type": "lake", "desc": "自然風景 (預設 mountain-snow)。" },
+                { "time": "09:00 - 11:00", "title": "nature + footprints：河童橋 ➔ 明神池步道", "type": "nature", "icon": "footprints", "desc": "健行、散步路線。" },
+                { "time": "11:30", "title": "nature + camera：河童橋 穗高連峰", "type": "nature", "icon": "camera", "desc": "拍照景點。" },
+                { "time": "12:00 - 12:45", "title": "nature + jp-snowman：河童橋 雪地玩雪", "type": "nature", "icon": "jp-snowman", "desc": "玩雪、堆雪人、雪上活動。" },
+                { "time": "13:30 - 15:00", "title": "nature + bike：安曇野單車路線", "type": "nature", "icon": "bike", "desc": "騎單車遊覽 (交通用的腳踏車請用 transit + bike)。", "amount": 1500 },
+                { "time": "15:30", "title": "nature + trees：國營アルプスあづみの公園", "type": "nature", "icon": "trees", "desc": "公園、庭園。", "amount": 450 },
+                { "time": "17:00", "title": "hotel：Check-in", "type": "hotel", "desc": "飯店入住。", "amount": 18000 },
+                { "time": "18:00 - 19:00", "title": "nature + jp-onsen：露天風呂", "type": "nature", "icon": "jp-onsen", "desc": "溫泉。" }
+            ]
+        },
+        "2026-12-02": {
+            "title": "文化、集章與祭典",
+            "region": "culture / stamp / festival",
+            "subtitle": "松本 ホテル花月",
+            "tips": [
+                { "type": "culture", "title": "culture", "desc": "博物館、城堡、神社，用 `icon` 區分。" },
+                { "type": "stamp", "title": "stamp", "desc": "紀念章、風景印 (郵局用 `jp-post`)、東橫INN GENKI徽章 (`jp-genki-badge`)。" },
+                { "type": "festival", "title": "festival", "desc": "祭典 (預設 `jp-matsuri` 提燈)、花火大會用 `jp-hanabi`。" }
+            ],
+            "timeline": [
+                { "time": "09:00", "title": "culture：松本市美術館", "type": "culture", "desc": "博物館、美術館 (預設 landmark)。", "amount": 410 },
+                { "time": "10:30", "title": "culture + jp-castle：松本城", "type": "culture", "icon": "jp-castle", "desc": "日式城堡。", "amount": 1300 },
+                { "time": "12:00", "title": "culture + jp-torii：四柱神社", "type": "culture", "icon": "jp-torii", "desc": "神社。" },
+                { "time": "13:00", "title": "stamp：松本駅 紀念章", "type": "stamp", "desc": "車站、觀光案內所的紀念章。" },
+                { "time": "14:00", "title": "stamp + jp-post：松本郵便局 風景印", "type": "stamp", "icon": "jp-post", "desc": "郵局風景印、寄明信片。", "amount": 100 },
+                { "time": "15:00", "title": "stamp + jp-genki-badge：東橫INN GENKIバッジ", "type": "stamp", "icon": "jp-genki-badge", "desc": "東橫INN ご当地GENKIバッジ，櫃台購買，每間店只賣所在縣的版本。", "amount": 300 },
+                { "time": "18:00", "title": "festival：松本ぼんぼん", "type": "festival", "desc": "祭典、夏祭、屋台。" },
+                { "time": "19:30 - 20:30", "title": "festival + jp-hanabi：諏訪湖花火大會", "type": "festival", "icon": "jp-hanabi", "desc": "花火大會。", "amount": 5000 }
+            ]
+        },
+        "2026-12-03": {
+            "title": "美食",
+            "region": "food",
+            "subtitle": "松本 ホテル花月",
+            "tips": [
+                { "type": "food", "title": "food", "desc": "美食都是 food，用 `icon` 區分，時間軸列出所有可用的食物圖示。" }
+            ],
+            "timeline": [
+                { "time": "07:30", "title": "food + croissant：麵包早餐", "type": "food", "icon": "croissant", "desc": "麵包、早餐。", "amount": 500 },
+                { "time": "09:00", "title": "food + jp-onigiri：便利商店飯糰", "type": "food", "icon": "jp-onigiri", "desc": "飯糰、便當。", "amount": 300 },
+                { "time": "10:00", "title": "food + coffee：喫茶店", "type": "food", "icon": "coffee", "desc": "咖啡、喫茶店。", "amount": 600 },
+                { "time": "11:30", "title": "food：信州蕎麥麵", "type": "food", "desc": "一般餐廳 (預設 utensils)。", "amount": 1200 },
+                { "time": "13:00", "title": "food + jp-ramen：拉麵", "type": "food", "icon": "jp-ramen", "desc": "拉麵、烏龍麵。", "amount": 1000 },
+                { "time": "14:30", "title": "food + jp-dango：糰子", "type": "food", "icon": "jp-dango", "desc": "和菓子、糰子。", "amount": 300 },
+                { "time": "15:30", "title": "food + cake-slice：甜點", "type": "food", "icon": "cake-slice", "desc": "蛋糕、甜點店。", "amount": 700 },
+                { "time": "16:30", "title": "food + ice-cream-cone：霜淇淋", "type": "food", "icon": "ice-cream-cone", "desc": "霜淇淋、冰品。", "amount": 400 },
+                { "time": "18:00", "title": "food + fish：海鮮 / 壽司", "type": "food", "icon": "fish", "desc": "海鮮丼、壽司。", "amount": 3000 },
+                { "time": "19:30", "title": "food + beef：燒肉", "type": "food", "icon": "beef", "desc": "燒肉、牛排。", "amount": 5000 },
+                { "time": "21:00", "title": "food + beer：居酒屋", "type": "food", "icon": "beer", "desc": "居酒屋、酒吧。", "amount": 3000 }
+            ]
+        },
+        "2026-12-04": {
+            "title": "購物、其他與自訂 icon",
+            "region": "shopping / none / invisiable",
+            "subtitle": "東京 三井ガーデンホテル",
+            "tips": [
+                { "type": "shopping", "title": "shopping", "desc": "購物清單。" },
+                { "type": "none", "title": "none", "desc": "未分類，白底灰框。" },
+                { "type": "invisiable", "title": "invisiable", "desc": "檢視模式完全透明，編輯模式才看得到外框。" }
+            ],
+            "timeline": [
+                { "time": "10:00", "title": "shopping：伴手禮", "type": "shopping", "desc": "購物。", "amount": 3000 },
+                { "time": "13:00", "title": "none + luggage：寄行李", "type": "none", "icon": "luggage", "desc": "none 也可以用 `icon` 換圖示。", "amount": 2000 },
+                { "time": "15:00", "title": "none：未分類事件", "type": "none", "desc": "沒有特定類別 (預設 tag)。" },
+                { "time": "", "title": "invisiable：純文字備註", "type": "invisiable", "desc": "圓點透明，適合寫補充說明。" }
+            ],
+            "guides": [
+                { "type": "info", "icon": "sparkles", "title": "自訂 icon (Lucide)", "desc": "任何項目都可以用 `icon` 欄位覆蓋預設圖示，例如 `\"icon\": \"sparkles\"`。圖示名稱見 [Lucide Icons](https://lucide.dev/icons/)。" },
+                { "type": "culture", "icon": "jp-castle", "title": "自訂 icon (自製圖示)", "desc": "- 景點：`jp-torii`、`jp-castle`、`jp-onsen`、`jp-snowman`\n- 交通：`jp-metro`\n- 集章：`jp-post`、`jp-genki-badge`\n- 祭典：`jp-matsuri`、`jp-hanabi`\n- 美食：`jp-ramen`、`jp-dango`、`jp-onigiri`" },
+                { "type": "food", "icon": "🍜", "title": "自訂 icon (emoji)", "desc": "emoji 也可以，但風格會與其他圖示不同。" }
+            ]
+        },
+        "2026-12-05": {
+            "title": "Markdown 語法",
+            "region": "desc 欄位支援的語法",
+            "subtitle": "東京 三井ガーデンホテル",
+            "tips": [
+                { "type": "info", "title": "粗體與行內程式碼", "desc": "這是 **粗體文字**，這是 `inline code`。" },
+                { "type": "info", "title": "連結", "desc": "網頁顯示為按鈕：[Lucide Icons](https://lucide.dev/icons/)\n列印時連結會被移除。" },
+                { "type": "none", "title": "多行段落", "desc": "第一行文字\n第二行文字\n\n空行會被略過" }
+            ],
+            "timeline": [
+                {
+                    "time": "09:00",
+                    "title": "無序清單 (兩層)",
+                    "type": "none",
+                    "desc": "- 第一層 A\n  - 第二層 A-1\n  - 第二層 A-2\n- 第一層 B\n* 星號也可以當清單符號"
+                },
+                {
+                    "time": "10:00",
+                    "title": "有序清單",
+                    "type": "none",
+                    "desc": "1. 數字編號\n2. 第二項\n#. 井字號也會自動編號\n  - 有序清單下的子項目"
+                },
+                {
+                    "time": "11:00",
+                    "title": "段落與清單混排",
+                    "type": "none",
+                    "desc": "開頭的一般段落\n- 清單項目一\n- 清單項目二\n中間的一般段落 (會結束上面的清單)\n1. 新的有序清單"
+                },
+                {
+                    "time": "13:00",
+                    "title": "圖片：一般網址",
+                    "type": "info",
+                    "icon": "image",
+                    "desc": "![新幹線路線圖](https://linshibi.com/wp-content/uploads/2018/08/%E6%9D%B1%E6%97%A5%E6%9C%AC%E9%95%B7%E9%87%8E%E6%96%B0%E6%BD%9F1.png)"
+                },
+                {
+                    "time": "14:00",
+                    "title": "圖片：網站內相對路徑",
+                    "type": "info",
+                    "icon": "image",
+                    "desc": "![assets 資料夾內的圖片](assets/tokyo_office.png)"
+                },
+                {
+                    "time": "15:00",
+                    "title": "圖片：Google Drive 分享連結",
+                    "type": "info",
+                    "icon": "image",
+                    "desc": "分享連結會自動轉成 thumbnail 網址 (檔案需設為「知道連結的任何人」可檢視)：\n![Drive 圖片](https://drive.google.com/file/d/1OQ3NejQ98hJ7oU4eCl-wklw0tgQEa-O2/view?usp=sharing)"
+                },
+                {
+                    "time": "16:00",
+                    "title": "綜合範例",
+                    "type": "info",
+                    "desc": "**集合地點**：松本駅 `お城口`\n- 攜帶物品\n  - 護照\n  - **JR Pass**\n- 參考 [乘換案內](https://www.jorudan.co.jp/)"
+                }
+            ]
+        },
+        "2026-12-06": {
+            "title": "欄位與邊界情況：這是一個特別長的標題，用來測試標題在各種螢幕寬度下的換行效果",
+            "region": "邊界情況",
+            "subtitle": "宿：東橫INN 松本駅東口 (列印時會移除「宿：」)",
+            "tips": [
+                { "type": "success", "desc": "只有 desc、沒有 title 的卡片。" },
+                { "type": "info", "title": "只有 title 的卡片" },
+                { "type": "none", "title": "", "desc": "" },
+                { "type": "warning", "visible": "false", "title": "visible: \"false\" (字串)", "desc": "網頁看得到，列印不會出現。" },
+                { "type": "info", "title": "pageBreak: \"after\"", "desc": "列印時這張卡片之後會換頁，時間軸從新的一頁開始。", "pageBreak": "after" }
+            ],
+            "timeline": [
+                {
+                    "time": "08:00",
+                    "title": "只有 title (舊的 event 欄位已不再支援)",
+                    "type": "food",
+                    "desc": "時間軸項目的名稱一律使用 `title`，網頁、列印與預算明細都顯示它。",
+                    "amount": 500
+                },
+                {
+                    "time": "09:00",
+                    "title": "amount 為字串 \"1500\"",
+                    "type": "shopping",
+                    "desc": "字串金額也會被計入預算。",
+                    "amount": "1500"
+                },
+                {
+                    "time": "10:00",
+                    "title": "amount 為 0",
+                    "type": "shopping",
+                    "desc": "金額為 0 不會出現在預算表。",
+                    "amount": 0
+                },
+                {
+                    "time": "11:00",
+                    "title": "未知的 type：xyz",
+                    "type": "xyz",
+                    "desc": "不認得的 type 會套用 none 的樣式。"
+                },
+                {
+                    "time": "11:30",
+                    "title": "舊的 type：subway",
+                    "type": "subway",
+                    "desc": "舊 type 會自動轉成新分類 (transit + jp-metro)，舊資料外觀不變。"
+                },
+                {
+                    "time": "12:00",
+                    "title": "沒有 type 欄位",
+                    "desc": "也會套用 none 的樣式。"
+                },
+                {
+                    "time": "",
+                    "title": "沒有時間",
+                    "type": "none",
+                    "desc": "time 為空字串時不顯示時間標籤。"
+                },
+                {
+                    "time": "13:00",
+                    "title": "pageBreak: \"before\"",
+                    "type": "info",
+                    "pageBreak": "before",
+                    "desc": "列印時這個項目會從新的一頁開始 (網頁上看不出差別)。"
+                },
+                {
+                    "time": "14:00",
+                    "title": "subEvents：子行程 (一層)",
+                    "type": "nature",
+                    "icon": "footprints",
+                    "desc": "子行程縮排顯示在主行程下方，網頁與列印都會顯示。編輯模式可用「+ 子行程」新增。",
+                    "subEvents": [
+                        { "time": "14:10", "title": "子行程 1", "type": "nature", "desc": "第一個子行程。" },
+                        { "time": "14:40", "title": "子行程 2 (有金額)", "type": "stamp", "icon": "camera", "desc": "子行程的金額也會計入預算。", "amount": 300 },
+                        { "time": "14:50", "title": "子行程 3 (visible: false)", "type": "info", "visible": false, "desc": "網頁看得到，列印不會出現。" }
+                    ]
+                },
+                {
+                    "time": "15:00",
+                    "title": "visible: false",
+                    "type": "warning",
+                    "visible": false,
+                    "desc": "網頁看得到，列印不會出現。"
+                },
+                {
+                    "time": "16:00",
+                    "title": "visible: \"false\" (字串)",
+                    "type": "warning",
+                    "visible": "false",
+                    "desc": "字串 \"false\" 也視為隱藏。"
+                }
+            ]
+        }
+    }
+}

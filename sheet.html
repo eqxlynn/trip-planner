@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>單張列印 (sheet)</title>
+    <!-- Tailwind CSS (類別配色沿用 theme.js 的 TYPE_CONFIG) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/sheet.css">
+    <!-- 紙張尺寸與邊界由 sheet.js 依設定寫入 -->
+    <style id="page-style"></style>
+</head>
+<body>
+    <!-- 設定列 (不列印) -->
+    <div id="toolbar" class="toolbar">
+        <a id="tb-back" class="tb-btn" href="index.html" title="返回">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        </a>
+        <strong id="tb-title" class="tb-title">單張列印</strong>
+
+        <label class="tb-field">紙張
+            <select data-param="paper">
+                <option value="A4">A4</option>
+                <option value="A3">A3</option>
+                <option value="B4">B4</option>
+                <option value="Letter">Letter</option>
+            </select>
+        </label>
+        <label class="tb-field">方向
+            <select data-param="orient">
+                <option value="landscape">橫式</option>
+                <option value="portrait">直式</option>
+            </select>
+        </label>
+        <label class="tb-field">邊界
+            <select data-param="margin">
+                <option value="5">5 mm</option>
+                <option value="8">8 mm</option>
+                <option value="10">10 mm</option>
+                <option value="15">15 mm</option>
+            </select>
+        </label>
+        <label class="tb-field">欄距
+            <select data-param="gutter">
+                <option value="4">4 mm</option>
+                <option value="6">6 mm</option>
+                <option value="8">8 mm</option>
+                <option value="10">10 mm</option>
+                <option value="16">16 mm</option>
+            </select>
+        </label>
+        <label class="tb-field">字級
+            <select data-param="fs">
+                <option value="auto">自動縮放</option>
+                <option value="7">7 pt</option>
+                <option value="8">8 pt</option>
+                <option value="9">9 pt</option>
+                <option value="10">10 pt</option>
+                <option value="11">11 pt</option>
+                <option value="12">12 pt</option>
+            </select>
+        </label>
+
+        <label class="tb-field">每頁欄數
+            <select data-param="cols">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </label>
+        <label class="tb-field">主色
+            <select data-param="accent">
+                <option value="slate">石墨</option>
+                <option value="teal">青綠</option>
+                <option value="indigo">靛藍</option>
+                <option value="rose">玫瑰</option>
+                <option value="amber">琥珀</option>
+            </select>
+        </label>
+        <label class="tb-field">說明
+            <select data-param="desc">
+                <option value="0">不顯示</option>
+                <option value="1">1 行</option>
+                <option value="2">2 行</option>
+                <option value="3">3 行</option>
+                <option value="all">全部</option>
+            </select>
+        </label>
+        <label class="tb-field">時間對齊
+            <select data-param="align">
+                <option value="off">不對齊</option>
+                <option value="1">第 1 層</option>
+                <option value="2">第 2 層</option>
+                <option value="3">第 3 層</option>
+                <option value="4">第 4 層</option>
+            </select>
+        </label>
+        <label class="tb-field">對齊單位
+            <select data-param="unit">
+                <option value="year">年</option>
+                <option value="century">世紀</option>
+            </select>
+        </label>
+        <label class="tb-check"><input type="checkbox" data-param="cover"> 封面</label>
+        <label class="tb-check"><input type="checkbox" data-param="toc"> 目錄</label>
+        <label class="tb-check"><input type="checkbox" data-param="head"> 頁首</label>
+        <label class="tb-check"><input type="checkbox" data-param="sub"> 子行程</label>
+        <label class="tb-check"><input type="checkbox" data-param="tips"> Tips</label>
+        <label class="tb-check"><input type="checkbox" data-param="fold"> 摺線</label>
+
+        <span class="tb-spacer"></span>
+        <span id="tb-status" class="tb-status"></span>
+        <button id="tb-print" class="tb-btn tb-primary" type="button">
+            <i data-lucide="printer" class="w-4 h-4"></i> 列印
+        </button>
+
+        <!-- 選擇要列印的頁面 (天數) -->
+        <div id="tb-days" class="tb-days"></div>
+    </div>
+
+    <main id="sheet-root" class="sheet-root"></main>
+
+    <script src="js/core/config.js"></script>
+    <script src="js/core/dom.js"></script>
+    <script src="js/core/date.js"></script>
+    <script src="js/core/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/sheet/sheet.js"></script>
+</body>
+</html>

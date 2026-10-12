@@ -1,0 +1,396 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+/* =========================================================
+ * 單張列印頁 (sheet.html)：每頁並排 N 欄，固定一張紙大小，內容自動縮放
+ * 尺寸變數由 sheet.js 寫入 :root：--page-w、--page-h、--margin；字級寫在各 .sheet 上，其餘以 em 連動
+ * ========================================================= */
+
+:root {
+    --page-w: 297mm;
+    --page-h: 210mm;
+    --margin: 8mm;
+    --gutter: 3mm;
+    --fs: 9pt;
+    --accent: #334155;
+    --accent-soft: #f1f5f9;
+    --ink: #1e293b;
+    --muted: #64748b;
+    --line: #e2e8f0;
+}
+
+body[data-accent="teal"] { --accent: #0f766e; --accent-soft: #f0fdfa; }
+body[data-accent="indigo"] { --accent: #4338ca; --accent-soft: #eef2ff; }
+body[data-accent="rose"] { --accent: #be123c; --accent-soft: #fff1f2; }
+body[data-accent="amber"] { --accent: #b45309; --accent-soft: #fffbeb; }
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    color: var(--ink);
+    background: #cbd5e1;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+/* ---------------- 設定列 ---------------- */
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    padding: 8px 16px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 1px 4px rgba(15, 23, 42, .08);
+    font-size: 13px;
+}
+.tb-title { font-size: 15px; margin-right: 8px; }
+.tb-field { display: flex; align-items: center; gap: 4px; color: var(--muted); }
+.tb-field select {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 2px 4px;
+    font-size: 13px;
+    color: var(--ink);
+    background: #fff;
+}
+.tb-check { display: flex; align-items: center; gap: 4px; color: var(--muted); cursor: pointer; }
+.tb-spacer { flex: 1; }
+.tb-status { color: #b45309; font-size: 12px; }
+.tb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink);
+    text-decoration: none;
+    cursor: pointer;
+}
+.tb-btn:hover { background: #f8fafc; }
+.tb-primary { background: #1e293b; border-color: #1e293b; color: #fff; }
+.tb-primary:hover { background: #334155; }
+.tb-days { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px; }
+.tb-days { gap: 4px 14px; }
+.tb-day {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+}
+.tb-day input { margin: 0; accent-color: #1e293b; cursor: pointer; }
+.tb-day:has(input:checked) { color: var(--ink); }
+.tb-day.empty span { opacity: .45; text-decoration: line-through; }
+
+/* ---------------- 紙張 ---------------- */
+.sheet-root {
+    /* 螢幕預覽縮放 (sheet.js 依視窗寬度設定 --preview-zoom)，列印時固定為 1 */
+    zoom: var(--preview-zoom, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+}
+.sheet {
+    position: relative;
+    width: var(--page-w);
+    height: var(--page-h);
+    padding: var(--margin);
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, .25);
+    font-size: var(--fs);
+    line-height: 1.4;
+    overflow: hidden;
+}
+.sheet-overflow::after {
+    content: '內容超出版面：請減少天數、隱藏說明或縮小字級';
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 11px;
+}
+.sheet-error { height: auto; padding: 24px; color: #b91c1c; font-weight: 700; }
+
+@media print {
+    body { background: #fff; }
+    .toolbar { display: none; }
+    .sheet-root { display: block; padding: 0; zoom: 1; }
+    .sheet { box-shadow: none; }
+    /* 略小於紙張高度，避免進位誤差多出空白頁 */
+    .sheet { height: calc(var(--page-h) - 0.5mm); break-after: page; page-break-after: always; }
+    .sheet:last-child { break-after: auto; page-break-after: auto; }
+    .sheet-overflow::after { display: none; }
+}
+
+/* =========================================================
+ * sheet 版型
+ * ========================================================= */
+.dm { display: flex; flex-direction: column; gap: 0.8em; }
+
+.dm-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 0 0.2em 0.45em 0.2em;
+    border-bottom: 2px solid var(--accent);
+    color: var(--ink);
+}
+.dm-title { font-size: 2.2em; font-weight: 900; letter-spacing: .06em; line-height: 1.15; color: var(--accent); }
+.dm-subtitle { font-size: 1.05em; color: var(--muted); text-align: right; }
+.dm-range { text-align: right; white-space: nowrap; }
+.dm-range b { display: block; font-size: 1.5em; font-weight: 900; letter-spacing: .04em; color: var(--accent); }
+.dm-range span { font-size: 0.95em; color: var(--muted); }
+
+.dm-cols {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    /* 列高固定為剩餘空間，內容超出時由 .dm-day 裁切 (用來判斷是否需要縮小字級) */
+    grid-template-rows: minmax(0, 1fr);
+    gap: 0;
+}
+.dm-day {
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 0.8em;
+    background: #fff;
+}
+
+/* 各欄內容字級 (sheet.js fitPackedColumns 依內容量設定 --col-scale)，欄位標題不縮放 */
+.dm-day > .dm-tl, .dm-day > .dm-tips { font-size: calc(var(--col-scale, 1) * 1em); }
+
+/* 單日標題 */
+.dm-day-head {
+    display: flex;
+    gap: 0.7em;
+    align-items: stretch;
+    padding: 0.7em 0.8em;
+    background: var(--accent-soft);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0.8em 0.8em 0 0;
+}
+.dm-date {
+    flex-shrink: 0;
+    width: 4.6em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.6em;
+    background: #fff;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    padding: 0.25em 0;
+    line-height: 1.05;
+}
+.dm-date .dm-dayno { font-size: 0.8em; font-weight: 900; letter-spacing: .12em; }
+.dm-date .dm-daynum { font-size: 2em; font-weight: 900; }
+.dm-date .dm-dow { font-size: 0.8em; font-weight: 700; letter-spacing: .08em; }
+.dm-date.sat { border-color: #047857; color: #047857; }
+.dm-date.sun { border-color: #e11d48; color: #e11d48; }
+/* 非日期 key (例如「中古 / 東亞」)：上方小字、中間兩三個字 */
+.dm-date-key { width: 5.2em; padding: 0.35em 0.2em; }
+.dm-date-key .dm-dayno { font-size: 0.75em; letter-spacing: .04em; text-align: center; line-height: 1.2; word-break: break-all; margin-bottom: 0.2em; }
+.dm-date-key .dm-daynum { font-size: 1.5em; letter-spacing: .06em; }
+.dm-day-info { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 0.2em; }
+.dm-day-title { font-size: 1.35em; font-weight: 900; line-height: 1.25; }
+.dm-meta { display: flex; align-items: center; gap: 0.3em; color: var(--muted); font-size: 0.95em; }
+.dm-meta svg { width: 1.1em; height: 1.1em; flex-shrink: 0; }
+
+/* 時間軸 */
+.dm-tl { list-style: none; margin: 0; padding: 0.7em 0.8em 0.4em 0.8em; flex: 0 0 auto; }
+.dm-ev { position: relative; padding-left: 2.3em; padding-bottom: 0.65em; break-inside: avoid; }
+.dm-ev::before {
+    content: '';
+    position: absolute;
+    left: 0.85em;
+    top: 1.8em;
+    bottom: 0;
+    border-left: 1.5px solid var(--line);
+}
+.dm-ev:last-child::before { display: none; }
+.dm-dot {
+    position: absolute;
+    left: 0;
+    top: 0.05em;
+    width: 1.75em;
+    height: 1.75em;
+    border-radius: 999px;
+    border: 1.5px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+.dm-dot svg, .dm-dot img, .dm-dot .custom-icon { width: 1em !important; height: 1em !important; }
+.dm-time { font-size: 0.85em; font-weight: 900; color: var(--accent); letter-spacing: .03em; white-space: nowrap; margin-right: 0.15em; }
+.dm-ev-title { font-size: 1.1em; font-weight: 700; line-height: 1.3; }
+.dm-solo > .dm-body { border: 1px dashed #94a3b8; border-radius: 0.5em; padding: 0.2em 0.45em; }
+.dm-desc {
+    color: #475569;
+    font-size: 0.9em;
+    margin-top: 0.1em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.dm-desc b { color: var(--ink); }
+.dm-table { width: 100%; border-collapse: collapse; margin: 0.2em 0; font-size: 0.95em; line-height: 1.3; }
+.dm-table th, .dm-table td { border: 1px solid #e2e8f0; padding: 0.1em 0.3em; text-align: left; vertical-align: top; }
+.dm-table th { background: #f8fafc; color: var(--ink); font-weight: 700; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.dm-table-split { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.3em; align-items: start; }
+.dm-img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0.3em auto; border-radius: 0.4em; }
+.dm-subs { list-style: none; margin: 0.25em 0 0 0; padding: 0; }
+/* 子行程與主項目標題同字級 (.dm-ev-title)，只是不加粗 */
+.dm-sub { display: flex; gap: 0.35em; align-items: baseline; font-size: 1.1em; font-weight: 400; line-height: 1.3; }
+.dm-sub + .dm-sub { margin-top: 0.1em; }
+.dm-sub .dm-sub-icon { flex-shrink: 0; width: 1em; height: 1em; display: inline-flex; transform: translateY(0.15em); }
+.dm-sub .dm-sub-icon svg, .dm-sub .dm-sub-icon img { width: 1em !important; height: 1em !important; }
+.dm-sub .dm-sub-time { color: var(--accent); font-weight: 400; white-space: nowrap; }
+.dm-sub-2 { padding-left: 1.3em; }
+.dm-sub.dm-solo { border: 1px dashed #94a3b8; border-radius: 0.4em; padding: 0.05em 0.35em; margin-left: -0.35em; }
+
+/* Tips */
+.dm-tips { display: flex; flex-direction: column; gap: 0.4em; margin-top: auto; padding: 0 0.8em 0.8em 0.8em; }
+.dm-tip { border: 1px solid; border-radius: 0.5em; padding: 0.35em 0.55em; font-size: 0.88em; }
+.dm-tip-title { display: flex; align-items: center; gap: 0.3em; font-weight: 700; }
+.dm-tip-title svg, .dm-tip-title img { width: 1.1em !important; height: 1.1em !important; flex-shrink: 0; }
+.dm-tip .dm-desc { font-size: 1em; }
+
+.dm-foot { display: flex; justify-content: space-between; color: #94a3b8; font-size: 0.8em; }
+
+/* =========================================================
+ * 時間對齊 (align=1|2|3)：各欄共用列，同一時間排在同一列
+ * ========================================================= */
+.al-grid {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: grid;
+    align-content: start;
+    column-gap: 0;
+}
+.al-head .dm-day-head { height: 100%; border: 1px solid var(--line); border-radius: 0.8em 0.8em 0 0; }
+.al-cell {
+    position: relative;
+    padding: 0.3em 0.6em 0 0.6em;
+    border-top: 1px dashed var(--line);
+}
+/* 欄內縱向時間線：每格都畫，上下相接成一條 */
+.al-cell::before {
+    content: '';
+    position: absolute;
+    left: calc(0.6em + 0.85em);
+    top: 0;
+    bottom: 0;
+    border-left: 1.5px solid var(--line);
+}
+.al-list { list-style: none; margin: 0; padding: 0; position: relative; }
+.al-list .dm-ev { padding-bottom: 0.3em; }
+.al-list .dm-ev::before { display: none; }
+.al-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-bottom: 0.3em;
+    padding: 0.15em 0.5em;
+    border-radius: 0.4em;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.95em;
+}
+.al-group svg, .al-group img { width: 1.1em !important; height: 1.1em !important; flex-shrink: 0; }
+.al-group span { color: var(--muted); font-size: 0.9em; }
+/* 間距用 padding (不用 margin)，分頁量測列高時才會算進去 */
+.al-band { padding-top: 0.3em; }
+.al-band .al-group { margin: 0; border-top: 2px solid var(--accent); border-radius: 0 0 0.4em 0.4em; font-size: 1.05em; }
+/* 接續上一頁的分組列 */
+.al-cont b::after { content: '（續）'; font-weight: 400; color: var(--muted); }
+/* 世紀模式 (unit=century)：每列前的世紀標籤 */
+.al-century {
+    margin-top: 0.35em;
+    padding: 0.1em 0.5em;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 900;
+    font-size: 0.9em;
+    letter-spacing: .06em;
+}
+.al-century + .al-cell, .al-century ~ .al-cell { border-top: none; }
+.al-carry { border-top: none; }
+.al-tips { display: flex; flex-direction: column; gap: 0.4em; padding-top: 0.5em; border-top: 1px dashed var(--line); }
+
+/* =========================================================
+ * 封面 (cover=1)：標題 + metadata.guides 說明卡，以 CSS 分欄排列
+ * ========================================================= */
+.dm-cover {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: grid;
+    align-items: start;
+}
+.dm-cover-card { break-inside: avoid; margin-bottom: 0.7em; padding: 0.6em 0.8em; font-size: 1em; }
+.dm-cover-card .dm-tip-title { font-size: 1.15em; margin-bottom: 0.2em; }
+.dm-cover-card .dm-desc { line-height: 1.55; }
+/* 封面目錄 */
+.dm-toc-list { list-style: none; margin: 0; padding: 0; }
+.dm-toc-when { flex: none; display: flex; flex-direction: column; line-height: 1.2; min-width: 4.6em; }
+.dm-toc-row { display: flex; align-items: center; gap: 0.6em; padding: 0.35em 0; border-bottom: 1px dotted #cbd5e1; }
+.dm-toc-row:last-child { border-bottom: 0; }
+/* 目錄日期：同網頁版列印的日曆圖示 (月／日／星期，週末換色) */
+.dm-toc-cal { flex: none; width: 3.2em; display: flex; flex-direction: column; align-items: center; border: 1.5px solid #1e293b; border-radius: 0.45em; background: #fff; color: #1e293b; padding: 0.15em 0; line-height: 1.05; font-weight: 700; }
+.dm-toc-cal.sat { border-color: #047857; color: #047857; }
+.dm-toc-cal.sun { border-color: #e11d48; color: #e11d48; }
+.dm-toc-mon, .dm-toc-dow { font-size: 0.6em; text-transform: uppercase; letter-spacing: .04em; }
+.dm-toc-day { font-size: 1.35em; font-weight: 900; }
+.dm-toc-date { font-size: 0.8em; color: #475569; white-space: nowrap; }
+.dm-toc-title { flex: 1; min-width: 0; font-weight: 700; font-size: 1.25em; }
+/* 目錄整體放大 (.dm-tip 預設 0.88em)；放不下時封面自動字級會再縮 */
+.dm-cover-card.dm-toc { font-size: 1.1em; padding: 0; border: 0; background: none; }
+
+/* =========================================================
+ * 摺頁對位：每欄正好佔紙寬的 1/N (grid 欄距為 0)，左右留白由各欄自己負責：
+ * 靠紙張外緣 (.col-first 左側、.col-last 右側) 用「邊界」，靠摺線用「欄距」的一半，
+ * 摺線 (紙寬 1/3、2/3 …) 因此剛好落在兩欄留白的正中央，可平均摺成 N 摺
+ * ========================================================= */
+.sheet.dm { --edge: var(--margin); padding-left: 0; padding-right: 0; }
+.dm-head, .dm-foot { margin-left: var(--edge); margin-right: var(--edge); }
+.dm-cols > .dm-day, .al-grid > * { margin-left: var(--gutter); margin-right: var(--gutter); }
+.dm-cols > .col-first, .al-grid > .col-first { margin-left: var(--edge); }
+.dm-cols > .col-last, .al-grid > .col-last { margin-right: var(--edge); }
+.dm-cover { padding: 0 var(--edge); column-gap: calc(2 * var(--gutter)); }
+.dm-cover-col { min-width: 0; }
+
+/* 摺線記號 (fold=1)：紙寬 1/N 處，上下邊界各一小段短線 (長度為邊界的 60%，不壓到內容) */
+.dm-fold { position: absolute; top: 0; bottom: 0; width: 0; pointer-events: none; }
+.dm-fold::before, .dm-fold::after {
+    content: '';
+    position: absolute;
+    left: -0.2mm;
+    height: calc(var(--margin) * 0.6);
+    border-left: 0.4mm solid #94a3b8;
+}
+.dm-fold::before { top: 0; }
+.dm-fold::after { bottom: 0; }
