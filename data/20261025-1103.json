@@ -1,0 +1,659 @@
+{
+  "metadata": {
+    "title": "北阿爾卑斯深秋紀行",
+    "subtitle": "長野．立山黑部．日光．東京｜2026/10/25 ~ 11/03",
+    "coverMargin": "15mm 0mm 0mm 0mm",
+    "guides": [
+      {
+        "type": "info",
+        "icon": "map",
+        "title": "行程總覽",
+        "desc": "![](./data/20261025-1103-route.svg)"
+      },
+      {
+        "hide": [
+          "sheet"
+        ],
+        "type": "info",
+        "icon": "languages",
+        "title": "地名對照",
+        "desc": "中文 | 日文讀音 | English\n---|---|---\n成田空港 | なりたくうこう | Narita Airport\n新宿 | しんじゅく | Shinjuku\n松本 | まつもと | Matsumoto\n新島島 | しんしましま | Shin-Shimashima\n上高地 | かみこうち | Kamikochi\n大正池 | たいしょういけ | Taisho Pond\n白馬岩岳 | はくばいわたけ | Hakuba Iwatake\n信濃大町 | しなのおおまち | Shinano-Omachi\n扇沢 | おうぎさわ | Ogizawa\n室堂 | むろどう | Murodo\n富山 | とやま | Toyama\n長野 | ながの | Nagano\n戸隠 | とがくし | Togakushi\n宇都宮 | うつのみや | Utsunomiya\n日光 | にっこう | Nikko\n戦場ヶ原 | せんじょうがはら | Senjogahara"
+      },
+      {
+        "hide": ["all"],
+        "type": "nature",
+        "icon": "leaf",
+        "title": "紅葉即時資訊 / Live Camera",
+        "desc": "出發前幾天和前一晚看一下, 決定要不要調整順序。\n- **綜合:** [tenki.jp 紅葉情報](https://tenki.jp/kouyou/) [ウェザーニュース 紅葉](https://weathernews.jp/koyo/)\n- **10/26 上高地:** [上高地公式](https://www.kamikochi.or.jp/) [五千尺ホテル 河童橋 Live](https://www.youtube.com/results?search_query=%E4%BA%94%E5%8D%83%E5%B0%BA%E3%83%9B%E3%83%86%E3%83%AB+%E4%B8%8A%E9%AB%98%E5%9C%B0+%E3%83%A9%E3%82%A4%E3%83%96%E3%82%AB%E3%83%A1%E3%83%A9) [白樺荘 穂高 (每小時照片)](https://camera2-shirakabaso.com/hotaka/image_hourly.jpg)\n- **10/28 立山黑部:** [立山室堂平 Live](https://www.alpen-route.com/live_camera/murodou.html) [黒部ダム Live](https://www.kurobe-dam.com/livecamera/)\n- **10/29 戶隱 鏡池:** [戸隠観光協会 ライブカメラ](https://togakushi-21.jp/livecam/) (鏡池約 10 分鐘更新一次)"
+      },
+      {
+        "icon": "leaf",
+        "title": "各景點最新預測",
+        "desc": "日期 | 景點 | Weathernews (預測 / 現況) | tenki.jp (預測 / 10/14 現況)\n---|---|---|---\n10/26 | 河童橋 | 10/30 起落葉 / 見頃, 7~8 成轉色(10/14) [WN](https://weathernews.jp/koyo/spot/24823/) | 10/15 起 / 開始轉色 [tenki](https://tenki.jp/kouyou/3/23/35124.html)\n10/27 | 白馬岩岳 | 10/22 ~ 11/10 / 轉色約一半, 約 5 成(10/14) [WN](https://weathernews.jp/koyo/spot/24870/) | 10 月中旬到 11 月中旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/23/30854.html)\n10/28 | 黒部ダム | 往年 10 月中旬到下旬 / 稍微開始轉色, 約 2 成(10/13) [WN](https://weathernews.jp/koyo/spot/25522/) | 現況: 開始轉色 [tenki](https://tenki.jp/kouyou/4/19/30857.html)\n10/28 | 大観峰.立山ロープウェイ | 往年 10 月上旬到中旬 / 落葉中, 剩 5~6 成(10/13) [WN](https://weathernews.jp/koyo/spot/25512/) | 10 月上旬到中旬 / 開始褪色 [tenki](https://tenki.jp/kouyou/4/19/30312.html)\n10/28 | 室堂平 | 往年 9 月下旬到 10 月上旬 / 落葉中, 剩 5~6 成(10/14) [WN](https://weathernews.jp/koyo/spot/25510/) | 9 月中旬到 10 月上旬 / 開始褪色 [tenki](https://tenki.jp/kouyou/4/19/30314.html)\n10/29 | 戶隱 鏡池 | 10/16 ~ 10/31 / 轉色超過一半, 約 6 成(10/14) [WN](https://weathernews.jp/koyo/spot/24855/) | 10 月上旬到下旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/23/35141.html)\n10/30 | 日光 竜頭滝 | 10/17 ~ 10/31 / 轉色約一半, 約 5 成(10/13) [WN](https://weathernews.jp/koyo/spot/24111/) | 9 月下旬到 10 月中旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/12/34658.html)\n10/30 | 日光 中禅寺湖 | 10/27 ~ 11/10 / 還沒轉色(10/13) [WN](https://weathernews.jp/koyo/spot/24104/) | 10 月中旬到 11 月上旬 / 青葉 [tenki](https://tenki.jp/kouyou/3/12/34453.html)"
+      },
+      {
+        "hide": ["all"],
+        "type": "culture",
+        "icon": "map-pin",
+        "title": "備選景點",
+        "desc": "地區 | 景點 | 交通 | 簡介\n---|---|---|---\n松本周邊 | 大王わさび農場 (安曇野) | 松本搭大糸線到穂高站, 騎腳踏車約 15 ~ 20 分鐘 (走路 30 ~ 40 分鐘)。站前有租車店和安曇野シェアサイクル (電動輔助車, 營業到 11 月底) | 日本最大規模的山葵農場, 湧水清澈, 有水車小屋。免費入場, 10 月 8:00 - 17:00。松本到信濃大町不到 100 km 不能中途下車, 在穂高下車要分兩段買票。\n松本周邊 | 諏訪大社 下社 (秋宮、春宮) | 松本搭 JR 到下諏訪站, 走約 10 分鐘到秋宮 | 信濃國一之宮, 社殿四角立著御柱。旁邊就是諏訪湖。\n長野 | 小布施 | 長野搭長野電鉄約 30 分鐘 | 栗子甜點的老街, 有葛飾北斎晚年作品的北斎館。\n長野 | 地獄谷野猿公苑．湯田中渋温泉 | 長野搭長野電鉄到湯田中, 再轉巴士 | 可以看泡溫泉的猴子, 不過 10 月底通常還沒下雪。"
+      }
+    ]
+  },
+  "detail": {
+    "2026-10-25": {
+      "region": "桃園 ➔ 成田 ➔ 新宿 ➔ 松本",
+      "title": "抵達日本與長途大移動",
+      "subtitle": "東橫INN 松本東口",
+      "tips": [
+        {
+          "type": "jr",
+          "title": "交通攻略",
+          "desc": "- 購買 NEX 來回車票 5200\n"
+        },
+        {
+          "type": "hotel",
+          "title": "東横INN松本駅東口",
+          "desc": "TEL：0263-44-1045\n1-1-4 Fukashi, Matsumoto city, Nagano 390-0815 Japan\n〒390-0815 長野県松本市深志1-1-4"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "10:55 - 14:55",
+          "title": "TPE ➔ NRT",
+          "type": "flight",
+          "desc": "JAL, 抵達成田第 2 航廈。降落後快速下樓前往「鐵道」搭車處。",
+          "amount": 0
+        },
+        {
+          "title": "成田第２ビル ➔ 新宿 (Shinjuku)",
+          "type": "jr",
+          "desc": "入境加領行李約 45 ~ 60 分鐘, 趕得上就搭 34 號, 在新宿有時間買便當再轉あずさ。",
+          "amount": 3325,
+          "subEvents": [
+            {
+              "time": "15:48 - 17:12",
+              "title": "成田エクスプレス34号(新宿行)",
+              "type": "jr",
+              "desc": ""
+            },
+            {
+              "time": "16:23 - 17:43",
+              "title": "成田エクスプレス36号(新宿行)",
+              "type": "jr",
+              "desc": ""
+            },
+            {
+              "time": "16:48 - 18:13",
+              "title": "成田エクスプレス38号(新宿行)",
+              "type": "jr",
+              "desc": "接 19:00 あずさ49号。"
+            }
+          ]
+        },
+        {
+          "title": "新宿(Shinjuku) ➔ 松本 (Matsumoto)",
+          "type": "jr",
+          "amount": 6730,
+          "subEvents": [
+            {
+              "time": "18:00 - 20:42",
+              "title": "あずさ45号(松本行)",
+              "type": "jr"
+            },
+            {
+              "time": "19:00 - 21:46",
+              "title": "あずさ49号(松本行)",
+              "type": "jr"
+            }
+          ]
+        },
+        {
+          "time": "",
+          "title": "東橫INN 松本",
+          "type": "hotel",
+          "desc": "明天 06:31 搭電車前往上高地, 今天早點休息！",
+          "amount": 0
+        },
+        {
+          "time": "17:30 - 01:00",
+          "title": "信州元祖あみやばーぐ",
+          "type": "food",
+          "desc": "松本站步行約 3 分鐘。燒肉店經營的炭火/鐵網炙烤純牛肉漢堡排定食, 白飯可免費續碗。**週一公休**。[Google Map](https://www.google.com/maps/search/?api=1&query=%E7%84%BC%E8%82%89%E5%B1%8B%E3%81%AE%E3%83%8F%E3%83%B3%E3%83%90%E3%83%BC%E3%82%B0%20%E3%81%82%E3%81%BF%E3%82%84%20%E6%9D%BE%E6%9C%AC)",
+          "amount": 0
+        },
+        {
+          "type": "shopping",
+          "icon": "apple",
+          "title": "松本站周邊超市",
+          "desc": "- **信州アルプス市場**: 車站大樓 MIDORI 松本 1F, 10:00 - 20:00, 長野縣產當季水果最方便\n- **デリシア 松本駅前店**: 巴士總站大樓 B1, 9:00 - 21:00, 價格平實。\n10 月底當季: 信州蘋果 (シナノスイート、秋映)、洋梨、葡萄。"
+        }
+      ]
+    },
+    "2026-10-26": {
+      "title": "上高地全日深秋大巡禮",
+      "region": "松本 ⇄ 上高地",
+      "subtitle": "東橫INN 松本東口",
+      "guides": [
+        {
+          "type": "nature",
+          "title": "上高地",
+          "desc": "擁有「神降地」美譽的阿爾卑斯山脈秘境, 清澈的梓川與穗高連峰交織出絕美的自然畫卷。\n![](https://www.kamikochi.org/tw/wp-content/uploads/sites/2/2025/06/walking_map_tw.svg)"
+        }
+      ],
+      "tips": [
+        {
+          "type": "transit",
+          "icon": "bus",
+          "title": "交通攻略",
+          "desc": "松本站搭上高地線電車到新島島, 轉巴士前往上高地, 預約開放時間為搭乘日的前一個月。回程的巴士與電車票可於線上一次預約。[上高地交通全攻略](https://visit-nagano.alpico.co.jp/zh-hant/travelog/post/getting-to-kamikochi-from-matsumoto-by-bus)"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "06:31 - 07:01 - 08:04",
+          "title": "松本 ➔ 新島島 ➔ 大正池",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "松本站搭上高地線電車 06:31 到新島島 (07:01), 轉 07:10 巴士到大正池 (08:04)。\n備案: 07:15 電車 ➔ 08:00 巴士, 08:54 到大正池。[時刻表](https://visit-nagano.alpico.co.jp/zh-hant/timetable/matsumoto-kamikochi)",
+          "amount": 5000
+        },
+        {
+          "time": "08:10 - 15:30",
+          "title": "上高地健行",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "擁有「神降地」美譽的阿爾卑斯山脈秘境, 清澈的梓川與穗高連峰交織出絕美的自然畫卷。\n10 月下旬是落葉松 (カラマツ) 轉金黃的季節。早晚接近 0°C, 請穿羽絨外套、戴手套。",
+          "subEvents": [
+            {
+              "type": "nature",
+              "icon": "camera",
+              "title": "大正池: 枯木與雪山的鏡面絕景",
+              "desc": "1915 年焼岳火山噴發, 泥石流堵住梓川形成的堰塞湖。最有名的是立在湖水中的「枯立木」, 不過經過百年風雨, 現在剩下的已經不多。清晨湖面常有一層晨霧; 無風的晴天, 湖面會倒映後方的穗高連峰和焼岳。"
+            },
+            {
+              "type": "nature",
+              "icon": "map-pin",
+              "title": "田代池",
+              "desc": "大正池往河童橋方向走約 20 分鐘。霞沢岳流下的伏流水形成的淺池和濕原, 水清澈見底, 冬天也不會全部結冰。早上常有霜和霧, 很適合拍照。"
+            },
+            {
+              "type": "nature",
+              "icon": "map-pin",
+              "title": "河童橋",
+              "desc": "橫跨梓川的木造吊橋, 上高地最具代表性的風景。站在橋上往上游看是穗高連峰, 往下游看是焼岳。周邊有飯店、餐廳、商店和廁所, 走到巴士總站約 5 分鐘。"
+            },
+            {
+              "type": "nature",
+              "icon": "map-pin",
+              "title": "明神橋",
+              "desc": "從河童橋沿梓川左岸 (小梨平那一側) 走約 1 小時, 路寬又平。明神橋也是木造吊橋, 正前方是明神岳, 過橋就到穗高神社奧宮。"
+            },
+            {
+              "type": "nature",
+              "icon": "camera",
+              "title": "明神池: 靜謐的神域",
+              "desc": "穗高神社奧宮的神池, 被原始森林環繞, 分成「一之池」和「二之池」, 水清澈見底, 池中散落巨石和倒木, 氣氛神秘莊嚴。拜觀料 ¥500 (6:00 - 17:00)。\n旁邊的**嘉門次小屋**有用圍爐裏柴火現烤的鹽燒岩魚 (單點 ¥1,500), 食堂 10:00 - 14:00, 不能訂位, 賣完就沒了。\n回程走梓川右岸, 經過岳沢濕原的木棧道回河童橋。"
+            }
+          ]
+        },
+        {
+          "time": "16:00 - 17:05 - 17:51",
+          "title": "上高地 ➔ 新島島 ➔ 松本",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "[時刻表](https://visit-nagano.alpico.co.jp/zh-hant/timetable/kamikochi-matsumoto)",
+          "amount": 3810
+        },
+        {
+          "time": "17:30 - 21:30",
+          "title": "民芸レストラン 盛よし",
+          "type": "food",
+          "desc": "昭和懷舊洋食定食, 漢堡排、蟹肉奶油可樂餅、炸蝦都是人氣菜, 醬汁手工、份量大。[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%B0%91%E8%8A%B8%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%20%E7%9B%9B%E3%82%88%E3%81%97%20%E6%9D%BE%E6%9C%AC)\n",
+          "amount": 0
+        }
+      ]
+    },
+    "2026-10-27": {
+      "region": "松本 ➔ 信濃大町",
+      "title": "國寶松本城 ➔ 大町溫泉",
+      "subtitle": "Route INN 信濃大町",
+      "guides": [
+        {
+          "type": "culture",
+          "icon": "jp-castle",
+          "title": "松本城",
+          "desc": "這座背靠著壯麗北阿爾卑斯山的黑色堡壘，是日本現存最古老的五重六層木造天守，也是與姬路城、彥根城等齊名的「日本國寶五城」之一。松本城的外觀以黑白對比為主，上層覆蓋白漆喰，下層則是黑色的雨覆板。![](https://drive.google.com/file/d/1OQ3NejQ98hJ7oU4eCl-wklw0tgQEa-O2/view?usp=sharing)"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "",
+          "title": "松本散策",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "Check-out 行李寄放在東橫INN櫃台, 走到松本城約 20 分鐘。",
+          "amount": 0,
+          "subEvents": [
+            {
+              "title": "松本城",
+              "type": "culture",
+              "icon": "jp-castle",
+              "desc": "8:30 開門。先到埋橋拍天守, 只看外觀和本丸庭園 (天守排隊久、樓梯最陡約 61°)。\n日本現存最古老的五重六層木造天守, 「國寶五城」之一 (另外四座是姬路城、彥根城、犬山城、松江城)。黑色雨覆板配白漆喰, 又叫「烏城」。",
+              "amount": 0
+            },
+            {
+              "time": "9:00 - 17:00",
+              "title": "舊開智學校",
+              "type": "culture",
+              "icon": "camera",
+              "desc": "1876 年建的擬洋風校舍, 2019 年成為第一座被指定為國寶的近代學校建築。耐震工程完成後 2024/11 重新開放, 最後入館 16:30, 3 ~ 11 月每月第 3 個週二休館。從松本城往北走約 10 分鐘。",
+              "amount": 0
+            },
+            {
+              "time": "9:00 - 17:45",
+              "title": "松本市観光情報センター",
+              "type": "stamp",
+              "desc": "マンホールカード: 國寶松本城 + 傳統民藝「松本手鞠 (てまり)」。\n位於松本市役所大手事務所 1F (大手 3-8-13), 在松本城附近。**JR 松本站內的觀光案內所沒有發**。",
+              "amount": 0
+            },
+            {
+              "title": "午餐: 中町通り．縄手通り",
+              "type": "food",
+              "desc": "中町通り是白牆黑瓦的倉庫街, 縄手通り是青蛙老街, 都在松本城南邊, 吃午餐順便逛。",
+              "amount": 0
+            }
+          ]
+        },
+        {
+          "time": "",
+          "title": "松本 ➔ 信濃大町",
+          "type": "jr",
+          "desc": "回東橫INN拿行李, 大糸線班次不多, 先查好時間。[時刻表](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%9D%BE%E6%9C%AC&eki2=%E5%A4%A7%E7%94%BA%E6%B8%A9%E6%B3%89%E9%83%B7%E3%80%94%E3%82%A2%E3%83%AB%E3%83%94%E3%82%B3%E4%BA%A4%E9%80%9A%EF%BC%BB%E9%95%B7%E9%87%8E%E5%9C%B0%E5%8C%BA%EF%BC%BD%E3%80%95&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=10&Ddd=27&Dhh=12&Dmn1=0&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=1&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=B-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 715
+        },
+        {
+          "time": "08:30 - 17:15",
+          "title": "大町市觀光協會",
+          "type": "stamp",
+          "desc": "位於 JR 大糸線信濃大町車站內。マンホールカード: 兩隻雷鳥 (大町市市鳥、特別天然紀念物)、後立山連峰與仁科三湖。右上的雙峰是鹿島槍岳, 上面的雪溪就是長野縣第一座被確認的冰河「カクネ里氷河」。"
+        },
+        {
+          "time": "",
+          "title": "Route INN 信濃大町 寄放行李",
+          "type": "hotel",
+          "desc": "先寄放行李。明天帶行李到扇沢站放置物櫃。"
+        },
+        {
+          "time": "09:00 - 17:00",
+          "title": "市立大町山岳博物館",
+          "type": "culture",
+          "icon": "mountain",
+          "desc": "北阿爾卑斯的自然與登山歷史, 附設動植物園可以看到雷鳥, 當作明天立山的預習。最後入館 16:30, 週一休館。從信濃大町站走約 25 分鐘 (計程車約 5 分鐘)。",
+          "amount": 450
+        },
+        {
+          "time": "07:00 - 22:00",
+          "title": "大町温泉郷 薬師の湯",
+          "type": "nature",
+          "icon": "bath",
+          "desc": "信濃大町站搭往扇沢方向的巴士約 15 ~ 20 分鐘, 「大町温泉郷」下車走約 3 分鐘。上高地健行後泡湯放鬆腿。回程巴士末班要先查好。",
+          "amount": 750
+        }
+      ]
+    },
+    "2026-10-28": {
+      "region": "信濃大町 ➔ 扇沢 ⇄ 室堂 ➔ 長野",
+      "title": "立山黑部阿爾卑斯路線",
+      "subtitle": "東橫INN 長野駅善光寺口",
+      "guides": [
+        {
+          "type": "nature",
+          "icon": "map",
+          "title": "立山黑部阿爾卑斯路線",
+          "desc": "![](https://d.shutto-translation.com/sites/79555/images/-Cchl74clIaqSMMt7yu1tA/TW%202-%E6%96%87%E5%AD%97%E3%81%AA%E3%81%97.png)"
+        },
+        {
+          "type": "nature",
+          "icon": "camera",
+          "title": "黑部水庫",
+          "desc": "高 186 公尺、日本最高的拱形水庫。\n- **水壩展望台**: 從黒部ダム站爬約 220 階樓梯上去, 可以看到水庫和立山連峰的全景。\n- **堤頂**: 長約 492 公尺, 可以走到對岸的黒部湖站。\n⚠️ 2026 年的觀光放水只到 **10/15**, 10/28 看不到放水。"
+        },
+        {
+          "type": "nature",
+          "icon": "footprints",
+          "title": "御庫裏池 (みくりが池)",
+          "desc": "北阿爾卑斯最美的火山湖。沒有風的時候, 湖面會倒映立山三山。湖邊的偃松林是雷鳥常出沒的地方。"
+        }
+      ],
+      "tips": [
+        {
+          "type": "warning",
+          "icon": "snowflake",
+          "title": "室堂已是初冬",
+          "desc": "10 月下旬室堂 (標高 2,450m) 氣溫常在 0°C 上下, 可能下雪或結冰。請穿防水防滑的登山鞋, 帶手套、毛帽和羽絨外套。"
+        },
+        {
+          "type": "info",
+          "icon": "luggage",
+          "title": "行李寄放",
+          "desc": "當天從扇沢原路折返, 不經過富山, 不需要寄送行李。大行李帶到**扇沢站**放投幣置物櫃 (或手荷物預かり), 回程再領, 直接搭特急巴士到長野。置物櫃尺寸與數量請先確認。"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "07:05 - 07:45",
+          "title": "信濃大町 ➔ 扇沢",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "帶著行李出發, 到扇沢站放置物櫃。[時刻表](https://www.alpico.co.jp/traffic/local/hakuba/ogizawa/)",
+          "amount": 2000
+        },
+        {
+          "time": "08:00 - 08:16",
+          "title": "扇沢 ➔ 黒部ダム",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "關電隧道電氣巴士。在扇沢買**扇沢 ⇄ 室堂來回票** (大人約 ¥12,300, 5 日內有效)。[時刻表](https://www.alpen-route.com/en/wp-content/uploads/2026/06/2026_timetable_nagano-toyama0626edit.pdf)",
+          "amount": 12300
+        },
+        {
+          "time": "08:16 - 09:30",
+          "title": "黒部ダム",
+          "type": "nature",
+          "icon": "camera",
+          "desc": "先爬 220 階上水壩展望台, 再走約 492 公尺的堤頂到黒部湖站。"
+        },
+        {
+          "time": "09:30 - 10:25",
+          "title": "黒部湖 ➔ 大観峰 ➔ 室堂",
+          "type": "transit",
+          "icon": "cable-car",
+          "desc": "- 黒部湖 09:30 ➔ 09:35 黒部平 (黑部纜車)\n- 黒部平 09:50 ➔ 09:57 大観峰 (立山空中纜車)\n- 大観峰 10:15 ➔ 10:25 室堂 (立山隧道電氣巴士)\n大観峰轉車時到車站頂樓的雲上展望台, 可以俯瞰黑部湖和後立山連峰。",
+          "amount": 0
+        },
+        {
+          "time": "10:25 - 13:45",
+          "title": "室堂散策",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "御庫裏池環湖步道: 室堂站 ➔ みくりが池温泉 ➔ 地獄谷展望台 ➔ 綠池 ➔ 室堂山莊 ➔ 室堂站, 一圈約 45 - 60 分鐘。石板路可能積雪結冰, 請慢慢走。午餐在室堂吃。",
+          "amount": 0
+        },
+        {
+          "time": "13:45 - 15:21",
+          "title": "室堂 ➔ 大観峰 ➔ 黒部ダム ➔ 扇沢",
+          "type": "transit",
+          "icon": "cable-car",
+          "desc": "原路折返:\n- 室堂 13:45 ➔ 13:55 大観峰 (立山隧道電氣巴士)\n- 大観峰 14:00 ➔ 14:07 黒部平 (立山空中纜車)\n- 黒部平 14:20 ➔ 14:25 黒部湖 (黑部纜車)\n- 走堤頂到黒部ダム站, 黒部ダム 15:05 ➔ 15:21 扇沢 (關電隧道電氣巴士)\n到扇沢後拿置物櫃的行李。[室堂 ➔ 扇沢 時刻表](https://www.alpen-route.com/_wp/wp-content/uploads/2026/02/2026_timetable_toyama-nagano0626edit.pdf)[時刻表](https://www.alpen-route.com/_wp/wp-content/uploads/2026/02/2026_timetable_toyama-nagano0626edit.pdf)",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "扇沢 ➔ 長野",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "アルピコ特急巴士 (途經信濃大町), 到長野站東口, 不用預約。**末班扇沢 17:00 發**。",
+          "amount": 4300,
+          "subEvents": [
+            {
+              "time": "15:40 - 17:30",
+              "title": "特急巴士 (主案)",
+              "type": "transit",
+              "desc": "扇沢有 19 分鐘拿行李。官方時刻表這班標 ▼ (土日祝), 網路查到平日也有開, 出發前請再到アルピコ官網確認。"
+            },
+            {
+              "time": "17:00 - 18:50",
+              "title": "特急巴士 (末班)",
+              "type": "transit",
+              "desc": "如果 15:40 沒開或沒趕上就搭這班。錯過就回不了長野。"
+            }
+          ]
+        }
+      ]
+    },
+    "2026-10-29": {
+      "region": "長野 ⇄ 戶隱 ➔ 大宮 ➔ 宇都宮",
+      "title": "戶隱杉並木參道",
+      "subtitle": "東横INN 宇都宮站前1號",
+      "timeline": [
+        {
+          "time": "08:20 - 09:20",
+          "title": "長野駅 ➔ 戶隱奧社入口",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "長野站前 7 號乘車處。**觀光特急要先上網預約** (對號入座, 保證有座位, 直達奧社入口)。[長野 ➔ 戶隱特急巴士](https://visit-nagano.alpico.co.jp/zh-hant/timetable/nagano-togakushi-green)",
+          "amount": 2500
+        },
+        {
+          "time": "09:30 - 14:00",
+          "title": "戶隱神社散策",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "[健行路線](https://www.google.com/maps/dir/%E3%80%92381-4101+Nagano,+Togakushi,+3517+%E4%B8%AD%E7%A4%BE,+%E6%97%A5%E6%9C%AC/%E9%8F%A1%E6%B1%A0+%E6%97%A5%E6%9C%AC%E3%80%92381-4101+Nagano,+Togakushi/Okushairiguchi+Parking+Lot,+Togakushi,+Nagano,+381-4101%E6%97%A5%E6%9C%AC/%E6%88%B8%E9%9A%A0%E7%A5%9E%E7%A4%BE+%E5%A5%A5%E7%A4%BE+%E6%97%A5%E6%9C%AC%E3%80%92381-4101+Nagano,+Togakushi,+3506/%E6%88%B8%E9%9A%A0%E7%A5%9E%E7%A4%BE+%E5%A5%A5%E7%A4%BE%E5%8F%82%E9%81%93%E4%B8%A6%E6%9C%A8+%E6%97%A5%E6%9C%AC%E3%80%92381-4101+Nagano,+Togakushi/@36.7504729,138.0684449,15z/data=!4m32!4m31!1m5!1m1!1s0x5ff62ebe80affe13:0xfa0790ff3f28d53a!2m2!1d138.0845406!2d36.7412743!1m5!1m1!1s0x5ff62e88cfb074b9:0xbe4c434ba663ebf0!2m2!1d138.0622462!2d36.7504948!1m5!1m1!1s0x5ff62ef6dc880033:0x9fb994bc92085269!2m2!1d138.0790281!2d36.7554932!1m5!1m1!1s0x5ff62e467a22cdcb:0xc069fecdae392599!2m2!1d138.0620982!2d36.7656242!1m5!1m1!1s0x5ff62e5b237da215:0xdfa82ccd7100b9ba!2m2!1d138.0668425!2d36.7619721!3e2?entry=ttu&g_ep=EgoyMDI2MDkwOC4wIKXMDSoASAFQAw%3D%3D) [戶隱散策地圖](https://visit-nagano.alpico.co.jp/hubfs/PDF/Togakushi%20Area%20Map_WEB%E7%94%A8compressed.pdf?hsLang=zh-hant)",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "",
+              "title": "奥社参道",
+              "type": "nature",
+              "icon": "camera",
+              "desc": "隨神門建於 1710 年, 是戶隱神社現存最古老的建築。穿過門後就是約 500 公尺的**杉並木**, 200 ~ 300 多棵樹齡約 400 年的巨杉夾道, 列為長野縣天然記念物。",
+              "amount": 0
+            },
+            {
+              "time": "",
+              "title": "鏡池",
+              "type": "nature",
+              "icon": "camera",
+              "desc": "池邊的「どんぐりハウス」可以休息, 有法式薄餅等輕食, 9:00 ~ 16:30, 週三休。",
+              "amount": 0
+            },
+            {
+              "title": "戶隱蕎麥麵",
+              "type": "food",
+              "desc": "中社周邊是戶隱蕎麥店的聚集地 (例: 人氣名店うずら家, 常要排隊)。戶隱蕎麥的特色是用「ぼっち盛り」盛成一小撮一小撮的。",
+              "amount": 0
+            }
+          ]
+        },
+        {
+          "time": "14:07 - 15:05",
+          "title": "戶隱中社 ➔ 長野",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "回程也是觀光特急, 要一起先上網預約。[長野 ➔ 戶隱特急巴士](https://visit-nagano.alpico.co.jp/zh-hant/timetable/nagano-togakushi-green)",
+          "amount": 2500
+        },
+        {
+          "time": "",
+          "title": "長野善光寺",
+          "type": "culture",
+          "desc": "從戶隱搭巴士回長野後前往, 從長野站走約 30 分鐘或搭巴士。"
+        },
+        {
+          "time": "09:00 - 18:00",
+          "type": "stamp",
+          "title": "長野市観光情報センター",
+          "desc": "マンホールカード: 市花「蘋果花」被特產「蘋果」環繞的圖案 (1989 年長野市制 90 週年紀念蓋)。\nJR 長野站 2 樓 東西自由通路構內 (剪票口外大廳), 9:00 - 18:00。"
+        },
+        {
+          "time": "16:11 - 17:09 - 17:48",
+          "title": "長野 ➔ 大宮 ➔ 宇都宮",
+          "type": "jr",
+          "desc": "搭北陸新幹線到大宮站, 轉東北新幹線到宇都宮 (全程約 1.5 小時)。\nかがやき536号 ➔ 大宮(17:09着/17:25発) ➔ やまびこ149号[乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E9%95%B7%E9%87%8E&eki2=%E5%AE%87%E9%83%BD%E5%AE%AE&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=10&Ddd=29&Dhh=16&Dmn1=0&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 10100
+        },
+        {
+          "time": "",
+          "title": "晚餐: 宇都宮餃子",
+          "type": "food",
+          "desc": "宇都宮站周邊有「宇都宮みんみん」(駅東口店/ホテルメッツ店, 開到 20:00)、「餃子の店 香蘭」或集合多家名店的「来らっせ パセオ店」(車站大樓 PASEO 2F, 開到 21:00, L.O. 20:30)。",
+          "amount": 0
+        }
+      ]
+    },
+    "2026-10-30": {
+      "region": "宇都宮 ⇄ 日光 ➔ 東京",
+      "title": "奧日光紅葉巡禮",
+      "subtitle": "東京 (待訂)",
+      "timeline": [
+        {
+          "time": "07:38 - 08:20",
+          "title": "宇都宮 ➔ 日光",
+          "type": "jr",
+          "desc": "JR 日光線直達, 42 分鐘。行李可寄放在宇都宮站置物櫃 (回程順路拿) 或帶到日光站寄放。[Yahoo!乗換案内](https://transit.yahoo.co.jp/search/result?from=%E5%AE%87%E9%83%BD%E5%AE%AE&to=%E6%97%A5%E5%85%89&y=2026&m=10&d=30&hh=07&m1=3&m2=0&type=1)",
+          "amount": 803
+        },
+        {
+          "time": "08:42 - 09:53",
+          "title": "JR 日光駅 ➔ 三本松 (戦場ヶ原)",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "東武バス YK 系統 (湯元温泉行), 途經伊呂波坂 (いろは坂)、明智平 (09:20)、中禅寺温泉 (09:35)、竜頭の滝 (09:46)、赤沼 (09:51), 到「三本松」(09:53) 下車。",
+          "amount": 1700
+        },
+        {
+          "time": "09:55 - 13:45",
+          "title": "奧日光紅葉散策",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "由高往低順路走: 三本松展望台 ➔ 赤沼 ➔ 戰場之原木棧道 ➔ 龍頭瀑布 ➔ (搭巴士約 10 分鐘) ➔ 中禪寺湖。[Google Maps 木棧道散步路線](https://www.google.com/maps/dir/Sanbonmatsu+Chaya,+2493+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/%E6%88%A6%E5%A0%B4%E3%83%B6%E5%8E%9F%E5%B1%95%E6%9C%9B%E5%8F%B0+%E6%97%A5%E6%9C%AC%E3%80%92321-1661+Tochigi,+Nikko,+Chugushi,+%E4%B8%89%E6%9C%AC%E6%9D%BE%EF%BC%88%E3%83%90%E3%82%B9/Akanuma+Chaya,+2494+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/Ryuzu+Falls+Upside+Parking,+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/Ryuzu+no+Chaya,+%E7%AB%9C%E9%A0%AD%E3%81%AE%E6%BB%9D+2485+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/@36.7674534,139.4391652,15z/data=!4m32!4m31!1m5!1m1!1s0x601f75291a620131:0xced4a6469400eca0!2m2!1d139.4512428!2d36.7774974!1m5!1m1!1s0x601faf5911501cb7:0x5c0d7805b4aef762!2m2!1d139.4502733!2d36.7772125!1m5!1m1!1s0x601fae7a17f33cfd:0x9c6570801c0bfb5f!2m2!1d139.4522804!2d36.7693053!1m5!1m1!1s0x601fae8752cc1c61:0x1c35b5e810b1a81b!2m2!1d139.4515171!2d36.7605394!1m5!1m1!1s0x601faec15a9b4fdd:0x803788fa4a34b8d0!2m2!1d139.4516454!2d36.7574665!3e2?entry=ttu&g_ep=EgoyMDI2MTAwNC4wIKXMDSoASAFQAw%3D%3D)",
+          "amount": 390,
+          "subEvents": [
+            {
+              "time": "09:55 - 11:00",
+              "title": "戦場ヶ原 (戰場之原)",
+              "type": "nature",
+              "icon": "footprints",
+              "desc": "先在「三本松展望台」拍戰場之原金黃落葉松與男體山大景 (約 15 分鐘), 接著走回「赤沼」(約 7 分鐘) 進入戰場之原自然研究路 (木棧道南段), 沿著清澈的湯川一路緩下坡走到龍頭瀑布上方的「滝上」(約 45 ~ 60 分鐘)。"
+            },
+            {
+              "time": "11:00 - 11:35",
+              "title": "竜頭滝 (龍頭瀑布)",
+              "type": "nature",
+              "icon": "camera",
+              "desc": "奧日光三大名瀑之一。從「滝上」沿著約 300 公尺的木棧道由上往下邊看湍流與紅葉邊走到正面觀瀑台 (龍頭之茶屋)。逛完在「竜頭の滝」站搭 11:42 東武巴士到「中禅寺温泉」(11:51 着, ¥390)。"
+            },
+            {
+              "time": "11:55 - 13:45",
+              "title": "中禅寺湖",
+              "type": "nature",
+              "icon": "camera",
+              "desc": "男體山腳下的火山湖, 10 月底正值湖畔楓葉見頃。可在中禪寺溫泉一帶吃湯波 (腐皮) 料理午餐與湖畔散步。"
+            }
+          ]
+        },
+        {
+          "time": "13:55 - 14:35",
+          "title": "中禅寺温泉 ➔ JR 日光駅",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "東武バス C 系統 JR 日光駅行 (26B 乘車處, 中禅寺温泉始發空車保證有位, 終點站下車)。[Yahoo!乗換案内](https://transit.yahoo.co.jp/search/result?from=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B8%A9%E6%B3%89%2F%E6%9D%B1%E6%AD%A6%E3%83%90%E3%82%B9&to=JR%E6%97%A5%E5%85%89%E9%A7%85%2F%E6%9D%B1%E6%AD%A6%E3%83%90%E3%82%B9&y=2026&m=10&d=30&hh=13&m1=5&m2=0&type=1)",
+          "amount": 1250
+        },
+        {
+          "time": "15:19 - 16:01",
+          "title": "日光 ➔ 宇都宮",
+          "type": "jr",
+          "desc": "JR 日光線 (宇都宮行, 42 分鐘, 5 番線着), 回宇都宮領取寄放行李。[Yahoo!乗換案内](https://transit.yahoo.co.jp/search/result?from=%E6%97%A5%E5%85%89&to=%E5%AE%87%E9%83%BD%E5%AE%AE&y=2026&m=10&d=30&hh=15&m1=1&m2=5&type=1)",
+          "amount": 803
+        },
+        {
+          "time": "16:21 - 17:16",
+          "title": "宇都宮 ➔ 東京",
+          "type": "jr",
+          "desc": "東北新幹線なすの278号直達東京"
+        },
+        {
+          "time": "14:23 - 16:16",
+          "title": "東武日光 ➔ 浅草",
+          "type": "jr",
+          "desc": "リバティけごん36号(浅草行)[乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%9D%B1%E6%AD%A6%E6%97%A5%E5%85%89&eki2=%E6%B5%85%E8%8D%89&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=10&Ddd=30&Dhh=14&Dmn1=0&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 3040
+        }
+      ]
+    },
+    "2026-10-31": {
+      "title": "東京自由行程",
+      "subtitle": "東京 (待訂)",
+      "region": "東京",
+      "timeline": [],
+      "tips": [
+        {
+          "type": "warning",
+          "title": "舊制免稅最後一天",
+          "desc": "10/31 23:59 前結帳都是舊制 (店內直接免稅)。11/1 起改為新制: 先付含稅價, 出境時在機場確認後才退稅。",
+          "hide": ["all"]
+        }
+      ]
+    },
+    "2026-11-01": {
+      "title": "東京自由行程",
+      "subtitle": "東京 (待訂)",
+      "region": "東京",
+      "timeline": []
+    },
+    "2026-11-02": {
+      "title": "東京自由行程",
+      "subtitle": "東京 (待訂)",
+      "region": "東京",
+      "timeline": []
+    },
+    "2026-11-03": {
+      "region": "東京 ➔ 成田機場 ➔ 桃園",
+      "title": "平安返台",
+      "tips": [
+        {
+          "type": "shopping",
+          "hide": ["all"],
+          "desc": "[東京ギフトパレット](https://www.tokyoeki-1bangai.co.jp/tokyogiftpalette/) [東京おかしランド](https://www.tokyoeki-1bangai.co.jp/tokyo_okashiland/) [大丸東京店](https://www.daimaru.co.jp/tokyo/) [日本橋三越本店](https://www.mistore.jp/store/nihombashi.html) [Fa-So-La 免稅品預約](https://duty-free-japan.jp/narita/jp/)"
+        }
+      ],
+      "guides": [
+        {
+          "type": "stamp",
+          "title": "マンホールカード",
+          "desc": "日期 | 發放地點 | 時間 | 位置\n---|---|---|---\n10/27 | 松本市観光情報センター | 09:00 - 17:45 | 松本城附近 [Google Map](https://maps.app.goo.gl/SmXvfbu1upNWuHoV9)\n10/27 | 大町市觀光協會 | 08:30 - 17:15 | JR 信濃大町站內\n10/29 | 長野市観光情報センター | 09:00 - 18:00 | JR 長野站 2 樓 東西自由通路 (剪票口外大廳)"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "",
+          "title": "東京 ➔ 成田機場",
+          "type": "jr",
+          "desc": "NEX (成田特快), JAL 在第 2 航廈, 在「空港第２ビル」站下車。國際線建議起飛前 2 小時以上到機場。",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "14:33 - 15:23",
+              "title": "成田エクスプレス33号(成田空港行)",
+              "type": "jr",
+              "desc": "東京站發車。"
+            }
+          ]
+        },
+        {
+          "time": "",
+          "title": "退稅確認 ➔ 報到託運",
+          "type": "flight",
+          "desc": "- 11/1 以後買的退稅商品, **託運前**先到海關出示商品和護照確認, 之後才會退稅。",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "出境．免稅店最後採購",
+          "type": "shopping",
+          "desc": "過安檢、出境審查後逛免稅店。"
+        },
+        {
+          "time": "18:05 - 21:15",
+          "title": "NRT ➔ TPE",
+          "type": "flight",
+          "desc": "JAL, 成田第 2 航廈出發。",
+          "amount": 0
+        }
+      ]
+    }
+  }
+}

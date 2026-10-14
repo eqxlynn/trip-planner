@@ -56,15 +56,17 @@ const ERROR_TOKEN_EXPIRED = 'TOKEN_EXPIRED';
 
 /**
  * 項目的 hide 欄位：列出要隱藏的模式，例如 "hide": ["print", "sheet"]，也可寫單一字串 "hide": "sheet"。
- * 網頁行程頁一律顯示；隱藏的項目其子行程一併隱藏。
+ * 網頁行程頁 (含編輯模式) 一律顯示；隱藏的項目其子行程一併隱藏。
  * - print：小冊子列印 (planner 列印)
  * - sheet：單張列印 (sheet.html)
  * - mirror：對照時間軸 (mirror.html)
+ * - all：以上所有模式 (含日後新增的模式) 都隱藏，只在 planner 網頁看得到
  */
-const HIDE_MODES = Object.freeze({ PRINT: 'print', SHEET: 'sheet', MIRROR: 'mirror' });
+const HIDE_MODES = Object.freeze({ PRINT: 'print', SHEET: 'sheet', MIRROR: 'mirror', ALL: 'all' });
 
-/** 項目是否在指定模式隱藏 */
+/** 項目是否在指定模式隱藏 (hide 含 "all" 時任何模式都隱藏) */
 function isHiddenIn(item, mode) {
     const hide = item && item.hide;
-    return Array.isArray(hide) ? hide.includes(mode) : hide === mode;
+    const modes = Array.isArray(hide) ? hide : [hide];
+    return modes.includes(HIDE_MODES.ALL) || modes.includes(mode);
 }

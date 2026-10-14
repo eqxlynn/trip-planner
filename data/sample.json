@@ -16,8 +16,8 @@
             },
             {
                 "type": "warning",
-                "visible": false,
-                "title": "visible: false 的封面卡片",
+                "hide": ["all"],
+                "title": "hide: [\"all\"] 的封面卡片",
                 "desc": "網頁編輯模式看得到，列印封面不會出現。"
             }
         ]
@@ -196,7 +196,7 @@
                 { "type": "success", "desc": "只有 desc、沒有 title 的卡片。" },
                 { "type": "info", "title": "只有 title 的卡片" },
                 { "type": "none", "title": "", "desc": "" },
-                { "type": "warning", "visible": "false", "title": "visible: \"false\" (字串)", "desc": "網頁看得到，列印不會出現。" },
+                { "type": "warning", "hide": "sheet", "title": "hide: \"sheet\" (單一字串)", "desc": "網頁與小冊子看得到，sheet 不會出現。" },
                 { "type": "info", "title": "pageBreak: \"after\"", "desc": "列印時這張卡片之後會換頁，時間軸從新的一頁開始。", "pageBreak": "after" }
             ],
             "timeline": [
@@ -260,22 +260,22 @@
                     "subEvents": [
                         { "time": "14:10", "title": "子行程 1", "type": "nature", "desc": "第一個子行程。" },
                         { "time": "14:40", "title": "子行程 2 (有金額)", "type": "stamp", "icon": "camera", "desc": "子行程的金額也會計入預算。", "amount": 300 },
-                        { "time": "14:50", "title": "子行程 3 (visible: false)", "type": "info", "visible": false, "desc": "網頁看得到，列印不會出現。" }
+                        { "time": "14:50", "title": "子行程 3 (hide: [\"print\"])", "type": "info", "hide": ["print"], "desc": "網頁與 sheet 看得到，小冊子不會出現。" }
                     ]
                 },
                 {
                     "time": "15:00",
-                    "title": "visible: false",
+                    "title": "hide: [\"all\"]",
                     "type": "warning",
-                    "visible": false,
+                    "hide": ["all"],
                     "desc": "網頁看得到，列印不會出現。"
                 },
                 {
                     "time": "16:00",
-                    "title": "visible: \"false\" (字串)",
+                    "title": "hide: [\"sheet\"]",
                     "type": "warning",
-                    "visible": "false",
-                    "desc": "字串 \"false\" 也視為隱藏。"
+                    "hide": ["sheet"],
+                    "desc": "網頁與小冊子看得到，sheet 不會出現。"
                 }
             ]
         }

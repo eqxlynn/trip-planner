@@ -13,14 +13,16 @@
         "desc": "![](./data/20261026-1104-route.svg)"
       },
       {
-        "hide": ["sheet"],
+        "hide": [
+          "sheet"
+        ],
         "type": "info",
         "icon": "languages",
         "title": "地名對照",
-        "desc": "中文 | 日文讀音 | English\n---|---|---\n成田空港 | なりたくうこう | Narita Airport\n新宿 | しんじゅく | Shinjuku\n松本 | まつもと | Matsumoto\n上高地 | かみこうち | Kamikochi\n白馬 | はくば | Hakuba\n長野 | ながの | Nagano\n善光寺 | ぜんこうじ | Zenko-ji\n戸隠 | とがくし | Togakushi\n大宮 | おおみや | Omiya\n宇都宮 | うつのみや | Utsunomiya\n日光 | にっこう | Nikko\n戦場ヶ原 | せんじょうがはら | Senjogahara\n中禅寺湖 | ちゅうぜんじこ | Lake Chuzenji\n横浜 | よこはま | Yokohama\n横須賀中央 | よこすかちゅうおう | Yokosuka-Chuo\n猿島 | さるしま | Sarushima"
+        "desc": "中文 | 日文讀音 | English\n---|---|---\n成田空港 | なりたくうこう | Narita Airport\n新宿 | しんじゅく | Shinjuku\n松本 | まつもと | Matsumoto\n新島島 | しんしましま | Shin-Shimashima\n上高地 | かみこうち | Kamikochi\n大正池 | たいしょういけ | Taisho Pond\n白馬岩岳 | はくばいわたけ | Hakuba Iwatake\n長野 | ながの | Nagano\n戸隠 | とがくし | Togakushi\n大宮 | おおみや | Omiya\n宇都宮 | うつのみや | Utsunomiya\n日光 | にっこう | Nikko\n戦場ヶ原 | せんじょうがはら | Senjogahara\n横浜 | よこはま | Yokohama"
       },
       {
-        "hide": ["print", "sheet", "mirror"],
+        "hide": ["all"],
         "type": "nature",
         "icon": "leaf",
         "title": "紅葉即時資訊 / Live Camera",
@@ -28,8 +30,9 @@
       },
       {
         "icon": "leaf",
+        "hide": ["print"],
         "title": "各景點最新預測",
-        "desc": "日期 | 景點 | Weathernews (預測 / 現況) | tenki.jp (預測 / 10/12 現況)\n---|---|---|---\n10/27 | 河童橋 | 10/14 ~ 10/30 / 轉色約一半, 約 5 成(10/11) [WN](https://weathernews.jp/koyo/spot/24823/) | 10/13 起 / 開始轉色 [tenki](https://tenki.jp/kouyou/3/23/35124.html)\n10/28 | 白馬岩岳 | 10/22 ~ 11/10 / 稍微開始轉色, 約 2 成(10/8) [WN](https://weathernews.jp/koyo/spot/24870/) | 10 月中旬到 11 月中旬 / 開始轉色 [tenki](https://tenki.jp/kouyou/3/23/30854.html)\n10/29 | 戶隱 鏡池 | 10/16 ~ 10/31 / 持續轉色, 約 4 成(10/10) [WN](https://weathernews.jp/koyo/spot/24855/) | 10 月上旬到下旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/23/35141.html)\n10/30 | 日光 竜頭滝 | 10/15 ~ 10/29 / 開始轉色, 約 3 成(10/9) [WN](https://weathernews.jp/koyo/spot/24111/) | 9 月下旬到 10 月中旬 / 開始轉色 [tenki](https://tenki.jp/kouyou/3/12/34658.html)\n10/30 | 日光 中禅寺湖 | 10/27 ~ 11/10 / 還沒轉色(10/9) [WN](https://weathernews.jp/koyo/spot/24104/) | 10 月中旬到 11 月上旬 / 青葉 [tenki](https://tenki.jp/kouyou/3/12/34453.html)"
+        "desc": "日期 | 景點 | Weathernews (預測 / 現況) | tenki.jp (預測 / 10/14 現況)\n---|---|---|---\n10/27 | 河童橋 | 10/30 起落葉 / 見頃, 7~8 成轉色(10/14) [WN](https://weathernews.jp/koyo/spot/24823/) | 10/15 起 / 開始轉色 [tenki](https://tenki.jp/kouyou/3/23/35124.html)\n10/28 | 白馬岩岳 | 10/22 ~ 11/10 / 轉色約一半, 約 5 成(10/14) [WN](https://weathernews.jp/koyo/spot/24870/) | 10 月中旬到 11 月中旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/23/30854.html)\n10/29 | 戶隱 鏡池 | 10/16 ~ 10/31 / 轉色超過一半, 約 6 成(10/14) [WN](https://weathernews.jp/koyo/spot/24855/) | 10 月上旬到下旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/23/35141.html)\n10/30 | 日光 竜頭滝 | 10/17 ~ 10/31 / 轉色約一半, 約 5 成(10/13) [WN](https://weathernews.jp/koyo/spot/24111/) | 9 月下旬到 10 月中旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/12/34658.html)\n10/30 | 日光 中禅寺湖 | 10/27 ~ 11/10 / 還沒轉色(10/13) [WN](https://weathernews.jp/koyo/spot/24104/) | 10 月中旬到 11 月上旬 / 青葉 [tenki](https://tenki.jp/kouyou/3/12/34453.html)"
       }
     ]
   },
@@ -325,7 +328,7 @@
           "title": "Super Market",
           "type": "shopping",
           "desc": "Seiyu MinamiIshido [Google Map](https://maps.app.goo.gl/ByRRzoGkZT7AxGim6)",
-          "hide": ["print", "sheet", "mirror"]
+          "hide": ["all"]
         }
       ]
     },
@@ -519,7 +522,7 @@
           "type": "warning",
           "title": "舊制免稅最後一天",
           "desc": "10/31 23:59 前結帳都是舊制 (店內直接免稅)。11/1 起改為新制: 先付含稅價, 出境時在機場確認後才退稅。",
-          "hide": ["print", "sheet", "mirror"]
+          "hide": ["all"]
         }
       ],
       "timeline": [
@@ -957,7 +960,7 @@
         },
         {
           "type": "shopping",
-          "hide": ["print", "sheet", "mirror"],
+          "hide": ["all"],
           "desc": "[東京ギフトパレット](https://www.tokyoeki-1bangai.co.jp/tokyogiftpalette/) [東京おかしランド](https://www.tokyoeki-1bangai.co.jp/tokyo_okashiland/) [大丸東京店](https://www.daimaru.co.jp/tokyo/) [日本橋三越本店](https://www.mistore.jp/store/nihombashi.html) [Fa-So-La 免稅品預約](https://duty-free-japan.jp/narita/jp/)"
         }
       ],

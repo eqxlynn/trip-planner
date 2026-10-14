@@ -121,12 +121,12 @@
                     </p>
                 </section>
 
-                <!-- Debug：列出 data/ 下的 JSON -->
+                <!-- 資料檔清單 (debug.js)：伺服器有目錄列表時列出 data/ (Debug)；讀取失敗時改用 samples.json 列出範例 -->
                 <section id="debug-card" class="bg-white rounded-2xl shadow-sm border border-dashed border-amber-300 p-5">
                     <div class="flex items-center justify-between mb-2">
                         <h2 class="text-sm font-bold text-slate-800 flex items-center gap-2">
                             <i data-lucide="bug" class="w-4 h-4 text-amber-500"></i>
-                            Debug：data/ 檔案
+                            <span id="debug-card-title">Debug：data/ 檔案</span>
                         </h2>
                         <button id="debug-refresh-btn" title="重新整理"
                                 class="p-1.5 rounded-lg text-slate-400 hover:text-amber-600 hover:bg-amber-50 transition-colors duration-200">
@@ -134,7 +134,7 @@
                         </button>
                     </div>
                     <p id="debug-data-summary" class="text-[11px] text-slate-500 mb-3"></p>
-                    <ul id="debug-data-list" class="space-y-1.5 max-h-[400px] overflow-y-auto custom-scrollbar"></ul>
+                    <ul id="debug-data-list" data-manifest="samples.json" data-manifest-title="範例行程" class="space-y-1.5 max-h-[400px] overflow-y-auto custom-scrollbar"></ul>
                 </section>
             </div>
 
