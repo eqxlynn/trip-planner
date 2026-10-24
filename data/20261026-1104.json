@@ -19,7 +19,7 @@
         "type": "info",
         "icon": "languages",
         "title": "地名對照",
-        "desc": "中文 | 日文讀音 | English\n---|---|---\n新宿 | しんじゅく | Shinjuku\n松本 | まつもと | Matsumoto\n新島島 | しんしましま | Shin-Shimashima\n上高地 | かみこうち | Kamikochi\n大正池 | たいしょういけ | Taisho Pond\n長野 | ながの | Nagano\n善光寺 | ぜんこうじ | Zenko-ji\n戸隠 | とがくし | Togakushi\n宇都宮 | うつのみや | Utsunomiya\n日光 | にっこう | Nikko\n戦場ヶ原 | せんじょうがはら | Senjogahara\n横浜 | よこはま | Yokohama"
+        "desc": "中文 | 日文讀音 | English\n---|---|---\n新宿 | しんじゅく | Shinjuku\n高尾 | たかお | Takao\n松本 | まつもと | Matsumoto\n新島島 | しんしましま | Shin-Shimashima\n上高地 | かみこうち | Kamikochi\n大正池 | たいしょういけ | Taisho Pond\n長野 | ながの | Nagano\n善光寺 | ぜんこうじ | Zenko-ji\n戸隠 | とがくし | Togakushi\n上野 | うえの | Ueno\n横浜 | よこはま | Yokohama\n宇都宮 | うつのみや | Utsunomiya\n日光 | にっこう | Nikko\n戦場ヶ原 | せんじょうがはら | Senjogahara"
       },
       {
         "hide": ["all"],
@@ -52,15 +52,9 @@
         {
           "title": "成田第２ビル ➔ 新宿 (Shinjuku)",
           "type": "jr",
-          "desc": "購買 NEX 來回車票 5200",
-          "amount": 3325,
+          "desc": "於 T2 B1 指定席售票機 (有護照掃描器) 或 JR 櫃檯一次買齊:\n- **N'EX 東京去回車票 (¥5,200)**: 14 天有效 (免費乘車區間包到「高尾」), 並劃去程 `成田第２ビル ➔ 新宿` 座位。\n- **往松本車票 (省錢買法)**: 買「高尾 ➔ 松本」乘車券 (¥3,410) +「新宿 ➔ 松本」あずさ指定席特急券 (¥2,550)。新宿轉乘不出站, 到松本站把 N'EX 去程票與乘車券一起放進改札機 (或走人工通道) 出站。",
+          "amount": 5200,
           "subEvents": [
-            {
-              "time": "11:16 - 12:41",
-              "title": "成田エクスプレス16号(新宿行)",
-              "type": "jr",
-              "desc": ""
-            },
             {
               "time": "11:48 - 13:11",
               "title": "成田エクスプレス18号(新宿行)",
@@ -145,7 +139,7 @@
           "type": "transit",
           "icon": "bus",
           "desc": "松本站搭上高地線電車 06:31 到新島々 (07:01), 轉 07:10 巴士到大正池 (08:04)。\n備案: 07:15 電車 ➔ 08:00 巴士, 08:54 到大正池。[時刻表](https://visit-nagano.alpico.co.jp/zh-hant/timetable/matsumoto-kamikochi)",
-          "amount": 5000
+          "amount": 3810
         },
         {
           "time": "08:10 - 15:30",
@@ -419,7 +413,7 @@
           "title": "JINS 浅草ROX店 取眼鏡",
           "type": "shopping",
           "icon": "glasses",
-          "desc": "[Google Map](https://www.google.com/maps/search/?api=1&query=JINS+%E6%B5%85%E8%8D%89ROX%E5%BA%97)\n- **雨天備案**: 一人留在田原町站內顧行李, 另一人撐傘輕裝走去浅草 ROX 取眼鏡 (來回約 10 分鐘), 免拖行李淋雨。",
+          "desc": "[Google Map](https://www.google.com/maps/search/?api=1&query=JINS+%E6%B5%85%E8%8D%89ROX%E5%BA%97)",
           "amount": 0
         },
         {
@@ -434,14 +428,14 @@
           "time": "12:00",
           "title": "渋谷 Google 午餐 35F",
           "type": "food",
-          "desc": "- **寄放行李**: 可放渋谷ストリーム 2F 投幣置物櫃、辦公樓層 (17~22F / 26~32F) 儲物間, 或詢問 5F Reception:\n  *\"Hi, I'm a visiting Googler here for lunch with a guest. Is there anywhere at reception we could temporarily leave our luggage, or should we use the storage closets upstairs?\"*",
+          "desc": "- **寄放行李**: 可放渋谷ストリーム 2F 投幣置物櫃、辦公樓層 (17~22F / 26~32F) 儲物間, 或詢問 5F Reception:\n- Hi, I'm a visiting Googler here for lunch with a guest. Is there anywhere at reception we could temporarily leave our luggage, or should we use the storage closets upstairs?",
           "amount": 0
         },
         {
           "time": "10:00 - 21:00",
           "title": "ハンズ渋谷店 (宇田川町本店)",
           "type": "shopping",
-          "desc": "1978 年開業、擁有獨特螺旋錯層結構 (B2C ~ 7A 共 19 個半樓層) 的創始聖地, 即將於 **2026/11/15 結束 48 年營業**！10/16 ~ 11/15 舉辦結業感謝祭「48年間、ありがとうセール」(素材蚤の市、紀念特賣與關東各店 5% OFF 券)。\n- **雨天路線**: 走渋谷地下街「しぶちか (Shibuchika)」從 **A2 或 A6b 出口**出來, 步行約 2~3 分鐘即達。[特設頁](https://shibuya.hands.net/) [Google Map](https://www.google.com/maps/search/?api=1&query=%E3%83%8F%E3%83%B3%E3%82%BA%E6%B8%8B%E8%B0%B7%E5%BA%97)",
+          "desc": "即將於 **2026/11/15 結束 48 年營業**！10/16 ~ 11/15 舉辦結業感謝祭\n- **雨天路線**: 走渋谷地下街從 **A2 或 A6b 出口**出來, 步行約 2~3 分鐘即達。[特設頁](https://shibuya.hands.net/) [Google Map](https://www.google.com/maps/search/?api=1&query=%E3%83%8F%E3%83%B3%E3%82%BA%E6%B8%8B%E8%B0%B7%E5%BA%97)",
           "amount": 0
         },
         {
@@ -683,6 +677,13 @@
           "desc": "JR 東海道線 / 上野東京ライン約 30 分鐘。",
           "amount": 528,
           "time": ""
+        },
+        {
+          "time": "11:00 - 23:00",
+          "title": "KITTE 丸之內6樓空中花園",
+          "icon": "camera",
+          "type": "nature",
+          "desc": "11/1 日落約 16:44, 俯瞰紅磚東京車站與丸之內大樓群夜景。東京站丸之內南口出站就在對面。"
         }
       ],
       "guides": [
@@ -702,14 +703,14 @@
           "time": "06:20 - 07:13",
           "title": "東京 ➔ 宇都宮",
           "type": "jr",
-          "desc": "東北新幹線 やまびこ201号 (東京始發, 1~5 號車自由席保證有位)。(備案: 07:12 東京発 やまびこ123号 ➔ 08:00 宇都宮着) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%9D%B1%E4%BA%AC&eki2=%E6%97%A5%E5%85%89&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=11&Ddd=2&Dhh=6&Dmn1=1&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "desc": "東北新幹線 やまびこ201号 (東京始發, 1~5 號車自由席保證有位)。[乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%9D%B1%E4%BA%AC&eki2=%E6%97%A5%E5%85%89&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=11&Ddd=2&Dhh=6&Dmn1=1&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
           "amount": 4490
         },
         {
           "time": "07:38 - 08:20",
           "title": "宇都宮 ➔ JR 日光",
           "type": "jr",
-          "desc": "JR 日光線 (日光行, 5 番線発)。(備案: 08:27 宇都宮発 ➔ 09:11 JR 日光着)",
+          "desc": "JR 日光線 (日光行, 5 番線発)。",
           "amount": 803
         },
         {
@@ -717,68 +718,80 @@
           "title": "JR 日光駅 ➔ 三本松 (戦場ヶ原)",
           "type": "transit",
           "icon": "bus",
-          "desc": "東武バス YK 系統 (湯元温泉行), JR 日光站為起站 (比東武日光站早一站發車, 保證有座位), 可直接刷 Suica。",
+          "desc": "東武バス YK 系統 (湯元温泉行), JR 日光站為起站, 可直接刷 Suica。",
           "amount": 1700
         },
         {
-          "time": "09:55 - 12:50",
+          "time": "09:55 - 13:20",
           "title": "奧日光紅葉散策",
           "type": "nature",
           "icon": "footprints",
-          "desc": "三本松展望台 ➔ 赤沼 ➔ 戰場之原木棧道 ➔ 龍頭瀑布 ➔ 菖蒲ヶ浜 (搭船或巴士) ➔ 中禪寺湖\n[Google Maps 全程散步路線 (三本松 ➔ 菖蒲ヶ浜乘船處)](https://www.google.com/maps/dir/Sanbonmatsu+Chaya,+2493+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/%E6%88%A6%E5%A0%B4%E3%83%B6%E5%8E%9F%E5%B1%95%E6%9C%9B%E5%8F%B0+%E6%97%A5%E6%9C%AC%E3%80%92321-1661+Tochigi,+Nikko,+Chugushi,+%E4%B8%89%E6%9C%AC%E6%9D%BE%EF%BC%88%E3%83%90%E3%82%B9/Akanuma+Chaya,+2494+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/Ryuzu+Falls+Upside+Parking,+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/Ryuzu+no+Chaya,+%E7%AB%9C%E9%A0%AD%E3%81%AE%E6%BB%9D+2485+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/36.75255,139.45454/@36.7645,139.445,15z/data=!3e2)[菖蒲ヶ浜 遊覧船発着所 (Google Map)](https://www.google.com/maps/search/?api=1&query=36.75255,139.45454)[船の駅中禅寺 (Google Map)](https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B9%96%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%B8%E3%83%B3%E3%82%B0+%E8%88%B9%E3%81%AE%E9%A7%85%E4%B8%AD%E7%A6%85%E5%AF%BA)",
+          "desc": "三本松展望台 ➔ 赤沼 ➔ 戰場之原木棧道 ➔ 龍頭瀑布 ➔ 菖蒲ヶ浜 (搭船或巴士) ➔ 中禪寺湖 ➔ 華嚴瀑布\n[Google Maps 全程散步路線 (三本松 ➔ 菖蒲ヶ浜乘船處)](https://www.google.com/maps/dir/Sanbonmatsu+Chaya,+2493+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/%E6%88%A6%E5%A0%B4%E3%83%B6%E5%8E%9F%E5%B1%95%E6%9C%9B%E5%8F%B0+%E6%97%A5%E6%9C%AC%E3%80%92321-1661+Tochigi,+Nikko,+Chugushi,+%E4%B8%89%E6%9C%AC%E6%9D%BE%EF%BC%88%E3%83%90%E3%82%B9/Akanuma+Chaya,+2494+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/Ryuzu+Falls+Upside+Parking,+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/Ryuzu+no+Chaya,+%E7%AB%9C%E9%A0%AD%E3%81%AE%E6%BB%9D+2485+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/36.75255,139.45454/@36.7645,139.445,15z/data=!3e2)[菖蒲ヶ浜 遊覧船発着所 (Google Map)](https://www.google.com/maps/search/?api=1&query=36.75255,139.45454)[船の駅中禅寺 (Google Map)](https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B9%96%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%B8%E3%83%B3%E3%82%B0+%E8%88%B9%E3%81%AE%E9%A7%85%E4%B8%AD%E7%A6%85%E5%AF%BA)",
           "amount": 390,
           "subEvents": [
             {
-              "time": "09:55 - 11:00",
-              "title": "戦場ヶ原",
-              "type": "nature",
-              "icon": "footprints",
-              "desc": ""
-            },
-            {
-              "time": "11:00 - 11:35",
-              "title": "竜頭滝 (龍頭瀑布) ➔ 菖蒲ヶ浜",
+              "title": "竜頭の滝",
               "type": "nature",
               "icon": "camera",
-              "desc": "奧日光三大名瀑之一。從「滝上」沿著約 300 公尺的木棧道由上往下邊看湍流與紅葉邊走到正面觀瀑台 (龍頭之茶屋)。\n- **搭船往中禪寺湖**: 從龍頭之茶屋往湖畔步行約 10~12 分鐘 (800m) 到「[菖蒲ヶ浜遊覧船発着所](https://www.google.com/maps/search/?api=1&query=36.75255,139.45454)」, 搭 **11:20 - 11:55** 或 **12:50 - 13:25** 遊覽船到「船の駅中禅寺」(區間票 ¥1,440 / 一周券 ¥2,200)。[時刻表](https://www.chuzenjiko-cruise.com/time.html)\n- **搭巴士往中禪寺湖**: 「竜頭の滝」搭 11:42 東武巴士到「中禅寺温泉」(11:51着, ¥390)。"
+              "desc": "奧日光三大名瀑之一。從「滝上」沿著約 300 公尺的木棧道由上往下邊看湍流與紅葉邊走到正面觀瀑台 (龍頭之茶屋)。"
             },
             {
-              "time": "11:55 - 12:50",
+              "time": "11:20 - 11:35",
+              "title": "菖蒲ヶ浜 ➔ 船の駅中禅寺",
+              "type": "transit",
+              "icon": "ship",
+              "desc": "區間票 ¥1,440 / 一周券 ¥2,200。[菖蒲ヶ浜遊覧船発着所](https://www.google.com/maps/search/?api=1&query=36.75255,139.45454)[時刻表](https://www.chuzenjiko-cruise.com/time.html)",
+              "amount":1440
+            },
+            {
+              "time": "11:42 - 11:51",
+              "title": "竜頭の滝 ➔ 中禅寺温泉",
+              "type": "transit",
+              "icon": "bus",
+              "desc": "",
+              "amount":390
+            },
+            {
+              "time": "",
               "title": "中禅寺湖",
               "type": "nature",
               "icon": "camera",
               "desc": "男體山腳下的火山湖, 在中禪寺溫泉一帶吃湯波 (腐皮) 料理午餐與湖畔散步。"
+            },
+            {
+              "time": "08:00 - 17:00",
+              "title": "華厳の滝 (華嚴瀑布)",
+              "type": "nature",
+              "icon": "camera",
+              "desc": "日本三大名瀑之一, 落差 97 公尺的垂直巨瀑, 距離「中禅寺温泉」巴士站步行約 5 分鐘。設免費雙層觀景台, 亦可搭華嚴瀑布電梯 (¥600) 深入岩壁 100 公尺至瀑潭正下方仰望。[Google Map](https://www.google.com/maps/search/?api=1&query=%E8%8F%AF%E5%8E%B3%E3%81%AE%E6%BB%9D)"
             }
           ]
         },
         {
-          "time": "12:55 - 13:35",
+          "time": "",
           "title": "中禅寺温泉 ➔ JR 日光駅",
           "type": "transit",
           "icon": "bus",
-          "desc": "東武バス C 系統 JR 日光駅行 (26B 乘車處, 中禅寺温泉始發空車保證有位, 終點 JR 日光 13:35 着)。(備案: 13:25 発 ➔ 14:05 着 / 13:55 発 ➔ 14:35 着) [Yahoo!乗換案内](https://transit.yahoo.co.jp/search/result?from=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B8%A9%E6%B3%89%2F%E6%9D%B1%E6%AD%A6%E3%83%90%E3%82%B9&to=JR%E6%97%A5%E5%85%89%E9%A7%85%2F%E6%9D%B1%E6%AD%A6%E3%83%90%E3%82%B9&y=2026&m=11&d=2&hh=12&m1=5&m2=5&type=1)",
-          "amount": 1250
+          "desc": "東武バス C 系統 JR 日光駅行 (26B 乘車處, 中禅寺温泉始發)。[Yahoo!乗換案内](https://transit.yahoo.co.jp/search/result?from=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B8%A9%E6%B3%89%2F%E6%9D%B1%E6%AD%A6%E3%83%90%E3%82%B9&to=JR%E6%97%A5%E5%85%89%E9%A7%85%2F%E6%9D%B1%E6%AD%A6%E3%83%90%E3%82%B9&y=2026&m=11&d=2&hh=12&m1=5&m2=5&type=1)",
+          "amount": 1250,
+          "subEvents": [
+            {"time": "13:25 発 ➔ 14:05 着"},
+            {"time": "13:55 発 ➔ 14:35 着"}
+          ]
         },
         {
-          "time": "14:19 - 15:01",
-          "title": "JR 日光 ➔ 宇都宮",
+          "time": "15:19 - 16:01 | 16:21 - 17:16",
+          "title": "JR 日光 ➔ 宇都宮 ➔ 東京",
           "type": "jr",
-          "desc": "JR 日光線 (宇都宮行)。(備案: 15:19 日光発 ➔ 16:01 宇都宮着)",
-          "amount": 803
+          "desc": "JR 日光線 (宇都宮行)。東北新幹線 なすの278号 (郡山始發, 1~6 號車自由席)。[乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%97%A5%E5%85%89&eki2=%E6%9D%B1%E4%BA%AC&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=11&Ddd=2&Dhh=15&Dmn1=1&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 5103
         },
         {
-          "time": "15:16 - 16:04",
-          "title": "宇都宮 ➔ 東京",
+          "time": "14:57 - 16:45",
+          "title": "東武日光 ➔ 淺草",
           "type": "jr",
-          "desc": "東北新幹線 やまびこ62号 (1~5 號車自由席)。(備案: 16:21 なすの278号 ➔ 17:16 東京着) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%97%A5%E5%85%89&eki2=%E6%9D%B1%E4%BA%AC&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=11&Ddd=2&Dhh=14&Dmn1=1&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
-          "amount": 4490
-        },
-        {
-          "time": "11:00 - 23:00",
-          "title": "KITTE 丸之內6樓空中花園",
-          "icon": "camera",
-          "type": "nature",
-          "desc": "11/2 日落約 16:43, 俯瞰紅磚東京車站與丸之內大樓群夜景。東京站丸之內南口出站就在對面。"
+          "desc": "[TOBU](https://tobu-japantrip-tickets.com/)",
+          "amount": 3043
         }
       ]
     },
@@ -920,13 +933,11 @@
           "desc": "\n日期 | 郵局 | 時間 | 圖案\n---|---|---|---\n10/27 | 上高地郵便局 | 09:00 - 17:00 | 大正池與穗高岳\n10/28 | 松本城東 / 松本城西郵便局 | 09:00 - 17:00 | 松本城天守\n10/28 | 善光寺郵便局 | 09:00 - 17:00 | 善光寺本堂\n10/29 | 戶隱神社前郵便局 | 09:00 - 17:00 | 戶隱山與翁面"
         },
         {
-          "pageBreak": "before",
           "type": "stamp",
           "title": "マンホールカード",
           "desc": "日期 | 發放地點 | 時間 | 位置\n---|---|---|---\n10/28 | 松本市観光情報センター | 09:00 - 17:45 | 松本城附近 [Google Map](https://maps.app.goo.gl/SmXvfbu1upNWuHoV9)\n10/28 | 長野市観光情報センター | 09:00 - 18:00 | JR 長野站 2 樓 東西自由通路 (剪票口外大廳)\n10/31 | 横浜駅観光案内所 | 10:00 - 17:00 | JR横浜タワー 2F\n11/1 | 橫須賀市觀光案內所 | 09:30 - 17:00 | 京急橫須賀中央站東口改札前\n11/3 | 千代田區觀光資訊中心 | 10:00 - 18:00 | 11/3 假日, 可能需預約 [Google Map](https://maps.app.goo.gl/2GPuDY28R46VNwTi7)"
         },
         {
-          "pageBreak": "after",
           "type": "shopping",
           "title": "購物清單",
           "desc": "- [ ] 無印良品 灰白整理盒\n- [ ] 無印良品 水瓶乾燥棒 x2\n- [ ] 無印良品 PET補充瓶/透明.600ml\n- [ ] 岡田謹製 茶織屋\n- [ ] 大正感冒藥\n- [ ] 合力他命EX\n- [ ] UNIQLO UT 咒術迴戰聯名 T-shirt\n- [ ] 日清 渡我被身子泡麵 (日清焼そばU.F.O. ポックンミョン トガヒミコ)\n- [ ] 鎌倉紅谷 Kurumicco\n- [ ] AUDREY 假日限定商品\n- [ ] 薯條三兄弟 (じゃがポックル)\n- [ ] 3COINS 行李箱飲料架 (キャリーケースドリンクホルダー)\n- [ ] 3COINS 無線電對講機 (ビデオトランシーバー)\n- [ ] 3COINS 微波烤盤 (《1台6役》電子レンジ調理器／KITINTO)\n- [ ] 3COINS 相片列印機 (フォトプリンター)\n- [ ] 3COINS 貼紙相紙 (シールフォトペーパー)\n- [ ] 3COINS 磁鐵（磁吸）相紙 (マグネットフォトペーパー) x2\n- [ ] 3COINS 布料轉印相紙 (ヒートプリントフォトペーパー)\n- [ ] 3COINS 紋身貼紙相紙 (ウォータープリントフォトペーパー)"
