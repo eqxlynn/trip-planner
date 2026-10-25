@@ -50,7 +50,7 @@
           "amount": 0
         },
         {
-          "title": "成田第２ビル ➔ 新宿 (Shinjuku)",
+          "title": "成田第２ビル (Narita Airport Terminal 2) ➔ 新宿 (Shinjuku)",
           "type": "jr",
           "desc": "於 T2 B1 指定席售票機 (有護照掃描器) 或 JR 櫃檯一次買齊:\n- **N'EX 東京去回車票 (¥5,200)**: 14 天有效 (免費乘車區間包到「高尾」), 並劃去程 `成田第２ビル ➔ 新宿` 座位。\n- **往松本車票 (省錢買法)**: 買「高尾 ➔ 松本」乘車券 (¥3,410) +「新宿 ➔ 松本」あずさ指定席特急券 (¥2,550)。新宿轉乘不出站, 到松本站把 N'EX 去程票與乘車券一起放進改札機 (或走人工通道) 出站。",
           "amount": 5200,
@@ -1007,7 +1007,7 @@
       "timeline": [
         {
           "time": "08:40",
-          "title": "東橫INN ➔ NRT T2",
+          "title": "東橫INN ➔ Narita Airport Terminal 2",
           "icon": "bus",
           "type": "transit",
           "desc": "",
