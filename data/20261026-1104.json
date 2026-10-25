@@ -26,13 +26,13 @@
         "type": "nature",
         "icon": "leaf",
         "title": "紅葉即時資訊 / Live Camera",
-        "desc": "出發前幾天和前一晚看一下, 決定要不要調整順序。\n- **綜合:** [tenki.jp 紅葉情報](https://tenki.jp/kouyou/) [ウェザーニュース 紅葉](https://weathernews.jp/koyo/)\n- **10/27 上高地:** [上高地公式](https://www.kamikochi.or.jp/) [五千尺ホテル 河童橋 Live](https://www.youtube.com/results?search_query=%E4%BA%94%E5%8D%83%E5%B0%BA%E3%83%9B%E3%83%86%E3%83%AB+%E4%B8%8A%E9%AB%98%E5%9C%B0+%E3%83%A9%E3%82%A4%E3%83%96%E3%82%AB%E3%83%A1%E3%83%A9) [白樺荘 穂高 (每小時照片)](https://camera2-shirakabaso.com/hotaka/image_hourly.jpg)\n- **10/29 戶隱 鏡池:** [戸隠観光協会 ライブカメラ](https://togakushi-21.jp/livecam/) (鏡池約 10 分鐘更新一次)\n- **10/29 軽井沢 雲場池:** [軽井沢町 雲場池 Live (YouTube)](https://www.youtube.com/results?search_query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E7%94%BA+%E3%83%A9%E3%82%A4%E3%83%96%E3%82%AB%E3%83%A1%E3%83%A9+%E9%9B%B2%E5%A0%B4%E6%B1%A0) [軽井沢町公式カメラ一覧](https://www.town.karuizawa.lg.jp/www/contents/1443502093612/index.html) [軽井沢観光協会](https://karuizawa-kankokyokai.jp/)\n- **11/02 日光 (中禅寺湖．奥日光):** [中禅寺湖 Live (YouTube)](https://www.youtube.com/results?search_query=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B9%96+%E3%83%A9%E3%82%A4%E3%83%96%E3%82%AB%E3%83%A1%E3%83%A9) [奥日光湯元温泉 ライブカメラ](http://www.nikkoyumoto.com/livecam/) [日光旅ナビ](https://www.nikko-kankou.org/)"
+        "desc": "出發前幾天和前一晚看一下, 決定要不要調整順序。\n- **綜合:** [tenki.jp 紅葉情報](https://tenki.jp/kouyou/) [ウェザーニュース 紅葉](https://weathernews.jp/koyo/)\n- **10/27 上高地:** [上高地公式](https://www.kamikochi.or.jp/) [五千尺ホテル 河童橋 Live](https://www.youtube.com/results?search_query=%E4%BA%94%E5%8D%83%E5%B0%BA%E3%83%9B%E3%83%86%E3%83%AB+%E4%B8%8A%E9%AB%98%E5%9C%B0+%E3%83%A9%E3%82%A4%E3%83%96%E3%82%AB%E3%83%A1%E3%83%A9) [白樺荘 穂高 (每小時照片)](https://camera2-shirakabaso.com/hotaka/image_hourly.jpg)\n- **10/29 戶隱 鏡池:** [戸隠観光協会 ライブカメラ](https://togakushi-21.jp/livecam/) (鏡池約 10 分鐘更新一次)\n- **10/29 軽井沢 雲場池:** [軽井沢町 雲場池 Live (YouTube)](https://www.youtube.com/results?search_query=%E8%BB%BD%E4%BA%95%E6%B2%A2%E7%94%BA+%E3%83%A9%E3%82%A4%E3%83%96%E3%82%AB%E3%83%A1%E3%83%A9+%E9%9B%B2%E5%A0%B4%E6%B1%A0) [軽井沢町公式カメラ一覧](https://www.town.karuizawa.lg.jp/www/contents/1443502093612/index.html) [軽井沢観光協会](https://karuizawa-kankokyokai.jp/)\n- **11/03 日光 (中禅寺湖．奥日光):** [中禅寺湖 Live (YouTube)](https://www.youtube.com/results?search_query=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B9%96+%E3%83%A9%E3%82%A4%E3%83%96%E3%82%AB%E3%83%A1%E3%83%A9) [奥日光湯元温泉 ライブカメラ](http://www.nikkoyumoto.com/livecam/) [日光旅ナビ](https://www.nikko-kankou.org/)"
       },
       {
         "icon": "leaf",
         "hide": ["print"],
         "title": "各景點最新預測",
-        "desc": "日期 | 景點 | Weathernews (預測 / 現況) | tenki.jp (預測 / 10/20 現況)\n---|---|---|---\n10/27 | 河童橋 | 10/30 起落葉 / 見頃, 7~8 成轉色(10/19) [WN](https://weathernews.jp/koyo/spot/24823/) | 10/15 起 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/23/35124.html)\n10/29 | 戶隱 鏡池 | 10/30 起落葉 / 見頃, 7~8 成轉色(10/18) [WN](https://weathernews.jp/koyo/spot/24855/) | 10 月上旬到下旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/23/35141.html)\n11/02 | 日光 竜頭滝 | 10/29 起落葉 / 見頃, 7~8 成轉色(10/17) [WN](https://weathernews.jp/koyo/spot/24111/) | 9 月下旬到 10 月中旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/12/34658.html)\n11/02 | 日光 中禅寺湖 | 10/22 ~ 11/5 / 轉色約一半, 約 5 成(10/17) [WN](https://weathernews.jp/koyo/spot/24104/) | 10 月中旬到 11 月上旬 / 開始轉色 [tenki](https://tenki.jp/kouyou/3/12/34453.html)"
+        "desc": "日期 | 景點 | Weathernews (預測 / 現況) | tenki.jp (預測 / 10/25 現況)\n---|---|---|---\n10/27 | 河童橋 | 10/30 起落葉 / 見頃, 7~8 成轉色(10/23) [WN](https://weathernews.jp/koyo/spot/24823/) | 10/15 起 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/23/35124.html)\n10/29 | 戶隱 鏡池 | 10/30 起落葉 / 見頃, 7~8 成轉色(10/25) [WN](https://weathernews.jp/koyo/spot/24855/) | 10 月上旬到下旬 / 開始褪色 [tenki](https://tenki.jp/kouyou/3/23/35141.html)\n11/03 | 日光 竜頭滝 | 往年 10 月上旬到中旬 / 落葉中, 剩 5~6 成(10/22) [WN](https://weathernews.jp/koyo/spot/24111/) | 9 月下旬到 10 月中旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/12/34658.html)\n11/03 | 日光 中禅寺湖 | 11/5 起落葉 / 見頃, 7~8 成轉色(10/22) [WN](https://weathernews.jp/koyo/spot/24104/) | 10 月中旬到 11 月上旬 / 紅葉見頃 [tenki](https://tenki.jp/kouyou/3/12/34453.html)"
       }
     ]
   },
@@ -123,7 +123,7 @@
           "type": "transit",
           "icon": "bus",
           "title": "交通攻略",
-          "desc": "松本站搭上高地線電車到新島々, 轉巴士前往上高地, 預約開放時間為搭乘日的前一個月。回程的巴士與電車票可於線上一次預約。[上高地交通全攻略](https://visit-nagano.alpico.co.jp/zh-hant/travelog/post/getting-to-kamikochi-from-matsumoto-by-bus)"
+          "desc": "- **電車＋巴士 (需預約)**: 松本站搭上高地線電車到新島々, 轉巴士前往上高地。[上高地交通預約](https://visit-nagano.alpico.co.jp/zh-hant/travelog/post/getting-to-kamikochi-from-matsumoto-by-bus)\n- **新島々駅搭計程車 (跳錶, 可直入管制區)**:\n  - **新島々駅 ➔ 大正池**: 單程約 **¥12,500 ~ ¥13,500** (約 45 分鐘, 3 人平均 ¥4,167 ~ ¥4,500)\n  - **新島々駅 ➔ 上高地**: 單程約 **¥13,500 ~ ¥14,500** (約 50 分鐘, 3 人平均 ¥4,500 ~ ¥4,833)\n  - **分段搭 (計程車到沢渡 ＋ 換接駁巴士)**: 新島々駅 ➔ 沢渡計程車約 **¥9,400** (約 35 分鐘) ＋ 沢渡 ➔ 大正池接駁巴士 (免預約, 每 15~30 分鐘一班, 單程 ¥1,500/人 × 3 人 = **¥4,500**), 3 人合計約 **¥13,900** (平均 ¥4,633/人)。"
         },
         {
           "type": "nature",
@@ -207,7 +207,7 @@
     },
     "2026-10-28": {
       "region": "松本 ➔ 長野",
-      "title": "松本城．松本市美術館．善光寺",
+      "title": "松本城．善光寺",
       "subtitle": "東橫INN 長野駅善光寺口",
       "timeline": [
         {
@@ -390,7 +390,7 @@
     },
     "2026-10-30": {
       "region": "長野 ➔ 淺草 ➔ 渋谷 ➔ 横浜",
-      "title": "淺草．渋谷．明治神宮",
+      "title": "淺草．渋谷",
       "subtitle": "東橫INN 横浜西口",
       "timeline": [
         {
@@ -417,7 +417,6 @@
           "amount": 0
         },
         {
-          "time": "11:00 - 11:33",
           "title": "田原町 ➔ 渋谷",
           "icon": "jp-metro",
           "type": "transit",
@@ -428,14 +427,7 @@
           "time": "12:00",
           "title": "渋谷 Google 午餐 35F",
           "type": "food",
-          "desc": "- **寄放行李**: 可放渋谷ストリーム 2F 投幣置物櫃、辦公樓層 (17~22F / 26~32F) 儲物間, 或詢問 5F Reception:\n- Hi, I'm a visiting Googler here for lunch with a guest. Is there anywhere at reception we could temporarily leave our luggage, or should we use the storage closets upstairs?",
-          "amount": 0
-        },
-        {
-          "time": "10:00 - 21:00",
-          "title": "ハンズ渋谷店 (宇田川町本店)",
-          "type": "shopping",
-          "desc": "即將於 **2026/11/15 結束 48 年營業**！10/16 ~ 11/15 舉辦結業感謝祭\n- **雨天路線**: 走渋谷地下街從 **A2 或 A6b 出口**出來, 步行約 2~3 分鐘即達。[特設頁](https://shibuya.hands.net/) [Google Map](https://www.google.com/maps/search/?api=1&query=%E3%83%8F%E3%83%B3%E3%82%BA%E6%B8%8B%E8%B0%B7%E5%BA%97)",
+          "desc": "- **寄放行李**: 渋谷ストリーム 2F 投幣置物櫃、辦公樓層 (17~22F / 26~32F) 儲物間, 或詢問 5F 前台: Hi, I'm a visiting Googler here for lunch with a guest. Is there anywhere at reception we could temporarily leave our luggage, or should we use the storage closets upstairs?",
           "amount": 0
         },
         {
@@ -450,14 +442,7 @@
           "time": "10:00 - 20:00",
           "title": "Google Store 表參道",
           "type": "shopping",
-          "desc": "東急プラザ表参道「オモカド」1F / 2F / B1, 2F 有 AI 體驗。\n- **雨天路線**: 從渋谷搭副都心線 / 半蔵門線 1 站到「明治神宮前駅」**5 號出口**出來即達。",
-          "amount": 0
-        },
-        {
-          "time": "11:00 - 21:00",
-          "title": "東急プラザ原宿「ハラカド (HARAKADO)」",
-          "type": "shopping",
-          "desc": "Google Store 表參道正對面 (過斑馬線即達)。3F 設計師文創雜貨、5F~6F 室內綠化露台與美食街 (5F~7F 營業至 23:00)。",
+          "desc": "東急プラザ表参道「オモカド」1F / 2F / B1, 2F 有 AI 體驗。",
           "amount": 0
         },
         {
@@ -465,15 +450,39 @@
           "title": "I'm donut? 原宿店",
           "type": "food",
           "icon": "coffee",
-          "desc": "JR 原宿站表參道口步行約 1 分鐘。招牌是剛炸好的生甜甜圈, 2F 可以內用。賣完就收、不定休, 出發前看 [Instagram](https://www.instagram.com/i.m.donut/)。",
+          "desc": "JR 原宿站表參道口步行約 1 分鐘。招牌是剛炸好的生甜甜圈, 2F 可以內用。[Instagram](https://www.instagram.com/i.m.donut/)。",
           "amount": 0
         },
         {
-          "time": "10:00 - 21:00",
-          "title": "Shibuya Scramble Square",
+          "time": "",
+          "title": "渋谷周邊購物",
           "type": "shopping",
-          "desc": "與 Shibuya Stream 2F 空橋全室內直結。11F 中川政七商店旗艦店、10F 伊東屋文具、B2F 甜點伴手禮 (旁有 Shibuya Hikarie: 8F d47 MUSEUM、B2F~5F 雜貨甜點)。",
-          "amount": 0
+          "icon": "store",
+          "desc": "",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "10:00 - 21:00",
+              "title": "ハンズ渋谷店",
+              "type": "shopping",
+              "desc": "即將於 **2026/11/15 結束 48 年營業**！10/16 ~ 11/15 舉辦結業感謝祭\n- **雨天路線**: 走渋谷地下街從 **A2 或 A6b 出口**出來, 步行約 2~3 分鐘即達。[特設頁](https://shibuya.hands.net/) [Google Map](https://www.google.com/maps/search/?api=1&query=%E3%83%8F%E3%83%B3%E3%82%BA%E6%B8%8B%E8%B0%B7%E5%BA%97)",
+              "amount": 0
+            },
+            {
+              "time": "11:00 - 21:00",
+              "title": "東急プラザ原宿「ハラカド (HARAKADO)」",
+              "type": "shopping",
+              "desc": "Google Store 表參道正對面。3F 設計師文創雜貨、5F~6F 室內綠化露台與美食街。",
+              "amount": 0
+            },
+            {
+              "time": "10:00 - 21:00",
+              "title": "Shibuya Scramble Square",
+              "type": "shopping",
+              "desc": "與 Shibuya Stream 2F 空橋全室內直結。B2F 甜點伴手禮 (旁有 Shibuya Hikarie: 8F d47 MUSEUM、B2F~5F 雜貨甜點)。",
+              "amount": 0
+            }
+          ]
         },
         {
           "time": "",
@@ -482,88 +491,36 @@
           "type": "transit",
           "desc": "東急東横線 特急 / Fライナー (元町・中華街行) 直達横浜站 (約 27 分鐘)。",
           "amount": 309
-        }
-      ]
-    },
-    "2026-10-31": {
-      "region": "横浜",
-      "title": "横浜購物",
-      "subtitle": "東橫INN 横浜西口",
-      "tips": [
-        {
-          "type": "warning",
-          "title": "舊制免稅最後一天",
-          "desc": "10/31 23:59 前結帳都是舊制 (店內直接免稅)。11/1 起改為新制: 先付含稅價, 出境時在機場確認後才退稅。",
-          "hide": ["all"]
-        }
-      ],
-      "timeline": [
-        {
-          "type": "transit",
-          "icon": "jp-metro",
-          "time": "09:00",
-          "title": "横浜 ➔ 馬車道",
-          "desc": "港未來線到馬車道站 (約 5 分鐘), 4 號出口 (萬國橋口) 步行約 10 分鐘到横浜ハンマーヘッド。",
-          "amount": 206
-        },
-        {
-          "time": "10:00 - 20:00",
-          "title": "Kurumicco Factory",
-          "type": "shopping",
-          "desc": "横浜ハンマーヘッド 2F, 09:30 前到門口排隊買クルミッ子。[Google Map](https://maps.app.goo.gl/TX8zZnRvhGFBFgsC8)",
-          "amount": 0
-        },
-        {
-          "title": "ハンマーヘッド ➔ 山下公園 港邊散步",
-          "type": "nature",
-          "icon": "footprints",
-          "desc": "横浜ハンマーヘッド ➔ 赤レンガ倉庫 ➔ 象の鼻パーク ➔ 山下公園 ➔ mont-bell, 沿海邊平路約 3 km (約 45 分鐘)。",
-          "amount": 0
-        },
-        {
-          "time": "10:00 - 20:00",
-          "title": "mont-bell 横浜しんやました店",
-          "type": "shopping",
-          "desc": "[Google Map](https://www.google.com/maps/search/?api=1&query=%E3%83%A2%E3%83%B3%E3%83%99%E3%83%AB+%E6%A8%AA%E6%B5%9C%E3%81%97%E3%82%93%E3%82%84%E3%81%BE%E3%81%97%E3%81%9F%E5%BA%97)",
-          "amount": 0
-        },
-        {
-          "type": "food",
-          "time": "",
-          "title": "横浜中華街",
-          "desc": "從 mont-bell 往中華街方向步行約 15 分鐘。\n- 10:00 - 14:50 | 17:00 - 20:20 | 謝甜記 廣東粥 [Google Map](https://maps.app.goo.gl/87VopBoNjMjQyQD7A)\n- 10:00 - 21:30 | 鵬天閣 焼き小籠包 [Google Map](https://maps.app.goo.gl/URMRkX7QjeNC4GQ59)",
-          "amount": 0
-        },
-        {
-          "type": "transit",
-          "icon": "jp-metro",
-          "time": "",
-          "title": "元町・中華街 ➔ 横浜",
-          "desc": "港未來線直達横浜站 (約 8 分鐘)。",
-          "amount": 227
-        },
-        {
-          "time": "10:00 - 20:00",
-          "title": "NEWoMan YOKOHAMA (JR横浜タワー)",
-          "type": "shopping",
-          "desc": "- **2F 横浜駅観光案内所**: 10:00 - 17:00, 領取マンホールカード\n- **6F ~ 7F 無印良品**: 横浜站西口直結",
-          "amount": 0
-        },
-        {
-          "time": "10:00 - 20:00",
-          "title": "横浜高島屋．相鉄ジョイナス",
-          "type": "shopping",
-          "desc": "西口直結共構大樓 (B1 互通):\n- **高島屋 B1**: 洋菓子賣場 AUDREY 花束造型草莓奶油捲餅 (10:00 - 20:00)\n- **JOINUS B1**: 無印良品、3COINS (10:00 - 21:00)",
-          "amount": 0
         },
         {
           "time": "",
-          "title": "横浜站周邊購物",
+          "title": "横浜周邊購物",
           "type": "shopping",
           "icon": "store",
           "desc": "",
           "amount": 0,
           "subEvents": [
+            {
+              "time": "10:00 - 20:00",
+              "title": "mont-bell 横浜しんやました店",
+              "type": "shopping",
+              "desc": "[Google Map](https://www.google.com/maps/search/?api=1&query=%E3%83%A2%E3%83%B3%E3%83%99%E3%83%AB+%E6%A8%AA%E6%B5%9C%E3%81%97%E3%82%93%E3%82%84%E3%81%BE%E3%81%97%E3%81%9F%E5%BA%97)",
+              "amount": 0
+            },
+            {
+              "time": "10:00 - 20:00",
+              "title": "NEWoMan YOKOHAMA (JR横浜タワー)",
+              "type": "shopping",
+              "desc": "- **2F 横浜駅観光案内所**: 10:00 - 17:00, 領取マンホールカード\n- **6F ~ 7F 無印良品**: 横浜站西口直結",
+              "amount": 0
+            },
+            {
+              "time": "10:00 - 20:00",
+              "title": "横浜高島屋．相鉄ジョイナス",
+              "type": "shopping",
+              "desc": "西口直結共構大樓 (B1 互通):\n- **高島屋 B1**: 洋菓子賣場 AUDREY 花束造型草莓奶油捲餅 (10:00 - 20:00)\n- **JOINUS B1**: 無印良品、3COINS (10:00 - 21:00)",
+              "amount": 0
+            },
             {
               "time": "11:00 - 22:00",
               "title": "横浜BayQuarter",
@@ -607,6 +564,61 @@
               "amount": 0
             }
           ]
+        }
+      ]
+    },
+    "2026-10-31": {
+      "region": "横浜",
+      "title": "横浜購物",
+      "subtitle": "東橫INN 横浜西口",
+      "tips": [
+        {
+          "type": "warning",
+          "title": "舊制免稅最後一天",
+          "desc": "10/31 23:59 前結帳都是舊制 (店內直接免稅)。11/1 起改為新制: 先付含稅價, 出境時在機場確認後才退稅。",
+          "hide": ["all"]
+        }
+      ],
+      "timeline": [
+        {
+          "type": "transit",
+          "icon": "jp-metro",
+          "time": "09:00",
+          "title": "横浜 ➔ 馬車道",
+          "desc": "港未來線到馬車道站 (約 5 分鐘), 4 號出口 (萬國橋口) 步行約 10 分鐘到横浜ハンマーヘッド。",
+          "amount": 206
+        },
+        {
+          "time": "10:00 - 20:00",
+          "title": "Kurumicco Factory",
+          "type": "shopping",
+          "desc": "横浜ハンマーヘッド 2F, 09:30 前到門口排隊買クルミッ子。[Google Map](https://maps.app.goo.gl/TX8zZnRvhGFBFgsC8)",
+          "amount": 0
+        },
+        {
+          "title": "ハンマーヘッド ➔ 山下公園 港邊散步",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "横浜ハンマーヘッド ➔ 赤レンガ倉庫 ➔ 象の鼻パーク ➔ 山下公園 ➔ mont-bell",
+          "amount": 0
+        },
+        {
+          "type": "food",
+          "time": "",
+          "title": "横浜中華街",
+          "desc": "- 10:00 - 14:50 | 17:00 - 20:20 | 謝甜記 廣東粥 [Google Map](https://maps.app.goo.gl/87VopBoNjMjQyQD7A)\n- 10:00 - 21:30 | 鵬天閣 焼き小籠包 [Google Map](https://maps.app.goo.gl/URMRkX7QjeNC4GQ59)",
+          "amount": 0
+        },
+        {
+          "type": "transit",
+          "icon": "jp-metro",
+          "time": "",
+          "title": "元町・中華街 ➔ 横浜",
+          "amount": 227
+        },
+        {
+          "type": "shopping",
+          "title": "横浜購物"
         }
       ]
     },
@@ -672,11 +684,64 @@
           "amount": 403
         },
         {
-          "title": "横浜 ➔ 東京",
+          "title": "横浜 ➔ 東京 / 神田",
           "type": "jr",
-          "desc": "JR 東海道線 / 上野東京ライン約 30 分鐘。",
+          "desc": "JR 東海道線 / 上野東京ライン約 30 分鐘到東京站 (或於東京站轉乘 1 站 JR 山手線/京濱東北線至**神田站西口**, 走平面街道 6 分鐘到飯店最快)。",
           "amount": 528,
-          "time": ""
+          "time": "13:55 - 14:25"
+        },
+        {
+          "title": "東横INN東京大手町 (放行李)",
+          "type": "hotel",
+          "desc": "- **神田站**: **西口**出剪票口走平面約 6 分鐘 (JR 山手線/京濱東北線、銀座線)。\n- **大手町站**: **A1 出口**步行約 5 分鐘 (丸ノ内線、半蔵門線、三田線)。\n- **從東京站**: 約 20 分鐘 從 JR 走「丸の内地下北口」或「丸の内地下中央口」，出剪票口到地下通道，往北走，跟著「大手町駅」的指標。"
+        },
+        {
+          "time": "15:00 - 16:40",
+          "title": "皇居散策",
+          "type": "nature",
+          "icon": "trees",
+          "desc": "從東橫INN 大手町步行約 8 分鐘至皇居「大手門」。",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "09:00 - 16:00",
+              "title": "皇居東御苑",
+              "type": "nature",
+              "icon": "trees",
+              "desc": "⚠️ **11月冬季時間 15:30 最後入園、16:00 閉園** (免費免預約)。從**大手門**入園 ➔ 三之丸尚藏館 ➔ 二之丸庭園 ➔ 百人番所 ➔ 江戶城天守台 ➔ 北側**北詰橋門**出園。",
+              "amount": 0
+            },
+            {
+              "type": "nature",
+              "icon": "footprints",
+              "title": "北の丸公園 ➔ 九段下",
+              "time": "",
+              "desc": "從北詰橋門過馬路進入北の丸公園, 穿過公園經**田安門**出園即達九段下。",
+              "amount": 0
+            },
+            {
+              "type": "stamp",
+              "time": "10:00 - 18:00",
+              "title": "千代田区観光案内所",
+              "desc": "マンホールカード: 懶懶熊、小白熊、小雞與茶色小熊, 搭配區花「櫻花」。"
+            }
+          ]
+        },
+        {
+          "time": "",
+          "title": "九段下 / 神保町 ➔ 大手町",
+          "icon": "jp-metro",
+          "type": "transit",
+          "desc": "搭東京メトロ半蔵門線 / 東西線 (九段下 ➔ 大手町, 1~2 站約 3 分鐘) 或都営三田線 (神保町 ➔ 大手町, 1 站約 2 分鐘)。",
+          "amount": 178
+        },
+        {
+          "time": "",
+          "title": "和田倉噴水公園 ➔ 皇居外苑 (二重橋)",
+          "type": "nature",
+          "icon": "trees",
+          "desc": "全天開放。沿行幸通り散步至和田倉噴水公園與皇居外苑二重橋前拍夕陽與點燈。",
+          "amount": 0
         },
         {
           "time": "11:00 - 23:00",
@@ -685,25 +750,120 @@
           "type": "nature",
           "desc": "11/1 日落約 16:44, 俯瞰紅磚東京車站與丸之內大樓群夜景。東京站丸之內南口出站就在對面。"
         }
-      ],
-      "guides": [
-        {
-          "type": "hotel",
-          "title": "東横INN東京大手町",
-          "desc": "- **從東京站**: 約 20 分鐘 從 JR 走「丸の内地下北口」或「丸の内地下中央口」，出剪票口到地下通道，往北走，跟著「大手町駅」的指標。\n- **大手町站**: **A1 出口**步行約 5 分鐘 (丸ノ内線、半蔵門線、三田線);\n- **神田站**:  **西口**出剪票口(銀座線)。"
-        }
       ]
     },
     "2026-11-02": {
-      "region": "東京 ⇄ 日光",
-      "title": "奧日光紅葉巡禮",
+      "region": "東京都",
+      "title": "築地．東京鐵塔",
       "subtitle": "東橫INN 大手町",
       "timeline": [
+        {
+          "time": "07:00",
+          "title": "大手町 ➔ 銀座 ➔ 築地",
+          "icon": "jp-metro",
+          "type": "transit",
+          "desc": "大手町 (丸ノ内線) ➔ 銀座 (日比谷線) ➔ 築地, 約 20 分鐘。",
+          "amount": 178
+        },
+        {
+          "time": "",
+          "title": "築地場外市場",
+          "type": "shopping",
+          "desc": "築地站 1 號出口 ➔ 築地四丁目交差点 ➔ 丸豊 ➔ 玉子燒 ➔ 海鮮小吃 ➔ 廚具．乾貨。多數店家 14:00 前收攤, 7:00 ~ 9:00 人最少。[Google Maps 步行路線](https://www.google.com/maps/dir/?api=1&origin=%E7%AF%89%E5%9C%B0%E9%A7%85&destination=%E3%81%A4%E3%81%8D%E3%81%98%E5%B8%B8%E9%99%B8%E5%B1%8B&waypoints=%E3%81%8A%E3%81%AB%E3%81%8E%E3%82%8A%E5%B1%8B%20%E4%B8%B8%E8%B1%8A%7C%E3%81%A4%E3%81%8D%E3%81%98%E4%B8%B8%E6%AD%A6%7C%E4%BC%8A%E8%97%A4%E6%B5%B7%E8%8B%94%E5%BA%97%20%E7%AF%89%E5%9C%B0&travelmode=walking)",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "05:00 - 15:00",
+              "title": "おにぎり 丸豊",
+              "type": "food",
+              "hide": "print",
+              "desc": "築地鮮魚店經營的飯糰專賣店, 海鮮餡料特別好, 一顆又大又紮實, 常態 40 ~ 50 種以上\n- **鮭ハラス**: 肥厚鮭魚腹肉, 人氣第一\n- **すじこ** / **いくら**: 鮭魚卵\n- **バクダン**: 包一整顆自製溏心蛋\n- **えび天**: 現炸大蝦天婦羅\n[Google Map](https://www.google.com/maps/search/?api=1&query=%E4%B8%B8%E8%B1%8A%20%E3%81%8A%E3%81%AB%E3%81%8E%E3%82%8A%20%E7%AF%89%E5%9C%B0)",
+              "amount": 0
+            },
+            {
+              "time": "05:00 - 15:00",
+              "title": "おにぎり 丸豊",
+              "type": "food",
+              "desc": "築地鮮魚店經營的飯糰專賣店, 海鮮餡料特別好, 一顆又大又紮實, 常態 40 ~ 50 種以上",
+              "amount": 0
+            },
+            {
+              "time": "04:00 - 14:00",
+              "title": "玉子燒 丸武",
+              "type": "food",
+              "desc": "創業百年以上的玉子燒專門店。焼き玉一串 ¥200, 口感鬆軟多汁, 只能現場吃[Google Map](https://www.google.com/maps/search/?api=1&query=%E3%81%A4%E3%81%8D%E3%81%98%E4%B8%B8%E6%AD%A6%20%E7%AF%89%E5%9C%B0)",
+              "amount": 0
+            }
+          ]
+        },
+        {
+          "time": "",
+          "title": "築地 ➔ 神谷町 / 赤羽橋 (東京鐵塔)",
+          "icon": "jp-metro",
+          "type": "transit",
+          "desc": "- **方案 A (日比谷線直達)**: **築地站**搭東京メトロ日比谷線 (中目黒行) 4 站直達 **神谷町站** (約 9 分鐘, ¥178, 1 號出口步行 7 分鐘)。\n- **方案 B (大江戶線直達)**: 步行至**築地市場站**搭都営大江戸線 3 站直達 **赤羽橋站** (約 6 分鐘, ¥220, 赤羽橋口出站即見東京鐵塔經典視角)",
+          "amount": 178
+        },
+        {
+          "time": "09:00 - 23:00",
+          "title": "東京鐵塔 (東京タワー)",
+          "type": "culture",
+          "icon": "camera",
+          "desc": "可順路經過**増上寺**或**芝公園 4 號地**拍東京鐵塔經典全貌。Main Deck (150m) 門票 ¥1,500。[官網](https://www.tokyotower.co.jp/)",
+          "amount": 1500,
+          "subEvents": [
+            {
+              "time": "09:00 - 19:00",
+              "title": "芝郵便局 / 東京鐵塔展望台郵筒",
+              "type": "stamp",
+              "icon": "jp-post",
+              "desc": "風景印: **東京鐵塔與增上寺三解脫門** (鐵塔尖端凸出圓框外的超人氣**變形印**)。\n- 東京鐵塔/增上寺往**御成門站 (A5 出口旁)** 搭車時順路至**芝郵便局**櫃檯押印 [Google Map](https://www.google.com/maps/search/?api=1&query=%E8%8A%9D%E9%83%B5%E4%BE%BF%E5%B1%80)。\n- **郵寄回台**: 投入東京鐵塔 **Main Deck (150m) 2F「東京鐵塔造型郵筒」**, 會自動加蓋同款芝郵便局風景印寄出。",
+              "amount": 0
+            }
+          ]
+        },
+        {
+          "time": "",
+          "title": "御成門 (芝公園) ➔ 大手町",
+          "icon": "jp-metro",
+          "type": "transit",
+          "desc": "搭**都営三田線** (西高島平行) 3 站直達 **大手町站** (約 6 分鐘)",
+          "amount": 220
+        },
+        {
+          "time": "09:00 - 21:00",
+          "title": "グランスタ東京",
+          "type": "shopping",
+          "desc": "[グランスタ東京](https://www.gransta.jp/)\n- 09:30 - 20:30 | 岡田謹製茶織屋 [官網](https://www.chaoriya.jp/) (東京ギフトパレット 1F)\n- 09:00 - 21:00 | Glico ALMOND DAYS | 固力果杏仁點心 | B1\n- 退稅: 一番街 1F 東端 Tax-free Counter (日本橋口旁、成城石井隔壁)",
+          "amount": 0
+        },
+        {
+          "time": "10:00 - 20:00",
+          "title": "大丸東京店",
+          "type": "shopping",
+          "desc": "東京站八重洲北口直結。[官網](https://www.daimaru.co.jp/tokyo/)",
+          "amount": 0
+        }
+      ]
+    },
+    "2026-11-03": {
+      "region": "東京 ⇄ 日光 ➔ 成田機場",
+      "title": "奧日光紅葉巡禮",
+      "subtitle": "東橫INN 成田新館",
+      "timeline": [
+        {
+          "time": "05:50",
+          "title": "Check-out 寄放行李",
+          "type": "hotel",
+          "icon": "luggage",
+          "desc": "東橫INN 大手町 Check-out, 行李寄放在櫃台 (或東京站置物櫃), 傍晚從日光回東京後領取再搭 N'EX 去成田。",
+          "amount": 0
+        },
         {
           "time": "06:20 - 07:13",
           "title": "東京 ➔ 宇都宮",
           "type": "jr",
-          "desc": "東北新幹線 やまびこ201号 (東京始發, 1~5 號車自由席保證有位)。[乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%9D%B1%E4%BA%AC&eki2=%E6%97%A5%E5%85%89&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=11&Ddd=2&Dhh=6&Dmn1=1&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "desc": "東北新幹線 やまびこ201号 (東京始發, 1~5 號車自由席保證有位)。[乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%9D%B1%E4%BA%AC&eki2=%E6%97%A5%E5%85%89&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=11&Ddd=3&Dhh=6&Dmn1=1&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
           "amount": 4490
         },
         {
@@ -726,21 +886,21 @@
           "title": "奧日光紅葉散策",
           "type": "nature",
           "icon": "footprints",
-          "desc": "三本松展望台 ➔ 赤沼 ➔ 戰場之原木棧道 ➔ 龍頭瀑布 ➔ 菖蒲ヶ浜 (搭船或巴士) ➔ 中禪寺湖 ➔ 華嚴瀑布\n[Google Maps 全程散步路線 (三本松 ➔ 菖蒲ヶ浜乘船處)](https://www.google.com/maps/dir/Sanbonmatsu+Chaya,+2493+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/%E6%88%A6%E5%A0%B4%E3%83%B6%E5%8E%9F%E5%B1%95%E6%9C%9B%E5%8F%B0+%E6%97%A5%E6%9C%AC%E3%80%92321-1661+Tochigi,+Nikko,+Chugushi,+%E4%B8%89%E6%9C%AC%E6%9D%BE%EF%BC%88%E3%83%90%E3%82%B9/Akanuma+Chaya,+2494+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/Ryuzu+Falls+Upside+Parking,+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/Ryuzu+no+Chaya,+%E7%AB%9C%E9%A0%AD%E3%81%AE%E6%BB%9D+2485+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/36.75255,139.45454/@36.7645,139.445,15z/data=!3e2)[菖蒲ヶ浜 遊覧船発着所 (Google Map)](https://www.google.com/maps/search/?api=1&query=36.75255,139.45454)[船の駅中禅寺 (Google Map)](https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B9%96%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%B8%E3%83%B3%E3%82%B0+%E8%88%B9%E3%81%AE%E9%A7%85%E4%B8%AD%E7%A6%85%E5%AF%BA)",
+          "desc": "三本松展望台 ➔ 赤沼 ➔ 戰場之原木棧道 ➔ 龍頭瀑布 ➔ 菖蒲ヶ浜 (搭船或巴士) ➔ 中禪寺湖 ➔ 華嚴瀑布\n[Google Maps 全程散步路線 (三本松 ➔ 菖蒲ヶ浜乘船處)](https://www.google.com/maps/dir/Sanbonmatsu+Chaya,+2493+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/%E6%88%A6%E5%A0%B4%E3%83%B6%E5%8E%9F%E5%B1%95%E6%9C%9B%E5%8F%B0+%E6%97%A5%E6%9C%AC%E3%80%92321-1661+Tochigi,+Nikko,+Chugushi,+%E4%B8%89%E6%9C%AC%E6%9D%BE%EF%BC%88%E3%83%90%E3%82%B9/Akanuma+Chaya,+2494+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/Ryuzu+Falls+Upside+Parking,+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/Ryuzu+no+Chaya,+%E7%AB%9C%E9%A0%AD%E3%81%AE%E6%BB%9D+2485+Chugushi,+Nikko,+Tochigi+321-1661%E6%97%A5%E6%9C%AC/36.75255,139.45454/@36.7645,139.445,15z/data=!3e2)[菖蒲ヶ浜 遊覧船発着所 (Google Map)](https://www.google.com/maps/place/Lake+Chuzenji+Cruise+Shobugahama+Pier/@36.75255,139.45454,17z/data=!4m12!1m5!3m4!2zMzbCsDQ1JzA5LjIiTiAxMznCsDI3JzE2LjMiRQ!8m2!3d36.75255!4d139.45454!3m5!1s0x601fae9b36c0da25:0xaf08d7f6ef1e3487!8m2!3d36.7517881!4d139.4550099!16s%2Fg%2F11byxgm423?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D)[船の駅中禅寺 (Google Map)](https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B9%96%E3%82%AF%E3%83%AB%E3%83%BC%E3%82%B8%E3%83%B3%E3%82%B0+%E8%88%B9%E3%81%AE%E9%A7%85%E4%B8%AD%E7%A6%85%E5%AF%BA)",
           "amount": 390,
           "subEvents": [
             {
               "title": "竜頭の滝",
               "type": "nature",
               "icon": "camera",
-              "desc": "奧日光三大名瀑之一。從「滝上」沿著約 300 公尺的木棧道由上往下邊看湍流與紅葉邊走到正面觀瀑台 (龍頭之茶屋)。"
+              "desc": ""
             },
             {
               "time": "11:20 - 11:35",
               "title": "菖蒲ヶ浜 ➔ 船の駅中禅寺",
               "type": "transit",
               "icon": "ship",
-              "desc": "區間票 ¥1,440 / 一周券 ¥2,200。[菖蒲ヶ浜遊覧船発着所](https://www.google.com/maps/search/?api=1&query=36.75255,139.45454)[時刻表](https://www.chuzenjiko-cruise.com/time.html)",
+              "desc": "區間票 ¥1,440 / 一周券 ¥2,200。[時刻表](https://chuzenjiko-cruise.com/timetable.html)",
               "amount":1440
             },
             {
@@ -772,121 +932,21 @@
           "title": "中禅寺温泉 ➔ JR 日光駅",
           "type": "transit",
           "icon": "bus",
-          "desc": "東武バス C 系統 JR 日光駅行 (26B 乘車處, 中禅寺温泉始發)。[Yahoo!乗換案内](https://transit.yahoo.co.jp/search/result?from=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B8%A9%E6%B3%89%2F%E6%9D%B1%E6%AD%A6%E3%83%90%E3%82%B9&to=JR%E6%97%A5%E5%85%89%E9%A7%85%2F%E6%9D%B1%E6%AD%A6%E3%83%90%E3%82%B9&y=2026&m=11&d=2&hh=12&m1=5&m2=5&type=1)",
+          "desc": "東武バス C 系統 JR 日光駅行 (26B 乘車處, 中禅寺温泉始發)。 [Yahoo!乗換案内](https://transit.yahoo.co.jp/search/result?from=%E4%B8%AD%E7%A6%85%E5%AF%BA%E6%B8%A9%E6%B3%89%2F%E6%9D%B1%E6%AD%A6%E3%83%90%E3%82%B9&to=JR%E6%97%A5%E5%85%89%E9%A7%85%2F%E6%9D%B1%E6%AD%A6%E3%83%90%E3%82%B9&y=2026&m=11&d=3&hh=12&m1=5&m2=5&type=1)",
           "amount": 1250,
           "subEvents": [
-            {"time": "13:25 発 ➔ 14:05 着"},
-            {"time": "13:55 発 ➔ 14:35 着"}
+            {
+              "type":"jr",
+              "time": "13:25 発 ➔ 14:05 着 / 13:55 発 ➔ 14:35 着"
+            }
           ]
         },
         {
           "time": "15:19 - 16:01 | 16:21 - 17:16",
           "title": "JR 日光 ➔ 宇都宮 ➔ 東京",
           "type": "jr",
-          "desc": "JR 日光線 (宇都宮行)。東北新幹線 なすの278号 (郡山始發, 1~6 號車自由席)。[乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%97%A5%E5%85%89&eki2=%E6%9D%B1%E4%BA%AC&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=11&Ddd=2&Dhh=15&Dmn1=1&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "desc": "JR 日光線 (宇都宮行)。東北新幹線 なすの278号 (郡山始發, 1~6 號車自由席)。[乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%97%A5%E5%85%89&eki2=%E6%9D%B1%E4%BA%AC&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=11&Ddd=3&Dhh=15&Dmn1=1&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
           "amount": 5103
-        },
-        {
-          "time": "14:57 - 16:45",
-          "title": "東武日光 ➔ 淺草",
-          "type": "jr",
-          "desc": "[TOBU](https://tobu-japantrip-tickets.com/)",
-          "amount": 3043
-        }
-      ]
-    },
-    "2026-11-03": {
-      "region": "東京 ➔ 成田機場",
-      "title": "皇居散策．東京鐵塔",
-      "subtitle": "東橫INN 成田新館",
-      "timeline": [
-        {
-          "time": "09:00",
-          "title": "Check-out 寄放行李",
-          "type": "hotel",
-          "icon": "luggage",
-          "desc": "東橫INN 大手町 Check-out, 行李寄放在櫃台, 下午回來拿。",
-          "amount": 0
-        },
-        {
-          "time": "",
-          "title": "皇居散策",
-          "type": "nature",
-          "icon": "trees",
-          "desc": "",
-          "amount": 0,
-          "subEvents": [
-            {
-              "time": "",
-              "title": "和田倉噴水公園 ➔ 皇居外苑",
-              "type": "nature",
-              "icon": "trees",
-              "desc": "飯店步行約 15 ~ 20 分鐘。早上人少, 沿護城河散步到二重橋前拍照, 再走到大手門。",
-              "amount": 0
-            },
-            {
-              "type": "nature",
-              "icon": "trees",
-              "title": "皇居東御苑",
-              "time": "",
-              "desc": "從**大手門**進, 逛完從**北桔橋門**出去, 接北の丸公園往九段下。"
-            },
-            {
-              "time": "",
-              "title": "北桔橋門 ➔ 北の丸公園 ➔ 九段下",
-              "type": "nature",
-              "icon": "footprints",
-              "desc": "步行約 1.5 km, 穿過北の丸公園, 經田安門到九段下。",
-              "amount": 0
-            },
-            {
-              "type": "stamp",
-              "time": "10:00 - 18:00",
-              "title": "千代田区観光案内所",
-              "desc": "マンホールカード: 懶懶熊、小白熊、小雞與茶色小熊, 搭配區花「櫻花」。"
-            }
-          ]
-        },
-        {
-          "time": "",
-          "title": "神保町 / 九段下 ➔ 御成門 (芝公園)",
-          "icon": "jp-metro",
-          "type": "transit",
-          "desc": "從千代田区観光案内所往南走約 5 分鐘到**神保町站**, 搭**都営三田線** (日吉/白金高輪行) 直達 **御成門站** (4 站, 約 7 分鐘, A1 出口) 或 **芝公園站** (5 站, 約 9 分鐘, A4 出口)。",
-          "amount": 220
-        },
-        {
-          "time": "09:00 - 23:00",
-          "title": "東京鐵塔 (東京タワー)",
-          "type": "culture",
-          "icon": "camera",
-          "desc": "可順路經過**増上寺**或**芝公園 4 號地**拍東京鐵塔經典全貌。Main Deck (150m) 門票 ¥1,500。[官網](https://www.tokyotower.co.jp/)",
-          "amount": 1500
-        },
-        {
-          "time": "",
-          "title": "御成門 (芝公園) ➔ 大手町 (東京車站)",
-          "icon": "jp-metro",
-          "type": "transit",
-          "desc": "搭**都営三田線** (西高島平行) 3 站直達 **大手町站** (約 6 分鐘), 地下通道直結東京車站與東橫INN 大手町。",
-          "amount": 220
-        },
-        {
-          "time": "09:00 - 21:00",
-          "title": "グランスタ東京",
-          "desc": "[グランスタ東京](https://www.gransta.jp/)\n- 09:30 - 20:30 | 岡田謹製茶織屋 [官網](https://www.chaoriya.jp/) (東京ギフトパレット 1F)\n- 09:00 - 21:00 | Glico ALMOND DAYS | 固力果杏仁點心 | B1\n- 退稅: 一番街 1F 東端 Tax-free Counter (日本橋口旁、成城石井隔壁)",
-          "amount": 0
-        },
-        {
-          "time": "10:00 - 20:00",
-          "title": "大丸東京店",
-          "type": "shopping",
-          "desc": "東京站八重洲北口直結。[官網](https://www.daimaru.co.jp/tokyo/)",
-          "amount": 0
-        },
-        {
-          "type": "food",
-          "title": "東京車站"
         },
         {
           "time": "18:03 -19:04",
@@ -906,6 +966,7 @@
     "2026-11-04": {
       "region": "成田機場 ➔ 桃園",
       "title": "返台",
+      "subtitle": "溫暖的家",
       "tips": [
         {
           "type": "info",
@@ -930,12 +991,12 @@
           "type": "stamp",
           "icon": "jp-post",
           "title": "郵便局風景印",
-          "desc": "\n日期 | 郵局 | 時間 | 圖案\n---|---|---|---\n10/27 | 上高地郵便局 | 09:00 - 17:00 | 大正池與穗高岳\n10/28 | 松本城東 / 松本城西郵便局 | 09:00 - 17:00 | 松本城天守\n10/28 | 善光寺郵便局 | 09:00 - 17:00 | 善光寺本堂\n10/29 | 戶隱神社前郵便局 | 09:00 - 17:00 | 戶隱山與翁面"
+          "desc": "\n日期 | 郵局 | 時間 | 圖案\n---|---|---|---\n10/27 | 上高地郵便局 | 09:00 - 17:00 | 大正池與穗高岳\n10/28 | 松本城東 / 松本城西郵便局 | 09:00 - 17:00 | 松本城天守\n10/28 | 善光寺郵便局 | 09:00 - 17:00 | 善光寺本堂\n10/29 | 戶隱神社前郵便局 | 09:00 - 17:00 | 戶隱山與翁面\n11/2 | 芝郵便局 (或東京鐵塔展望台郵筒) | 09:00 - 19:00 | 東京鐵塔與增上寺三解脫門 (變形印)"
         },
         {
           "type": "stamp",
           "title": "マンホールカード",
-          "desc": "日期 | 發放地點 | 時間 | 位置\n---|---|---|---\n10/28 | 松本市観光情報センター | 09:00 - 17:45 | 松本城附近 [Google Map](https://maps.app.goo.gl/SmXvfbu1upNWuHoV9)\n10/28 | 長野市観光情報センター | 09:00 - 18:00 | JR 長野站 2 樓 東西自由通路 (剪票口外大廳)\n10/31 | 横浜駅観光案内所 | 10:00 - 17:00 | JR横浜タワー 2F\n11/1 | 橫須賀市觀光案內所 | 09:30 - 17:00 | 京急橫須賀中央站東口改札前\n11/3 | 千代田區觀光資訊中心 | 10:00 - 18:00 | 11/3 假日, 可能需預約 [Google Map](https://maps.app.goo.gl/2GPuDY28R46VNwTi7)"
+          "desc": "日期 | 發放地點 | 時間 | 位置\n---|---|---|---\n10/28 | 松本市観光情報センター | 09:00 - 17:45 | 松本城附近 [Google Map](https://maps.app.goo.gl/SmXvfbu1upNWuHoV9)\n10/28 | 長野市観光情報センター | 09:00 - 18:00 | JR 長野站 2 樓 東西自由通路 (剪票口外大廳)\n10/31 | 横浜駅観光案内所 | 10:00 - 17:00 | JR横浜タワー 2F\n11/1 | 橫須賀市觀光案內所 | 09:30 - 17:00 | 京急橫須賀中央站東口改札前\n11/1 | 千代田區觀光資訊中心 | 10:00 - 18:00 | 免預約 (僅第4週日休) [Google Map](https://maps.app.goo.gl/2GPuDY28R46VNwTi7)"
         },
         {
           "type": "shopping",
