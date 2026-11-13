@@ -551,7 +551,7 @@ function getDayTips(day) {
 function renderDmDayHead(key) {
     const day = sheetState.trip.detail[key] || {};
     const theme = getCurrentTheme();
-    const subtitle = (day.subtitle || '').replace(/^宿[\s:：]*/, '');
+    const subtitle = (day.subtitle || theme.navFallback || '').replace(/^宿[\s:：]*/, '');
     return `
         <div class="dm-day-head">
             ${renderDmBadge(key)}
@@ -660,41 +660,30 @@ function renderCoverToc() {
 }
 
 /**
- * 封面：標題列 (不受 head 設定影響) + 分欄
- * 第一欄：含圖片的說明卡 (例如路線圖)；第二欄：目錄；第三欄之後：其餘說明卡。
- * 欄數不足時依序往前併。
+ * 前導欄位 (封面說明卡、目錄)：
+ * - cover=1 時：所有封面說明卡放在同一欄 (目錄之前)
+ * - toc=1 時：目錄放在一欄，其後緊接著排每一天的行程
  */
-function renderCoverSheet() {
-    const meta = sheetState.trip.metadata || {};
-    const cols = Number(getSetting('cols')) || 3;
-    const cards = getCoverGuides().map(item => ({ item, html: renderCoverGuide(item) }));
-    const hasImg = c => /<img\b/.test(c.html);
-    const slots = [
-        cards.filter(hasImg).map(c => c.html),
-        getSetting('toc') === '1' ? [renderCoverToc()] : [],
-        cards.filter(c => !hasImg(c)).map(c => c.html),
-    ];
-    const columns = Array.from({ length: cols }, () => []);
-    slots.forEach((list, i) => columns[Math.min(i, cols - 1)].push(...list));
-    return `
-        <section class="sheet dm dm-cover-sheet">
-            ${renderFoldMarks()}
-            <header class="dm-head dm-cover-head">
-                <div class="dm-title">${esc(meta.title)}</div>
-                ${meta.subtitle ? `<div class="dm-subtitle">${esc(meta.subtitle)}</div>` : ''}
-            </header>
-            <div class="dm-cover" style="grid-template-columns: repeat(${cols}, minmax(0, 1fr));">
-                ${columns.map(list => `<div class="dm-cover-col">${list.join('')}</div>`).join('')}
-            </div>
-            <footer class="dm-foot"><span></span><span class="dm-pageno"></span></footer>
-        </section>`;
+function getFrontColumns() {
+    const front = [];
+    if (getSetting('cover') === '1') {
+        const cards = getCoverGuides().map(renderCoverGuide);
+        if (cards.length) front.push({ kind: 'cover', html: cards.join('') });
+    }
+    if (getSetting('toc') === '1' && getSelectedDayKeys().some(hasDayContent)) {
+        front.push({ kind: 'cover', html: renderCoverToc() });
+    }
+    return front;
 }
 
-function renderPackedBody(keys) {
+function renderPackedBody(items) {
     const cols = Number(getSetting('cols')) || 3;
+    const html = items.map((entry, col) => (entry.kind === 'cover'
+        ? `<div class="dm-cover-col${colEdgeClass(col)}">${entry.html}</div>`
+        : renderDmDay(entry.key, col))).join('');
     return `
         <div class="dm-cols" style="grid-template-columns: repeat(${cols}, minmax(0, 1fr));">
-            ${keys.map((key, col) => renderDmDay(key, col)).join('')}
+            ${html}
         </div>`;
 }
 
@@ -706,13 +695,17 @@ function hasDayContent(key) {
     return timeline.length > 0 || getDayTips(day).length > 0;
 }
 
-/** 依每頁欄數把選取的天數分組 (略過空白天) */
-function getKeyGroups() {
-    const keys = getSelectedDayKeys().filter(hasDayContent);
+/** 依每頁欄數將陣列分組 */
+function chunkByCols(list) {
     const cols = Number(getSetting('cols')) || 3;
     const groups = [];
-    for (let i = 0; i < keys.length; i += cols) groups.push(keys.slice(i, i + cols));
+    for (let i = 0; i < list.length; i += cols) groups.push(list.slice(i, i + cols));
     return groups;
+}
+
+/** 依每頁欄數把選取的天數分組 (略過空白天) */
+function getKeyGroups() {
+    return chunkByCols(getSelectedDayKeys().filter(hasDayContent));
 }
 
 // ------------------------------------------
@@ -758,6 +751,7 @@ function handleDayChipChange(event) {
  * .al-grid 由上往下排 (align-content: start)，取最下方子元素的底部。
  */
 function isContentOverflowing(el) {
+    if (el.scrollWidth > el.clientWidth + 1) return true;
     const box = el.getBoundingClientRect();
     const children = [...el.children];
     const used = el.classList.contains('dm-day')
@@ -767,10 +761,7 @@ function isContentOverflowing(el) {
 }
 
 function isSheetOverflowing(sheet) {
-    // 封面以 grid 分欄排列，看寬度與高度是否超出
-    return [...sheet.querySelectorAll('.dm-day, .al-grid')].some(isContentOverflowing)
-        || [...sheet.querySelectorAll('.dm-cover')].some(el => el.scrollWidth > el.clientWidth + 1
-            || el.scrollHeight > el.clientHeight + 1);
+    return [...sheet.querySelectorAll('.dm-day, .dm-cover-col, .al-grid')].some(isContentOverflowing);
 }
 
 /**
@@ -791,17 +782,18 @@ function fitSheet(sheet, minFs, maxFs = FS_AUTO_MAX) {
 }
 
 /**
- * 一般 sheet (不對齊、自動字級)：頁首與欄位標題用整頁字級，各欄的時間軸與 Tips 再各自縮小到放得下，
- * 避免某一天內容特別多時整張紙的字都跟著變小。回傳各欄實際字級 (pt)。
+ * 一般 sheet (不對齊、自動字級)：頁首與欄位標題用整頁字級，各欄的時間軸、Tips、封面與目錄再各自縮小到放得下，
+ * 避免某一欄內容特別多時整張紙的字都跟著變小。回傳各欄實際字級 (pt)。
  */
 function fitPackedColumns(sheet, fs) {
     const minScale = FS_AUTO_MIN / fs;
-    return [...sheet.querySelectorAll('.dm-day')].map(day => {
-        let scale = 1;
-        day.style.setProperty('--col-scale', '1');
-        while (scale > minScale && isContentOverflowing(day)) {
+    return [...sheet.querySelectorAll('.dm-day, .dm-cover-col')].map(col => {
+        const isCover = col.classList.contains('dm-cover-col');
+        let scale = isCover ? FS_COVER_MAX / fs : 1;
+        col.style.setProperty('--col-scale', String(scale));
+        while (scale > minScale && isContentOverflowing(col)) {
             scale = Math.max(minScale, scale - FS_AUTO_STEP / fs);
-            day.style.setProperty('--col-scale', String(scale));
+            col.style.setProperty('--col-scale', String(scale));
         }
         return Math.round(fs * scale * 4) / 4;
     });
@@ -876,8 +868,15 @@ function numberSheets(root) {
 const nextFrame = () => new Promise(resolve => requestAnimationFrame(() => resolve()));
 
 async function waitForLayout() {
-    // 等字型與圖示 (Lucide / Tailwind 產生的樣式) 就緒再量測高度
+    // 等字型、圖片與圖示 (Lucide / Tailwind 產生的樣式) 就緒再量測高度
     if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    const imgs = [...document.querySelectorAll('#sheet-root img')].filter(img => !img.complete);
+    if (imgs.length) {
+        await Promise.all(imgs.map(img => new Promise(resolve => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+        })));
+    }
     await nextFrame();
     await nextFrame();
 }
@@ -903,30 +902,43 @@ async function renderSheets() {
     applyPageStyle();
     renderDayChips();
 
-    // 1. 每組天數先排成一張紙 (對齊版面含全部列)
-    const groups = getKeyGroups().map(keys => ({ keys, rows: aligned ? buildAlignRows(keys, level) : null }));
-    const withCover = getSetting('cover') === '1' && (getSetting('toc') === '1' || getCoverGuides().length > 0);
-    root.innerHTML = (withCover ? renderCoverSheet() : '') + groups.map(g => renderDmSheet(g.keys,
-        aligned ? renderAlignedBody(g.keys, alignPart(g.rows, 0, g.rows.length)) : renderPackedBody(g.keys))).join('');
+    // 1. 前導欄位 (封面說明卡、目錄) 與每日行程依每頁欄數分組
+    const front = getFrontColumns();
+    const groups = aligned ? getKeyGroups().map(keys => ({ keys, rows: buildAlignRows(keys, level) })) : [];
+    if (aligned) {
+        const frontGroups = chunkByCols(front);
+        root.innerHTML = frontGroups.map(items => renderDmSheet([], renderPackedBody(items))).join('')
+            + groups.map(g => renderDmSheet(g.keys, renderAlignedBody(g.keys, alignPart(g.rows, 0, g.rows.length)))).join('');
+    } else {
+        const days = getSelectedDayKeys().filter(hasDayContent).map(key => ({ kind: 'day', key }));
+        const packedGroups = chunkByCols([...front, ...days]);
+        root.innerHTML = packedGroups.map(items => renderDmSheet(
+            items.filter(e => e.key).map(e => e.key),
+            renderPackedBody(items),
+        )).join('');
+    }
     refreshIcons(root);
     await waitForLayout();
 
     // 2. 縮放字級；對齊版面仍放不下時依列分頁
     const used = [];
-    const cover = root.querySelector('.dm-cover-sheet');
-    if (cover) fitSheet(cover, FS_AUTO_MIN, FS_COVER_MAX);
-    const firstPass = [...root.querySelectorAll('.sheet:not(.dm-cover-sheet)')];
+    const firstPass = [...root.querySelectorAll('.sheet')];
     const splits = [];
-    firstPass.forEach((sheet, i) => {
-        if (!aligned && getSetting('fs') === 'auto') {
+    let alignIdx = 0;
+    firstPass.forEach(sheet => {
+        const isAlignedSheet = Boolean(sheet.querySelector('.al-grid'));
+        if (!isAlignedSheet && getSetting('fs') === 'auto') {
             // 整頁字級只縮到欄位標題放得下為止，其餘由各欄自行縮放
             sheet.style.fontSize = `${FS_AUTO_MAX}pt`;
             used.push(...fitPackedColumns(sheet, FS_AUTO_MAX));
             return;
         }
-        const fs = fitSheet(sheet, aligned ? FS_PAGED_MIN : FS_AUTO_MIN);
+        const fs = fitSheet(sheet, isAlignedSheet ? FS_PAGED_MIN : FS_AUTO_MIN);
         used.push(fs);
-        if (aligned && isSheetOverflowing(sheet)) splits.push({ sheet, group: groups[i], fs });
+        if (isAlignedSheet) {
+            const group = groups[alignIdx++];
+            if (isSheetOverflowing(sheet)) splits.push({ sheet, group, fs });
+        }
     });
     splits.forEach(({ sheet, group, fs }) => {
         const parts = paginateAlignRows(group.rows, measureAlignRows(sheet));

@@ -377,11 +377,11 @@ body {
  * ========================================================= */
 .sheet.dm { --edge: var(--margin); padding-left: 0; padding-right: 0; }
 .dm-head, .dm-foot { margin-left: var(--edge); margin-right: var(--edge); }
-.dm-cols > .dm-day, .al-grid > * { margin-left: var(--gutter); margin-right: var(--gutter); }
+.dm-cols > .dm-day, .dm-cols > .dm-cover-col, .al-grid > * { margin-left: var(--gutter); margin-right: var(--gutter); }
 .dm-cols > .col-first, .al-grid > .col-first { margin-left: var(--edge); }
 .dm-cols > .col-last, .al-grid > .col-last { margin-right: var(--edge); }
 .dm-cover { padding: 0 var(--edge); column-gap: calc(2 * var(--gutter)); }
-.dm-cover-col { min-width: 0; }
+.dm-cover-col { min-width: 0; min-height: 0; overflow: hidden; font-size: calc(var(--col-scale, 1) * 1em); }
 
 /* 摺線記號 (fold=1)：紙寬 1/N 處，上下邊界各一小段短線 (長度為邊界的 60%，不壓到內容) */
 .dm-fold { position: absolute; top: 0; bottom: 0; width: 0; pointer-events: none; }

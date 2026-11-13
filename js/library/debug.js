@@ -32,7 +32,7 @@ function getDataListOptions() {
     };
 }
 
-/** 從目錄列表取得 JSON 檔；伺服器不提供目錄列表時拋出錯誤或回傳空陣列 */
+/** 從目錄列表取得 JSON 檔名 (不含目錄)；伺服器不提供目錄列表時拋出錯誤或回傳空陣列。mirror-links.js 也會使用 */
 async function fetchDataDirListing(dataDir) {
     const res = await fetch(dataDir, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -55,7 +55,7 @@ async function fetchDataDirListing(dataDir) {
         // 只取該目錄本身的檔案，不含子目錄
         .filter(name => name.toLowerCase().endsWith('.json') && !name.includes('/'));
 
-    return Array.from(new Set(names)).sort().map(name => ({ path: dataDir + name, label: name, title: '' }));
+    return Array.from(new Set(names)).sort();
 }
 
 /** 從清單檔取得檔案；每筆可寫路徑字串或 { path, title } */
@@ -121,7 +121,8 @@ function updateDataListTitle(source, manifestTitle) {
 /** 先試目錄列表，失敗或沒有檔案時改用清單檔 */
 async function resolveDataListFiles(options) {
     try {
-        const files = await fetchDataDirListing(options.dir);
+        const files = (await fetchDataDirListing(options.dir))
+            .map(name => ({ path: options.dir + name, label: name, title: '' }));
         if (files.length) return { source: 'dir', files };
         console.info(`[debug] ${options.dir} 沒有列出任何 JSON 檔`);
     } catch (error) {
