@@ -1,0 +1,548 @@
+{
+  "metadata": {
+    "title": "横浜．文具女子博",
+    "subtitle": "横浜．招財貓．鎌倉．東京｜2026/12/13 ~ 12/17",
+    "guides": [
+      {
+        "type": "shopping",
+        "icon": "shopping-bag",
+        "title": "文具女子博2026",
+        "desc": "- **展期**: 2026/12/16 (三) ~ 12/20 (日) 10:00 - 17:00 \n- **會場**: パシフィコ横浜 展示ホール C・D (港未來線「みなとみらい駅」步行 5 分鐘)"
+      },
+      {
+        "type": "stamp",
+        "icon": "jp-genki-badge",
+        "title": "景點・文具店公休日",
+        "desc": "區域 | 景點 / 店家 | 營業時間 | 公休日\n---|---|---|---\n新宿 | 東京都廳 南展望室 (45F) | 09:30 - 22:00 | 第1・3週二\n鎌倉 | 鎌倉紅谷 小町横路店 | 09:30 - 17:00 | 週四\n鎌倉 | 鎌倉コトリ (Kotori) | 11:00 - 18:00 | 週一\n鎌倉 | 豊島屋 本店 (鳩これくしょん) | 09:00 - 19:00 | 週三不定休\n鎌倉 | TUZURU (ツズル 寫信專門店) | 11:00 - 17:00 | 週三\n鎌倉 | 和紙専門店 社頭 (しゃとう) | 10:30 - 16:00 | 週一"
+      },
+      {
+        "type": "stamp",
+        "title": "マンホールカード",
+        "desc": "發放地點 | 時間 | 圖案與順路位置\n---|---|---\n新宿観光案内所 | 10:00 - 19:00 | **哥吉拉 (ゴジラ)**｜JR 新宿站東南口高架下 [Google Map](https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%AE%BF%E8%A6%B3%E5%85%89%E6%A1%88%E5%86%85%E6%89%80)\n桜木町駅観光案内所 | 10:00 - 17:00 | **河馬大ちゃん＋港未來摩天輪**｜JR 櫻木町站南改札正面 [Google Map](https://www.google.com/maps/search/?api=1&query=%E6%A1%9C%E6%9C%A8%E7%94%BA%E9%A7%85%E8%A6%B3%E5%85%89%E6%A1%88%E5%86%85%E6%89%80)\n横浜駅観光案内所 | 10:00 - 17:00 | **横浜灣大橋＋船舵輪**｜JR 横浜タワー 2F 中庭 [Google Map](https://www.google.com/maps/search/?api=1&query=%E6%A8%AA%E6%B5%9C%E9%A7%85%E8%A6%B3%E5%85%89%E6%A1%88%E5%86%85%E6%89%80)"
+      }
+    ]
+  },
+  "detail": {
+    "2026-12-13": {
+      "region": "桃園 ➔ 成田 ➔ 横浜",
+      "title": "抵達日本",
+      "subtitle": "東橫INN 横浜駅西口",
+      "tips": [
+        
+      ],
+      "timeline": [
+        {
+          "time": "15:35 - 19:35",
+          "title": "TPE T1 ➔ NRT T2",
+          "type": "flight",
+          "desc": "台灣虎航 IT202",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "成田第２ビル ➔ 横浜",
+          "type": "jr",
+          "desc": "[乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E7%A9%BA%E6%B8%AF%E7%AC%AC%EF%BC%92%E3%83%93%E3%83%AB&eki2=%E6%A8%AA%E6%B5%9C&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=13&Dhh=20&Dmn1=1&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 2090,
+          "subEvents": [
+            {
+              "time": "20:13 - 22:07",
+              "title": "成田第２ビル ➔ 横浜",
+              "type": "jr",
+              "desc": "JR 總武線快速 (快速・久里浜行，直達)"
+            },
+            {
+              "time": "20:31 - 22:38",
+              "title": "成田第２ビル ➔ 東京 ➔ 横浜",
+              "type": "jr",
+              "desc": "JR 總武線快速 (快速・東京行，22:04 到東京轉橫須賀線／東海道線)"
+            },
+            {
+              "time": "21:17 - 23:19",
+              "title": "成田第２ビル ➔ (東京) ➔ 横浜",
+              "type": "jr",
+              "desc": "JR 總武線快速 (久里浜行／東京行)"
+            }
+          ]
+        },
+        {
+          "time": "22:45",
+          "title": "東橫INN 横浜駅西口",
+          "type": "hotel",
+          "desc": "",
+          "amount": 0
+        },
+        {
+          "time": "",
+          "title": "宵夜",
+          "type": "food",
+          "desc": "",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "24 HR",
+              "title": "一蘭 横浜西口店",
+              "type": "food",
+              "icon": "jp-ramen",
+              "desc": "[Google Map](https://www.google.com/maps/search/?api=1&query=%E4%B8%80%E8%98%AD+%E6%A8%AA%E6%B5%9C%E8%A5%BF%E5%8F%A3%E5%BA%97)"
+            },
+            {
+              "time": "24 HR",
+              "title": "横浜家系ラーメン 鶴一家",
+              "type": "food",
+              "icon": "jp-ramen",
+              "desc": "24 小時營業的横浜在地人氣濃厚豚骨家系拉麵 (横浜站きた西口步行 4 分鐘)。[Google Map](https://www.google.com/maps/search/?api=1&query=%E9%B6%B4%E4%B8%80%E5%AE%B6+%E6%A8%AA%E6%B5%9C)"
+            },
+            {
+              "time": "11:30 - 22:00",
+              "title": "花より、ハンバーグ。",
+              "type": "food",
+              "icon": "beef",
+              "desc": "A5 黑毛和牛 100% 生熟漢堡排，每人座位設專屬小鐵板，用銀筷切一口煎到喜愛熟度，附 6 種沾醬與白飯・湯品無限續。横浜站きた西口步行 2~3 分鐘有兩間分店 (**フロントタワー店 2F 全日營業不午休**、本店 17:00-22:00)。[Google Map](https://www.google.com/maps/search/?api=1&query=%E8%8A%B1%E3%82%88%E3%82%8A%E3%80%81%E3%83%8F%E3%83%B3%E3%83%90%E3%83%BC%E3%82%B0+%E6%A8%AA%E6%B5%9C)"
+            },
+            {
+              "time": "11:00 - 22:00",
+              "title": "ハングリータイガー 横浜モアーズ店",
+              "type": "food",
+              "icon": "beef",
+              "desc": "横浜站西口 MORE'S 8F。1969 年横浜創業的日本炭火鐵板漢堡排始祖，800 度炭火直烤 100% 牛肉漢堡排，桌邊鐵板對切淋醬。[Google Map](https://www.google.com/maps/search/?api=1&query=%E3%83%8F%E3%83%B3%E3%82%B0%E3%83%AA%E3%83%BC%E3%82%BF%E3%82%A4%E3%82%AC%E3%83%BC+%E6%A8%AA%E6%B5%9C%E3%83%A2%E3%82%A2%E3%83%BC%E3%82%BA)"
+            }
+          ]
+        }
+      ]
+    },
+    "2026-12-14": {
+      "region": "横浜 ➔ 豪徳寺 ➔ 下北沢 ➔ 新宿f",
+      "title": "豪德寺．下北澤．新宿都廳",
+      "subtitle": "東橫INN 横浜駅西口",
+      "timeline": [
+        {
+          "time": "07:55 - 08:25",
+          "title": "横浜 ➔ 渋谷",
+          "type": "transit",
+          "icon": "train",
+          "desc": "東急東横線 (特急 / 急行，渋谷方向) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%A8%AA%E6%B5%9C&eki2=%E6%B8%8B%E8%B0%B7&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=14&Dhh=7&Dmn1=5&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 309
+        },
+        {
+          "time": "08:30 - 10:00",
+          "title": "Google 早餐",
+          "type": "food",
+          "icon": "coffee",
+          "desc": "從 C2 出口直通 **Shibuya Stream 5F**，前往 **24F Cafe Yui** 享用日式／西式景觀早餐，**29F Blue Bottle** 咖啡吧",
+          "amount": 0
+        },
+        {
+          "time": "09:35 - 09:45",
+          "title": "渋谷 ➔ 三軒茶屋",
+          "type": "transit",
+          "icon": "train",
+          "desc": "東急田園都市線 [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%B8%8B%E8%B0%B7&eki2=%E4%B8%89%E8%BB%92%E8%8C%B6%E5%B1%8B&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=14&Dhh=9&Dmn1=3&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 180
+        },
+        {
+          "time": "09:50 - 10:00",
+          "title": "三軒茶屋 ➔ 宮の坂",
+          "type": "transit",
+          "icon": "train",
+          "desc": "東急世田谷線「幸福の招き猫電車」[東急官網時刻表](https://www.tokyu.co.jp/railway/nekodensya/timetable/) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E4%B8%89%E8%BB%92%E8%8C%B6%E5%B1%8B&eki2=%E5%AE%AE%E3%81%AE%E5%9D%82&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=14&Dhh=9&Dmn1=5&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 160
+        },
+        {
+          "time": "10:00 - 11:45",
+          "title": "豪徳寺散策",
+          "type": "culture",
+          "icon": "jp-torii",
+          "desc": "",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "08:00 - 15:00",
+              "title": "豪徳寺",
+              "type": "culture",
+              "icon": "camera",
+              "desc": "\n- **招福殿**: 殿旁奉納所擺滿成千上萬隻舉右手（招福、不拿金幣）的白色招福貓；三重塔木雕中也藏有貓咪雕刻。\n- **寺務所 (08:00 - 15:00)**: 早上尺寸最齊全，可請回豆至特大號的招福貓，並領取招福貓御朱印。[Google Map](https://www.google.com/maps/search/?api=1&query=%E8%B1%AA%E5%BE%B3%E5%AF%BA)"
+            },
+            {
+              "time": "09:00 - 19:00",
+              "title": "まほろ堂 蒼月",
+              "type": "food",
+              "icon": "jp-dango",
+              "desc": "位於宮の坂駅旁，必買印有可愛招財貓烙印的紅豆銅鑼燒與青豆大福，之後沿豪德寺商店街散步前往小田急「豪徳寺駅」。[Google Map](https://www.google.com/maps/search/?api=1&query=%E3%81%BE%E3%81%BB%E3%82%8D%E5%A0%82%E8%92%BC%E6%9C%88)"
+            },
+            {
+              "time": "09:00 - 17:00",
+              "title": "豪徳寺駅前郵便局",
+              "type": "stamp",
+              "icon": "jp-post",
+              "desc": "風景印: **豪德寺、招財貓、楓葉、小田急浪漫特快列車**。位於小田急「豪徳寺駅」與東急世田谷線「山下駅」旁，前往下北澤搭車前順路蓋印！[Google Map](https://www.google.com/maps/search/?api=1&query=%E8%B1%AA%E5%BE%B3%E5%AF%BA%E9%A7%85%E5%89%8D%E9%83%B5%E4%BE%BF%E5%B1%80)"
+            }
+          ]
+        },
+        {
+          "time": "11:50 - 11:55",
+          "title": "豪徳寺 ➔ 下北沢",
+          "type": "transit",
+          "icon": "train",
+          "desc": "小田急線 (新宿方向) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E8%B1%AA%E5%BE%B3%E5%AF%BA&eki2=%E4%B8%8B%E5%8C%97%E6%B2%A2&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=14&Dhh=11&Dmn1=5&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 140
+        },
+        {
+          "time": "",
+          "title": "下北澤散策",
+          "type": "shopping",
+          "icon": "footprints",
+          "desc": "",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "11:30 - 15:30",
+              "title": "Rojiura Curry SAMURAI. (路地裏カリィ侍)",
+              "type": "food",
+              "desc": "北海道一日 20 種蔬菜濃郁湯咖哩 [Google Map](https://maps.app.goo.gl/GixErqzPVdgUsN1F8)"
+            },
+            {
+              "hide": ["sheet"],
+              "time": "11:30 - 15:30",
+              "title": "旧ヤム邸 シモキタ荘",
+              "type": "food",
+              "desc": "超人氣復古洋房香料咖哩 [Google Map](https://maps.app.goo.gl/tBbVzpUoeVwdEAqD6)"
+            },
+            {
+              "time": "",
+              "title": "BONUS TRACK",
+              "type": "shopping",
+              "desc": "下北澤西南口步行 3 分鐘的木造文青聚落，集結獨立書店「本屋 B&B」、選物店與特色餐飲（各店營業時間不同）。[Google Map](https://www.google.com/maps/search/?api=1&query=BONUS+TRACK+%E4%B8%8B%E5%8C%97%E6%B2%A2)"
+            },
+            {
+              "hide": ["sheet"],
+              "time": "09:00 - 19:00",
+              "title": "日記屋 月日",
+              "type": "shopping",
+              "desc": "全東京唯一「日記專門店」！販售古今中外作家與獨立創作者出版的私日記 (ZINE)、精選日記本、手寫文具與外帶咖啡。[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%97%A5%E8%A8%98%E5%B1%8B+%E6%9C%88%E6%97%A5+%E4%B8%8B%E5%8C%97%E6%B2%A2)"
+            },
+            {
+              "hide": ["sheet"],
+              "time": "11:00 - 20:00",
+              "title": "素今歩．東洋百貨店",
+              "type": "shopping",
+              "desc": "集結數百位日本手作設計師的寶箱格子雜貨店 (於東洋百貨店內 12:00 開門、ミカン下北店 11:00 開門，全年無休)，有大量獨一無二的手作飾品、插畫貼紙與紙雜貨。[Google Map](https://www.google.com/maps/search/?api=1&query=%E7%B4%A0%E4%BB%8A%E6%AD%A9+%E4%B8%8B%E5%8C%97%E6%B2%A2)"
+            }
+          ]
+        },
+        {
+          "time": "14:45 - 14:55",
+          "title": "下北沢 ➔ 新宿",
+          "type": "transit",
+          "icon": "train",
+          "desc": "小田急線 (急行 / 快速急行，新宿方向) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E4%B8%8B%E5%8C%97%E6%B2%A2&eki2=%E6%96%B0%E5%AE%BF&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=14&Dhh=14&Dmn1=4&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 140
+        },
+        {
+          "time": "",
+          "title": "新宿採買",
+          "type": "shopping",
+          "icon": "shopping-bag",
+          "desc": "",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "10:00 - 19:00",
+              "title": "新宿観光案内所",
+              "type": "stamp",
+              "desc": "マンホールカード: **哥吉拉 (ゴジラ)**。位於 JR 新宿站東南口旁高架下 (新宿 3-37-2)，務必於 19:00 關門前領取。[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%AE%BF%E8%A6%B3%E5%85%89%E6%A1%88%E5%86%85%E6%89%80)"
+            },
+            {
+              "time": "10:00 - 20:30",
+              "title": "京王百貨店 新宿店",
+              "type": "shopping",
+              "icon": "cake-slice",
+              "desc": "位於 B1F / 中2F：**薫るバター Sabrina**、**銀座ウエスト (Ginza West)**。[Google Map](https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E7%8E%8B%E7%99%BE%E8%B2%A8%E5%BA%97+%E6%96%B0%E5%AE%BF%E5%BA%97)"
+            },
+            {
+              "time": "10:00 - 21:00",
+              "title": "LUMINE 1",
+              "type": "shopping",
+              "icon": "cake-slice",
+              "desc": "位於 B2F：**Butter Butler** (奶油費南雪)。[Google Map](https://www.google.com/maps/search/?api=1&query=LUMINE+1+%E6%96%B0%E5%AE%BF)"
+            }
+          ]
+        },
+        {
+          "time": "16:15 - 18:00",
+          "title": "東京都廳",
+          "type": "culture",
+          "icon": "camera",
+          "desc": "都庁前駅 **A4 出口**",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "09:30 - 22:00",
+              "title": "東京都廳 45F 南展望室",
+              "type": "culture",
+              "icon": "camera",
+              "desc": "**免費入場 (免預約)**，從 1F 搭專用電梯 55 秒直達海拔 202 公尺高空。\n- **亮點**: 16:15 ~ 17:15 在上面可同時欣賞夕陽西下時的富士山剪影與東京百萬夜景，並看草間彌生設計的點點鋼琴「都庁おもいでピアノ」。[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%BA%81%E5%B1%95%E6%9C%9B%E5%AE%A4)"
+            },
+            {
+              "time": "17:30 - 21:30",
+              "title": "都廳光雕秀 TOKYO Night & Light",
+              "type": "culture",
+              "icon": "sparkles",
+              "desc": "位於**第一本廳舍 1F 外「都民廣場」**，免費自由觀賞。金氏世界紀錄認證的最大建築光雕投影秀，**12 月冬季班表自 17:30 起每 30 分鐘演出一場** (17:30 / 18:00 / 18:30 / 19:00 / 19:30 / 20:00 / 20:30 / 21:00 / 21:30)。"
+            }
+          ]
+        },
+        {
+          "time": "11:00 - 23:00",
+          "title": "えびそば 一幻 新宿店",
+          "type": "food",
+          "icon": "jp-ramen",
+          "desc": "來自北海道札幌的人氣濃厚甜蝦湯頭拉麵 [Google Map](https://www.google.com/maps/search/?api=1&query=%E3%81%88%E3%81%B3%E3%81%9D%E3%81%B0+%E4%B8%80%E5%B9%BB+%E6%96%B0%E5%AE%BF%E5%BA%97)"
+        },
+        {
+          "time": "",
+          "title": "新宿 ➔ 横浜",
+          "type": "jr",
+          "desc": "JR 湘南新宿線 (横浜・大船方向) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%96%B0%E5%AE%BF&eki2=%E6%A8%AA%E6%B5%9C&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=14&Dhh=20&Dmn1=3&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 571
+        }
+      ]
+    },
+    "2026-12-15": {
+      "region": "横浜 ⇄ 鎌倉・江之島",
+      "title": "鎌倉．江之島",
+      "subtitle": "東橫INN 横浜駅西口",
+      "tips": [
+        {
+          "type": "jr",
+          "icon": "train",
+          "title": "横浜 ⇄ 鎌倉交通",
+          "desc": "從 JR 横浜站搭乘 **JR 橫須賀線 (或湘南新宿線)**，**25 分鐘一車直達 JR 鎌倉站** (單程僅 **¥356**)。"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "09:04 - 09:28",
+          "title": "横浜 ➔ 鎌倉",
+          "type": "jr",
+          "desc": "JR 橫須賀線 (逗子・久里浜行) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%A8%AA%E6%B5%9C&eki2=%E9%8E%8C%E5%80%89&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=15&Dhh=9&Dmn1=0&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 356
+        },
+        {
+          "time": "09:30 - 13:45",
+          "title": "鎌倉駅散策",
+          "type": "culture",
+          "icon": "jp-torii",
+          "desc": "",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "09:30 - 17:30",
+              "title": "鎌倉紅谷 八幡宮前本店",
+              "type": "shopping",
+              "icon": "cake-slice",
+              "desc": "- **八幡宮前本店 (09:30 - 17:30)**: 位於鶴岡八幡宮正前方若宮大路，一早貨源最齊，必買招牌松鼠核桃糕餅「クルミッ子」(盒裝/罐裝) 與本店限定商品。[Google Map](https://www.google.com/maps/search/?api=1&query=%E9%8E%8C%E5%80%89%E7%B4%85%E8%B0%B7+%E5%85%AB%E5%B9%A1%E5%AE%AE%E5%89%8D%E6%9C%AC%E5%BA%97)\n- **小町横路店 (09:30 - 17:00)**: 小町通巷內，除伴手禮外還有外帶甜點與飲品。"
+            },
+            {
+              "time": "10:00 - 18:00",
+              "title": "小町通り扭蛋店",
+              "type": "shopping",
+              "desc": "- **小さなおもちゃ屋さん (原名：ガチャガチャの杜)**: 位於小町通往八幡宮方向，超特別的「不用盲抽、把扭蛋內容物分類擺在籃子裡讓你直接挑選購買」的扭蛋尋寶店 (入場投 ¥10 公益捐款)。[Google Map](https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E3%81%95%E3%81%AA%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E5%B1%8B%E3%81%95%E3%82%93+%E9%8E%8C%E5%80%89)\n- **かまくらガチャ (i-ZA 鎌倉 1F)**: 小町通入口處商場內，設有百台以上扭蛋機與鎌倉限定款式。"
+            },
+            {
+              "time": "",
+              "title": "小町通り．鶴岡八幡宮",
+              "type": "culture",
+              "icon": "jp-torii",
+              "desc": "品嚐現烤仙貝、吻仔魚グルメ，參拜鎌倉象徵鶴岡八幡宮。"
+            },
+            {
+              "hide": ["sheet"],
+              "time": "09:00 - 19:00",
+              "title": "豊島屋 本店",
+              "type": "shopping",
+              "desc": "可買經典「鳩サブレー」鴿子奶油餅乾，**本店 1F 專屬櫃位限定**販售超幽默「鳩これくしょん」文具：迷你餅乾鐵盒裝鴿子橡皮擦「鳩けし」、鴿子迴紋針「鳩クリップス」、鴿子便利貼與「鳩三郎」吊飾。[Google Map](https://www.google.com/maps/search/?api=1&query=%E8%B1%8A%E5%B3%B6%E5%B1%8B+%E6%9C%AC%E5%BA%97+%E9%8E%8C%E5%80%89)"
+            },
+            {
+              "hide": ["sheet"],
+              "time": "11:00 - 18:00",
+              "title": "鎌倉コトリ (Kotori)",
+              "type": "shopping",
+              "desc": "隱身住宅區小木屋的昭和懷舊原創文具店！必買原創鎌倉大佛夾子、江之電與小鳥紙膠帶、大佛印章、復古帳簿便條紙，結帳時會裝進特製「醫院處方箋藥袋」並蓋章。[Google Map](https://www.google.com/maps/search/?api=1&query=%E9%8E%8C%E5%80%89+%E3%82%B3%E3%83%88%E3%83%AA+%E6%96%87%E5%85%B7)"
+            },
+            {
+              "time": "10:00 - 19:00",
+              "title": "Onari Capsule",
+              "type": "shopping",
+              "desc": "建築師設計的日式美學扭蛋空間，除了精選扭蛋外，還有話題十足的鎌倉在地紀念扭蛋！[Google Map](https://www.google.com/maps/search/?api=1&query=Onari+Capsule+%E9%8E%8C%E5%80%89)"
+            },
+            {
+              "hide": ["sheet"],
+              "time": "10:30 - 16:00",
+              "title": "和紙専門店 社頭",
+              "type": "shopping",
+              "desc": "1969 年創業、文豪川端康成愛用的手漉和紙老店，必買日本最初的一筆箋「かまくら箋」與鎌倉版畫活版印刷明信片。[Google Map](https://www.google.com/maps/search/?api=1&query=%E5%92%8C%E7%B4%99%E5%B0%82%E9%96%80%E5%BA%97+%E7%A4%BE%E9%A0%AD+%E9%8E%8C%E5%80%89)"
+            }
+          ]
+        },
+        {
+          "time": "13:45 - 18:30",
+          "title": "江ノ電．江之島",
+          "type": "nature",
+          "icon": "footprints",
+          "desc": "從鎌倉站搭乘江之島電鐵 (可刷 Suica 或買一日券 ¥800) 沿湘南海岸往西遊覽至江之島：",
+          "amount": 800,
+          "subEvents": [
+            {
+              "time": "08:00 - 17:00",
+              "title": "高徳院（鎌倉大仏）",
+              "type": "culture",
+              "icon": "camera",
+              "desc": "江之電「長谷駅」步行約 7 分鐘，拜觀料 ¥300。"
+            },
+            {
+              "time": "",
+              "title": "鎌倉高校前．七里ヶ浜",
+              "type": "nature",
+              "icon": "camera",
+              "desc": "湘南海岸海景平交道，12 月冬日晴天率高，海岸線常能遠眺白雪覆頂的富士山。"
+            },
+            {
+              "time": "15:30 - 18:30",
+              "title": "江の島．湘南の宝石",
+              "type": "nature",
+              "icon": "camera",
+              "desc": "- 漫步弁財天仲見世通 (必吃現壓整隻章魚仙貝)、參拜江島神社，可搭戶外手扶梯「江の島エスカー」輕鬆上山。\n- **湘南の宝石**: 江之島山繆克金花園 (サムエル・コッキング苑) 與 Sea Candle 展望燈塔，16:30 先看湘南海岸夕陽與富士山剪影，17:00 點亮關東三大寶石光影海景。"
+            }
+          ]
+        },
+        {
+          "time": "18:30 - 19:15",
+          "title": "湘南江の島 ➔ 大船 ➔ 横浜",
+          "type": "transit",
+          "icon": "train",
+          "desc": "湘南モノレール (大船行) ➔ 大船轉 JR 東海道線 / 橫須賀線 (東京・横浜方向) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%B9%98%E5%8D%97%E6%B1%9F%E3%81%AE%E5%B3%B6&eki2=%E6%A8%AA%E6%B5%9C&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=15&Dhh=18&Dmn1=3&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 638
+        }
+      ]
+    },
+    "2026-12-16": {
+      "region": "横浜 ➔ 成田機場",
+      "title": "文具女子博．横浜採買",
+      "subtitle": "東橫INN 成田新館",
+      "tips": [
+        
+      ],
+      "timeline": [
+        {
+          "time": "08:45 - 09:00",
+          "title": "横浜 ➔ みなとみらい",
+          "type": "transit",
+          "icon": "jp-metro",
+          "desc": "みなとみらい線 (元町・中華街方向) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%A8%AA%E6%B5%9C&eki2=%E3%81%BF%E3%81%AA%E3%81%A8%E3%81%BF%E3%82%89%E3%81%84&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=16&Dhh=8&Dmn1=4&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 210
+        },
+        {
+          "time": "10:00 - 17:00",
+          "title": "文具女子博2026",
+          "type": "solo",
+          "icon": "shopping-bag",
+          "desc": "パシフィコ横浜 展示ホール C・D ",
+          "amount": 0
+        },
+        {
+          "title": "領人孔蓋卡",
+          "type": "stamp",
+          "desc": "",
+          "amount": 0,
+          "subEvents": [
+            {
+              "time": "10:00 - 17:00",
+              "title": "桜木町駅観光案内所",
+              "type": "stamp",
+              "desc": "マンホールカード: **河馬大ちゃん (かばのだいちゃん) ＋ 港未來摩天輪＆紅磚倉庫**。位於 JR 櫻木町站「南改札」正對面！[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%A1%9C%E6%9C%A8%E7%94%BA%E9%A7%85%E8%A6%B3%E5%85%89%E6%A1%88%E5%86%85%E6%89%80)"
+            },
+            {
+              "time": "10:00 - 17:00",
+              "title": "横浜駅観光案内所",
+              "type": "stamp",
+              "desc": "マンホールカード: **横浜灣大橋＋船舵輪**。位於 JR 横浜タワー 2F 中庭。[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%A8%AA%E6%B5%9C%E9%A7%85%E8%A6%B3%E5%85%89%E6%A1%88%E5%86%85%E6%89%80)"
+            }
+          ]
+        },
+        {
+          "time": "10:00 - 20:00",
+          "title": "横浜高島屋",
+          "type": "shopping",
+          "icon": "cake-slice",
+          "desc": "- **AUDREY**\n- **銀座ウエスト (Ginza West)**。[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%A8%AA%E6%B5%9C%E9%AB%98%E5%B3%B6%E5%B1%8B)",
+          "amount": 0
+        },
+        {
+          "time": "11:00 - 20:00",
+          "title": "無印良品 NEWoMan",
+          "type": "shopping",
+          "desc": "横浜站西口直結 NEWoMan 6F ~ 7F (與 2F 横浜駅観光案内所同棟)。[Google Map](https://www.google.com/maps/search/?api=1&query=%E7%84%A1%E5%8D%B0%E8%89%AF%E5%93%81+NEWoMan+YOKOHAMA)",
+          "amount": 0
+        },
+        {
+          "time": "10:00 - 20:30",
+          "title": "横浜 BayQuarter",
+          "type": "shopping",
+          "desc": "- **Yuzawaya ユザワヤ (5F・6F)**: 毛線、編織用品、手藝材料與布料專門店\n- **Seria (4F)**: 百元商店 [Google Map](https://www.google.com/maps/search/?api=1&query=%E6%A8%AA%E6%B5%9C%E3%83%99%E3%82%A4%E3%82%AF%E3%82%A9%E3%83%BC%E3%82%BF%E3%83%BC)",
+          "amount": 0
+        },
+        {
+          "time": "16:00 - 18:10",
+          "title": "横浜 ➔ 成田第２ビル",
+          "type": "jr",
+          "desc": "JR 橫須賀線・總武線快速 (成田空港方向) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E6%A8%AA%E6%B5%9C&eki2=%E7%A9%BA%E6%B8%AF%E7%AC%AC%EF%BC%92%E3%83%93%E3%83%AB&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=16&Dhh=16&Dmn1=0&Dmn2=0&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
+          "amount": 2090
+        },
+        {
+          "title": "東橫INN 成田新館",
+          "type": "hotel",
+          "desc": "",
+          "amount": 0
+        }
+      ]
+    },
+    "2026-12-17": {
+      "region": "成田機場 ➔ 桃園",
+      "title": "平安返台",
+      "subtitle": "溫暖的家",
+      "tips": [
+        {
+          "type": "info",
+          "icon": "bus",
+          "title": "東橫INN 成田機場接駁車",
+          "desc": "- 成田 T2 1F 中央口外「31-B」乘車處 [時刻表](https://www.toyoko-inn.com/feature/pickup/airport/narita)\n- **成田機場 T2 ➔ 東橫INN**: 15 ~ 23每時 **05 / 25 / 45** 分\n- **東橫INN ➔ 成田機場**: 08 時 **00 / 20 / 40**・09 時 **00 / 15 / 45**"
+        }
+      ],
+      "timeline": [
+        {
+          "time": "08:40 - 08:55",
+          "title": "東橫INN 成田新館 ➔ NRT T2",
+          "type": "transit",
+          "icon": "bus",
+          "desc": "飯店免費接駁巴士 (08:40 / 09:00 發車)",
+          "amount": 0
+        },
+        {
+          "time": "09:00 - 10:45",
+          "title": "退稅確認 ➔ 報到託運",
+          "type": "flight",
+          "desc": "**託運行李前**先至海關櫃檯出示護照與免稅商品確認",
+          "amount": 0
+        },
+        {
+          "time": "11:25 - 14:45",
+          "title": "NRT T2 ➔ TPE T1",
+          "type": "flight",
+          "desc": "台灣虎航 IT201",
+          "amount": 0
+        }
+      ]
+    }
+  }
+}
