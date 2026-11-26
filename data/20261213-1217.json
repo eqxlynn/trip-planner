@@ -2,6 +2,7 @@
   "metadata": {
     "title": "横浜．文具女子博",
     "subtitle": "横浜．招財貓．鎌倉．東京｜2026/12/13 ~ 12/17",
+    "coverMargin": "15mm 0mm 0mm 0mm",
     "guides": [
       {
         "type": "shopping",
@@ -197,7 +198,7 @@
           "subEvents": [
             {
               "time": "11:30 - 15:30",
-              "title": "Rojiura Curry SAMURAI. (路地裏カリィ侍)",
+              "title": "Rojiura Curry SAMURAI.",
               "type": "food",
               "desc": "北海道一日 20 種蔬菜濃郁湯咖哩 [Google Map](https://maps.app.goo.gl/GixErqzPVdgUsN1F8)"
             },
@@ -222,11 +223,11 @@
               "desc": "全東京唯一「日記專門店」！販售古今中外作家與獨立創作者出版的私日記 (ZINE)、精選日記本、手寫文具與外帶咖啡。[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%97%A5%E8%A8%98%E5%B1%8B+%E6%9C%88%E6%97%A5+%E4%B8%8B%E5%8C%97%E6%B2%A2)"
             },
             {
-              "hide": ["sheet"],
-              "time": "11:00 - 20:00",
-              "title": "素今歩．東洋百貨店",
-              "type": "shopping",
-              "desc": "集結數百位日本手作設計師的寶箱格子雜貨店 (於東洋百貨店內 12:00 開門、ミカン下北店 11:00 開門，全年無休)，有大量獨一無二的手作飾品、插畫貼紙與紙雜貨。[Google Map](https://www.google.com/maps/search/?api=1&query=%E7%B4%A0%E4%BB%8A%E6%AD%A9+%E4%B8%8B%E5%8C%97%E6%B2%A2)"
+              "time": "10:00 - 16:00",
+              "title": "北澤八幡神社",
+              "type": "culture",
+              "icon": "jp-torii",
+              "desc": "從 BONUS TRACK 步行約 7 ~ 8 分鐘。社務所頒布月替わり插畫、剪紙 (切り絵)／箔押／透卡與貓咪主題限定御朱印（旁邊即為森巖寺）。[Google Map](https://www.google.com/maps/search/?api=1&query=%E5%8C%97%E6%BE%A4%E5%85%AB%E5%B9%A1%E7%A5%9E%E7%A4%BE)"
             }
           ]
         },
@@ -237,36 +238,6 @@
           "icon": "train",
           "desc": "小田急線 (急行 / 快速急行，新宿方向) [乗換案内](https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E4%B8%8B%E5%8C%97%E6%B2%A2&eki2=%E6%96%B0%E5%AE%BF&via_on=-1&eki3=&eki4=&eki5=&eki6=&Dyy=2026&Dmm=12&Ddd=14&Dhh=14&Dmn1=4&Dmn2=5&Cway=0&Cfp=1&Czu=2&C7=1&C2=0&C3=0&C1=0&cartaxy=1&bikeshare=1&sort=rec&C4=5&C5=0&C6=2&S=%E6%A4%9C%E7%B4%A2&Cmap1=&rf=nr&pg=0&eok1=R-&eok2=R-&eok3=&eok4=&eok5=&eok6=&Csg=1)",
           "amount": 140
-        },
-        {
-          "time": "",
-          "title": "新宿採買",
-          "type": "shopping",
-          "icon": "shopping-bag",
-          "desc": "",
-          "amount": 0,
-          "subEvents": [
-            {
-              "time": "10:00 - 19:00",
-              "title": "新宿観光案内所",
-              "type": "stamp",
-              "desc": "マンホールカード: **哥吉拉 (ゴジラ)**。位於 JR 新宿站東南口旁高架下 (新宿 3-37-2)，務必於 19:00 關門前領取。[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%AE%BF%E8%A6%B3%E5%85%89%E6%A1%88%E5%86%85%E6%89%80)"
-            },
-            {
-              "time": "10:00 - 20:30",
-              "title": "京王百貨店 新宿店",
-              "type": "shopping",
-              "icon": "cake-slice",
-              "desc": "位於 B1F / 中2F：**薫るバター Sabrina**、**銀座ウエスト (Ginza West)**。[Google Map](https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E7%8E%8B%E7%99%BE%E8%B2%A8%E5%BA%97+%E6%96%B0%E5%AE%BF%E5%BA%97)"
-            },
-            {
-              "time": "10:00 - 21:00",
-              "title": "LUMINE 1",
-              "type": "shopping",
-              "icon": "cake-slice",
-              "desc": "位於 B2F：**Butter Butler** (奶油費南雪)。[Google Map](https://www.google.com/maps/search/?api=1&query=LUMINE+1+%E6%96%B0%E5%AE%BF)"
-            }
-          ]
         },
         {
           "time": "16:15 - 18:00",
@@ -281,14 +252,14 @@
               "title": "東京都廳 45F 南展望室",
               "type": "culture",
               "icon": "camera",
-              "desc": "**免費入場 (免預約)**，從 1F 搭專用電梯 55 秒直達海拔 202 公尺高空。\n- **亮點**: 16:15 ~ 17:15 在上面可同時欣賞夕陽西下時的富士山剪影與東京百萬夜景，並看草間彌生設計的點點鋼琴「都庁おもいでピアノ」。[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%BA%81%E5%B1%95%E6%9C%9B%E5%AE%A4)"
+              "desc": "16:15 ~ 17:15 在上面可同時欣賞夕陽西下時的富士山剪影與東京百萬夜景[Google Map](https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%BA%81%E5%B1%95%E6%9C%9B%E5%AE%A4)"
             },
             {
               "time": "17:30 - 21:30",
               "title": "都廳光雕秀 TOKYO Night & Light",
               "type": "culture",
               "icon": "sparkles",
-              "desc": "位於**第一本廳舍 1F 外「都民廣場」**，免費自由觀賞。金氏世界紀錄認證的最大建築光雕投影秀，**12 月冬季班表自 17:30 起每 30 分鐘演出一場** (17:30 / 18:00 / 18:30 / 19:00 / 19:30 / 20:00 / 20:30 / 21:00 / 21:30)。"
+              "desc": "位於**第一本廳舍 1F 外「都民廣場」**，免費自由觀賞。金氏世界紀錄認證的最大建築光雕投影秀，**12 月冬季班表自 17:30 起每 30 分鐘演出一場**"
             }
           ]
         },
@@ -313,12 +284,7 @@
       "title": "鎌倉．江之島",
       "subtitle": "東橫INN 横浜駅西口",
       "tips": [
-        {
-          "type": "jr",
-          "icon": "train",
-          "title": "横浜 ⇄ 鎌倉交通",
-          "desc": "從 JR 横浜站搭乘 **JR 橫須賀線 (或湘南新宿線)**，**25 分鐘一車直達 JR 鎌倉站** (單程僅 **¥356**)。"
-        }
+        
       ],
       "timeline": [
         {
@@ -341,13 +307,13 @@
               "title": "鎌倉紅谷 八幡宮前本店",
               "type": "shopping",
               "icon": "cake-slice",
-              "desc": "- **八幡宮前本店 (09:30 - 17:30)**: 位於鶴岡八幡宮正前方若宮大路，一早貨源最齊，必買招牌松鼠核桃糕餅「クルミッ子」(盒裝/罐裝) 與本店限定商品。[Google Map](https://www.google.com/maps/search/?api=1&query=%E9%8E%8C%E5%80%89%E7%B4%85%E8%B0%B7+%E5%85%AB%E5%B9%A1%E5%AE%AE%E5%89%8D%E6%9C%AC%E5%BA%97)\n- **小町横路店 (09:30 - 17:00)**: 小町通巷內，除伴手禮外還有外帶甜點與飲品。"
+              "desc": "位於鶴岡八幡宮正前方若宮大路，一早貨源最齊。[Google Map](https://www.google.com/maps/search/?api=1&query=%E9%8E%8C%E5%80%89%E7%B4%85%E8%B0%B7+%E5%85%AB%E5%B9%A1%E5%AE%AE%E5%89%8D%E6%9C%AC%E5%BA%97)"
             },
             {
               "time": "10:00 - 18:00",
-              "title": "小町通り扭蛋店",
+              "title": "小さなおもちゃ屋さん",
               "type": "shopping",
-              "desc": "- **小さなおもちゃ屋さん (原名：ガチャガチャの杜)**: 位於小町通往八幡宮方向，超特別的「不用盲抽、把扭蛋內容物分類擺在籃子裡讓你直接挑選購買」的扭蛋尋寶店 (入場投 ¥10 公益捐款)。[Google Map](https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E3%81%95%E3%81%AA%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E5%B1%8B%E3%81%95%E3%82%93+%E9%8E%8C%E5%80%89)\n- **かまくらガチャ (i-ZA 鎌倉 1F)**: 小町通入口處商場內，設有百台以上扭蛋機與鎌倉限定款式。"
+              "desc": "「不用盲抽、把扭蛋內容物分類擺在籃子裡讓你直接挑選購買」的扭蛋尋寶店。[Google Map](https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E3%81%95%E3%81%AA%E3%81%8A%E3%82%82%E3%81%A1%E3%82%83%E5%B1%8B%E3%81%95%E3%82%93+%E9%8E%8C%E5%80%89)"
             },
             {
               "time": "",
@@ -355,13 +321,6 @@
               "type": "culture",
               "icon": "jp-torii",
               "desc": "品嚐現烤仙貝、吻仔魚グルメ，參拜鎌倉象徵鶴岡八幡宮。"
-            },
-            {
-              "hide": ["sheet"],
-              "time": "09:00 - 19:00",
-              "title": "豊島屋 本店",
-              "type": "shopping",
-              "desc": "可買經典「鳩サブレー」鴿子奶油餅乾，**本店 1F 專屬櫃位限定**販售超幽默「鳩これくしょん」文具：迷你餅乾鐵盒裝鴿子橡皮擦「鳩けし」、鴿子迴紋針「鳩クリップス」、鴿子便利貼與「鳩三郎」吊飾。[Google Map](https://www.google.com/maps/search/?api=1&query=%E8%B1%8A%E5%B3%B6%E5%B1%8B+%E6%9C%AC%E5%BA%97+%E9%8E%8C%E5%80%89)"
             },
             {
               "hide": ["sheet"],
@@ -412,7 +371,7 @@
               "title": "江の島．湘南の宝石",
               "type": "nature",
               "icon": "camera",
-              "desc": "- 漫步弁財天仲見世通 (必吃現壓整隻章魚仙貝)、參拜江島神社，可搭戶外手扶梯「江の島エスカー」輕鬆上山。\n- **湘南の宝石**: 江之島山繆克金花園 (サムエル・コッキング苑) 與 Sea Candle 展望燈塔，16:30 先看湘南海岸夕陽與富士山剪影，17:00 點亮關東三大寶石光影海景。"
+              "desc": "江之島山繆克金花園 (サムエル・コッキング苑) 與 Sea Candle 展望燈塔，16:30 先看湘南海岸夕陽與富士山剪影，17:00 點亮關東三大寶石光影海景。"
             }
           ]
         },
