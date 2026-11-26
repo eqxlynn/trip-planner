@@ -72,10 +72,8 @@ function gapiLoaded() {
     gapi.load('client:picker', {
         callback: async () => {
             try {
-                // API Key 可省略 (discovery 文件為公開資源)，有設定才帶入
-                const apiKey = GoogleCredentials.apiKey;
+                // discovery 文件為公開資源、Drive 呼叫使用 OAuth token，不帶 apiKey 以免金鑰限制影響初始化
                 await gapi.client.init({
-                    ...(apiKey ? { apiKey } : {}),
                     discoveryDocs: [APP_CONFIG.DISCOVERY_DOC],
                 });
                 console.log('gapi client 核心初始化成功');
@@ -90,16 +88,33 @@ function gapiLoaded() {
                 }
             } catch (error) {
                 console.error('gapi 初始化失敗:', error);
+                setStatus('error', 'Google API 初始化失敗');
             }
         },
-        onerror: () => console.error('GAPI 載入發生錯誤或被瀏覽器封鎖'),
+        onerror: () => {
+            console.error('GAPI 載入發生錯誤或被瀏覽器封鎖');
+            setStatus('error', '無法載入 Google API');
+        },
         timeout: 5000,
-        ontimeout: () => console.error('GAPI 載入超時 (5秒)'),
+        ontimeout: () => {
+            console.error('GAPI 載入超時 (5秒)');
+            setStatus('error', 'Google API 載入超時');
+        },
     });
 }
 
 function handleAuthClick() {
-    if (restoreSession()) {
+    const token = restoreSession();
+    if (token) {
+        if (!window.gapi?.client?.drive) {
+            console.warn('[auth] gapi 尚未就緒，重新初始化...');
+            setStatus('loading', '正在連線 Google API...');
+            if (window.gapi) gapiLoaded();
+            return;
+        }
+        gapi.client.setToken({ access_token: token });
+        libraryState.accessToken = token;
+        updateUIAfterLogin();
         console.log('[auth] 連結 Google 帳號：已登入，重新整理雲端清單');
         initCloudTripList();
         return;

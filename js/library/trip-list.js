@@ -100,6 +100,11 @@ function createTripListItem(trip, isCloud, isEditMode) {
 async function initCloudTripList() {
     const token = restoreSession();
     if (!token) return;
+    if (!window.gapi?.client?.drive) {
+        console.warn('[trip_list] gapi.client.drive 尚未就緒');
+        setStatus('error', 'Google API 尚未就緒，請重新整理頁面');
+        return;
+    }
 
     try {
         setStatus('loading', '檢查雲端索引中...');
