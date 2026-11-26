@@ -24,21 +24,25 @@ const STORAGE_KEYS = Object.freeze({
 });
 
 /**
- * Google API 憑證：不寫在程式碼裡，由使用者在行程庫頁面的「Google API 設定」輸入，存在這個瀏覽器的 localStorage。
+ * Google API 憑證：優先讀取 Vercel Environment Variables 注入的 window.__ENV__，
+ * 若未設定 (例如本地開發) 則退回讀取這個瀏覽器的 localStorage。
  * - clientId：OAuth 2.0 用戶端 ID (登入必填)
  * - apiKey：API 金鑰 (Drive Picker 需要；gapi 載入 discovery 文件時可省略)
  * - appId：Picker 用的 App ID，即 Cloud 專案編號 (Client ID 開頭的數字)，自動推算
  */
 const GoogleCredentials = {
     get clientId() {
-        return (localStorage.getItem(STORAGE_KEYS.GOOGLE_CLIENT_ID) || '').trim();
+        return (window.__ENV__?.GOOGLE_CLIENT_ID || localStorage.getItem(STORAGE_KEYS.GOOGLE_CLIENT_ID) || '').trim();
     },
     get apiKey() {
-        return (localStorage.getItem(STORAGE_KEYS.GOOGLE_API_KEY) || '').trim();
+        return (window.__ENV__?.GOOGLE_API_KEY || localStorage.getItem(STORAGE_KEYS.GOOGLE_API_KEY) || '').trim();
     },
     get appId() {
         const match = this.clientId.match(/^(\d+)-/);
         return match ? match[1] : '';
+    },
+    isManagedByEnv() {
+        return Boolean((window.__ENV__?.GOOGLE_CLIENT_ID || '').trim());
     },
     isConfigured() {
         return this.clientId !== '';

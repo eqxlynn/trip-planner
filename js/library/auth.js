@@ -141,14 +141,19 @@ function openGoogleSettings() {
     if (input) input.focus();
 }
 
-/** 將已存的值填入表單；尚未設定 Client ID 時自動展開 */
+/** 將已存的值填入表單；若已由環境變數提供則隱藏設定區塊，否則未設定 Client ID 時自動展開 */
 function initGoogleSettingsForm() {
+    const details = document.getElementById('google-settings');
+    if (details && GoogleCredentials.isManagedByEnv()) {
+        toggleDisplay(details, false, null);
+        return;
+    }
     const clientInput = document.getElementById('google-client-id');
     const keyInput = document.getElementById('google-api-key');
     if (!clientInput || !keyInput) return;
     clientInput.value = GoogleCredentials.clientId;
     keyInput.value = GoogleCredentials.apiKey;
-    if (!GoogleCredentials.isConfigured()) document.getElementById('google-settings').open = true;
+    if (details && !GoogleCredentials.isConfigured()) details.open = true;
 }
 
 function saveGoogleSettings() {
