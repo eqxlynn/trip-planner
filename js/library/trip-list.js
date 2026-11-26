@@ -98,7 +98,7 @@ function createTripListItem(trip, isCloud, isEditMode) {
 
 /** 定位雲端總表、同步所有行程快取，並清除雲端已刪除的行程 */
 async function initCloudTripList() {
-    const token = libraryState.accessToken;
+    const token = restoreSession();
     if (!token) return;
 
     try {
@@ -144,7 +144,11 @@ async function initCloudTripList() {
         renderTripList(libraryState.tripMasterData, true);
     } catch (error) {
         console.error('初始化中央索引檔失敗：', error);
-        if (error.message === ERROR_TOKEN_EXPIRED) handleLogout();
+        if (error.message === ERROR_TOKEN_EXPIRED || isGapiUnauthorized(error)) {
+            handleLogout();
+            setStatus('error', '登入憑證已過期，請重新登入');
+            return;
+        }
         setStatus('error', '索引同步失敗');
         console.error('[trip_list] 索引同步失敗');
     }

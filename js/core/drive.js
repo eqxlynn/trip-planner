@@ -9,6 +9,10 @@ function buildAuthHeaders(accessToken) {
     return { Authorization: 'Bearer ' + accessToken };
 }
 
+function isGapiUnauthorized(error) {
+    return error?.status === 401 || error?.result?.error?.code === 401;
+}
+
 /** 帶入 OAuth token 的 fetch；遇到 401 會清除登入狀態並拋出 TOKEN_EXPIRED */
 async function driveFetch(url, accessToken) {
     const res = await fetch(url, { headers: buildAuthHeaders(accessToken) });
@@ -107,12 +111,21 @@ async function uploadDriveJson({ fileId = null, name, content, fields = 'id' }) 
         delimiter + 'Content-Type: application/json\r\n\r\n' + content +
         closeDelimiter;
 
-    const res = await gapi.client.request({
-        path: fileId ? `/upload/drive/v3/files/${fileId}` : '/upload/drive/v3/files',
-        method: fileId ? 'PATCH' : 'POST',
-        params: { uploadType: 'multipart', fields },
-        headers: { 'Content-Type': `multipart/related; boundary=${MULTIPART_BOUNDARY}` },
-        body,
-    });
-    return res.result;
+    try {
+        const res = await gapi.client.request({
+            path: fileId ? `/upload/drive/v3/files/${fileId}` : '/upload/drive/v3/files',
+            method: fileId ? 'PATCH' : 'POST',
+            params: { uploadType: 'multipart', fields },
+            headers: { 'Content-Type': `multipart/related; boundary=${MULTIPART_BOUNDARY}` },
+            body,
+        });
+        return res.result;
+    } catch (error) {
+        if (isGapiUnauthorized(error)) {
+            console.warn('登入憑證已過期 (401 Unauthorized)');
+            AuthSession.clear();
+            throw new Error(ERROR_TOKEN_EXPIRED);
+        }
+        throw error;
+    }
 }

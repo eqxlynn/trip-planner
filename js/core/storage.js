@@ -36,6 +36,8 @@ const TripStorage = {
     },
 };
 
+const TOKEN_EXPIRY_BUFFER_MS = 60 * 1000;
+
 const AuthSession = {
     getToken() {
         return sessionStorage.getItem(STORAGE_KEYS.TOKEN);
@@ -45,7 +47,7 @@ const AuthSession = {
     getValidToken() {
         const token = this.getToken();
         const expireTime = parseInt(sessionStorage.getItem(STORAGE_KEYS.TOKEN_EXPIRE), 10);
-        return token && expireTime && Date.now() < expireTime ? token : null;
+        return token && expireTime && Date.now() + TOKEN_EXPIRY_BUFFER_MS < expireTime ? token : null;
     },
 
     save(token, expiresInSeconds) {

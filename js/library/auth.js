@@ -99,7 +99,7 @@ function gapiLoaded() {
 }
 
 function handleAuthClick() {
-    if (libraryState.accessToken) {
+    if (restoreSession()) {
         console.log('[auth] 連結 Google 帳號：已登入，重新整理雲端清單');
         initCloudTripList();
         return;
@@ -211,7 +211,8 @@ function handleLogout() {
 // ------------------------------------------
 
 function openDrivePicker() {
-    if (!libraryState.accessToken) {
+    const token = restoreSession();
+    if (!token) {
         alert('請先連結 Google 雲端硬碟帳號！');
         return;
     }
@@ -233,7 +234,7 @@ function openDrivePicker() {
 
     const picker = new google.picker.PickerBuilder()
         .addView(view)
-        .setOAuthToken(libraryState.accessToken)
+        .setOAuthToken(token)
         .setDeveloperKey(GoogleCredentials.apiKey)
         .setAppId(GoogleCredentials.appId)
         .setCallback(pickerCallback)
