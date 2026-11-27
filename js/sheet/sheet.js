@@ -556,10 +556,12 @@ function getDayTips(day) {
 function renderDmDayHead(key, isCont = false) {
     const day = sheetState.trip.detail[key] || {};
     if (isCont) {
-        const badge = isDateTheme() ? `DAY ${getDayNumber(key)} 續` : `${shortDayLabel(key)} 續`;
+        const info = isDateTheme() ? getDayDisplayInfo(key) : null;
+        const dowClass = info?.dowStr === 'Sat' ? ' sat' : info?.dowStr === 'Sun' ? ' sun' : '';
+        const badge = isDateTheme() ? `DAY ${getDayNumber(key)} · ${shortDayLabel(key)} 續` : `${shortDayLabel(key)} 續`;
         return `
             <div class="dm-day-head dm-day-cont">
-                <span class="dm-cont-badge">${esc(badge)}</span>
+                <span class="dm-cont-badge${dowClass}">${esc(badge)}</span>
                 <div class="dm-day-title">${esc(day.title)}</div>
             </div>`;
     }

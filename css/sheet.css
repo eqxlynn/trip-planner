@@ -214,6 +214,8 @@ body {
     border: 1.5px solid var(--accent);
     color: var(--accent);
 }
+.dm-cont-badge.sat { border-color: #047857; color: #047857; }
+.dm-cont-badge.sun { border-color: #e11d48; color: #e11d48; }
 .dm-date {
     flex-shrink: 0;
     width: 4.6em;
