@@ -22,7 +22,7 @@ const PAPER_SIZES = { A4: [297, 210], A3: [420, 297], B4: [364, 257], Letter: [2
 
 const SHEET_DEFAULTS = {
     paper: 'A4', orient: 'landscape', margin: '8', fs: 'auto', desc: '2',
-    cols: '3', accent: 'slate', sub: '1', tips: '1', days: '', align: 'off', head: '1', cover: '0', toc: '1', unit: 'year', gutter: '6',
+    cols: '3', rows: '1', flipTop: '0', accent: 'slate', sub: '1', tips: '1', days: '', align: 'off', head: '1', cover: '0', toc: '1', unit: 'year', gutter: '6',
     fold: '1',
 };
 
@@ -186,6 +186,11 @@ function descToHtml(text, { images = false } = {}) {
 function colEdgeClass(col, cols = Number(getSetting('cols')) || 3) {
     if (col < 0) return ' col-first col-last';
     return (col === 0 ? ' col-first' : '') + (col === cols - 1 ? ' col-last' : '');
+}
+
+function rowEdgeClass(row, rows = Number(getSetting('rows')) || 1) {
+    if (rows < 2) return '';
+    return (row === 0 ? ' row-first' : '') + (row === rows - 1 ? ' row-last' : '');
 }
 
 /**
@@ -563,13 +568,13 @@ function renderDmDayHead(key) {
         </div>`;
 }
 
-function renderDmDay(key, col = 0) {
+function renderDmDay(key, col = 0, edgeClass = null) {
     const day = sheetState.trip.detail[key] || {};
     const timeline = (day.timeline || []).filter(isItemVisible).filter(item => item.title || item.time || item.desc);
     const tips = getSetting('tips') === '1' ? getDayTips(day) : [];
 
     return `
-        <article class="dm-day${colEdgeClass(col)}">
+        <article class="dm-day${edgeClass ?? colEdgeClass(col)}">
             ${renderDmDayHead(key)}
             <ol class="dm-tl">${timeline.map(renderDmEvent).join('')}</ol>
             ${tips.length ? `<div class="dm-tips">${tips.map(renderDmTip).join('')}</div>` : ''}
@@ -586,28 +591,32 @@ function renderDmRange(keys) {
 
 /**
  * 摺線記號：在紙寬 1/N、2/N … 處 (即兩欄留白的正中央，見 sheet.css「摺頁對位」)，
- * 於上下邊界各畫一小段短線，不壓到內容。1 欄或 fold=0 時不畫。
+ * 於上下邊界各畫一小段短線；2 列時於左右邊界 50% 處畫水平摺線。
  */
-function renderFoldMarks() {
+function renderFoldMarks(isTwoRow = false) {
+    if (getSetting('fold') !== '1') return '';
     const cols = Number(getSetting('cols')) || 3;
-    if (getSetting('fold') !== '1' || cols < 2) return '';
-    return Array.from({ length: cols - 1 }, (_, i) =>
-        `<div class="dm-fold" style="left:${((i + 1) * 100 / cols).toFixed(4)}%"></div>`).join('');
+    const vMarks = cols >= 2
+        ? Array.from({ length: cols - 1 }, (_, i) =>
+            `<div class="dm-fold" style="left:${((i + 1) * 100 / cols).toFixed(4)}%"></div>`).join('')
+        : '';
+    const hMarks = isTwoRow ? '<div class="dm-fold-h" style="top:50%"></div>' : '';
+    return vMarks + hMarks;
 }
 
-/** 一張紙：頁首 + 內容 (bodyHtml) + 頁碼 (由 numberSheets 填入) */
-function renderDmSheet(keys, bodyHtml) {
+/** 一張紙：頁首 + 內容 (bodyHtml) + 頁碼 (2 列模式省略頁首頁尾，維持上下 50% 對折對齊) */
+function renderDmSheet(keys, bodyHtml, isTwoRow = false) {
     const meta = sheetState.trip.metadata || {};
     return `
-        <section class="sheet dm">
-            ${renderFoldMarks()}
-            ${getSetting('head') === '1' ? `
+        <section class="sheet dm${isTwoRow ? ' dm-2row' : ''}">
+            ${renderFoldMarks(isTwoRow)}
+            ${!isTwoRow && getSetting('head') === '1' ? `
             <header class="dm-head">
                 <div class="dm-title">${esc(meta.title)}</div>
                 ${meta.subtitle ? `<div class="dm-subtitle">${esc(meta.subtitle)}</div>` : ''}
             </header>` : ''}
             ${bodyHtml}
-            <footer class="dm-foot"><span></span><span class="dm-pageno"></span></footer>
+            ${!isTwoRow ? '<footer class="dm-foot"><span></span><span class="dm-pageno"></span></footer>' : ''}
         </section>`;
 }
 
@@ -678,11 +687,17 @@ function getFrontColumns() {
 
 function renderPackedBody(items) {
     const cols = Number(getSetting('cols')) || 3;
-    const html = items.map((entry, col) => (entry.kind === 'cover'
-        ? `<div class="dm-cover-col${colEdgeClass(col)}">${entry.html}</div>`
-        : renderDmDay(entry.key, col))).join('');
+    const rows = Number(getSetting('rows')) || 1;
+    const html = items.map((entry, idx) => {
+        const col = idx % cols;
+        const row = Math.floor(idx / cols);
+        const edgeClass = colEdgeClass(col, cols) + rowEdgeClass(row, rows);
+        return entry.kind === 'cover'
+            ? `<div class="dm-cover-col${edgeClass}">${entry.html}</div>`
+            : renderDmDay(entry.key, col, edgeClass);
+    }).join('');
     return `
-        <div class="dm-cols" style="grid-template-columns: repeat(${cols}, minmax(0, 1fr));">
+        <div class="dm-cols" style="grid-template-columns: repeat(${cols}, minmax(0, 1fr)); grid-template-rows: repeat(${rows}, minmax(0, 1fr));">
             ${html}
         </div>`;
 }
@@ -695,11 +710,10 @@ function hasDayContent(key) {
     return timeline.length > 0 || getDayTips(day).length > 0;
 }
 
-/** 依每頁欄數將陣列分組 */
-function chunkByCols(list) {
-    const cols = Number(getSetting('cols')) || 3;
+/** 依每頁格數將陣列分組 */
+function chunkByCols(list, perPage = Number(getSetting('cols')) || 3) {
     const groups = [];
-    for (let i = 0; i < list.length; i += cols) groups.push(list.slice(i, i + cols));
+    for (let i = 0; i < list.length; i += perPage) groups.push(list.slice(i, i + perPage));
     return groups;
 }
 
@@ -902,7 +916,10 @@ async function renderSheets() {
     applyPageStyle();
     renderDayChips();
 
-    // 1. 前導欄位 (封面說明卡、目錄) 與每日行程依每頁欄數分組
+    // 1. 前導欄位 (封面說明卡、目錄) 與每日行程依每頁格數分組
+    const cols = Number(getSetting('cols')) || 3;
+    const rows = Number(getSetting('rows')) || 1;
+    const isTwoRow = !aligned && rows > 1;
     const front = getFrontColumns();
     const groups = aligned ? getKeyGroups().map(keys => ({ keys, rows: buildAlignRows(keys, level) })) : [];
     if (aligned) {
@@ -911,10 +928,11 @@ async function renderSheets() {
             + groups.map(g => renderDmSheet(g.keys, renderAlignedBody(g.keys, alignPart(g.rows, 0, g.rows.length)))).join('');
     } else {
         const days = getSelectedDayKeys().filter(hasDayContent).map(key => ({ kind: 'day', key }));
-        const packedGroups = chunkByCols([...front, ...days]);
+        const packedGroups = chunkByCols([...front, ...days], cols * rows);
         root.innerHTML = packedGroups.map(items => renderDmSheet(
             items.filter(e => e.key).map(e => e.key),
             renderPackedBody(items),
+            isTwoRow,
         )).join('');
     }
     refreshIcons(root);
@@ -954,6 +972,10 @@ async function renderSheets() {
     if (splits.length) await waitForLayout();
 
     root.querySelectorAll('.sheet').forEach(sheet => sheet.classList.toggle('sheet-overflow', isSheetOverflowing(sheet)));
+    // 上排翻轉 180° 在高度量測完後才套用，避免旋轉影響 getBoundingClientRect() 量測
+    if (isTwoRow && getSetting('flipTop') === '1') {
+        root.querySelectorAll('.dm-2row .dm-cols > .row-first').forEach(el => el.classList.add('dm-flip'));
+    }
     const total = numberSheets(root);
     updatePreviewZoom();
     const overflow = root.querySelectorAll('.sheet-overflow').length;
@@ -968,10 +990,11 @@ async function renderSheets() {
 // ------------------------------------------
 
 const SHEET_PRESETS = {
-    'a4-3': { paper: 'A4', orient: 'landscape', cols: '3' },
-    'a3-3': { paper: 'A3', orient: 'landscape', cols: '3' },
-    'a3-4': { paper: 'A3', orient: 'landscape', cols: '4' },
-    'a4-2': { paper: 'A4', orient: 'landscape', cols: '2' },
+    'a4-3': { paper: 'A4', orient: 'landscape', cols: '3', rows: '1' },
+    'a3-3': { paper: 'A3', orient: 'landscape', cols: '3', rows: '1' },
+    'a3-2x3': { paper: 'A3', orient: 'landscape', cols: '3', rows: '2' },
+    'a3-4': { paper: 'A3', orient: 'landscape', cols: '4', rows: '1' },
+    'a4-2': { paper: 'A4', orient: 'landscape', cols: '2', rows: '1' },
 };
 
 function syncPresetSelect() {

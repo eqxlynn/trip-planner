@@ -390,10 +390,14 @@ body {
  * 摺線 (紙寬 1/3、2/3 …) 因此剛好落在兩欄留白的正中央，可平均摺成 N 摺
  * ========================================================= */
 .sheet.dm { --edge: var(--margin); padding-left: 0; padding-right: 0; }
+.sheet.dm.dm-2row { padding-top: 0; padding-bottom: 0; gap: 0; }
 .dm-head, .dm-foot { margin-left: var(--edge); margin-right: var(--edge); }
 .dm-cols > .dm-day, .dm-cols > .dm-cover-col, .al-grid > * { margin-left: var(--gutter); margin-right: var(--gutter); }
 .dm-cols > .col-first, .al-grid > .col-first { margin-left: var(--edge); }
 .dm-cols > .col-last, .al-grid > .col-last { margin-right: var(--edge); }
+.dm-cols > .row-first { margin-top: var(--edge); margin-bottom: var(--gutter); }
+.dm-cols > .row-last { margin-top: var(--gutter); margin-bottom: var(--edge); }
+.dm-flip { transform: rotate(180deg); }
 .dm-cover { padding: 0 var(--edge); column-gap: calc(2 * var(--gutter)); }
 .dm-cover-col { min-width: 0; min-height: 0; overflow: hidden; font-size: calc(var(--col-scale, 1) * 1em); }
 
@@ -408,3 +412,15 @@ body {
 }
 .dm-fold::before { top: 0; }
 .dm-fold::after { bottom: 0; }
+
+/* 水平摺線記號 (rows=2, fold=1)：紙高 50% 處，左右邊界各一小段短線 */
+.dm-fold-h { position: absolute; left: 0; right: 0; height: 0; pointer-events: none; z-index: 5; }
+.dm-fold-h::before, .dm-fold-h::after {
+    content: '';
+    position: absolute;
+    top: -0.2mm;
+    width: calc(var(--margin) * 0.6);
+    border-top: 0.4mm solid #94a3b8;
+}
+.dm-fold-h::before { left: 0; }
+.dm-fold-h::after { right: 0; }

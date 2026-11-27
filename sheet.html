@@ -24,6 +24,7 @@
             <select id="tb-preset">
                 <option value="a4-3">A4 三欄</option>
                 <option value="a3-3">A3 三欄</option>
+                <option value="a3-2x3">A3 上下對折三欄 (6格)</option>
                 <option value="a3-4">A3 四欄</option>
                 <option value="a4-2">A4 雙欄</option>
                 <option value="custom">自訂</option>
@@ -86,6 +87,13 @@
                     <option value="5">5</option>
                 </select>
             </label>
+            <label class="tb-field">列數
+                <select data-param="rows">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </label>
+            <label class="tb-check"><input type="checkbox" data-param="flipTop"> 上排翻轉 180°</label>
             <label class="tb-field">字級
                 <select data-param="fs">
                     <option value="auto">自動縮放</option>
