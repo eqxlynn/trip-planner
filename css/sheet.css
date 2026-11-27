@@ -75,8 +75,19 @@ body {
     cursor: pointer;
 }
 .tb-btn:hover { background: #f8fafc; }
+.tb-btn.active { background: #f1f5f9; border-color: #cbd5e1; }
 .tb-primary { background: #1e293b; border-color: #1e293b; color: #fff; }
 .tb-primary:hover { background: #334155; }
+.tb-advanced {
+    flex-basis: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    padding-top: 6px;
+    border-top: 1px solid var(--line);
+}
+.tb-advanced.hidden { display: none; }
 .tb-days { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 4px; }
 .tb-days { gap: 4px 14px; }
 .tb-day {

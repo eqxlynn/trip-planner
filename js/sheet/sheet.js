@@ -967,6 +967,22 @@ async function renderSheets() {
 // 設定列
 // ------------------------------------------
 
+const SHEET_PRESETS = {
+    'a4-3': { paper: 'A4', orient: 'landscape', cols: '3' },
+    'a3-3': { paper: 'A3', orient: 'landscape', cols: '3' },
+    'a3-4': { paper: 'A3', orient: 'landscape', cols: '4' },
+    'a4-2': { paper: 'A4', orient: 'landscape', cols: '2' },
+};
+
+function syncPresetSelect() {
+    const presetEl = document.getElementById('tb-preset');
+    if (!presetEl) return;
+    const match = Object.entries(SHEET_PRESETS).find(([, cfg]) =>
+        Object.entries(cfg).every(([k, v]) => getSetting(k) === v)
+    );
+    presetEl.value = match ? match[0] : 'custom';
+}
+
 function initToolbar() {
     document.querySelectorAll('[data-param]').forEach(el => {
         const name = el.dataset.param;
@@ -975,9 +991,38 @@ function initToolbar() {
             el.addEventListener('change', () => { setSetting(name, el.checked ? '1' : '0'); renderSheets(); });
         } else {
             el.value = getSetting(name);
-            el.addEventListener('change', () => { setSetting(name, el.value); renderSheets(); });
+            el.addEventListener('change', () => {
+                setSetting(name, el.value);
+                syncPresetSelect();
+                renderSheets();
+            });
         }
     });
+
+    const presetEl = document.getElementById('tb-preset');
+    if (presetEl) {
+        syncPresetSelect();
+        presetEl.addEventListener('change', () => {
+            const cfg = SHEET_PRESETS[presetEl.value];
+            if (!cfg) return;
+            Object.entries(cfg).forEach(([k, v]) => {
+                setSetting(k, v);
+                const input = document.querySelector(`[data-param="${k}"]`);
+                if (input) input.value = v;
+            });
+            renderSheets();
+        });
+    }
+
+    const advToggle = document.getElementById('tb-advanced-toggle');
+    const advPanel = document.getElementById('tb-advanced');
+    if (advToggle && advPanel) {
+        advToggle.addEventListener('click', () => {
+            const open = advPanel.classList.toggle('hidden') === false;
+            advToggle.classList.toggle('active', open);
+            advToggle.setAttribute('aria-expanded', String(open));
+        });
+    }
 
     document.getElementById('tb-print').addEventListener('click', () => window.print());
     window.addEventListener('resize', updatePreviewZoom);
