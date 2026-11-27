@@ -552,9 +552,17 @@ function getDayTips(day) {
     return (day.tips || []).filter(isItemVisible).filter(item => item.title || item.desc);
 }
 
-/** 欄位標題：徽章 + 標題 + region + subtitle */
-function renderDmDayHead(key) {
+/** 欄位標題：徽章 + 標題 + region + subtitle (續欄時顯示精簡標題) */
+function renderDmDayHead(key, isCont = false) {
     const day = sheetState.trip.detail[key] || {};
+    if (isCont) {
+        const badge = isDateTheme() ? `DAY ${getDayNumber(key)} 續` : `${shortDayLabel(key)} 續`;
+        return `
+            <div class="dm-day-head dm-day-cont">
+                <span class="dm-cont-badge">${esc(badge)}</span>
+                <div class="dm-day-title">${esc(day.title)}</div>
+            </div>`;
+    }
     const theme = getCurrentTheme();
     const subtitle = (day.subtitle || theme.navFallback || '').replace(/^宿[\s:：]*/, '');
     return `
@@ -568,15 +576,17 @@ function renderDmDayHead(key) {
         </div>`;
 }
 
-function renderDmDay(key, col = 0, edgeClass = null) {
+function renderDmDay(entryOrKey, col = 0, edgeClass = null) {
+    const entry = typeof entryOrKey === 'string' ? { key: entryOrKey } : entryOrKey;
+    const { key, tlStart = 0, tlEnd = Infinity, showTips = true, isCont = false } = entry;
     const day = sheetState.trip.detail[key] || {};
-    const timeline = (day.timeline || []).filter(isItemVisible).filter(item => item.title || item.time || item.desc);
-    const tips = getSetting('tips') === '1' ? getDayTips(day) : [];
+    const timeline = (day.timeline || []).filter(isItemVisible).filter(item => item.title || item.time || item.desc).slice(tlStart, tlEnd);
+    const tips = showTips && getSetting('tips') === '1' ? getDayTips(day) : [];
 
     return `
         <article class="dm-day${edgeClass ?? colEdgeClass(col)}">
-            ${renderDmDayHead(key)}
-            <ol class="dm-tl">${timeline.map(renderDmEvent).join('')}</ol>
+            ${renderDmDayHead(key, isCont)}
+            ${timeline.length ? `<ol class="dm-tl">${timeline.map(renderDmEvent).join('')}</ol>` : ''}
             ${tips.length ? `<div class="dm-tips">${tips.map(renderDmTip).join('')}</div>` : ''}
         </article>`;
 }
@@ -694,7 +704,7 @@ function renderPackedBody(items) {
         const edgeClass = colEdgeClass(col, cols) + rowEdgeClass(row, rows);
         return entry.kind === 'cover'
             ? `<div class="dm-cover-col${edgeClass}">${entry.html}</div>`
-            : renderDmDay(entry.key, col, edgeClass);
+            : renderDmDay(entry, col, edgeClass);
     }).join('');
     return `
         <div class="dm-cols" style="grid-template-columns: repeat(${cols}, minmax(0, 1fr)); grid-template-rows: repeat(${rows}, minmax(0, 1fr));">
@@ -906,6 +916,59 @@ function updatePreviewZoom() {
     root.style.setProperty('--preview-zoom', String(Math.max(0.2, zoom)));
 }
 
+/** 固定字級時，將超出欄高的單日行程自動拆成多欄 (續欄) */
+function splitOverflowingDays(days, root) {
+    const dayEls = [...root.querySelectorAll('.dm-day')];
+    let changed = false;
+    const expanded = [];
+
+    days.forEach((entry, i) => {
+        const dayEl = dayEls[i];
+        if (!dayEl || !isContentOverflowing(dayEl)) {
+            expanded.push(entry);
+            return;
+        }
+        const avail = dayEl.getBoundingClientRect().height * FIT_SAFETY;
+        const headH = dayEl.querySelector('.dm-day-head')?.getBoundingClientRect().height || 0;
+        const contHeadH = Math.min(headH, headH * 0.65);
+        const tlEl = dayEl.querySelector('.dm-tl');
+        const tlStyle = tlEl ? getComputedStyle(tlEl) : null;
+        const tlPad = tlStyle ? parseFloat(tlStyle.paddingTop) + parseFloat(tlStyle.paddingBottom) : 0;
+        const liHeights = tlEl ? [...tlEl.children].map(li => li.getBoundingClientRect().height) : [];
+        const tipsH = dayEl.querySelector('.dm-tips')?.getBoundingClientRect().height || 0;
+
+        if (!liHeights.length && !tipsH) {
+            expanded.push(entry);
+            return;
+        }
+
+        changed = true;
+        let idx = 0;
+        let isFirst = true;
+        while (idx < liHeights.length) {
+            let used = (isFirst ? headH : contHeadH) + tlPad;
+            let end = idx;
+            while (end < liHeights.length && (used + liHeights[end] <= avail || end === idx)) {
+                used += liHeights[end];
+                end += 1;
+            }
+            const reachedEnd = end === liHeights.length;
+            const tipsFit = reachedEnd && (used + tipsH <= avail);
+            expanded.push({ kind: 'day', key: entry.key, tlStart: idx, tlEnd: end, showTips: tipsFit || (reachedEnd && !tipsH), isCont: !isFirst });
+            if (reachedEnd && tipsH > 0 && !tipsFit) {
+                expanded.push({ kind: 'day', key: entry.key, tlStart: end, tlEnd: end, showTips: true, isCont: true });
+            }
+            idx = end;
+            isFirst = false;
+        }
+        if (!liHeights.length && tipsH > 0) {
+            expanded.push({ kind: 'day', key: entry.key, tlStart: 0, tlEnd: 0, showTips: true, isCont: false });
+        }
+    });
+
+    return changed ? expanded : null;
+}
+
 async function renderSheets() {
     const root = document.getElementById('sheet-root');
     const status = document.getElementById('tb-status');
@@ -922,12 +985,13 @@ async function renderSheets() {
     const isTwoRow = !aligned && rows > 1;
     const front = getFrontColumns();
     const groups = aligned ? getKeyGroups().map(keys => ({ keys, rows: buildAlignRows(keys, level) })) : [];
+    let days = [];
     if (aligned) {
         const frontGroups = chunkByCols(front);
         root.innerHTML = frontGroups.map(items => renderDmSheet([], renderPackedBody(items))).join('')
             + groups.map(g => renderDmSheet(g.keys, renderAlignedBody(g.keys, alignPart(g.rows, 0, g.rows.length)))).join('');
     } else {
-        const days = getSelectedDayKeys().filter(hasDayContent).map(key => ({ kind: 'day', key }));
+        days = getSelectedDayKeys().filter(hasDayContent).map(key => ({ kind: 'day', key }));
         const packedGroups = chunkByCols([...front, ...days], cols * rows);
         root.innerHTML = packedGroups.map(items => renderDmSheet(
             items.filter(e => e.key).map(e => e.key),
@@ -938,7 +1002,7 @@ async function renderSheets() {
     refreshIcons(root);
     await waitForLayout();
 
-    // 2. 縮放字級；對齊版面仍放不下時依列分頁
+    // 2. 縮放字級；固定字級且未對齊時，超長單日自動拆成多欄；對齊版面放不下時依列分頁
     const used = [];
     const firstPass = [...root.querySelectorAll('.sheet')];
     const splits = [];
@@ -958,6 +1022,21 @@ async function renderSheets() {
             if (isSheetOverflowing(sheet)) splits.push({ sheet, group, fs });
         }
     });
+    if (!aligned && getSetting('fs') !== 'auto') {
+        const expandedDays = splitOverflowingDays(days, root);
+        if (expandedDays) {
+            const packedGroups = chunkByCols([...front, ...expandedDays], cols * rows);
+            const fixedFs = Number(getSetting('fs')) || 9;
+            root.innerHTML = packedGroups.map(items => renderDmSheet(
+                items.filter(e => e.key).map(e => e.key),
+                renderPackedBody(items),
+                isTwoRow,
+            )).join('');
+            root.querySelectorAll('.sheet').forEach(sheet => { sheet.style.fontSize = `${fixedFs}pt`; });
+            refreshIcons(root);
+            await waitForLayout();
+        }
+    }
     splits.forEach(({ sheet, group, fs }) => {
         const parts = paginateAlignRows(group.rows, measureAlignRows(sheet));
         const html = parts.map(([start, end]) => renderDmSheet(group.keys,

@@ -202,6 +202,18 @@ body {
     border-bottom: 1px solid var(--line);
     border-radius: 0.8em 0.8em 0 0;
 }
+.dm-day-cont { align-items: center; padding: 0.45em 0.8em; gap: 0.5em; }
+.dm-day-cont .dm-day-title { font-size: 1.1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dm-cont-badge {
+    flex-shrink: 0;
+    font-size: 0.8em;
+    font-weight: 900;
+    padding: 0.15em 0.5em;
+    border-radius: 0.4em;
+    background: #fff;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+}
 .dm-date {
     flex-shrink: 0;
     width: 4.6em;
