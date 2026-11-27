@@ -2,9 +2,6 @@
  * 行程 HTML 片段產生器 (網頁與列印共用)。
  */
 
-// 列印時強制保留背景色
-const PRINT_EXACT_STYLE = 'style="-webkit-print-color-adjust: exact; print-color-adjust: exact;"';
-
 /** 時間軸圓點的背景與邊框 class (類別有 dot 時優先使用) */
 function getEventBg(type) {
     const config = getTypeConfig(type);
@@ -122,55 +119,6 @@ function generateIndicatorNodeHtml(type, text, icon) {
             ${renderIcon(iconName, `w-5 h-5 ${style.icon} shrink-0`)}
             <span class="tracking-widest text-sm">${text}</span>
         </div>
-    </div>
-    `;
-}
-
-/**
- * 打孔日曆 Icon。
- * @param {Object} dateInfo - getDateDisplayInfo() 的回傳值
- */
-function generateCalendarIconHtml(dateInfo) {
-    if (!dateInfo) return '';
-
-    // 週末換色
-    let textClass = 'text-slate-800';
-    let borderClass = 'border-slate-800';
-    if (dateInfo.dowStr === 'Sat') {
-        textClass = 'text-emerald-700';
-        borderClass = 'border-emerald-700';
-    } else if (dateInfo.dowStr === 'Sun') {
-        textClass = 'text-rose-600';
-        borderClass = 'border-rose-600';
-    }
-
-    const ring = `<div class="w-2 h-4 border-2 ${borderClass} rounded-full bg-white" ${PRINT_EXACT_STYLE}></div>`;
-
-    return `
-    <div class="relative w-[72px] h-[72px] shrink-0 mt-2 group transition-transform duration-200 hover:scale-105">
-        <!-- 頂部鐵環 -->
-        <div class="absolute -top-2 left-0 w-full flex justify-evenly z-10 px-2 pointer-events-none">
-            ${ring}${ring}${ring}
-        </div>
-
-        <!-- 日曆主體 -->
-        <div class="absolute top-0 left-0 w-full h-full border-[2.5px] ${borderClass} rounded-xl bg-white flex flex-col justify-between py-1.5 px-1 shadow-sm" ${PRINT_EXACT_STYLE}>
-            <div class="text-[9px] font-bold text-center ${textClass} uppercase leading-none whitespace-nowrap overflow-hidden mt-0.5">
-                ${dateInfo.startStr}
-            </div>
-            <div class="flex-grow flex items-center justify-center -my-1">
-                <span class="text-[28px] font-black ${textClass} leading-none">${dateInfo.mainStr}</span>
-            </div>
-            <div class="text-[9px] font-bold text-center ${textClass} uppercase leading-none whitespace-nowrap overflow-hidden mb-0.5">
-                ${dateInfo.endStr}
-            </div>
-        </div>
-
-        <!-- 編輯模式 Hover 遮罩 (key 不是日期時不可改日期，不顯示) -->
-        ${dateInfo.editable === false ? '' : `
-        <div class="edit-only-ui absolute inset-0 bg-slate-900/5 rounded-xl z-10 pointer-events-none flex items-center justify-center transition-opacity duration-200 opacity-0 group-hover:opacity-100">
-            <i data-lucide="edit-2" class="w-5 h-5 text-slate-700 opacity-60"></i>
-        </div>`}
     </div>
     `;
 }

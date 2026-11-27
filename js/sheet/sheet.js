@@ -539,13 +539,12 @@ function renderDmBadge(key) {
             </div>`;
     }
     const dayNo = getDayNumber(key);
-    const dowClass = info.dowStr === 'Sat' ? ' sat' : info.dowStr === 'Sun' ? ' sun' : '';
-    return `
-        <div class="dm-date${dowClass}">
-            <span class="dm-dayno">DAY ${dayNo}</span>
-            <span class="dm-daynum">${esc(info.mainStr)}</span>
-            <span class="dm-dow">${esc(`${info.startStr} ${info.endStr}`)}</span>
-        </div>`;
+    return `<div class="dm-cal-wrap">${generateCalendarIconHtml({
+        ...info,
+        startStr: `DAY ${dayNo}`,
+        endStr: `${info.startStr} ${info.endStr}`,
+        editable: false,
+    })}</div>`;
 }
 
 function getDayTips(day) {
@@ -657,13 +656,7 @@ function renderCoverToc() {
         let when;
         if (isDateTheme()) {
             const info = getDayDisplayInfo(key);
-            const dowClass = info.dowStr === 'Sat' ? ' sat' : info.dowStr === 'Sun' ? ' sun' : '';
-            when = `
-                <span class="dm-toc-cal${dowClass}">
-                    <span class="dm-toc-mon">${esc(info.startStr)}</span>
-                    <span class="dm-toc-day">${esc(info.mainStr)}</span>
-                    <span class="dm-toc-dow">${esc(info.endStr)}</span>
-                </span>`;
+            when = `<div class="dm-toc-cal-wrap">${generateCalendarIconHtml({ ...info, editable: false })}</div>`;
         } else {
             when = `<span class="dm-toc-when"><span class="dm-toc-date">${esc(shortDayLabel(key))}</span></span>`;
         }
