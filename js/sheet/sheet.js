@@ -1071,7 +1071,7 @@ async function renderSheets() {
 const SHEET_PRESETS = {
     'a4-3': { paper: 'A4', orient: 'landscape', cols: '3', rows: '1' },
     'a3-3': { paper: 'A3', orient: 'landscape', cols: '3', rows: '1' },
-    'a3-2x3': { paper: 'A3', orient: 'landscape', cols: '3', rows: '2' },
+    'a3-2x3': { paper: 'A3', orient: 'portrait', cols: '3', rows: '2' },
     'a3-4': { paper: 'A3', orient: 'landscape', cols: '4', rows: '1' },
     'a4-2': { paper: 'A4', orient: 'landscape', cols: '2', rows: '1' },
 };
