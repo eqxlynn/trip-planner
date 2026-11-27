@@ -1112,6 +1112,12 @@ function initToolbar() {
                 const input = document.querySelector(`[data-param="${k}"]`);
                 if (input) input.value = v;
             });
+            // A3 上下對折版面格高較小，若原本為自動縮放則切為固定 9 pt 以啟用自動跨欄
+            if (presetEl.value === 'a3-2x3' && getSetting('fs') === 'auto') {
+                setSetting('fs', '9');
+                const fsInput = document.querySelector('[data-param="fs"]');
+                if (fsInput) fsInput.value = '9';
+            }
             renderSheets();
         });
     }
