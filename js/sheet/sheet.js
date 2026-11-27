@@ -616,7 +616,7 @@ function renderFoldMarks(isTwoRow = false) {
     return vMarks + hMarks;
 }
 
-/** 一張紙：頁首 + 內容 (bodyHtml) + 頁碼 (2 列模式省略頁首頁尾，維持上下 50% 對折對齊) */
+/** 一張紙：頁首 + 內容 (bodyHtml) (2 列模式省略頁首，維持上下 50% 對折對齊) */
 function renderDmSheet(keys, bodyHtml, isTwoRow = false) {
     const meta = sheetState.trip.metadata || {};
     return `
@@ -628,7 +628,6 @@ function renderDmSheet(keys, bodyHtml, isTwoRow = false) {
                 ${meta.subtitle ? `<div class="dm-subtitle">${esc(meta.subtitle)}</div>` : ''}
             </header>` : ''}
             ${bodyHtml}
-            ${!isTwoRow ? '<footer class="dm-foot"><span></span><span class="dm-pageno"></span></footer>' : ''}
         </section>`;
 }
 
