@@ -237,9 +237,20 @@ body {
 .dm-date-key { width: 5.2em; padding: 0.35em 0.2em; }
 .dm-date-key .dm-dayno { font-size: 0.75em; letter-spacing: .04em; text-align: center; line-height: 1.2; word-break: break-all; margin-bottom: 0.2em; }
 .dm-date-key .dm-daynum { font-size: 1.5em; letter-spacing: .06em; }
-.dm-day-info { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 0.2em; }
-.dm-day-title { font-size: 1.35em; font-weight: 900; line-height: 1.25; }
-.dm-meta { display: flex; align-items: center; gap: 0.3em; color: var(--muted); font-size: 0.95em; }
+.dm-day-info { min-width: 0; flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0.2em; }
+.dm-day-title {
+    font-size: 1.35em;
+    font-weight: 900;
+    line-height: 1.25;
+    min-height: 2.5em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.dm-day-cont .dm-day-title { min-height: 0; display: block; font-size: 1.1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dm-meta { min-width: 0; display: flex; align-items: center; gap: 0.3em; color: var(--muted); font-size: 0.95em; }
+.dm-meta span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dm-meta svg { width: 1.1em; height: 1.1em; flex-shrink: 0; }
 
 /* 時間軸 */
